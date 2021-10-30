@@ -180,7 +180,7 @@ class DatedMoney:
             leftover,
             [
                 SimpleMove(
-                    money.date, taking, self.path, money.path, "payback allocation"
+                    money.date, taking, self.path, money.path, f"payback '{money.note}'"
                 )
             ],
         )
@@ -384,6 +384,9 @@ class Schedule(Handler):
                 date += relativedelta.relativedelta(weeks=2)
             return payments
 
+        log.debug(
+            f"{expense.date.date()} schedule: {expense.value:10} note='{expense.note}'"
+        )
         return [
             Payment(
                 date=expense.date,
