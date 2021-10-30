@@ -701,9 +701,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="ledger allocations tool")
     parser.add_argument("-c", "--config-file", action="store", default="lalloc.json")
-    parser.add_argument(
-        "-o", "--output-file", action="store", default="simplified.generated.ledger"
-    )
+    parser.add_argument("-l", "--ledger-file", action="store", default="lalloc.g.ledger")
     parser.add_argument("-a", "--allocate", action="store_true", default=False)
     parser.add_argument("-d", "--debug", action="store_true", default=False)
     parser.add_argument("--no-debug", action="store_true", default=False)
@@ -713,4 +711,4 @@ if __name__ == "__main__":
         log.setLevel(logging.DEBUG)
 
     if args.allocate:
-        allocate(args.config_file, args.output_file)
+        allocate(args.config_file, args.ledger_file)
