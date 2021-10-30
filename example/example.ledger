@@ -4,6 +4,7 @@
 account assets:checking
 account expenses:mortgage
 account expenses:groceries
+account expenses:whoops
 account income:job
 
 2021/01/01 * opening balances
@@ -16,6 +17,13 @@ account income:job
 2021/01/07 * groceries
     assets:checking                                                                         -$100.00
     expenses:groceries                                                                       $100.00
+
+2021/01/07 * whoa, strange purchase
+    : allocation:
+    assets:checking                                                                         -$200.00
+    expenses:whoops                                                                          $200.00
+    [allocations:checking:savings:emergency]                                                -$200.00
+    [assets:checking:reserved]                                                               $200.00
 
 2021/01/15 * income
     income:job                                                                             -$2000.00
@@ -52,3 +60,15 @@ account income:job
     expenses:mortgage                                                                       $1200.00
     [allocations:checking:mortgage]                                                        -$1200.00
     [assets:checking:reserved]                                                              $1200.00
+
+2021/03/15 * income
+    income:job                                                                             -$2000.00
+    assets:checking                                                                         $2000.00
+
+2021/04/01 * income
+    income:job                                                                             -$2000.00
+    assets:checking                                                                         $2000.00
+
+2021/04/15 * income
+    income:job                                                                             -$2000.00
+    assets:checking                                                                         $2000.00

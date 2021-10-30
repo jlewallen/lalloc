@@ -505,6 +505,7 @@ class Configuration:
 @dataclass
 class Finances:
     cfg: Configuration
+    today: datetime.datetime
 
     def allocate(self, file: TextIO):
         l = Ledger(self.cfg.ledger_file)
@@ -563,26 +564,27 @@ class Finances:
         for period in income_periods:
             moves += spending.pay_from(period.date, available)
 
-        today = datetime_today_that_is_sane()
-
         unpaid_spending = sum([e.value for e in spending.payments])
 
         log.info(f"unpaid-spending: {unpaid_spending}")
         for payment in spending.payments:
             log.info(f"{payment}")
-        moves += spending.pay_from(today, available)
+        moves += spending.pay_from(self.today, available)
 
         income_after_payback = sum([dm.left() for dm in available.money])
 
         _, moving = move_all_dated_money(
-            available.money, "reserving left over income", names.available, today
+            available.money, "reserving left over income", names.available, self.today
         )
 
         moves += moving
 
         if income_after_payback <= 0:
             _, moving = move_all_dated_money(
-                emergency_money, "moving emergency to available", names.available, today
+                emergency_money,
+                "moving emergency to available",
+                names.available,
+                self.today,
             )
 
             moves += moving
@@ -671,12 +673,12 @@ def parse_configuration(
     )
 
 
-def allocate(config_path: str, file_name: str) -> None:
+def allocate(config_path: str, file_name: str, today: datetime.datetime) -> None:
     with open(config_path, "r") as file:
         raw = json.loads(file.read())
         configuration = parse_configuration(**raw)
 
-    f = Finances(configuration)
+    f = Finances(configuration, today)
 
     try_truncate_file(file_name)
 
@@ -701,8 +703,11 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="ledger allocations tool")
     parser.add_argument("-c", "--config-file", action="store", default="lalloc.json")
-    parser.add_argument("-l", "--ledger-file", action="store", default="lalloc.g.ledger")
+    parser.add_argument(
+        "-l", "--ledger-file", action="store", default="lalloc.g.ledger"
+    )
     parser.add_argument("-a", "--allocate", action="store_true", default=False)
+    parser.add_argument("-t", "--today", action="store", default=None)
     parser.add_argument("-d", "--debug", action="store_true", default=False)
     parser.add_argument("--no-debug", action="store_true", default=False)
     args = parser.parse_args()
@@ -711,4 +716,9 @@ if __name__ == "__main__":
         log.setLevel(logging.DEBUG)
 
     if args.allocate:
-        allocate(args.config_file, args.ledger_file)
+        today = datetime_today_that_is_sane()
+        if args.today:
+            today = datetime.datetime.strptime(args.today, "%Y/%m/%d")
+            log.warning(f"today overriden to {today}")
+
+        allocate(args.config_file, args.ledger_file, today)

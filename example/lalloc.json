@@ -1,49 +1,49 @@
 {
-    "ledger_file": "example.ledger",
-    "names": {
-        "available": "allocations:checking:available",
-        "refunded": "allocations:checking:refunded",
-        "emergency": "allocations:checking:savings:emergency",
-        "reserved": "assets:checking:reserved"
+  "ledger_file": "example.ledger",
+  "names": {
+    "available": "allocations:checking:available",
+    "refunded": "allocations:checking:refunded",
+    "emergency": "allocations:checking:savings:emergency",
+    "reserved": "assets:checking:reserved"
+  },
+  "income": [
+    {
+      "path": "income:job",
+      "handler": {
+        "income": {
+          "name": "job",
+          "epoch": 1577865600.0,
+          "factor": "2"
+        },
+        "path": "assets:checking:reserved"
+      }
+    }
+  ],
+  "spending": [
+    {
+      "path": "allocations:checking:available:.+"
     },
-    "income": [
-        {
-            "path": "income:job",
-            "handler": {
-                "income": {
-                    "name": "job",
-                    "epoch": 1577865600.0,
-                    "factor": "2"
-                },
-                "path": "assets:checking:reserved"
-            }
-        }
-    ],
-    "spending": [
-        {
-            "path": "allocations:checking:available:.+"
-        },
-        {
-            "path": "allocations:checking:rec"
-        },
-        {
-            "path": "allocations:checking:fallback",
-            "handler": {
-                "maximum": "25"
-            }
-        }
-    ],
-    "emergency": [
-        {
-            "path": "allocations:checking:savings:emergency"
-        }
-    ],
-    "refund": [
-        {
-            "path": "allocations:checking:available:.+"
-        },
-        {
-            "path": "allocations:checking:rec"
-        }
-    ]
+    {
+      "path": "allocations:checking:rec"
+    },
+    {
+      "path": "allocations:checking:savings:emergency",
+      "handler": {
+        "maximum": "25"
+      }
+    }
+  ],
+  "emergency": [
+    {
+      "path": "allocations:checking:savings:emergency"
+    }
+  ],
+  "refund": [
+    {
+      "path": "allocations:checking:available:.+"
+    },
+    {
+      "path": "allocations:checking:rec"
+    }
+  ]
 }
