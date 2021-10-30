@@ -65,12 +65,12 @@
 
 
 
-2021/01/15 * payback allocation
+2021/01/15 * payback 'groceries'
 	; allocation: conservify
 	[assets:checking:reserved]                                      $-100.00
 	[allocations:checking:available:groceries]                       $100.00
 
-2021/02/01 * payback allocation
+2021/02/01 * payback 'groceries'
 	; allocation: conservify
 	[assets:checking:reserved]                                      $-100.00
 	[allocations:checking:available:groceries]                       $100.00

@@ -488,7 +488,6 @@ class Names:
     refunded: str = "allocations:checking:refunded"
     emergency: str = "allocations:checking:savings:emergency"
     reserved: str = "assets:checking:reserved"
-    petty: str = "assets:checking:reserved:petty"
 
 
 @dataclass
@@ -497,7 +496,6 @@ class Configuration:
     names: Names
     incomes: List[HandlerPath]
     spending: List[HandlerPath]
-    petty: List[HandlerPath]
     emergency: List[HandlerPath]
     refund: List[HandlerPath]
     income_pattern = "^income:"
@@ -518,11 +516,6 @@ class Finances:
 
         emergency_transactions = Transactions(l.register([names.emergency]))
         emergency_money = emergency_transactions.apply_handlers(self.cfg.emergency)
-
-        petty_transactions = Transactions(
-            l.register([names.petty] + exclude_allocations)
-        )
-        petty_money = petty_transactions.apply_handlers(self.cfg.petty)
 
         income_transactions = Transactions(
             l.register([self.cfg.income_pattern] + exclude_allocations)
@@ -566,7 +559,6 @@ class Finances:
         moves += move_refunded
 
         available.include(refunded_money_moved)
-        available.include(petty_money)
 
         for period in income_periods:
             moves += spending.pay_from(period.date, available)
@@ -660,14 +652,12 @@ def parse_configuration(
     income: List[Mapping[str, Any]] = None,
     spending: List[Mapping[str, Any]] = None,
     refund: List[Mapping[str, Any]] = None,
-    petty: List[Mapping[str, Any]] = None,
     emergency: List[Mapping[str, Any]] = None,
     **kwargs,
 ) -> Configuration:
     assert ledger_file
     assert income
     assert spending
-    assert petty
     assert refund
     assert emergency
     assert names
@@ -676,7 +666,6 @@ def parse_configuration(
         names=parse_names(**names),
         incomes=[parse_income(**obj) for obj in income],
         spending=[parse_spending(**obj) for obj in spending],
-        petty=[parse_petty(**obj) for obj in petty],
         emergency=[parse_emergency(**obj) for obj in emergency],
         refund=[parse_refund(**obj) for obj in refund],
     )

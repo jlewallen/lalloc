@@ -4,8 +4,7 @@
         "available": "allocations:checking:available",
         "refunded": "allocations:checking:refunded",
         "emergency": "allocations:checking:savings:emergency",
-        "reserved": "assets:checking:reserved",
-        "petty": "assets:checking:reserved:petty"
+        "reserved": "assets:checking:reserved"
     },
     "income": [
         {
@@ -32,11 +31,6 @@
             "handler": {
                 "maximum": "25"
             }
-        }
-    ],
-    "petty": [
-        {
-            "path": "assets:checking:reserved:petty"
         }
     ],
     "emergency": [
