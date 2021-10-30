@@ -12,8 +12,6 @@ from dataclasses import dataclass, field
 class PayoffCalculator:
     total: float
     name: str
-    # expense: str
-    # allocation: str
     date: datetime.date
     payments: int
 
@@ -23,6 +21,10 @@ class PayoffCalculator:
         destination = "[allocations:checking:savings:main:payoff]"
         remaining = int(self.total * 100)
         payment = int(remaining / self.payments)
+
+        log.info(
+            f"generating {self.total} payoff {source} -> {destination} for '{self.name}'"
+        )
 
         payment_date = self.date
         for n in range(self.payments):
@@ -44,7 +46,7 @@ if __name__ == "__main__":
         ],
     )
 
-    log = logging.getLogger("money")
+    log = logging.getLogger("payoff")
 
     parser = argparse.ArgumentParser(description="payoff tool")
     parser.add_argument("-d", "--debug", action="store_true", default=False)
