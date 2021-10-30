@@ -1,0 +1,102 @@
+; ----------------------------------------------------------------------------------------------------------------------------------------------
+
+2021/01/15 * job income allocation (fixed)
+    ; allocation: conservify
+    [allocations:checking:mortgage]                                                            $600.00  ; mortgage
+    [allocations:savings]                                                                      $500.00  ; savings
+    [assets:checking:reserved]                                                               ; $900.00
+
+; end: 900.00 #unallocated #conservify 2021/01/15
+
+; ----------------------------------------------------------------------------------------------------------------------------------------------
+
+2021/02/01 * job income allocation (fixed)
+    ; allocation: conservify
+    [allocations:checking:mortgage]                                                            $600.00  ; mortgage
+    [allocations:savings]                                                                      $500.00  ; savings
+    [assets:checking:reserved]                                                               ; $900.00
+
+; end: 900.00 #unallocated #conservify 2021/02/01
+
+; ----------------------------------------------------------------------------------------------------------------------------------------------
+
+2021/02/15 * job income allocation (fixed)
+    ; allocation: conservify
+    [allocations:checking:mortgage]                                                            $600.00  ; mortgage
+    [allocations:savings]                                                                      $500.00  ; savings
+    [assets:checking:reserved]                                                               ; $900.00
+
+2021/02/15 * job income allocation (fixed)
+    ; allocation: conservify
+    [allocations:checking:rec]                                                                 $100.00   ; recreational spending
+    [assets:checking:reserved]                                                               ; $800.00
+
+; end: 800.00 #unallocated #conservify 2021/02/15
+
+; ----------------------------------------------------------------------------------------------------------------------------------------------
+
+2021/02/28 * job income allocation (fixed)
+    ; allocation: conservify
+    [allocations:checking:mortgage]                                                            $600.00  ; mortgage
+    [allocations:savings]                                                                      $500.00  ; savings
+    [assets:checking:reserved]                                                               ; $900.00
+
+2021/02/28 * job income allocation (fixed)
+    ; allocation: conservify
+    [allocations:checking:rec]                                                                 $100.00   ; recreational spending
+    [assets:checking:reserved]                                                               ; $800.00
+
+; end: 800.00 #unallocated #conservify 2021/02/28
+
+; ----------------------------------------------------------------------------------------------------------------------------------------------
+
+2021/03/01 * job income allocation (fixed)
+    ; allocation: conservify
+    [allocations:checking:mortgage]                                                            $600.00  ; mortgage
+    [allocations:savings]                                                                      $500.00  ; savings
+    [assets:checking:reserved]                                                               ; $900.00
+
+2021/03/01 * job income allocation (fixed)
+    ; allocation: conservify
+    [allocations:checking:rec]                                                                 $100.00   ; recreational spending
+    [assets:checking:reserved]                                                               ; $800.00
+
+; end: 800.00 #unallocated #conservify 2021/03/01
+
+
+
+2021/01/15 * payback allocation
+	; allocation: conservify
+	[assets:checking:reserved]                                      $-100.00
+	[allocations:checking:available:groceries]                       $100.00
+
+2021/02/01 * payback allocation
+	; allocation: conservify
+	[assets:checking:reserved]                                      $-100.00
+	[allocations:checking:available:groceries]                       $100.00
+
+2021/10/30 * reserving left over income
+	; allocation: conservify
+	[assets:checking:reserved]                                      $-700.00
+	[allocations:checking:available]                                 $700.00
+
+2021/10/30 * reserving left over income
+	; allocation: conservify
+	[assets:checking:reserved]                                      $-900.00
+	[allocations:checking:available]                                 $900.00
+
+2021/10/30 * reserving left over income
+	; allocation: conservify
+	[assets:checking:reserved]                                      $-800.00
+	[allocations:checking:available]                                 $800.00
+
+2021/10/30 * reserving left over income
+	; allocation: conservify
+	[assets:checking:reserved]                                      $-800.00
+	[allocations:checking:available]                                 $800.00
+
+2021/10/30 * reserving left over income
+	; allocation: conservify
+	[assets:checking:reserved]                                      $-800.00
+	[allocations:checking:available]                                 $800.00
+

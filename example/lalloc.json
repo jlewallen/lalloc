@@ -1,0 +1,55 @@
+{
+    "ledger_file": "example.ledger",
+    "names": {
+        "available": "allocations:checking:available",
+        "refunded": "allocations:checking:refunded",
+        "emergency": "allocations:checking:savings:emergency",
+        "reserved": "assets:checking:reserved",
+        "petty": "assets:checking:reserved:petty"
+    },
+    "income": [
+        {
+            "path": "income:job",
+            "handler": {
+                "income": {
+                    "name": "job",
+                    "epoch": 1577865600.0,
+                    "factor": "2"
+                },
+                "path": "assets:checking:reserved"
+            }
+        }
+    ],
+    "spending": [
+        {
+            "path": "allocations:checking:available:.+"
+        },
+        {
+            "path": "allocations:checking:rec"
+        },
+        {
+            "path": "allocations:checking:fallback",
+            "handler": {
+                "maximum": "25"
+            }
+        }
+    ],
+    "petty": [
+        {
+            "path": "assets:checking:reserved:petty"
+        }
+    ],
+    "emergency": [
+        {
+            "path": "allocations:checking:savings:emergency"
+        }
+    ],
+    "refund": [
+        {
+            "path": "allocations:checking:available:.+"
+        },
+        {
+            "path": "allocations:checking:rec"
+        }
+    ]
+}

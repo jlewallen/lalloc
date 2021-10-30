@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ledger -f example.ledger balance --current --flat "$@"

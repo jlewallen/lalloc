@@ -1,0 +1,54 @@
+!include rules.ledger
+!include simplified.generated.ledger
+
+account assets:checking
+account expenses:mortgage
+account expenses:groceries
+account income:job
+
+2021/01/01 * opening balances
+    assets:checking                                                                         $1000.00
+    [assets:checking:reserved]                                                             -$1000.00
+    [allocations:checking:savings]                                                           $500.00
+    [allocations:checking:savings:emergency]                                                 $500.00
+    equity
+
+2021/01/07 * groceries
+    assets:checking                                                                         -$100.00
+    expenses:groceries                                                                       $100.00
+
+2021/01/15 * income
+    income:job                                                                             -$2000.00
+    assets:checking                                                                         $2000.00
+
+2021/01/22 * groceries
+    assets:checking                                                                         -$100.00
+    expenses:groceries:ralphs                                                                $100.00
+
+2021/02/01 * income
+    income:job                                                                             -$2000.00
+    assets:checking                                                                         $2000.00
+
+2021/02/03 * mortgage
+    assets:checking                                                                        -$1200.00
+    expenses:mortgage                                                                       $1200.00
+    [allocations:checking:mortgage]                                                        -$1200.00
+    [assets:checking:reserved]                                                              $1200.00
+
+2021/02/15 * income
+    income:job                                                                             -$2000.00
+    assets:checking                                                                         $2000.00
+
+2021/02/28 * income
+    income:job                                                                             -$2000.00
+    assets:checking                                                                         $2000.00
+
+2021/03/01 * income
+    income:job                                                                             -$2000.00
+    assets:checking                                                                         $2000.00
+
+2021/03/02 * mortgage
+    assets:checking                                                                        -$1200.00
+    expenses:mortgage                                                                       $1200.00
+    [allocations:checking:mortgage]                                                        -$1200.00
+    [assets:checking:reserved]                                                              $1200.00

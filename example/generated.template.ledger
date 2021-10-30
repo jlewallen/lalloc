@@ -1,0 +1,13 @@
+{% for tx in txs %}
+
+{{ tx.ledger_date() }} {% if tx.cleared %}*{% endif %} {{ tx.payee }}
+	; allocation: conservify
+{%- for posting in tx.postings %}
+	{% if posting.note -%}
+	{{- "%-60s  %10s ; %s" | format(posting.account, posting.ledger_value(), posting.note) }}
+	{%- else -%}
+	{{ "%-60s  %10s" | format(posting.account, posting.ledger_value()) }}
+	{%- endif -%}
+{%- endfor -%}
+
+{% endfor %}

@@ -1,0 +1,20 @@
+; ----------------------------------------------------------------------------------------------------------------------------------------------
+
+{{ period }} * job income allocation (fixed)
+    ; allocation: conservify
+    [allocations:checking:mortgage]                                                            ${{ period.monthly(1200) }}  ; mortgage
+    [allocations:savings]                                                                      ${{ period.monthly(1000) }}  ; savings
+    [assets:checking:reserved]                                                               ; ${{ period.display() }}
+
+{% if period.after('2/5/2021') -%}
+
+{{ period }} * job income allocation (fixed)
+    ; allocation: conservify
+    [allocations:checking:rec]                                                                 ${{ period.monthly(200) }}   ; recreational spending
+    [assets:checking:reserved]                                                               ; ${{ period.display() }}
+
+{% else -%}
+
+{% endif -%}
+
+; end: {{ period.done() }} #unallocated #conservify {{ period }}

@@ -1,0 +1,20 @@
+account allocations:checking:mortgage
+account allocations:checking:available:groceries
+account allocations:checking:rec
+account allocations:checking:shaved
+account allocations:checking:available
+account allocations:checking:refunded
+account allocations:checking:fallback
+
+account allocations:checking:savings
+account allocations:checking:savings:emergency
+
+account assets:checking:reserved:petty
+
+= expenses:groceries & expr '(amount > 0 or has_tag("refund")) and not has_tag("dummy_tag") and not has_tag("noalloc")'
+    [allocations:checking:available:groceries]                    (-1)
+    [assets:checking:reserved]                                     (1)
+
+= expenses:rec & expr '(amount > 0 or has_tag("refund")) and not has_tag("dummy_tag") and not has_tag("noalloc")'
+    [allocations:checking:rec]                                    (-1)
+    [assets:checking:reserved]                                     (1)
