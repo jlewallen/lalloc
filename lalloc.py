@@ -387,9 +387,7 @@ class Spending:
 
         moves: List[Move] = []
         for p in paying:
-            step = money.take(
-                DatedMoney(date=date, total=p.total, path=p.path, note=p.note)
-            )
+            step = money.take(p.redate(date))
             if step:
                 moves += step
                 self.payments.remove(p)
