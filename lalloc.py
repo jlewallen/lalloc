@@ -556,19 +556,16 @@ class Finances:
         refunded_money_moved, move_refunded = move_all_dated_money(
             refund_money, "refunded", names.refunded
         )
-
         moves += move_refunded
-
         available.include(refunded_money_moved)
 
         # Payback for spending for each pay period.
         for period in income_periods:
             moves += spending.pay_from(period.date, available)
 
-        unpaid_spending = sum([e.value for e in spending.payments])
-
         # How much is still unpaid for, this is spending accumulating until the
         # next pay period.
+        unpaid_spending = sum([e.value for e in spending.payments])
         log.info(f"{self.today.date()} unpaid-spending: {unpaid_spending}")
         for payment in spending.payments:
             log.info(f"{self.today.date()} {payment}")
@@ -584,19 +581,7 @@ class Finances:
         _, moving = move_all_dated_money(
             available.money, "reserving left over income", names.available, self.today
         )
-
         moves += moving
-
-        # Move emergency to available if spending has breached that threshold.
-        if income_after_payback <= 0:
-            _, moving = move_all_dated_money(
-                emergency_money,
-                "moving emergency to available",
-                names.available,
-                self.today,
-            )
-
-            moves += moving
 
         log.info(f"{self.today.date()} income-after-static: {income_after_static}")
         log.info(f"{self.today.date()} income-after-payback: {income_after_payback}")
