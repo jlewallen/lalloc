@@ -199,6 +199,9 @@ class DatedMoney:
     def left(self) -> decimal.Decimal:
         return self.total - self.taken
 
+    def redate(self, date: datetime.datetime) -> "DatedMoney":
+        return DatedMoney(self.note, self.path, date, self.left())
+
     def take(
         self, money: "DatedMoney", partial=False
     ) -> Tuple["DatedMoney", List[Move]]:
@@ -254,6 +257,12 @@ def move_all_dated_money(
     new_money = [dm for dm, m in tuples if dm]
     moves = flatten([m for dm, m in tuples])
     return (new_money, moves)
+
+
+def redate_all_dated_money(
+    dms: List[DatedMoney], date: datetime.datetime
+) -> List[DatedMoney]:
+    return [dm.redate(date) for dm in dms]
 
 
 @dataclass
@@ -558,6 +567,7 @@ class Finances:
         )
         moves += move_refunded
         available.include(refunded_money_moved)
+        available.include(redate_all_dated_money(emergency_money, today))
 
         # Payback for spending for each pay period.
         for period in income_periods:
@@ -578,8 +588,9 @@ class Finances:
                 log.info(f"{money.date.date()} {money.path:50} {left:10}")
 
         # Move any left over income to the available account.
+        left_over = [dm for dm in available.money if dm.path != names.emergency]
         _, moving = move_all_dated_money(
-            available.money, "reserving left over income", names.available, self.today
+            left_over, "reserving left over income", names.available, self.today
         )
         moves += moving
 
