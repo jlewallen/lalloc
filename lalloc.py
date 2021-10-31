@@ -373,7 +373,7 @@ class Schedule(Handler):
             remaining = expense.value
             date = expense.date
             while remaining > 0:
-                taking = self.maximum if remaining > self.maximum else self.maximum
+                taking = self.maximum if remaining > self.maximum else remaining
                 log.debug(f"schedule: date={date} {taking} note={expense.note}")
                 payments.append(
                     Payment(
