@@ -566,9 +566,9 @@ class Finances:
 
         unpaid_spending = sum([e.value for e in spending.payments])
 
-        log.info(f"unpaid-spending: {unpaid_spending}")
+        log.info(f"{self.today.date()} unpaid-spending: {unpaid_spending}")
         for payment in spending.payments:
-            log.info(f"{payment}")
+            log.info(f"{self.today.date()} {payment}")
         moves += spending.pay_from(self.today, available)
 
         income_after_payback = sum([dm.left() for dm in available.money])
@@ -589,9 +589,9 @@ class Finances:
 
             moves += moving
 
-        log.info(f"income-after-static: {income_after_static}")
-        log.info(f"income-after-payback: {income_after_payback}")
-        log.info(f"ytd-spending: {ytd_spending}")
+        log.info(f"{self.today.date()} income-after-static: {income_after_static}")
+        log.info(f"{self.today.date()} income-after-payback: {income_after_payback}")
+        log.info(f"{self.today.date()} ytd-spending: {ytd_spending}")
 
         return flatten([m.txns() for m in moves])
 
