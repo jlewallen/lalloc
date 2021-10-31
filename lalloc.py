@@ -220,6 +220,7 @@ class MoneyPool:
 
     def include(self, more: List[DatedMoney]):
         self.money += more
+        self.money.sort(key=lambda p: (p.date, p.total))
 
     def take(self, taking: DatedMoney) -> List[Move]:
         available = [
@@ -549,10 +550,13 @@ class Finances:
 
             available.add(names.reserved, date, period.left(), names.reserved)
 
+        # This is how much money is left over to cover other expenses.
         income_after_static = sum([dm.left() for dm in available.money])
 
         moves: List[Move] = []
 
+        # This moves refunded money in allocations to a single refund account
+        # and then makes that money available for payback.
         refunded_money_moved, move_refunded = move_all_dated_money(
             refund_money, "refunded", names.refunded
         )
@@ -561,24 +565,33 @@ class Finances:
 
         available.include(refunded_money_moved)
 
+        # Payback for spending for each pay period.
         for period in income_periods:
             moves += spending.pay_from(period.date, available)
 
         unpaid_spending = sum([e.value for e in spending.payments])
 
+        # How much is still unpaid for, this is spending accumulating until the
+        # next pay period.
         log.info(f"{self.today.date()} unpaid-spending: {unpaid_spending}")
         for payment in spending.payments:
             log.info(f"{self.today.date()} {payment}")
         moves += spending.pay_from(self.today, available)
 
         income_after_payback = sum([dm.left() for dm in available.money])
+        for money in available.money:
+            left = money.left()
+            if left > 0:
+                log.info(f"{money.date.date()} {money.path:50} {left:10}")
 
+        # Move any left over income to the available account.
         _, moving = move_all_dated_money(
             available.money, "reserving left over income", names.available, self.today
         )
 
         moves += moving
 
+        # Move emergency to available if spending has breached that threshold.
         if income_after_payback <= 0:
             _, moving = move_all_dated_money(
                 emergency_money,
