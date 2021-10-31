@@ -189,10 +189,10 @@ class SimpleMove(Move):
 
 @dataclass
 class DatedMoney:
-    note: str
-    path: str
     date: datetime.datetime
     total: decimal.Decimal
+    path: str
+    note: str
     taken: decimal.Decimal = decimal.Decimal(0)
     where: Dict[str, decimal.Decimal] = field(default_factory=dict)
 
@@ -200,7 +200,7 @@ class DatedMoney:
         return self.total - self.taken
 
     def redate(self, date: datetime.datetime) -> "DatedMoney":
-        return DatedMoney(self.note, self.path, date, self.left())
+        return DatedMoney(date, self.left(), self.path, self.note)
 
     def take(
         self, money: "DatedMoney", partial=False
@@ -220,10 +220,10 @@ class DatedMoney:
         self.taken += taking
         self.where[money.path] = taking
         leftover = DatedMoney(
-            note=money.note,
-            path=money.path,
             date=money.date,
             total=money.total - taking,
+            path=money.path,
+            note=money.note,
             where=money.where,
         )
         return (
@@ -243,7 +243,7 @@ class DatedMoney:
             return (None, [])
         self.taken = self.total
         effective_date = date if date else self.date
-        moved = DatedMoney(note=note, path=path, date=effective_date, total=left)
+        moved = DatedMoney(date=effective_date, total=left, path=path, note=note)
         return (moved, [SimpleMove(effective_date, left, self.path, path, note)])
 
 
@@ -272,7 +272,7 @@ class MoneyPool:
     def add(
         self, note: str, date: datetime.datetime, total: decimal.Decimal, path: str
     ):
-        self.money.append(DatedMoney(note=note, date=date, total=total, path=path))
+        self.money.append(DatedMoney(date=date, total=total, path=path, note=note))
 
     def include(self, more: List[DatedMoney]):
         self.money += more
@@ -319,7 +319,7 @@ class Period(DatedMoney):
         )
         remaining, moves = self.take(
             DatedMoney(
-                note="yearly expense", date=self.date, total=v, path=self.income.name
+                date=self.date, total=v, path=self.income.name, note="yearly expense"
             )
         )
         assert remaining.total == 0
@@ -329,7 +329,7 @@ class Period(DatedMoney):
         v = quantize(value / self.income.factor)
         remaining, moves = self.take(
             DatedMoney(
-                note="monthly expense", date=self.date, total=v, path=self.income.name
+                date=self.date, total=v, path=self.income.name, note="monthly expense"
             )
         )
         assert remaining.total == 0
@@ -360,11 +360,8 @@ class Expense:
 
 
 @dataclass
-class Payment:
-    date: datetime.datetime
-    value: decimal.Decimal
-    note: str
-    path: str
+class Payment(DatedMoney):
+    pass
 
 
 @dataclass
@@ -391,7 +388,7 @@ class Spending:
         moves: List[Move] = []
         for p in paying:
             step = money.take(
-                DatedMoney(date=date, total=p.value, note=p.note, path=p.path)
+                DatedMoney(date=date, total=p.total, path=p.path, note=p.note)
             )
             if step:
                 moves += step
@@ -399,6 +396,7 @@ class Spending:
                 self.paid.append(p)
             else:
                 break
+
         return moves
 
     def _sort(self):
@@ -429,7 +427,7 @@ class Schedule(Handler):
                 log.debug(f"schedule: date={date} {taking} note={expense.note}")
                 payments.append(
                     Payment(
-                        date=date, value=taking, path=expense.path, note=expense.note
+                        date=date, total=taking, path=expense.path, note=expense.note
                     )
                 )
                 remaining -= taking
@@ -442,7 +440,7 @@ class Schedule(Handler):
         return [
             Payment(
                 date=expense.date,
-                value=expense.value,
+                total=expense.value,
                 path=expense.path,
                 note=expense.note,
             )
@@ -484,10 +482,10 @@ class DatedMoneyHandler(Handler):
         log.info(f"{tx.date.date()} dated-money: {posting} {posting.value}")
         return [
             DatedMoney(
-                note=tx.payee,
-                path=posting.account,
                 date=tx.date,
                 total=posting.value.copy_abs(),
+                path=posting.account,
+                note=tx.payee,
             )
         ]
 
@@ -537,7 +535,7 @@ class Finances:
         refund_money = allocation_transactions.apply_handlers(self.cfg.refund)
         spending = Spending(allocation_transactions.apply_handlers(self.cfg.spending))
 
-        ytd_spending = sum([e.value for e in spending.payments])
+        ytd_spending = sum([e.total for e in spending.payments])
 
         # Allocate static income by rendering income template for each income
         # transaction, this will generate transactions directly into file and
@@ -575,7 +573,7 @@ class Finances:
 
         # How much is still unpaid for, this is spending accumulating until the
         # next pay period.
-        unpaid_spending = sum([e.value for e in spending.payments])
+        unpaid_spending = sum([e.total for e in spending.payments])
         log.info(f"{self.today.date()} unpaid-spending: {unpaid_spending}")
         for payment in spending.payments:
             log.info(f"{self.today.date()} {payment}")
