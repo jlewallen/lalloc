@@ -53,7 +53,7 @@ class Posting:
     note: Optional[str] = None
 
     def ledger_value(self) -> str:
-        return "$%.2f" % (self.value,)
+        return f"${self.value:.2f}"
 
 
 @dataclass
