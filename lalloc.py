@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from typing import Tuple, Any, Dict, List, TextIO, Optional, Mapping, Union
+from typing import Tuple, Any, Dict, Sequence, List, TextIO, Optional, Mapping, Union
 
 from dataclasses import dataclass, field
 from dateutil import relativedelta
@@ -188,6 +188,14 @@ class SimpleMove(Move):
 
 
 @dataclass
+class Taken:
+    total: decimal.Decimal
+    after: "DatedMoney"
+    moves: Sequence[Move]
+    payments: Sequence["Payment"] = field(default_factory=list)
+
+
+@dataclass
 class DatedMoney:
     date: datetime.datetime
     total: decimal.Decimal
@@ -202,9 +210,7 @@ class DatedMoney:
     def redate(self, date: datetime.datetime) -> "DatedMoney":
         return DatedMoney(date, self.left(), self.path, self.note)
 
-    def take(
-        self, money: "DatedMoney", partial=False
-    ) -> Tuple["DatedMoney", List[Move]]:
+    def take(self, money: "DatedMoney", partial=False) -> Taken:
         assert money.total >= 0
         assert quantize(money.total) == money.total
         taking = money.total
@@ -219,21 +225,19 @@ class DatedMoney:
         )
         self.taken += taking
         self.where[money.path] = taking
-        leftover = DatedMoney(
+        after = DatedMoney(
             date=money.date,
             total=money.total - taking,
             path=money.path,
             note=money.note,
             where=money.where,
         )
-        return (
-            leftover,
-            [
-                SimpleMove(
-                    money.date, taking, self.path, money.path, f"payback '{money.note}'"
-                )
-            ],
-        )
+        moves = [
+            SimpleMove(
+                money.date, taking, self.path, money.path, f"payback '{money.note}'"
+            )
+        ]
+        return Taken(taking, after, moves)
 
     def move(
         self, path: str, note: str, date: Optional[datetime.datetime] = None
@@ -245,6 +249,22 @@ class DatedMoney:
         effective_date = date if date else self.date
         moved = DatedMoney(date=effective_date, total=left, path=path, note=note)
         return (moved, [SimpleMove(effective_date, left, self.path, path, note)])
+
+
+@dataclass
+class RequirePayback(DatedMoney):
+    def take(self, money: DatedMoney, partial=False) -> Taken:
+        taken = super().take(money, partial=partial)
+        log.info(f"{money.date.date()} {self.path:50} {taken.total:10} require-payback")
+        payments = [
+            Payment(
+                date=money.date,
+                total=taken.total,
+                path=self.path,
+                note="require payback",
+            )
+        ]
+        return Taken(taken.total, taken.after, taken.moves, payments)
 
 
 def move_all_dated_money(
@@ -276,29 +296,44 @@ class MoneyPool:
 
     def include(self, more: List[DatedMoney]):
         self.money += more
-        self.money.sort(key=lambda p: (p.date, p.total))
 
-    def take(self, taking: DatedMoney) -> List[Move]:
-        available = [
-            dm for dm in self.money if dm.left() > 0 and dm.date <= taking.date
-        ]
+    def _can_use(self, taking: DatedMoney, available: DatedMoney) -> bool:
+        if taking.path == available.path:
+            return False
+        return available.left() > 0 and available.date <= taking.date
+
+    def take(self, taking: DatedMoney) -> Taken:
+        available = [dm for dm in self.money if self._can_use(taking, dm)]
         moves: List[Move] = []
+        payments: List[Payment] = []
 
         total_available = sum([dm.left() for dm in available])
         if total_available < taking.total:
             log.info(
                 f"{taking.date.date()} {taking.path:50} {taking.total:10} insufficient available {total_available}"
             )
-            return []
+            return Taken(
+                decimal.Decimal(0),
+                DatedMoney(taking.date, decimal.Decimal(0), "error", "error"),
+                [],
+                [],
+            )
 
         for dm in available:
-            taking, step = dm.take(taking, partial=True)
-            if step:
-                moves += step
+            taken = dm.take(taking, partial=True)
+            taking = taken.after
+            if taken.moves:
+                moves += taken.moves
+                payments += taken.payments
             if taking.total == 0:
                 break
 
-        return moves
+        return Taken(
+            taking.total,
+            DatedMoney(taking.date, decimal.Decimal(), "error", "error"),
+            moves,
+            payments,
+        )
 
 
 @dataclass
@@ -317,22 +352,22 @@ class Period(DatedMoney):
         v = quantize(
             value / decimal.Decimal(decimal.Decimal(12.0) * self.income.factor)
         )
-        remaining, moves = self.take(
+        taken = self.take(
             DatedMoney(
                 date=self.date, total=v, path=self.income.name, note="yearly expense"
             )
         )
-        assert remaining.total == 0
+        assert taken.after.total == 0
         return f"{v:.2f}"
 
     def monthly(self, value: decimal.Decimal) -> str:
         v = quantize(value / self.income.factor)
-        remaining, moves = self.take(
+        taken = self.take(
             DatedMoney(
                 date=self.date, total=v, path=self.income.name, note="monthly expense"
             )
         )
-        assert remaining.total == 0
+        assert taken.after.total == 0
         return f"{v:.2f}"
 
     def done(self) -> str:
@@ -373,11 +408,18 @@ class Income:
 
 
 @dataclass
+class Paid:
+    moves: List[Move]
+    available: List[DatedMoney]
+
+
+@dataclass
 class Spending:
+    names: "Names"
     payments: List[Payment]
     paid: List[Payment] = field(default_factory=list)
 
-    def pay_from(self, date: datetime.datetime, money: MoneyPool) -> List[Move]:
+    def pay_from(self, date: datetime.datetime, money: MoneyPool) -> Paid:
         log.info(f"{date.date()} {'':50} {'':10} pay-from")
 
         paying: List[Payment] = []
@@ -386,19 +428,34 @@ class Spending:
                 paying.append(payment)
 
         moves: List[Move] = []
+        available: List[DatedMoney] = []
         for p in paying:
-            step = money.take(p.redate(date))
-            if step:
-                moves += step
+            taken = money.take(p.redate(date))
+            if taken.moves:
+                moves += taken.moves
                 self.payments.remove(p)
                 self.paid.append(p)
+                if p.path == self.names.emergency:  # HACK
+                    log.info(f"{p.date.date()} {p.path:50} {p.total:10} returning")
+                    available.append(
+                        RequirePayback(
+                            date=date,
+                            total=p.total,
+                            path=p.path,
+                            note="returned emergency",
+                        )
+                    )
+                if len(taken.payments) > 0:
+                    for p in taken.payments:
+                        self.payments.append(p)
+                    self._sort()
             else:
                 break
 
-        return moves
+        return Paid(moves, available)
 
     def _sort(self):
-        self.expenses.sort(key=lambda p: (p.date, p.value))
+        self.payments.sort(key=lambda p: (p.date, p.total))
 
 
 @dataclass
@@ -531,7 +588,9 @@ class Finances:
         income_periods = income_transactions.apply_handlers(self.cfg.incomes)
         emergency_money = emergency_transactions.apply_handlers(self.cfg.emergency)
         refund_money = allocation_transactions.apply_handlers(self.cfg.refund)
-        spending = Spending(allocation_transactions.apply_handlers(self.cfg.spending))
+        spending = Spending(
+            names, allocation_transactions.apply_handlers(self.cfg.spending)
+        )
 
         ytd_spending = sum([e.total for e in spending.payments])
 
@@ -563,11 +622,20 @@ class Finances:
         )
         moves += move_refunded
         available.include(refunded_money_moved)
-        available.include(redate_all_dated_money(emergency_money, today))
+
+        # Require pay back of anything pulled from emergency.
+        available.include(
+            [
+                RequirePayback(dm.date, dm.total, dm.path, dm.note)
+                for dm in emergency_money
+            ]
+        )
 
         # Payback for spending for each pay period.
         for period in income_periods:
-            moves += spending.pay_from(period.date, available)
+            paid = spending.pay_from(period.date, available)
+            available.include(paid.available)
+            moves += paid.moves
 
         # How much is still unpaid for, this is spending accumulating until the
         # next pay period.
@@ -575,13 +643,20 @@ class Finances:
         log.info(f"{self.today.date()} unpaid-spending: {unpaid_spending}")
         for payment in spending.payments:
             log.info(f"{self.today.date()} {payment}")
-        moves += spending.pay_from(self.today, available)
+        paid = spending.pay_from(self.today, available)
+        moves += paid.moves
 
         income_after_payback = sum([dm.left() for dm in available.money])
         for money in available.money:
             left = money.left()
             if left > 0:
-                log.info(f"{money.date.date()} {money.path:50} {left:10}")
+                log.info(
+                    f"{money.date.date()} {money.path:50} {left:10} / {money.total:10}"
+                )
+            else:
+                log.debug(
+                    f"{money.date.date()} {money.path:50} {left:10} / {money.total:10}"
+                )
 
         # Move any left over income to the available account.
         left_over = [dm for dm in available.money if dm.path != names.emergency]

@@ -27,7 +27,7 @@
       "path": "allocations:checking:rec"
     },
     {
-      "path": "allocations:checking:savings:emergency",
+      "path": "allocations:checking:savings:slow",
       "handler": {
         "maximum": "25"
       }

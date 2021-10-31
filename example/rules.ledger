@@ -8,6 +8,7 @@ account allocations:checking:fallback
 
 account allocations:checking:savings
 account allocations:checking:savings:emergency
+account allocations:checking:savings:slow
 
 = expenses:groceries & expr '(amount > 0 or has_tag("refund")) and not has_tag("dummy_tag") and not has_tag("noalloc")'
     [allocations:checking:available:groceries]                    (-1)

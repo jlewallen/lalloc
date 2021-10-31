@@ -118,12 +118,12 @@
 2021/01/15 * payback 'whoa, strange purchase'
 	; allocation: conservify
 	[assets:checking:reserved]                                       $-25.00
-	[allocations:checking:savings:emergency]                          $25.00
+	[allocations:checking:savings:slow]                               $25.00
 
 2021/02/01 * payback 'whoa, strange purchase'
 	; allocation: conservify
 	[assets:checking:reserved]                                       $-25.00
-	[allocations:checking:savings:emergency]                          $25.00
+	[allocations:checking:savings:slow]                               $25.00
 
 2021/02/01 * payback 'groceries'
 	; allocation: conservify
@@ -133,32 +133,32 @@
 2021/02/15 * payback 'whoa, strange purchase'
 	; allocation: conservify
 	[assets:checking:reserved]                                       $-25.00
-	[allocations:checking:savings:emergency]                          $25.00
+	[allocations:checking:savings:slow]                               $25.00
 
 2021/02/28 * payback 'whoa, strange purchase'
 	; allocation: conservify
 	[assets:checking:reserved]                                       $-25.00
-	[allocations:checking:savings:emergency]                          $25.00
+	[allocations:checking:savings:slow]                               $25.00
 
 2021/03/15 * payback 'whoa, strange purchase'
 	; allocation: conservify
 	[assets:checking:reserved]                                       $-25.00
-	[allocations:checking:savings:emergency]                          $25.00
+	[allocations:checking:savings:slow]                               $25.00
 
 2021/04/01 * payback 'whoa, strange purchase'
 	; allocation: conservify
 	[assets:checking:reserved]                                       $-25.00
-	[allocations:checking:savings:emergency]                          $25.00
+	[allocations:checking:savings:slow]                               $25.00
 
 2021/04/15 * payback 'whoa, strange purchase'
 	; allocation: conservify
 	[assets:checking:reserved]                                       $-25.00
-	[allocations:checking:savings:emergency]                          $25.00
+	[allocations:checking:savings:slow]                               $25.00
 
 2021/04/23 * payback 'whoa, strange purchase'
 	; allocation: conservify
 	[assets:checking:reserved]                                       $-25.00
-	[allocations:checking:savings:emergency]                          $25.00
+	[allocations:checking:savings:slow]                               $25.00
 
 2021/04/23 * reserving left over income
 	; allocation: conservify

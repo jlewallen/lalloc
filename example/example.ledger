@@ -8,6 +8,7 @@ account expenses:whoops
 account income:job
 
 2021/01/01 * opening balances
+    ; allocation:
     assets:checking                                                                         $1000.00
     [assets:checking:reserved]                                                             -$1000.00
     [allocations:checking:savings]                                                           $500.00
@@ -22,7 +23,7 @@ account income:job
     : allocation:
     assets:checking                                                                         -$200.00
     expenses:whoops                                                                          $200.00
-    [allocations:checking:savings:emergency]                                                -$200.00
+    [allocations:checking:savings:slow]                                                     -$200.00
     [assets:checking:reserved]                                                               $200.00
 
 2021/01/15 * income
