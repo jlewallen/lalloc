@@ -73,11 +73,58 @@ class Transaction:
         return self.date.strftime("%Y/%m/%d %H:%M:%S")
 
 
+class Handler:
+    def expand(self, tx: Transaction, posting: Posting):
+        return []
+
+
+@dataclass
+class HandlerPath:
+    path: str
+    handler: Handler
+    compiled: Optional[re.Pattern] = None
+
+    def matches(self, path: str) -> bool:
+        if not self.compiled:
+            self.compiled = re.compile(self.path)
+        return self.compiled.match(path) is not None
+
+
+@dataclass
+class Transactions:
+    txs: List[Transaction]
+
+    def txns(self):
+        return self.txs
+
+    def apply_handlers(self, paths: List[HandlerPath]) -> List[Any]:
+        cache: Dict[str, Handler] = {}
+        returning: List[Any] = []
+
+        for tx in self.txs:
+            for p in tx.postings:
+                account = p.account
+                if account not in cache:
+                    cache[account] = NoopHandler()
+                    for hp in paths:
+                        if hp.matches(account):
+                            log.info(
+                                f"{tx.date.date()} handler {account} ({hp.path}): {hp.handler}"
+                            )
+                            cache[account] = hp.handler
+                            break
+
+                for p in cache[account].expand(tx, p):
+                    returning.append(p)
+
+        return returning
+
+
 @dataclass
 class Ledger:
     path: str
 
-    def register(self, expression: List[str]) -> List[Transaction]:
+    def register(self, expression: List[str]) -> Transactions:
         command = [
             "ledger",
             "-f",
@@ -110,7 +157,7 @@ class Ledger:
             assert tx
             tx.append(Posting(account, value, None))
 
-        return txs
+        return Transactions(txs)
 
 
 @dataclass
@@ -349,11 +396,6 @@ class Spending:
         self.expenses.sort(key=lambda p: (p.date, p.value))
 
 
-class Handler:
-    def expand(self, tx: Transaction, posting: Posting):
-        return []
-
-
 @dataclass
 class Schedule(Handler):
     maximum: Optional[decimal.Decimal] = None
@@ -442,48 +484,6 @@ class DatedMoneyHandler(Handler):
 
 
 @dataclass
-class HandlerPath:
-    path: str
-    handler: Handler
-    compiled: Optional[re.Pattern] = None
-
-    def matches(self, path: str) -> bool:
-        if not self.compiled:
-            self.compiled = re.compile(self.path)
-        return self.compiled.match(path) is not None
-
-
-@dataclass
-class Transactions:
-    txs: List[Transaction]
-
-    def txns(self):
-        return self.txs
-
-    def apply_handlers(self, paths: List[HandlerPath]) -> List[Any]:
-        cache: Dict[str, Handler] = {}
-        returning: List[Any] = []
-
-        for tx in self.txs:
-            for p in tx.postings:
-                account = p.account
-                if account not in cache:
-                    cache[account] = NoopHandler()
-                    for hp in paths:
-                        if hp.matches(account):
-                            log.info(
-                                f"{tx.date.date()} handler {account} ({hp.path}): {hp.handler}"
-                            )
-                            cache[account] = hp.handler
-                            break
-
-                for p in cache[account].expand(tx, p):
-                    returning.append(p)
-
-        return returning
-
-
-@dataclass
 class Names:
     available: str = "allocations:checking:available"
     refunded: str = "allocations:checking:refunded"
@@ -511,24 +511,20 @@ class Finances:
     def allocate(self, file: TextIO):
         l = Ledger(self.cfg.ledger_file)
 
-        default_args = ["-S", "date", "--current"]
-        exclude_allocations = ["and", "not", "tag(allocation)"]
-
         names = self.cfg.names
 
-        emergency_transactions = Transactions(l.register([names.emergency]))
-        emergency_money = emergency_transactions.apply_handlers(self.cfg.emergency)
-
-        income_transactions = Transactions(
-            l.register([self.cfg.income_pattern] + exclude_allocations)
+        default_args = ["-S", "date", "--current"]
+        exclude_allocations = ["and", "not", "tag(allocation)"]
+        emergency_transactions = l.register(default_args + [names.emergency])
+        income_transactions = l.register(
+            default_args + [self.cfg.income_pattern] + exclude_allocations
         )
+        allocation_transactions = l.register(
+            default_args + [self.cfg.allocation_pattern] + exclude_allocations
+        )
+
         income_periods = income_transactions.apply_handlers(self.cfg.incomes)
-
-        allocation_transactions = Transactions(
-            l.register(
-                default_args + [self.cfg.allocation_pattern] + exclude_allocations
-            )
-        )
+        emergency_money = emergency_transactions.apply_handlers(self.cfg.emergency)
         refund_money = allocation_transactions.apply_handlers(self.cfg.refund)
         spending = Spending(allocation_transactions.apply_handlers(self.cfg.spending))
 
