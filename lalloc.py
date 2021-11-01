@@ -305,6 +305,10 @@ class MoneyPool:
 
         total_available = sum([dm.left() for dm in available])
         if total_available < taking.total:
+            for dm in self.money:
+                log.warning(
+                    f"{dm.date.date()} {dm.path:50} {dm.left():10} / {dm.total:10}"
+                )
             log.warning(
                 f"{taking.date.date()} {taking.path:50} {taking.total:10} insufficient available {total_available}"
             )
@@ -315,13 +319,14 @@ class MoneyPool:
                 [],
             )
 
+        remaining = taking
         for dm in available:
-            taken = dm.take(taking, partial=True)
-            taking = taken.after
+            taken = dm.take(remaining, partial=True)
+            remaining = taken.after
             if taken.moves:
                 moves += taken.moves
                 payments += taken.payments
-            if taking.total == 0:
+            if remaining.total == 0:
                 break
 
         return Taken(
@@ -417,7 +422,9 @@ class Spending:
         available: Dict[str, Decimal] = {}
         for p in paying:
             taken = money.take(p.redate(date))
-            if taken.moves:
+            if len(taken.moves) > 0:
+                assert taken.total > 0
+
                 self.payments.remove(p)
                 self.paid.append(p)
 
@@ -427,9 +434,9 @@ class Spending:
                     self._sort()
 
                 if p.path == self.names.emergency:  # HACK
-                    log.info(f"{p.date.date()} {p.path:50} {p.total:10} returning")
+                    log.info(f"{p.date.date()} {p.path:50} {taken.total:10} returning")
                     available[p.path] = (
-                        available.setdefault(p.path, Decimal(0)) + p.total
+                        available.setdefault(p.path, Decimal(0)) + taken.total
                     )
 
                 moves += taken.moves
