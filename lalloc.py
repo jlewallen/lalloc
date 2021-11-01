@@ -418,18 +418,21 @@ class Spending:
         for p in paying:
             taken = money.take(p.redate(date))
             if taken.moves:
-                moves += taken.moves
                 self.payments.remove(p)
                 self.paid.append(p)
+
+                if len(taken.payments) > 0:
+                    for p in taken.payments:
+                        self.payments.append(p)
+                    self._sort()
+
                 if p.path == self.names.emergency:  # HACK
                     log.info(f"{p.date.date()} {p.path:50} {p.total:10} returning")
                     available[p.path] = (
                         available.setdefault(p.path, Decimal(0)) + p.total
                     )
-                if len(taken.payments) > 0:
-                    for p in taken.payments:
-                        self.payments.append(p)
-                    self._sort()
+
+                moves += taken.moves
             else:
                 break
 
@@ -769,19 +772,18 @@ if __name__ == "__main__":
     parser.add_argument(
         "-l", "--ledger-file", action="store", default="lalloc.g.ledger"
     )
-    parser.add_argument("-a", "--allocate", action="store_true", default=False)
     parser.add_argument("-t", "--today", action="store", default=None)
     parser.add_argument("-d", "--debug", action="store_true", default=False)
     parser.add_argument("--no-debug", action="store_true", default=False)
     args = parser.parse_args()
 
+    today = datetime_today_that_is_sane()
+
     if args.debug:
         log.setLevel(logging.DEBUG)
 
-    if args.allocate:
-        today = datetime_today_that_is_sane()
-        if args.today:
-            today = datetime.strptime(args.today, "%Y/%m/%d")
-            log.warning(f"today overriden to {today}")
+    if args.today:
+        today = datetime.strptime(args.today, "%Y/%m/%d")
+        log.warning(f"today overriden to {today}")
 
-        allocate(args.config_file, args.ledger_file, today)
+    allocate(args.config_file, args.ledger_file, today)
