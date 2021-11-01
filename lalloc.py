@@ -171,6 +171,9 @@ class Move:
     def txns(self):
         return []
 
+    def compensate(self, names: "Names"):
+        return []
+
 
 @dataclass
 class SimpleMove(Move):
@@ -185,6 +188,13 @@ class SimpleMove(Move):
         tx.append(Posting("[" + self.from_path + "]", -self.value, ""))
         tx.append(Posting("[" + self.to_path + "]", self.value, ""))
         return [tx]
+
+    def compensate(self, names: "Names"):
+        if self.to_path == names.emergency:
+            log.info(f"{self.date.date()} {self.to_path:50} {self.value:10} returning")
+            return {self.to_path: self.value}
+
+        return {}
 
 
 @dataclass
@@ -428,11 +438,9 @@ class Spending:
                         self.payments.append(p)
                     self._sort()
 
-                if p.path == self.names.emergency:  # HACK
-                    log.info(f"{p.date.date()} {p.path:50} {taken.total:10} returning")
-                    available[p.path] = (
-                        available.setdefault(p.path, Decimal(0)) + taken.total
-                    )
+                for m in taken.moves:  # HACK
+                    for key, value in m.compensate(self.names).items():
+                        available[key] = available.setdefault(key, Decimal(0)) + value
 
                 moves += taken.moves
             else:
