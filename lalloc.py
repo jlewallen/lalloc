@@ -37,13 +37,19 @@ def quantize(d):
 
 
 def datetime_today_that_is_sane() -> datetime:
-    return datetime.combine(
-        date.today(), datetime.min.time()
-    ) - relativedelta.relativedelta(days=0)
+    return datetime.combine(date.today(), datetime.min.time())
 
 
 def fail():
     raise Exception("fail")
+
+
+@dataclass
+class Names:
+    available: str = "allocations:checking:available"
+    refunded: str = "allocations:checking:refunded"
+    emergency: str = "allocations:checking:savings:emergency"
+    reserved: str = "assets:checking:reserved"
 
 
 @dataclass
@@ -171,7 +177,7 @@ class Move:
     def txns(self):
         return []
 
-    def compensate(self, names: "Names"):
+    def compensate(self, names: Names):
         return []
 
 
@@ -189,7 +195,7 @@ class SimpleMove(Move):
         tx.append(Posting("[" + self.to_path + "]", self.value, ""))
         return [tx]
 
-    def compensate(self, names: "Names"):
+    def compensate(self, names: Names):
         if self.to_path == names.emergency:
             log.info(f"{self.date.date()} {self.to_path:50} {self.value:10} returning")
             return {self.to_path: self.value}
@@ -316,8 +322,9 @@ class MoneyPool:
         total_available = sum([dm.left() for dm in available])
         if total_available < taking.total:
             for dm in self.money:
+                using = self._can_use(taking, dm)
                 log.warning(
-                    f"{dm.date.date()} {dm.path:50} {dm.left():10} / {dm.total:10}"
+                    f"{dm.date.date()} {dm.path:50} {dm.left():10} / {dm.total:10} {using}"
                 )
             log.warning(
                 f"{taking.date.date()} {taking.path:50} {taking.total:10} insufficient available {total_available}"
@@ -411,7 +418,7 @@ class Paid:
 
 @dataclass
 class Spending:
-    names: "Names"
+    names: Names
     payments: List[Payment]
     paid: List[Payment] = field(default_factory=list)
 
@@ -420,7 +427,7 @@ class Spending:
 
         paying: List[Payment] = []
         for payment in self.payments:
-            if payment.date < date:
+            if payment.date <= date:
                 paying.append(payment)
 
         moves: List[Move] = []
@@ -543,14 +550,6 @@ class DatedMoneyHandler(Handler):
                 note=tx.payee,
             )
         ]
-
-
-@dataclass
-class Names:
-    available: str = "allocations:checking:available"
-    refunded: str = "allocations:checking:refunded"
-    emergency: str = "allocations:checking:savings:emergency"
-    reserved: str = "assets:checking:reserved"
 
 
 @dataclass
