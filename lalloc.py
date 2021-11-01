@@ -4,18 +4,18 @@ from typing import Tuple, Any, Dict, Sequence, List, TextIO, Optional, Mapping, 
 
 from dataclasses import dataclass, field
 from dateutil import relativedelta
+from decimal import Decimal, ROUND_HALF_UP
+from datetime import datetime, timedelta, date
 
 import json
 import subprocess
 import logging
-import datetime
 import jinja2
 import argparse
-import decimal
 import re
 
-OneDay = datetime.timedelta(days=1) - datetime.timedelta(seconds=1)
-Cents = decimal.Decimal("0.01")
+OneDay = timedelta(days=1) - timedelta(seconds=1)
+Cents = Decimal("0.01")
 
 
 def get_income_template(name: str):
@@ -33,12 +33,12 @@ def flatten(a):
 
 
 def quantize(d):
-    return d.quantize(Cents, decimal.ROUND_HALF_UP)
+    return d.quantize(Cents, ROUND_HALF_UP)
 
 
-def datetime_today_that_is_sane() -> datetime.datetime:
-    return datetime.datetime.combine(
-        datetime.date.today(), datetime.datetime.min.time()
+def datetime_today_that_is_sane() -> datetime:
+    return datetime.combine(
+        date.today(), datetime.min.time()
     ) - relativedelta.relativedelta(days=0)
 
 
@@ -49,7 +49,7 @@ def fail():
 @dataclass
 class Posting:
     account: str
-    value: decimal.Decimal
+    value: Decimal
     note: Optional[str] = None
 
     def ledger_value(self) -> str:
@@ -58,7 +58,7 @@ class Posting:
 
 @dataclass
 class Transaction:
-    date: datetime.datetime
+    date: datetime
     payee: str
     cleared: bool
     postings: List[Posting] = field(default_factory=list)
@@ -68,7 +68,7 @@ class Transaction:
 
     def ledger_date(self) -> str:
         actual = self.date.time()
-        if actual == datetime.datetime.min.time():
+        if actual == datetime.min.time():
             return self.date.strftime("%Y/%m/%d")
         return self.date.strftime("%Y/%m/%d %H:%M:%S")
 
@@ -148,8 +148,8 @@ class Ledger:
                 continue
 
             first, date_string, account, value_string, cleared, payee = fields
-            date = datetime.datetime.strptime(date_string, "%Y/%m/%d")
-            value = decimal.Decimal(value_string.replace("$", ""))
+            date = datetime.strptime(date_string, "%Y/%m/%d")
+            value = Decimal(value_string.replace("$", ""))
 
             if int(first) == 1:
                 tx = Transaction(date, payee, len(cleared) > 0)
@@ -163,8 +163,8 @@ class Ledger:
 @dataclass
 class IncomeDefinition:
     name: str
-    epoch: datetime.datetime
-    factor: decimal.Decimal
+    epoch: datetime
+    factor: Decimal
 
 
 class Move:
@@ -174,8 +174,8 @@ class Move:
 
 @dataclass
 class SimpleMove(Move):
-    date: datetime.datetime
-    value: decimal.Decimal
+    date: datetime
+    value: Decimal
     from_path: str
     to_path: str
     payee: str
@@ -189,7 +189,7 @@ class SimpleMove(Move):
 
 @dataclass
 class Taken:
-    total: decimal.Decimal
+    total: Decimal
     after: "DatedMoney"
     moves: Sequence[Move]
     payments: Sequence["Payment"] = field(default_factory=list)
@@ -197,17 +197,17 @@ class Taken:
 
 @dataclass
 class DatedMoney:
-    date: datetime.datetime
-    total: decimal.Decimal
+    date: datetime
+    total: Decimal
     path: str
     note: str
-    taken: decimal.Decimal = decimal.Decimal(0)
-    where: Dict[str, decimal.Decimal] = field(default_factory=dict)
+    taken: Decimal = Decimal(0)
+    where: Dict[str, Decimal] = field(default_factory=dict)
 
-    def left(self) -> decimal.Decimal:
+    def left(self) -> Decimal:
         return self.total - self.taken
 
-    def redate(self, date: datetime.datetime) -> "DatedMoney":
+    def redate(self, date: datetime) -> "DatedMoney":
         return DatedMoney(date, self.left(), self.path, self.note)
 
     def take(self, money: "DatedMoney", partial=False) -> Taken:
@@ -240,7 +240,7 @@ class DatedMoney:
         return Taken(taking, after, moves)
 
     def move(
-        self, path: str, note: str, date: Optional[datetime.datetime] = None
+        self, path: str, note: str, date: Optional[datetime] = None
     ) -> Tuple[Optional["DatedMoney"], List[Move]]:
         left = self.left()
         if left == 0:
@@ -271,7 +271,7 @@ def move_all_dated_money(
     dms: List[DatedMoney],
     note: str,
     path: str,
-    date: Optional[datetime.datetime] = None,
+    date: Optional[datetime] = None,
 ) -> Tuple[List[DatedMoney], List[Move]]:
     tuples = [dm.move(path, note, date) for dm in dms]
     new_money = [dm for dm, m in tuples if dm]
@@ -279,9 +279,7 @@ def move_all_dated_money(
     return (new_money, moves)
 
 
-def redate_all_dated_money(
-    dms: List[DatedMoney], date: datetime.datetime
-) -> List[DatedMoney]:
+def redate_all_dated_money(dms: List[DatedMoney], date: datetime) -> List[DatedMoney]:
     return [dm.redate(date) for dm in dms]
 
 
@@ -289,9 +287,7 @@ def redate_all_dated_money(
 class MoneyPool:
     money: List[DatedMoney] = field(default_factory=list)
 
-    def add(
-        self, note: str, date: datetime.datetime, total: decimal.Decimal, path: str
-    ):
+    def add(self, note: str, date: datetime, total: Decimal, path: str):
         self.money.append(DatedMoney(date=date, total=total, path=path, note=note))
 
     def include(self, more: List[DatedMoney]):
@@ -313,8 +309,8 @@ class MoneyPool:
                 f"{taking.date.date()} {taking.path:50} {taking.total:10} insufficient available {total_available}"
             )
             return Taken(
-                decimal.Decimal(0),
-                DatedMoney(taking.date, decimal.Decimal(0), "error", "error"),
+                Decimal(0),
+                DatedMoney(taking.date, Decimal(0), "error", "error"),
                 [],
                 [],
             )
@@ -330,7 +326,7 @@ class MoneyPool:
 
         return Taken(
             taking.total,
-            DatedMoney(taking.date, decimal.Decimal(), "error", "error"),
+            DatedMoney(taking.date, Decimal(), "error", "error"),
             moves,
             payments,
         )
@@ -341,17 +337,15 @@ class Period(DatedMoney):
     income: IncomeDefinition = field(default_factory=fail)
 
     def after(self, spec: str) -> bool:
-        testing = datetime.datetime.strptime(spec, "%m/%d/%Y")
+        testing = datetime.strptime(spec, "%m/%d/%Y")
         return self.date >= testing
 
     def before(self, spec: str) -> bool:
-        testing = datetime.datetime.strptime(spec, "%m/%d/%Y")
+        testing = datetime.strptime(spec, "%m/%d/%Y")
         return self.date < testing
 
-    def yearly(self, value: decimal.Decimal) -> str:
-        v = quantize(
-            value / decimal.Decimal(decimal.Decimal(12.0) * self.income.factor)
-        )
+    def yearly(self, value: Decimal) -> str:
+        v = quantize(value / Decimal(Decimal(12.0) * self.income.factor))
         taken = self.take(
             DatedMoney(
                 date=self.date, total=v, path=self.income.name, note="yearly expense"
@@ -360,7 +354,7 @@ class Period(DatedMoney):
         assert taken.after.total == 0
         return f"{v:.2f}"
 
-    def monthly(self, value: decimal.Decimal) -> str:
+    def monthly(self, value: Decimal) -> str:
         v = quantize(value / self.income.factor)
         taken = self.take(
             DatedMoney(
@@ -388,8 +382,8 @@ class Period(DatedMoney):
 
 @dataclass
 class Expense:
-    date: datetime.datetime
-    value: decimal.Decimal
+    date: datetime
+    value: Decimal
     note: str
     path: str
 
@@ -411,7 +405,7 @@ class Spending:
     payments: List[Payment]
     paid: List[Payment] = field(default_factory=list)
 
-    def pay_from(self, date: datetime.datetime, money: MoneyPool) -> Paid:
+    def pay_from(self, date: datetime, money: MoneyPool) -> Paid:
         log.info(f"{date.date()} {'':50} {'':10} pay-from")
 
         paying: List[Payment] = []
@@ -420,7 +414,7 @@ class Spending:
                 paying.append(payment)
 
         moves: List[Move] = []
-        available: Dict[str, decimal.Decimal] = {}
+        available: Dict[str, Decimal] = {}
         for p in paying:
             taken = money.take(p.redate(date))
             if taken.moves:
@@ -430,7 +424,7 @@ class Spending:
                 if p.path == self.names.emergency:  # HACK
                     log.info(f"{p.date.date()} {p.path:50} {p.total:10} returning")
                     available[p.path] = (
-                        available.setdefault(p.path, decimal.Decimal(0)) + p.total
+                        available.setdefault(p.path, Decimal(0)) + p.total
                     )
                 if len(taken.payments) > 0:
                     for p in taken.payments:
@@ -453,7 +447,7 @@ class Spending:
 
 @dataclass
 class Schedule(Handler):
-    maximum: Optional[decimal.Decimal] = None
+    maximum: Optional[Decimal] = None
 
     def expand(self, tx: Transaction, posting: Posting):
         if posting.value > 0:
@@ -561,7 +555,7 @@ class Configuration:
 @dataclass
 class Finances:
     cfg: Configuration
-    today: datetime.datetime
+    today: datetime
 
     def allocate(self, file: TextIO):
         l = Ledger(self.cfg.ledger_file)
@@ -685,8 +679,8 @@ def parse_income(path: str, handler: Optional[Dict[str, Any]] = None, **kwargs):
         IncomeHandler(
             IncomeDefinition(
                 handler["income"]["name"],
-                datetime.datetime.fromtimestamp(int(handler["income"]["epoch"])),
-                decimal.Decimal(handler["income"]["factor"]),
+                datetime.fromtimestamp(int(handler["income"]["epoch"])),
+                Decimal(handler["income"]["factor"]),
             ),
             handler["path"],
         ),
@@ -695,7 +689,7 @@ def parse_income(path: str, handler: Optional[Dict[str, Any]] = None, **kwargs):
 
 def parse_spending_handler(maximum: Optional[str] = None) -> Handler:
     if maximum:
-        return Schedule(maximum=decimal.Decimal(maximum))
+        return Schedule(maximum=Decimal(maximum))
     return Schedule()
 
 
@@ -742,7 +736,7 @@ def parse_configuration(
     )
 
 
-def allocate(config_path: str, file_name: str, today: datetime.datetime) -> None:
+def allocate(config_path: str, file_name: str, today: datetime) -> None:
     with open(config_path, "r") as file:
         raw = json.loads(file.read())
         configuration = parse_configuration(**raw)
@@ -787,7 +781,7 @@ if __name__ == "__main__":
     if args.allocate:
         today = datetime_today_that_is_sane()
         if args.today:
-            today = datetime.datetime.strptime(args.today, "%Y/%m/%d")
+            today = datetime.strptime(args.today, "%Y/%m/%d")
             log.warning(f"today overriden to {today}")
 
         allocate(args.config_file, args.ledger_file, today)
