@@ -400,14 +400,6 @@ class Payment(DatedMoney):
 
 
 @dataclass
-class Income:
-    date: datetime.datetime
-    value: decimal.Decimal
-    income: str
-    note: str
-
-
-@dataclass
 class Paid:
     moves: List[Move]
     available: List[DatedMoney]
