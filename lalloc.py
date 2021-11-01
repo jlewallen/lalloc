@@ -428,7 +428,7 @@ class Spending:
                 paying.append(payment)
 
         moves: List[Move] = []
-        available: List[DatedMoney] = []
+        available: Dict[str, decimal.Decimal] = {}
         for p in paying:
             taken = money.take(p.redate(date))
             if taken.moves:
@@ -437,13 +437,8 @@ class Spending:
                 self.paid.append(p)
                 if p.path == self.names.emergency:  # HACK
                     log.info(f"{p.date.date()} {p.path:50} {p.total:10} returning")
-                    available.append(
-                        RequirePayback(
-                            date=date,
-                            total=p.total,
-                            path=p.path,
-                            note="returned emergency",
-                        )
+                    available[p.path] = (
+                        available.setdefault(p.path, decimal.Decimal(0)) + p.total
                     )
                 if len(taken.payments) > 0:
                     for p in taken.payments:
@@ -452,7 +447,13 @@ class Spending:
             else:
                 break
 
-        return Paid(moves, available)
+        return Paid(
+            moves,
+            [
+                RequirePayback(date, total, path, "returned")
+                for path, total in available.items()
+            ],
+        )
 
     def _sort(self):
         self.payments.sort(key=lambda p: (p.date, p.total))
