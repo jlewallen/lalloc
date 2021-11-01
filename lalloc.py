@@ -305,7 +305,7 @@ class MoneyPool:
 
         total_available = sum([dm.left() for dm in available])
         if total_available < taking.total:
-            log.info(
+            log.warning(
                 f"{taking.date.date()} {taking.path:50} {taking.total:10} insufficient available {total_available}"
             )
             return Taken(
