@@ -312,12 +312,7 @@ class MoneyPool:
             log.warning(
                 f"{taking.date.date()} {taking.path:50} {taking.total:10} insufficient available {total_available}"
             )
-            return Taken(
-                Decimal(0),
-                DatedMoney(taking.date, Decimal(0), "error", "error"),
-                [],
-                [],
-            )
+            assert total_available >= taking.total
 
         remaining = taking
         for dm in available:
