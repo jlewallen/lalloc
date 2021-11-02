@@ -3,200 +3,288 @@
 2021/01/15 * job income allocation (fixed)
     ; allocation: conservify
     [allocations:checking:mortgage]                                                            $600.00  ; mortgage
+    [allocations:checking:taxes]                                                               $250.00   ; property taxes
     [allocations:savings]                                                                      $500.00  ; savings
-    [assets:checking:reserved]                                                               ; $900.00
+    [assets:checking:reserved]                                                               ; $650.00
 
-; end: 900.00 #unallocated #conservify 2021/01/15
+; end: 650.00 #unallocated #conservify 2021/01/15
 
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
 
 2021/02/01 * job income allocation (fixed)
     ; allocation: conservify
     [allocations:checking:mortgage]                                                            $600.00  ; mortgage
+    [allocations:checking:taxes]                                                               $250.00   ; property taxes
     [allocations:savings]                                                                      $500.00  ; savings
-    [assets:checking:reserved]                                                               ; $900.00
+    [assets:checking:reserved]                                                               ; $650.00
 
-; end: 900.00 #unallocated #conservify 2021/02/01
+; end: 650.00 #unallocated #conservify 2021/02/01
 
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
 
 2021/02/15 * job income allocation (fixed)
     ; allocation: conservify
     [allocations:checking:mortgage]                                                            $600.00  ; mortgage
+    [allocations:checking:taxes]                                                               $250.00   ; property taxes
     [allocations:savings]                                                                      $500.00  ; savings
-    [assets:checking:reserved]                                                               ; $900.00
+    [assets:checking:reserved]                                                               ; $650.00
 
 2021/02/15 * job income allocation (fixed)
     ; allocation: conservify
     [allocations:checking:rec]                                                                 $100.00   ; recreational spending
-    [assets:checking:reserved]                                                               ; $800.00
+    [assets:checking:reserved]                                                               ; $550.00
 
-; end: 800.00 #unallocated #conservify 2021/02/15
+; end: 550.00 #unallocated #conservify 2021/02/15
 
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
 
 2021/02/28 * job income allocation (fixed)
     ; allocation: conservify
     [allocations:checking:mortgage]                                                            $600.00  ; mortgage
+    [allocations:checking:taxes]                                                               $250.00   ; property taxes
     [allocations:savings]                                                                      $500.00  ; savings
-    [assets:checking:reserved]                                                               ; $900.00
+    [assets:checking:reserved]                                                               ; $650.00
 
 2021/02/28 * job income allocation (fixed)
     ; allocation: conservify
     [allocations:checking:rec]                                                                 $100.00   ; recreational spending
-    [assets:checking:reserved]                                                               ; $800.00
+    [assets:checking:reserved]                                                               ; $550.00
 
-; end: 800.00 #unallocated #conservify 2021/02/28
+; end: 550.00 #unallocated #conservify 2021/02/28
 
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
 
 2021/03/01 * job income allocation (fixed)
     ; allocation: conservify
     [allocations:checking:mortgage]                                                            $600.00  ; mortgage
+    [allocations:checking:taxes]                                                               $250.00   ; property taxes
     [allocations:savings]                                                                      $500.00  ; savings
-    [assets:checking:reserved]                                                               ; $900.00
+    [assets:checking:reserved]                                                               ; $650.00
 
 2021/03/01 * job income allocation (fixed)
     ; allocation: conservify
     [allocations:checking:rec]                                                                 $100.00   ; recreational spending
-    [assets:checking:reserved]                                                               ; $800.00
+    [assets:checking:reserved]                                                               ; $550.00
 
-; end: 800.00 #unallocated #conservify 2021/03/01
+; end: 550.00 #unallocated #conservify 2021/03/01
 
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
 
 2021/03/15 * job income allocation (fixed)
     ; allocation: conservify
     [allocations:checking:mortgage]                                                            $600.00  ; mortgage
+    [allocations:checking:taxes]                                                               $250.00   ; property taxes
     [allocations:savings]                                                                      $500.00  ; savings
-    [assets:checking:reserved]                                                               ; $900.00
+    [assets:checking:reserved]                                                               ; $650.00
 
 2021/03/15 * job income allocation (fixed)
     ; allocation: conservify
     [allocations:checking:rec]                                                                 $100.00   ; recreational spending
-    [assets:checking:reserved]                                                               ; $800.00
+    [assets:checking:reserved]                                                               ; $550.00
 
-; end: 800.00 #unallocated #conservify 2021/03/15
+; end: 550.00 #unallocated #conservify 2021/03/15
 
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
 
 2021/04/01 * job income allocation (fixed)
     ; allocation: conservify
     [allocations:checking:mortgage]                                                            $600.00  ; mortgage
+    [allocations:checking:taxes]                                                               $250.00   ; property taxes
     [allocations:savings]                                                                      $500.00  ; savings
-    [assets:checking:reserved]                                                               ; $900.00
+    [assets:checking:reserved]                                                               ; $650.00
 
 2021/04/01 * job income allocation (fixed)
     ; allocation: conservify
     [allocations:checking:rec]                                                                 $100.00   ; recreational spending
-    [assets:checking:reserved]                                                               ; $800.00
+    [assets:checking:reserved]                                                               ; $550.00
 
-; end: 800.00 #unallocated #conservify 2021/04/01
+; end: 550.00 #unallocated #conservify 2021/04/01
 
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
 
 2021/04/15 * job income allocation (fixed)
     ; allocation: conservify
     [allocations:checking:mortgage]                                                            $600.00  ; mortgage
+    [allocations:checking:taxes]                                                               $250.00   ; property taxes
     [allocations:savings]                                                                      $500.00  ; savings
-    [assets:checking:reserved]                                                               ; $900.00
+    [assets:checking:reserved]                                                               ; $650.00
 
 2021/04/15 * job income allocation (fixed)
     ; allocation: conservify
     [allocations:checking:rec]                                                                 $100.00   ; recreational spending
-    [assets:checking:reserved]                                                               ; $800.00
+    [assets:checking:reserved]                                                               ; $550.00
 
-; end: 800.00 #unallocated #conservify 2021/04/15
+; end: 550.00 #unallocated #conservify 2021/04/15
 
 
+
+2021/01/15 * payback 'streaming services'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-20.00
+	[allocations:checking:available:services]                         $20.00
 
 2021/01/15 * payback 'groceries'
 	; allocation: conservify
 	[assets:checking:reserved]                                      $-100.00
 	[allocations:checking:available:groceries]                       $100.00
 
-2021/01/15 * payback 'whoa, strange purchase'
+2021/01/15 * payback 'whoa, unexpected purchase'
 	; allocation: conservify
-	[assets:checking:reserved]                                       $-25.00
-	[allocations:checking:savings:slow]                               $25.00
+	[assets:checking:reserved]                                       $-50.00
+	[allocations:checking:savings:slow]                               $50.00
 
-2021/02/01 * payback 'whoa, strange purchase'
+2021/01/15 * payback 'fancy dinner'
 	; allocation: conservify
-	[assets:checking:reserved]                                       $-25.00
-	[allocations:checking:savings:slow]                               $25.00
+	[assets:checking:reserved]                                      $-150.00
+	[allocations:checking:available:services]                        $150.00
+
+2021/01/15 * payback 'groceries'
+	; allocation: conservify
+	[assets:checking:reserved]                                      $-200.00
+	[allocations:checking:available:groceries]                       $200.00
+
+2021/02/01 * payback 'whoa, unexpected purchase'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-50.00
+	[allocations:checking:savings:slow]                               $50.00
 
 2021/02/01 * payback 'groceries'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-80.00
+	[allocations:checking:available:groceries]                        $80.00
+
+2021/02/01 * payback 'groceries'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-20.00
+	[allocations:checking:available:groceries]                        $20.00
+
+2021/02/01 * payback 'streaming services'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-20.00
+	[allocations:checking:available:services]                         $20.00
+
+2021/02/15 * payback 'whoa, unexpected purchase'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-50.00
+	[allocations:checking:savings:slow]                               $50.00
+
+2021/02/15 * payback 'groceries'
+	; allocation: conservify
+	[assets:checking:reserved]                                      $-200.00
+	[allocations:checking:available:groceries]                       $200.00
+
+2021/02/15 * payback 'fancy dinner'
+	; allocation: conservify
+	[assets:checking:reserved]                                      $-150.00
+	[allocations:checking:available:services]                        $150.00
+
+2021/02/15 * payback 'groceries'
 	; allocation: conservify
 	[assets:checking:reserved]                                      $-100.00
 	[allocations:checking:available:groceries]                       $100.00
 
-2021/02/15 * payback 'whoa, strange purchase'
+2021/02/15 * payback 'groceries'
 	; allocation: conservify
-	[assets:checking:reserved]                                       $-25.00
-	[allocations:checking:savings:slow]                               $25.00
+	[assets:checking:reserved]                                      $-100.00
+	[allocations:checking:available:groceries]                       $100.00
 
-2021/02/28 * payback 'whoa, strange purchase'
+2021/02/28 * payback 'whoa, unexpected purchase'
 	; allocation: conservify
-	[assets:checking:reserved]                                       $-25.00
-	[allocations:checking:savings:slow]                               $25.00
+	[assets:checking:reserved]                                       $-10.00
+	[allocations:checking:savings:slow]                               $10.00
 
-2021/03/15 * payback 'whoa, strange purchase'
+2021/02/28 * payback 'whoa, unexpected purchase'
 	; allocation: conservify
-	[assets:checking:reserved]                                       $-25.00
-	[allocations:checking:savings:slow]                               $25.00
+	[assets:checking:reserved]                                       $-40.00
+	[allocations:checking:savings:slow]                               $40.00
 
-2021/04/01 * payback 'whoa, strange purchase'
+2021/02/28 * payback 'groceries'
 	; allocation: conservify
-	[assets:checking:reserved]                                       $-25.00
-	[allocations:checking:savings:slow]                               $25.00
+	[assets:checking:reserved]                                      $-100.00
+	[allocations:checking:available:groceries]                       $100.00
 
-2021/04/15 * payback 'whoa, strange purchase'
+2021/03/01 * payback 'streaming services'
 	; allocation: conservify
-	[assets:checking:reserved]                                       $-25.00
-	[allocations:checking:savings:slow]                               $25.00
+	[assets:checking:reserved]                                       $-20.00
+	[allocations:checking:available:services]                         $20.00
 
-2021/04/23 * payback 'whoa, strange purchase'
+2021/03/15 * payback 'whoa, unexpected purchase'
 	; allocation: conservify
-	[assets:checking:reserved]                                       $-25.00
-	[allocations:checking:savings:slow]                               $25.00
+	[assets:checking:reserved]                                       $-50.00
+	[allocations:checking:savings:slow]                               $50.00
+
+2021/03/15 * payback 'groceries'
+	; allocation: conservify
+	[assets:checking:reserved]                                      $-100.00
+	[allocations:checking:available:groceries]                       $100.00
+
+2021/03/15 * payback 'fancy dinner'
+	; allocation: conservify
+	[assets:checking:reserved]                                      $-150.00
+	[allocations:checking:available:services]                        $150.00
+
+2021/04/01 * payback 'whoa, unexpected purchase'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-50.00
+	[allocations:checking:savings:slow]                               $50.00
+
+2021/04/01 * payback 'whoa, unexpected purchase'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-40.00
+	[allocations:checking:savings:slow]                               $40.00
+
+2021/04/01 * payback 'whoa, unexpected purchase'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-10.00
+	[allocations:checking:savings:slow]                               $10.00
+
+2021/04/01 * payback 'groceries'
+	; allocation: conservify
+	[assets:checking:reserved]                                      $-100.00
+	[allocations:checking:available:groceries]                       $100.00
+
+2021/04/01 * payback 'streaming services'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-20.00
+	[allocations:checking:available:services]                         $20.00
+
+2021/04/15 * payback 'whoa, unexpected purchase'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-50.00
+	[allocations:checking:savings:slow]                               $50.00
+
+2021/04/15 * payback 'fancy dinner'
+	; allocation: conservify
+	[assets:checking:reserved]                                      $-150.00
+	[allocations:checking:available:services]                        $150.00
+
+2021/04/23 * payback 'groceries'
+	; allocation: conservify
+	[assets:checking:reserved]                                      $-100.00
+	[allocations:checking:available:groceries]                       $100.00
 
 2021/04/23 * reserving left over income
 	; allocation: conservify
-	[assets:checking:reserved]                                      $-500.00
-	[allocations:checking:available]                                 $500.00
+	[assets:checking:reserved]                                      $-120.00
+	[allocations:checking:available]                                 $120.00
 
 2021/04/23 * reserving left over income
 	; allocation: conservify
-	[assets:checking:reserved]                                      $-900.00
-	[allocations:checking:available]                                 $900.00
+	[assets:checking:reserved]                                      $-550.00
+	[allocations:checking:available]                                 $550.00
 
 2021/04/23 * reserving left over income
 	; allocation: conservify
-	[assets:checking:reserved]                                      $-800.00
-	[allocations:checking:available]                                 $800.00
+	[assets:checking:reserved]                                      $-550.00
+	[allocations:checking:available]                                 $550.00
 
 2021/04/23 * reserving left over income
 	; allocation: conservify
-	[assets:checking:reserved]                                      $-800.00
-	[allocations:checking:available]                                 $800.00
+	[assets:checking:reserved]                                      $-550.00
+	[allocations:checking:available]                                 $550.00
 
 2021/04/23 * reserving left over income
 	; allocation: conservify
-	[assets:checking:reserved]                                      $-800.00
-	[allocations:checking:available]                                 $800.00
-
-2021/04/23 * reserving left over income
-	; allocation: conservify
-	[assets:checking:reserved]                                      $-800.00
-	[allocations:checking:available]                                 $800.00
-
-2021/04/23 * reserving left over income
-	; allocation: conservify
-	[assets:checking:reserved]                                      $-800.00
-	[allocations:checking:available]                                 $800.00
-
-2021/04/23 * reserving left over income
-	; allocation: conservify
-	[assets:checking:reserved]                                      $-800.00
-	[allocations:checking:available]                                 $800.00
+	[assets:checking:reserved]                                      $-550.00
+	[allocations:checking:available]                                 $550.00
 

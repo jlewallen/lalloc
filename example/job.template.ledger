@@ -3,6 +3,7 @@
 {{ period }} * job income allocation (fixed)
     ; allocation: conservify
     [allocations:checking:mortgage]                                                            ${{ period.monthly(1200) }}  ; mortgage
+    [allocations:checking:taxes]                                                               ${{ period.yearly(6000) }}   ; property taxes
     [allocations:savings]                                                                      ${{ period.monthly(1000) }}  ; savings
     [assets:checking:reserved]                                                               ; ${{ period.display() }}
 

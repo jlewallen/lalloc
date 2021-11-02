@@ -29,7 +29,7 @@
     {
       "path": "allocations:checking:savings:slow",
       "handler": {
-        "maximum": "25"
+        "maximum": "50"
       }
     }
   ],

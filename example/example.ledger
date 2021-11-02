@@ -4,6 +4,7 @@
 account assets:checking
 account expenses:mortgage
 account expenses:groceries
+account expenses:services
 account expenses:whoops
 account income:job
 
@@ -15,16 +16,28 @@ account income:job
     [allocations:checking:savings:emergency]                                                 $500.00
     equity
 
+2021/01/01 * streaming services
+    assets:checking                                                                          -$20.00
+    expenses:services                                                                         $20.00
+
 2021/01/07 * groceries
     assets:checking                                                                         -$100.00
     expenses:groceries                                                                       $100.00
 
-2021/01/07 * whoa, strange purchase
+2021/01/07 * whoa, unexpected purchase
     : allocation:
+    assets:checking                                                                        -$2000.00
+    expenses:whoops                                                                         $2000.00
+    [allocations:checking:savings:slow]                                                    -$2000.00
+    [assets:checking:reserved]                                                              $2000.00
+
+2021/01/09 * fancy dinner
+    assets:checking                                                                         -$150.00
+    expenses:services                                                                        $150.00
+
+2021/01/12 * groceries
     assets:checking                                                                         -$200.00
-    expenses:whoops                                                                          $200.00
-    [allocations:checking:savings:slow]                                                     -$200.00
-    [assets:checking:reserved]                                                               $200.00
+    expenses:groceries                                                                       $200.00
 
 2021/01/15 * income
     income:job                                                                             -$2000.00
@@ -32,17 +45,37 @@ account income:job
 
 2021/01/22 * groceries
     assets:checking                                                                         -$100.00
-    expenses:groceries:ralphs                                                                $100.00
+    expenses:groceries                                                                       $100.00
 
 2021/02/01 * income
     income:job                                                                             -$2000.00
     assets:checking                                                                         $2000.00
+
+2021/02/01 * streaming services
+    assets:checking                                                                          -$20.00
+    expenses:services                                                                         $20.00
 
 2021/02/03 * mortgage
     assets:checking                                                                        -$1200.00
     expenses:mortgage                                                                       $1200.00
     [allocations:checking:mortgage]                                                        -$1200.00
     [assets:checking:reserved]                                                              $1200.00
+
+2021/02/07 * groceries
+    assets:checking                                                                         -$200.00
+    expenses:groceries                                                                       $200.00
+
+2021/02/09 * fancy dinner
+    assets:checking                                                                         -$150.00
+    expenses:services                                                                        $150.00
+
+2021/02/09 * groceries
+    assets:checking                                                                         -$100.00
+    expenses:groceries                                                                       $100.00
+
+2021/02/14 * groceries
+    assets:checking                                                                         -$100.00
+    expenses:groceries                                                                       $100.00
 
 2021/02/15 * income
     income:job                                                                             -$2000.00
@@ -52,9 +85,17 @@ account income:job
     income:job                                                                             -$2000.00
     assets:checking                                                                         $2000.00
 
+2021/02/28 * groceries
+    assets:checking                                                                         -$100.00
+    expenses:groceries                                                                       $100.00
+
 2021/03/01 * income
     income:job                                                                             -$2000.00
     assets:checking                                                                         $2000.00
+
+2021/03/01 * streaming services
+    assets:checking                                                                          -$20.00
+    expenses:services                                                                         $20.00
 
 2021/03/02 * mortgage
     assets:checking                                                                        -$1200.00
@@ -62,14 +103,38 @@ account income:job
     [allocations:checking:mortgage]                                                        -$1200.00
     [assets:checking:reserved]                                                              $1200.00
 
+2021/03/03 * groceries
+    assets:checking                                                                         -$100.00
+    expenses:groceries                                                                       $100.00
+
+2021/03/09 * fancy dinner
+    assets:checking                                                                         -$150.00
+    expenses:services                                                                        $150.00
+
 2021/03/15 * income
     income:job                                                                             -$2000.00
     assets:checking                                                                         $2000.00
+
+2021/03/21 * groceries
+    assets:checking                                                                         -$100.00
+    expenses:groceries                                                                       $100.00
 
 2021/04/01 * income
     income:job                                                                             -$2000.00
     assets:checking                                                                         $2000.00
 
+2021/04/01 * streaming services
+    assets:checking                                                                          -$20.00
+    expenses:services                                                                         $20.00
+
+2021/04/09 * fancy dinner
+    assets:checking                                                                         -$150.00
+    expenses:services                                                                        $150.00
+
 2021/04/15 * income
     income:job                                                                             -$2000.00
     assets:checking                                                                         $2000.00
+
+2021/04/20 * groceries
+    assets:checking                                                                         -$100.00
+    expenses:groceries                                                                       $100.00
