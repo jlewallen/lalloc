@@ -6,13 +6,15 @@ account expenses:mortgage
 account expenses:groceries
 account expenses:services
 account expenses:whoops
+account expenses:dinner
 account income:job
 
 2021/01/01 * opening balances
     ; allocation:
-    assets:checking                                                                         $1000.00
-    [assets:checking:reserved]                                                             -$1000.00
+    assets:checking                                                                         $5000.00
+    [assets:checking:reserved]                                                             -$5000.00
     [allocations:checking:savings]                                                           $500.00
+    [allocations:checking:savings]                                                          $4000.00
     [allocations:checking:savings:emergency]                                                 $500.00
     equity
 
@@ -33,7 +35,7 @@ account income:job
 
 2021/01/09 * fancy dinner
     assets:checking                                                                         -$150.00
-    expenses:services                                                                        $150.00
+    expenses:dinner                                                                          $150.00
 
 2021/01/12 * groceries
     assets:checking                                                                         -$200.00
@@ -67,11 +69,7 @@ account income:job
 
 2021/02/09 * fancy dinner
     assets:checking                                                                         -$150.00
-    expenses:services                                                                        $150.00
-
-2021/02/09 * groceries
-    assets:checking                                                                         -$100.00
-    expenses:groceries                                                                       $100.00
+    expenses:dinner                                                                          $150.00
 
 2021/02/14 * groceries
     assets:checking                                                                         -$100.00
@@ -109,7 +107,7 @@ account income:job
 
 2021/03/09 * fancy dinner
     assets:checking                                                                         -$150.00
-    expenses:services                                                                        $150.00
+    expenses:dinner                                                                          $150.00
 
 2021/03/15 * income
     income:job                                                                             -$2000.00
@@ -127,9 +125,15 @@ account income:job
     assets:checking                                                                          -$20.00
     expenses:services                                                                         $20.00
 
+2021/04/01 * mortgage
+    assets:checking                                                                        -$1200.00
+    expenses:mortgage                                                                       $1200.00
+    [allocations:checking:mortgage]                                                        -$1200.00
+    [assets:checking:reserved]                                                              $1200.00
+
 2021/04/09 * fancy dinner
     assets:checking                                                                         -$150.00
-    expenses:services                                                                        $150.00
+    expenses:dinner                                                                          $150.00
 
 2021/04/15 * income
     income:job                                                                             -$2000.00

@@ -18,6 +18,6 @@ account allocations:checking:savings:slow
     [allocations:checking:available:services]                     (-1)
     [assets:checking:reserved]                                     (1)
 
-= expenses:rec & expr '(amount > 0 or has_tag("refund")) and not has_tag("dummy_tag") and not has_tag("noalloc")'
-    [allocations:checking:rec]                                    (-1)
+= expenses:dinner & expr '(amount > 0 or has_tag("refund")) and not has_tag("dummy_tag") and not has_tag("noalloc")'
+    [allocations:checking:available:dinner]                       (-1)
     [assets:checking:reserved]                                     (1)
