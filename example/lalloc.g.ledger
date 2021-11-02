@@ -7,6 +7,8 @@
     [allocations:savings]                                                                      $500.00  ; savings
     [assets:checking:reserved]                                                               ; $650.00
 
+; tax allocations:checking:available:groceries 0.0
+
 ; end: 650.00 #unallocated #conservify 2021/01/15
 
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -17,6 +19,8 @@
     [allocations:checking:taxes]                                                               $250.00   ; property taxes
     [allocations:savings]                                                                      $500.00  ; savings
     [assets:checking:reserved]                                                               ; $650.00
+
+; tax allocations:checking:available:groceries 0.0
 
 ; end: 650.00 #unallocated #conservify 2021/02/01
 
@@ -34,6 +38,8 @@
     [allocations:checking:rec]                                                                 $100.00   ; recreational spending
     [assets:checking:reserved]                                                               ; $550.00
 
+; tax allocations:checking:available:groceries 0.1
+
 ; end: 550.00 #unallocated #conservify 2021/02/15
 
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -49,6 +55,8 @@
     ; allocation: conservify
     [allocations:checking:rec]                                                                 $100.00   ; recreational spending
     [assets:checking:reserved]                                                               ; $550.00
+
+; tax allocations:checking:available:groceries 0.1
 
 ; end: 550.00 #unallocated #conservify 2021/02/28
 
@@ -66,6 +74,8 @@
     [allocations:checking:rec]                                                                 $100.00   ; recreational spending
     [assets:checking:reserved]                                                               ; $550.00
 
+; tax allocations:checking:available:groceries 0.1
+
 ; end: 550.00 #unallocated #conservify 2021/03/01
 
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -81,6 +91,8 @@
     ; allocation: conservify
     [allocations:checking:rec]                                                                 $100.00   ; recreational spending
     [assets:checking:reserved]                                                               ; $550.00
+
+; tax allocations:checking:available:groceries 0.1
 
 ; end: 550.00 #unallocated #conservify 2021/03/15
 
@@ -98,6 +110,8 @@
     [allocations:checking:rec]                                                                 $100.00   ; recreational spending
     [assets:checking:reserved]                                                               ; $550.00
 
+; tax allocations:checking:available:groceries 0.1
+
 ; end: 550.00 #unallocated #conservify 2021/04/01
 
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -113,6 +127,8 @@
     ; allocation: conservify
     [allocations:checking:rec]                                                                 $100.00   ; recreational spending
     [assets:checking:reserved]                                                               ; $550.00
+
+; tax allocations:checking:available:groceries 0.1
 
 ; end: 550.00 #unallocated #conservify 2021/04/15
 
@@ -188,55 +204,70 @@
 	[assets:checking:reserved]                                      $-100.00
 	[allocations:checking:available:groceries]                       $100.00
 
-2021/02/28 * payback 'whoa, unexpected purchase'
+2021/02/28 * payback 'taxes'
 	; allocation: conservify
 	[assets:checking:reserved]                                       $-10.00
-	[allocations:checking:savings:slow]                               $10.00
+	[allocations:checking:savings:main]                               $10.00
+
+2021/02/28 * payback 'taxes'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-10.00
+	[allocations:checking:savings:main]                               $10.00
+
+2021/02/28 * payback 'taxes'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-20.00
+	[allocations:checking:savings:main]                               $20.00
 
 2021/02/28 * payback 'whoa, unexpected purchase'
 	; allocation: conservify
-	[assets:checking:reserved]                                       $-40.00
-	[allocations:checking:savings:slow]                               $40.00
+	[assets:checking:reserved]                                       $-50.00
+	[allocations:checking:savings:slow]                               $50.00
 
 2021/02/28 * payback 'groceries'
 	; allocation: conservify
 	[assets:checking:reserved]                                      $-100.00
 	[allocations:checking:available:groceries]                       $100.00
 
+2021/03/01 * payback 'taxes'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-10.00
+	[allocations:checking:savings:main]                               $10.00
+
 2021/03/01 * payback 'streaming services'
 	; allocation: conservify
 	[assets:checking:reserved]                                       $-20.00
 	[allocations:checking:available:services]                         $20.00
-
-2021/03/15 * payback 'whoa, unexpected purchase'
-	; allocation: conservify
-	[assets:checking:reserved]                                       $-50.00
-	[allocations:checking:savings:slow]                               $50.00
 
 2021/03/15 * payback 'groceries'
 	; allocation: conservify
 	[assets:checking:reserved]                                      $-100.00
 	[allocations:checking:available:groceries]                       $100.00
 
+2021/03/15 * payback 'whoa, unexpected purchase'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-50.00
+	[allocations:checking:savings:slow]                               $50.00
+
 2021/03/15 * payback 'fancy dinner'
 	; allocation: conservify
 	[assets:checking:reserved]                                      $-150.00
 	[allocations:checking:available:services]                        $150.00
 
-2021/04/01 * payback 'whoa, unexpected purchase'
-	; allocation: conservify
-	[assets:checking:reserved]                                       $-50.00
-	[allocations:checking:savings:slow]                               $50.00
-
-2021/04/01 * payback 'whoa, unexpected purchase'
-	; allocation: conservify
-	[assets:checking:reserved]                                       $-40.00
-	[allocations:checking:savings:slow]                               $40.00
-
-2021/04/01 * payback 'whoa, unexpected purchase'
+2021/04/01 * payback 'taxes'
 	; allocation: conservify
 	[assets:checking:reserved]                                       $-10.00
-	[allocations:checking:savings:slow]                               $10.00
+	[allocations:checking:savings:main]                               $10.00
+
+2021/04/01 * payback 'whoa, unexpected purchase'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-30.00
+	[allocations:checking:savings:slow]                               $30.00
+
+2021/04/01 * payback 'whoa, unexpected purchase'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-20.00
+	[allocations:checking:savings:slow]                               $20.00
 
 2021/04/01 * payback 'groceries'
 	; allocation: conservify
@@ -248,15 +279,25 @@
 	[assets:checking:reserved]                                       $-20.00
 	[allocations:checking:available:services]                         $20.00
 
-2021/04/15 * payback 'whoa, unexpected purchase'
+2021/04/01 * payback 'whoa, unexpected purchase'
 	; allocation: conservify
 	[assets:checking:reserved]                                       $-50.00
 	[allocations:checking:savings:slow]                               $50.00
+
+2021/04/15 * payback 'taxes'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-10.00
+	[allocations:checking:savings:main]                               $10.00
 
 2021/04/15 * payback 'fancy dinner'
 	; allocation: conservify
 	[assets:checking:reserved]                                      $-150.00
 	[allocations:checking:available:services]                        $150.00
+
+2021/04/15 * payback 'whoa, unexpected purchase'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-50.00
+	[allocations:checking:savings:slow]                               $50.00
 
 2021/04/23 * payback 'groceries'
 	; allocation: conservify
@@ -265,8 +306,8 @@
 
 2021/04/23 * reserving left over income
 	; allocation: conservify
-	[assets:checking:reserved]                                      $-120.00
-	[allocations:checking:available]                                 $120.00
+	[assets:checking:reserved]                                       $-50.00
+	[allocations:checking:available]                                  $50.00
 
 2021/04/23 * reserving left over income
 	; allocation: conservify

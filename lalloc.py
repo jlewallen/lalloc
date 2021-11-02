@@ -49,6 +49,7 @@ class Names:
     available: str = "allocations:checking:available"
     refunded: str = "allocations:checking:refunded"
     emergency: str = "allocations:checking:savings:emergency"
+    taxes: str = "allocations:checking:savings:main"
     reserved: str = "assets:checking:reserved"
 
 
@@ -350,7 +351,45 @@ class MoneyPool:
 
 
 @dataclass
+class Tax:
+    date: datetime
+    pattern: str
+    rate: Decimal
+    compiled: Optional[re.Pattern] = None
+
+    def matches(self, path: str) -> bool:
+        if not self.compiled:
+            self.compiled = re.compile(self.pattern)
+        return self.compiled.match(path) is not None
+
+
+@dataclass
+class TaxSystem:
+    names: Names
+    taxes: List[Tax] = field(default_factory=list)
+
+    def add(self, date: datetime, pattern: str, rate: float):
+        self.taxes.append(Tax(date, pattern, Decimal(rate)))
+
+    def tax(self, payment: "DatedMoney", taken: Taken) -> List["Payment"]:
+        for tax in self.taxes:
+            if payment.date >= tax.date:
+                if tax.rate > 0 and tax.matches(payment.path):
+                    taxed = quantize(tax.rate * taken.total)
+                    return [
+                        Payment(
+                            date=payment.date,
+                            total=taxed,
+                            path=self.names.taxes,
+                            note="taxes",
+                        )
+                    ]
+        return []
+
+
+@dataclass
 class Period(DatedMoney):
+    tax_system: TaxSystem = field(default_factory=fail)
     income: IncomeDefinition = field(default_factory=fail)
 
     def after(self, spec: str) -> bool:
@@ -390,6 +429,10 @@ class Period(DatedMoney):
     def display(self) -> str:
         return f"{self.left():.2f}"
 
+    def tax(self, pattern: str, rate: float):
+        self.tax_system.add(self.date, pattern, rate)
+        return f"; tax {pattern} {rate}"
+
     def __str__(self) -> str:
         return self.date.strftime("%Y/%m/%d")
 
@@ -420,6 +463,7 @@ class Paid:
 class Spending:
     names: Names
     payments: List[Payment]
+    tax_system: TaxSystem
     paid: List[Payment] = field(default_factory=list)
 
     def pay_from(self, date: datetime, money: MoneyPool) -> Paid:
@@ -433,16 +477,26 @@ class Spending:
         moves: List[Move] = []
         available: Dict[str, Decimal] = {}
         for p in paying:
-            taken = money.take(p.redate(date))
+            redated = p.redate(date)
+            taken = money.take(redated)
             if len(taken.moves) > 0:
                 assert taken.total > 0
 
                 self.payments.remove(p)
                 self.paid.append(p)
 
+                need_sort = False
+
+                for tax in self.tax_system.tax(redated, taken):
+                    self.payments.append(tax)
+                    need_sort = True
+
                 if len(taken.payments) > 0:
                     for p in taken.payments:
                         self.payments.append(p)
+                    need_sort = True
+
+                if need_sort:
                     self._sort()
 
                 for m in taken.moves:  # HACK
@@ -519,6 +573,7 @@ class NoopHandler(Handler):
 class IncomeHandler(Handler):
     income: IncomeDefinition
     path: str
+    tax_system: TaxSystem
 
     def expand(self, tx: Transaction, posting: Posting):
         log.info(f"{tx.date.date()} income: {posting} {posting.value}")
@@ -529,6 +584,7 @@ class IncomeHandler(Handler):
                 date=tx.date,
                 total=posting.value.copy_abs(),
                 income=self.income,
+                tax_system=self.tax_system,
             )
         ]
 
@@ -560,6 +616,7 @@ class Configuration:
     spending: List[HandlerPath]
     emergency: List[HandlerPath]
     refund: List[HandlerPath]
+    tax_system: TaxSystem
     income_pattern = "^income:"
     allocation_pattern = "^allocations:"
 
@@ -588,7 +645,9 @@ class Finances:
         emergency_money = emergency_transactions.apply_handlers(self.cfg.emergency)
         refund_money = allocation_transactions.apply_handlers(self.cfg.refund)
         spending = Spending(
-            names, allocation_transactions.apply_handlers(self.cfg.spending)
+            names,
+            allocation_transactions.apply_handlers(self.cfg.spending),
+            self.cfg.tax_system,
         )
 
         ytd_spending = sum([e.total for e in spending.payments])
@@ -684,8 +743,14 @@ def parse_names(**kwargs) -> Names:
     return Names(**kwargs)
 
 
-def parse_income(path: str, handler: Optional[Dict[str, Any]] = None, **kwargs):
+def parse_income(
+    path: str,
+    handler: Optional[Dict[str, Any]] = None,
+    tax_system: Optional[TaxSystem] = None,
+    **kwargs,
+):
     assert handler
+    assert tax_system
     return HandlerPath(
         path,
         IncomeHandler(
@@ -695,6 +760,7 @@ def parse_income(path: str, handler: Optional[Dict[str, Any]] = None, **kwargs):
                 Decimal(handler["income"]["factor"]),
             ),
             handler["path"],
+            tax_system,
         ),
     )
 
@@ -738,13 +804,16 @@ def parse_configuration(
     assert refund
     assert emergency
     assert names
+    names_parsed = parse_names(**names)
+    tax_system = TaxSystem(names=names_parsed)
     return Configuration(
         ledger_file=ledger_file,
-        names=parse_names(**names),
-        incomes=[parse_income(**obj) for obj in income],
+        names=names_parsed,
+        incomes=[parse_income(tax_system=tax_system, **obj) for obj in income],
         spending=[parse_spending(**obj) for obj in spending],
         emergency=[parse_emergency(**obj) for obj in emergency],
         refund=[parse_refund(**obj) for obj in refund],
+        tax_system=tax_system,
     )
 
 
