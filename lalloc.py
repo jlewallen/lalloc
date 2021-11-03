@@ -381,7 +381,7 @@ class TaxSystem:
                             date=payment.date,
                             total=taxed,
                             path=self.names.taxes,
-                            note="taxes",
+                            note=f"taxes on {payment.date.date()} {payment.note}",
                         )
                     ]
         return []
