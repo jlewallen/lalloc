@@ -466,6 +466,12 @@ class Spending:
     tax_system: TaxSystem
     paid: List[Payment] = field(default_factory=list)
 
+    def dates(self) -> List[datetime]:
+        unique: Dict[datetime, bool] = {}
+        for p in self.payments:
+            unique[p.date] = True
+        return list(unique.keys())
+
     def pay_from(self, date: datetime, money: MoneyPool) -> Paid:
         log.info(f"{date.date()} {'':50} {'':10} pay-from")
 
@@ -689,9 +695,12 @@ class Finances:
             ]
         )
 
+        # We know we'll reconcile at each pay period, so get those dates.
+        reconcile_dates = [period.date for period in income_periods]
+
         # Payback for spending for each pay period.
-        for period in income_periods:
-            paid = spending.pay_from(period.date, available)
+        for date in reconcile_dates:
+            paid = spending.pay_from(date, available)
             available.include(paid.available)
             moves += paid.moves
 
