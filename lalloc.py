@@ -104,6 +104,9 @@ class Transactions:
     def txns(self):
         return self.txs
 
+    def before(self, date: datetime) -> "Transactions":
+        return Transactions([tx for tx in self.txs if tx.date <= date])
+
     def apply_handlers(self, paths: List[HandlerPath]) -> List[Any]:
         cache: Dict[str, Handler] = {}
         returning: List[Any] = []
@@ -642,10 +645,10 @@ class Finances:
         emergency_transactions = l.register(default_args + [names.emergency])
         income_transactions = l.register(
             default_args + [self.cfg.income_pattern] + exclude_allocations
-        )
+        ).before(self.today)
         allocation_transactions = l.register(
             default_args + [self.cfg.allocation_pattern] + exclude_allocations
-        )
+        ).before(self.today)
 
         income_periods = income_transactions.apply_handlers(self.cfg.incomes)
         emergency_money = emergency_transactions.apply_handlers(self.cfg.emergency)
