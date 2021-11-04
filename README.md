@@ -3,10 +3,9 @@
 ## What is lalloc?
 
 Lalloc is a tool for use alongside [ledger-cli](https://www.ledger-cli.org/) to
-help manage personal household finances. It builds on top of a slightly
-opinionated accounting structure to deliver some tools to help automate and
-streamline the allocation of incoming money to various expenses and savings
-goals.
+help manage personal finances. It builds on top of a slightly opinionated
+accounting structure to deliver some tools to help automate and streamline the
+allocation of incoming money to expenses and savings goals.
 
 ## What is ledger-cli?
 
@@ -23,15 +22,15 @@ nerdy way to manage personal finances, admittedly.
 
 ## What does it do?
 
-At its core, `lalloc` manages what is effectively an elaborate envelope based
-budgeting system. When income is deposited, that money is allocated to various
+Long story short, `lalloc` manages what is effectively an elaborate envelope
+based budgeting system. When income is deposited, that money is allocated to
 expenses and savings goals based on user defined rules. These envelopes are
 called allocations. The envelopes themselves are `ledger-cli` virtual accounts
 that exist alongside the physical accounts.
 
-When run `lalloc` will begin by examining the ledger file for income. These are
-identified by looking for withdrawals from accounts that match a configurable
-pattern, for example `income:.*`
+When run, `lalloc` will begin by examining the ledger file for income. These
+are identified by looking for withdrawals from accounts that match a pattern,
+for example `income:.*`
 
 ```
 2021/01/15 * income
@@ -39,14 +38,14 @@ pattern, for example `income:.*`
     assets:checking                                                                   $2000.00
 ```
 
-Once these are collected, `lalloc` will locate a template with a name matching
-that of each configured income, so `income:job` will look for
-`job.ledger.template` This template generates allocations that get the ball
+Once these are collected, `lalloc` will look for a template with a name
+matching each income. In the above example `lalloc` will look for
+`job.ledger.template`. This template generates allocations that get the ball
 rolling. It's in this file that you can allocate fixed money to things that are
-predictable and significant. Rent/mortgage, property taxes, once yearly bills,
-and savings are all excellent candidates for allocating in this file. This
-template is expected to yield valid `ledger-cli` text and has flow control and
-some helpers for defining these kinds of allocations:
+predictable and/or significant. Rent/mortgage, property taxes, once yearly
+bills, and savings are all excellent candidates for allocating in this file.
+This template is expected to yield valid `ledger-cli` text and has flow control
+and some helpers for defining these kinds of allocations:
 
 ```
 {{ period }} * job income allocation (fixed)
@@ -66,11 +65,10 @@ some helpers for defining these kinds of allocations:
 {% endif -%}
 ```
 
-It's entirely possible to use just this template to manage your finances.
+**Note**: It's possible to use just this template to manage your finances.
 
 After that file is processed, `lalloc` is then able to calculate how much of
-that particular paycheck/income is available to be allocated to other expenses
-"automatically".
+that income  is available to be allocated to other expenses "automatically".
 
 A configuration file defines which allocations are treated "automatically" in
 the following steps. These are expenses that depend more on personal behavior
@@ -100,10 +98,10 @@ amount of automatically covered spending you're likely to have in a pay period.
 
 After all previous spending has been 'covered' the remaining income is moved to
 an `available` account. The balance of this account indicates how much money is
-available for spending on anything not explicitly anticipated. If all income to
-date has been allocated and none is available, then the balance of the
-emergency account indicates how serious the situation is, as that's where money
-to cover spending will be allocated from until more income is available.
+available for spending on anything unanticipated. If all income to date has
+been allocated and none is available, then the balance of the emergency account
+indicates how serious the situation is, as that's where money to cover spending
+will be allocated from until more income is available.
 
 ## Why?
 
@@ -163,13 +161,13 @@ to come from your day to day income that would normally be used to cover
 automatic expenses rather than from your existing (usually fixed) savings
 allocation.
 
-One way to do this is to basically tax some categories of discretionary
-spending. This means that when an allocation is withdrawn from, an extra
-payment is scheduled for the taxed amount to a savings account and covered just
-like any other automatic expense. This means that over time, the extra savings
-grows and requires very little behavioral change, as at the end of the day all
-that's required is to pay attention to the `available` or `emergency` balances.
-Ideas for this include a fancy dinner tax or a tax on recreation.
+One way to do this is to tax some categories of discretionary spending. This
+means that when an allocation is withdrawn from, an extra payment is scheduled
+for the taxed amount to a savings account and covered just like any other
+automatic expense. Over time, the extra savings grows and requires very little
+behavioral change, as at the end of the day all that's required is to pay
+attention to the `available` or `emergency` balances.  Ideas for this include a
+fancy dinner tax or a tax on recreation.
 
 ```
 2021/02/09 * fancy dinner
