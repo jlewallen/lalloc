@@ -15,18 +15,18 @@ account income:job
     [assets:checking:reserved]                                                             -$5000.00
     [allocations:checking:savings]                                                           $500.00
     [allocations:checking:savings]                                                          $4000.00
-    [allocations:checking:savings:emergency]                                                 $500.00
+    [allocations:checking:savings:emergency]                                                $1000.00
     equity
 
 2021/01/01 * streaming services
     assets:checking                                                                          -$20.00
     expenses:services                                                                         $20.00
 
-2021/01/07 * groceries
+2021/01/05 * groceries
     assets:checking                                                                         -$100.00
     expenses:groceries                                                                       $100.00
 
-2021/01/07 * whoa, unexpected purchase
+2021/01/08 * whoa, unexpected purchase
     : allocation:
     assets:checking                                                                        -$2000.00
     expenses:whoops                                                                         $2000.00

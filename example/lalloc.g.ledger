@@ -274,22 +274,22 @@
 	[assets:checking:reserved]                                       $-20.00
 	[allocations:checking:available:services]                         $20.00
 
-2021/04/01 * payback 'whoa, unexpected purchase'
-	; allocation: conservify
-	[assets:checking:reserved]                                       $-50.00
-	[allocations:checking:savings:slow]                               $50.00
-
 2021/04/15 * payback 'taxes on 2021-04-01 groceries'
 	; allocation: conservify
 	[assets:checking:reserved]                                       $-10.00
 	[allocations:checking:savings:main]                               $10.00
+
+2021/04/15 * payback 'whoa, unexpected purchase'
+	; allocation: conservify
+	[assets:checking:reserved]                                       $-50.00
+	[allocations:checking:savings:slow]                               $50.00
 
 2021/04/15 * payback 'fancy dinner'
 	; allocation: conservify
 	[assets:checking:reserved]                                      $-150.00
 	[allocations:checking:available:dinner]                          $150.00
 
-2021/04/15 * payback 'whoa, unexpected purchase'
+2021/04/23 * payback 'whoa, unexpected purchase'
 	; allocation: conservify
 	[assets:checking:reserved]                                       $-50.00
 	[allocations:checking:savings:slow]                               $50.00

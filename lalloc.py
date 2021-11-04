@@ -328,7 +328,7 @@ class MoneyPool:
             for dm in self.money:
                 using = self._can_use(taking, dm)
                 log.warning(
-                    f"{dm.date.date()} {dm.path:50} {dm.left():10} / {dm.total:10} {using}"
+                    f"{dm.date.date()} {dm.path:50} {dm.left():10} / {dm.total:10} using={using}"
                 )
             log.warning(
                 f"{taking.date.date()} {taking.path:50} {taking.total:10} insufficient available {total_available}"
@@ -453,7 +453,13 @@ class Expense:
 
 @dataclass
 class Payment(DatedMoney):
-    pass
+    def redate(self, date: Optional[datetime]) -> "Payment":
+        if date:
+            log.debug(
+                f"{self.date.date()} {self.path:50} {self.total:10} payment redate {date.date()}"
+            )
+            return Payment(date, self.left(), self.path, self.note)
+        return self
 
 
 @dataclass
@@ -465,6 +471,7 @@ class Paid:
 @dataclass
 class Spending:
     names: Names
+    today: datetime
     payments: List[Payment]
     tax_system: TaxSystem
     paid: List[Payment] = field(default_factory=list)
@@ -475,12 +482,20 @@ class Spending:
             unique[p.date] = True
         return list(unique.keys())
 
-    def pay_from(self, date: datetime, money: MoneyPool) -> Paid:
-        log.info(f"{date.date()} {'':50} {'':10} pay-from")
+    def pay_from(
+        self, date: datetime, money: MoneyPool, upcoming_payments: Optional[datetime]
+    ) -> Paid:
+        assert upcoming_payments != date
+        if upcoming_payments:
+            log.info(
+                f"{date.date()} {'':50} {'':10} pay-from upcoming={upcoming_payments.date()}"
+            )
+        else:
+            log.info(f"{date.date()} {'':50} {'':10} pay-from")
 
         paying: List[Payment] = []
         for payment in self.payments:
-            if payment.date <= date:
+            if payment.date <= date and payment.date <= self.today:
                 paying.append(payment)
 
         moves: List[Move] = []
@@ -502,7 +517,7 @@ class Spending:
 
                 if len(taken.payments) > 0:
                     for p in taken.payments:
-                        self.payments.append(p)
+                        self.payments.append(p.redate(upcoming_payments))
                     need_sort = True
 
                 if need_sort:
@@ -530,6 +545,7 @@ class Spending:
 
 @dataclass
 class Schedule(Handler):
+    today: datetime
     maximum: Optional[Decimal] = None
 
     def expand(self, tx: Transaction, posting: Posting):
@@ -635,14 +651,16 @@ class Finances:
     cfg: Configuration
     today: datetime
 
-    def allocate(self, file: TextIO):
+    def allocate(self, file: TextIO, paranoid: bool):
         l = Ledger(self.cfg.ledger_file)
 
         names = self.cfg.names
 
         default_args = ["-S", "date", "--current"]
         exclude_allocations = ["and", "not", "tag(allocation)"]
-        emergency_transactions = l.register(default_args + [names.emergency])
+        emergency_transactions = l.register(default_args + [names.emergency]).before(
+            self.today
+        )
         income_transactions = l.register(
             default_args + [self.cfg.income_pattern] + exclude_allocations
         ).before(self.today)
@@ -655,7 +673,12 @@ class Finances:
         refund_money = allocation_transactions.apply_handlers(self.cfg.refund)
         spending = Spending(
             names,
-            allocation_transactions.apply_handlers(self.cfg.spending),
+            self.today,
+            [
+                p
+                for p in allocation_transactions.apply_handlers(self.cfg.spending)
+                if p.date <= self.today
+            ],
             self.cfg.tax_system,
         )
 
@@ -699,22 +722,70 @@ class Finances:
         )
 
         # We know we'll reconcile at each pay period, so get those dates.
-        reconcile_dates = [period.date for period in income_periods]
+        income_dates = [period.date for period in income_periods]
+
+        reconcile_dates = [] + income_dates
+        if paranoid:
+            reconcile_dates += spending.dates()
+        reconcile_dates.sort()
 
         # Payback for spending for each pay period.
         for date in reconcile_dates:
-            paid = spending.pay_from(date, available)
+
+            def get_payback_date():
+                """
+                When we schedule future payments we have to be careful about
+                when we expect to pay them back because some payments may not
+                payable until income is available. Payments that reimburse for
+                funds taken from emergency to cover another expense, for
+                example.
+
+                It's this method that determines the date that any payments
+                generated during this pay back period should be paid back.
+
+                Ideally, and in many situation this will be the date of the
+                income period following the current reconcile date.
+
+                If there are no income periods left, because we're using an
+                artificial 'today' in the past or because we're up to the
+                current pay period we use today's date. The one downside to this
+                is when today's date is also one of the `reconcile_dates`, which
+                will break because then we'll end up processing the same date
+                twice, and with no chance of additional income, and so this will
+                fail if any emergency funds require payback.
+
+                So we just add a day, for that scenario. This seems to be ok
+                because this leaves the deductions from emergency, as they
+                should be and ensures the emergency paybacks are never attempted
+                given they'll fail due to insufficient funds.
+
+                I'm also tired.
+                """
+                upcoming_pay_dates = [f for f in income_dates if f > date]
+                future = self.today
+                if self.today in reconcile_dates:
+                    future += timedelta(days=1)
+                return upcoming_pay_dates[-1] if upcoming_pay_dates else future
+
+            paid = spending.pay_from(date, available, get_payback_date())
             available.include(paid.available)
             moves += paid.moves
 
         # How much is still unpaid for, this is spending accumulating until the
         # next pay period.
-        unpaid_spending = sum([e.total for e in spending.payments])
-        log.info(f"{self.today.date()} unpaid-spending: {unpaid_spending}")
         for payment in spending.payments:
             log.info(f"{self.today.date()} {payment}")
-        paid = spending.pay_from(self.today, available)
-        moves += paid.moves
+        unpaid_spending = sum([e.total for e in spending.payments])
+        unpaid_non_emergency_spending = sum(
+            [e.total for e in spending.payments if e.path != names.emergency]
+        )
+        log.info(f"{self.today.date()} unpaid-spending: {unpaid_spending}")
+        if unpaid_non_emergency_spending > 0:
+            log.info(
+                f"{self.today.date()} unpaid-non-emergency-spending: {unpaid_non_emergency_spending}"
+            )
+            paid = spending.pay_from(self.today, available, None)
+            moves += paid.moves
 
         income_after_payback = sum([dm.left() for dm in available.money])
         for money in available.money:
@@ -777,16 +848,25 @@ def parse_income(
     )
 
 
-def parse_spending_handler(maximum: Optional[str] = None) -> Handler:
+def parse_spending_handler(
+    today: Optional[datetime] = None, maximum: Optional[str] = None
+) -> Handler:
+    assert today
     if maximum:
-        return Schedule(maximum=Decimal(maximum))
-    return Schedule()
+        return Schedule(today=today, maximum=Decimal(maximum))
+    return Schedule(today=today)
 
 
-def parse_spending(path: str, handler: Optional[Dict[str, Any]] = None, **kwargs):
+def parse_spending(
+    path: str,
+    handler: Optional[Dict[str, Any]] = None,
+    today: Optional[datetime] = None,
+    **kwargs,
+):
+    assert today
     if handler:
-        return HandlerPath(path, parse_spending_handler(**handler))
-    return HandlerPath(path, Schedule())
+        return HandlerPath(path, parse_spending_handler(today=today, **handler))
+    return HandlerPath(path, Schedule(today=today))
 
 
 def parse_petty(path: str, handler: Optional[Dict[str, Any]] = None, **kwargs):
@@ -802,6 +882,7 @@ def parse_refund(path: str, handler: Optional[Dict[str, Any]] = None, **kwargs):
 
 
 def parse_configuration(
+    today: Optional[datetime] = None,
     ledger_file: Optional[str] = None,
     names: Mapping[str, Any] = None,
     income: List[Mapping[str, Any]] = None,
@@ -810,6 +891,7 @@ def parse_configuration(
     emergency: List[Mapping[str, Any]] = None,
     **kwargs,
 ) -> Configuration:
+    assert today
     assert ledger_file
     assert income
     assert spending
@@ -822,24 +904,24 @@ def parse_configuration(
         ledger_file=ledger_file,
         names=names_parsed,
         incomes=[parse_income(tax_system=tax_system, **obj) for obj in income],
-        spending=[parse_spending(**obj) for obj in spending],
+        spending=[parse_spending(today=today, **obj) for obj in spending],
         emergency=[parse_emergency(**obj) for obj in emergency],
         refund=[parse_refund(**obj) for obj in refund],
         tax_system=tax_system,
     )
 
 
-def allocate(config_path: str, file_name: str, today: datetime) -> None:
+def allocate(config_path: str, file_name: str, today: datetime, paranoid: bool) -> None:
     with open(config_path, "r") as file:
         raw = json.loads(file.read())
-        configuration = parse_configuration(**raw)
+        configuration = parse_configuration(today=today, **raw)
 
     f = Finances(configuration, today)
 
     try_truncate_file(file_name)
 
     with open(file_name, "w") as file:
-        txs = f.allocate(file)
+        txs = f.allocate(file, paranoid)
         t = get_generated_template()
         rendered = t.render(txs=txs)
         file.write(rendered)
@@ -863,6 +945,7 @@ if __name__ == "__main__":
         "-l", "--ledger-file", action="store", default="lalloc.g.ledger"
     )
     parser.add_argument("-t", "--today", action="store", default=None)
+    parser.add_argument("-p", "--paranoid", action="store_true", default=False)
     parser.add_argument("-d", "--debug", action="store_true", default=False)
     parser.add_argument("--no-debug", action="store_true", default=False)
     args = parser.parse_args()
@@ -876,4 +959,4 @@ if __name__ == "__main__":
         today = datetime.strptime(args.today, "%Y/%m/%d")
         log.warning(f"today overriden to {today}")
 
-    allocate(args.config_file, args.ledger_file, today)
+    allocate(args.config_file, args.ledger_file, today, args.paranoid)
