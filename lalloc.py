@@ -765,7 +765,7 @@ class Finances:
                 future = self.today
                 if self.today in reconcile_dates:
                     future += timedelta(days=1)
-                return upcoming_pay_dates[-1] if upcoming_pay_dates else future
+                return upcoming_pay_dates[0] if len(upcoming_pay_dates) > 0 else future
 
             paid = spending.pay_from(date, available, get_payback_date())
             available.include(paid.available)
@@ -776,13 +776,13 @@ class Finances:
         for payment in spending.payments:
             log.info(f"{self.today.date()} {payment}")
         unpaid_spending = sum([e.total for e in spending.payments])
-        unpaid_non_emergency_spending = sum(
+        unpaid_spending_non_emergency = sum(
             [e.total for e in spending.payments if e.path != names.emergency]
         )
         log.info(f"{self.today.date()} unpaid-spending: {unpaid_spending}")
-        if unpaid_non_emergency_spending > 0:
+        if unpaid_spending_non_emergency > 0:
             log.info(
-                f"{self.today.date()} unpaid-non-emergency-spending: {unpaid_non_emergency_spending}"
+                f"{self.today.date()} unpaid-spending-non-emergency: {unpaid_spending_non_emergency}"
             )
             paid = spending.pay_from(self.today, available, None)
             moves += paid.moves
