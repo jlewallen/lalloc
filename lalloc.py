@@ -498,6 +498,8 @@ class Spending:
             if payment.date <= date and payment.date <= self.today:
                 paying.append(payment)
 
+        paying.sort(key=lambda p: p.path != self.names.emergency)
+
         moves: List[Move] = []
         available: Dict[str, Decimal] = {}
         for p in paying:
