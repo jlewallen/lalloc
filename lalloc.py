@@ -281,7 +281,7 @@ class RequirePayback(DatedMoney):
                 date=money.date,
                 total=taken.total,
                 path=self.path,
-                note="require payback",
+                note=f"require payback '{money.note}'",
             )
         ]
         return Taken(taken.total, taken.after, taken.moves, payments)
@@ -416,7 +416,7 @@ class TaxSystem:
                             date=payment.date,
                             total=taxed,
                             path=self.names.taxes,
-                            note=f"taxes on {payment.date.date()} {payment.note}",
+                            note=f"{tax.rate:.2} taxes on {taken.total} from {payment.date.date()} {payment.note}",
                         )
                     ]
         return []
