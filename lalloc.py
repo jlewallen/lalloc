@@ -254,7 +254,11 @@ class DatedMoney:
         )
         moves = [
             SimpleMove(
-                money.date, taking, self.path, money.path, f"payback '{money.note}'"
+                money.date,
+                taking,
+                self.path,
+                money.path,
+                f"payback '{money.date.date()} {money.note}'",
             )
         ]
         return Taken(taking, after, moves)
