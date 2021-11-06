@@ -1057,10 +1057,14 @@ def allocate(config_path: str, file_name: str, today: datetime, paranoid: bool) 
 
 
 if __name__ == "__main__":
+    console = logging.StreamHandler()
+    console.setLevel(logging.INFO)
+    log_file = logging.FileHandler("lalloc.log")
+    log_file.setLevel(logging.DEBUG)
     logging.basicConfig(
-        level=logging.INFO,
+        level=logging.DEBUG,
         format="[%(levelname)7s] %(message)s",
-        handlers=[logging.StreamHandler(), logging.FileHandler("lalloc.log")],
+        handlers=[console, log_file],
     )
 
     log = logging.getLogger("lalloc")
@@ -1079,7 +1083,7 @@ if __name__ == "__main__":
     today = datetime_today_that_is_sane()
 
     if args.debug:
-        log.setLevel(logging.DEBUG)
+        console.setLevel(logging.DEBUG)
 
     if args.today:
         today = datetime.strptime(args.today, "%Y/%m/%d")
