@@ -14,11 +14,11 @@
     [allocations:checking:rec]                                                                 ${{ period.monthly(200) }}   ; recreational spending
     [assets:checking:reserved]                                                               ; ${{ period.display() }}
 
-{{ period.tax("allocations:checking:available:groceries", 0.1) }}
+{{ period.tax(rate=0.10, path="allocations:checking:available:groceries") }}
 
 {% else -%}
 
-{{ period.tax("allocations:checking:available:groceries", 0.0) }}
+{{ period.tax(rate=0.00, path="allocations:checking:available:groceries") }}
 
 {% endif -%}
 

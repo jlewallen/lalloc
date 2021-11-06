@@ -388,14 +388,17 @@ class MoneyPool:
 @dataclass
 class Tax:
     date: datetime
-    pattern: str
     rate: Decimal
+    note: Optional[str] = None
+    path: Optional[str] = None
     compiled: Optional[re.Pattern] = None
 
-    def matches(self, path: str) -> bool:
+    def matches(self, p: DatedMoney) -> bool:
         if not self.compiled:
-            self.compiled = re.compile(self.pattern)
-        return self.compiled.match(path) is not None
+            self.compiled = re.compile(self.path if self.path else self.note)
+        if self.note:
+            return self.compiled.match(p.note) is not None
+        return self.compiled.match(p.path) is not None
 
 
 @dataclass
@@ -403,14 +406,24 @@ class TaxSystem:
     names: Names
     taxes: List[Tax] = field(default_factory=list)
 
-    def add(self, date: datetime, pattern: str, rate: float):
-        self.taxes.append(Tax(date, pattern, Decimal(rate)))
+    def add(
+        self,
+        date: datetime,
+        rate: Decimal,
+        note: Optional[str] = None,
+        path: Optional[str] = None,
+    ):
+        log.info(f"{date.date()} {path or note:50} {'':10} taxing {rate:.2}")
+        self.taxes.append(Tax(date, rate, note=note, path=path))
 
     def tax(self, payment: "DatedMoney", taken: Taken) -> List["Payment"]:
         for tax in self.taxes:
             if payment.date >= tax.date:
-                if tax.rate > 0 and tax.matches(payment.path):
+                if tax.rate > 0 and tax.matches(payment):
                     taxed = quantize(tax.rate * taken.total)
+                    log.info(
+                        f"{payment.date.date()} {payment.path:50} {payment.total:10} taxing {taxed:10} {self.names.taxes}"
+                    )
                     return [
                         Payment(
                             date=payment.date,
@@ -464,9 +477,17 @@ class Period(DatedMoney):
     def display(self) -> str:
         return f"{self.left():.2f}"
 
-    def tax(self, pattern: str, rate: float):
-        self.tax_system.add(self.date, pattern, rate)
-        return f"; tax {pattern} {rate}"
+    def tax(
+        self,
+        rate: Optional[float] = None,
+        path: Optional[str] = None,
+        note: Optional[str] = None,
+    ):
+        assert path or note
+        self.tax_system.add(
+            self.date, Decimal(rate if rate else 0), path=path, note=note
+        )
+        return f"; tax {path} {rate}"
 
     def __str__(self) -> str:
         return self.date.strftime("%Y/%m/%d")
