@@ -284,7 +284,7 @@ class RequirePayback(DatedMoney):
                 date=money.date,
                 total=taken.total,
                 path=self.path,
-                note=f"require payback '{money.note}'",
+                note=f"borrowing for '{money.date.date()} {money.note}'",
             )
         ]
         return Taken(taken.total, taken.after, taken.moves, payments)
