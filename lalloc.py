@@ -933,10 +933,8 @@ def allocate(config_path: str, file_name: str, today: datetime, paranoid: bool) 
 if __name__ == "__main__":
     logging.basicConfig(
         level=logging.INFO,
-        format="[%(levelname)5s] %(message)s",
-        handlers=[
-            logging.StreamHandler(),
-        ],
+        format="[%(levelname)7s] %(message)s",
+        handlers=[logging.StreamHandler(), logging.FileHandler("lalloc.log")],
     )
 
     log = logging.getLogger("lalloc")
