@@ -200,10 +200,9 @@ class SimpleMove(Move):
         return [tx]
 
     def compensate(self, names: Names):
-        if self.to_path == names.emergency:
+        if self.to_path == names.emergency:  # HACK
             log.info(f"{self.date.date()} {self.to_path:50} {self.value:10} returning")
             return {self.to_path: self.value}
-
         return {}
 
 
@@ -334,10 +333,6 @@ class MoneyPool:
             [dm for dm in self.money if dm.date >= date and dm.path == names.emergency]
         )
 
-    def verify_pool_size(self, path: str):
-        for dm in self.money:
-            pass
-
     def _can_use(self, taking: DatedMoney, available: DatedMoney) -> bool:
         if taking.path == available.path:
             return False
@@ -387,6 +382,18 @@ class MoneyPool:
             moves,
             payments,
         )
+
+    def log(self):
+        for money in self.money:
+            left = money.left()
+            if left > 0:
+                log.info(
+                    f"{money.date.date()} {money.path:50} {left:10} / {money.total:10}"
+                )
+            else:
+                log.debug(
+                    f"{money.date.date()} {money.path:50} {left:10} / {money.total:10}"
+                )
 
 
 @dataclass
@@ -535,7 +542,7 @@ class Spending:
     payments: List[Payment]
     tax_system: TaxSystem
     paid: List[Payment] = field(default_factory=list)
-    verbose: bool = True
+    verbose: bool = False
 
     def dates(self) -> List[datetime]:
         unique: Dict[datetime, bool] = {}
@@ -554,33 +561,37 @@ class Spending:
         moves: List[Move] = []
         available: Dict[str, Decimal] = {}
         for p in payments:
+            # In partial moded we're allowed to exit early, without handling
+            # every payment we were given so bail if this one can't be handled.
             if partial:
                 if not money.can_take(p):
                     break
 
+            # This is here because spending money keeps the original date, so
+            # bump to the income date so that the income can be used.
             redated = p.redate(date)
+
+            # Pay for the thing.
             taken = money.take(redated)
             if len(taken.moves) > 0:
                 assert taken.total > 0
 
                 self.payments.remove(p)
                 self.paid.append(p)
-
                 need_sort = False
 
                 for tax in self.tax_system.tax(redated, taken):
                     self.payments.append(tax)
                     need_sort = True
 
-                if len(taken.payments) > 0:
-                    for p in taken.payments:
-                        self.payments.append(p.redate(upcoming_payments))
+                for p in taken.payments:
+                    self.payments.append(p.redate(upcoming_payments))
                     need_sort = True
 
                 if need_sort:
                     self._sort()
 
-                for m in taken.moves:  # HACK
+                for m in taken.moves:
                     for key, value in m.compensate(self.names).items():
                         available[key] = available.setdefault(key, Decimal(0)) + value
 
@@ -588,10 +599,11 @@ class Spending:
             else:
                 break
 
+        # Be sure and maintain the RequirePayback behavior of money that's returned.
         return Paid(
             moves,
             [
-                RequirePayback(date, total, path, "returned")
+                RequirePayback(date, total, path, "returned: ignored note")
                 for path, total in available.items()
             ],
         )
@@ -636,30 +648,34 @@ class Spending:
             log.debug(f"{date.date()}")
 
         if paranoid:
-            # pay off whatever we can from, partially so no errors if this fails.
+            # Pay off whatever we can from, partially so no errors if this fails.
             paid = self._make_payments(
                 date, money, upcoming_payments, emergency + expenses, partial=True
             )
 
-            # now get whatever can still be paid, sure this is a little more
-            # expensive though way easier to maintain and work with.
+            # Now, get whatever can still be paid, this is a little more
+            # expensive performance wise though way easier to maintain and work
+            # with because there's only the one function to maintain.
             emergency, expenses = self._get_payments(date)
 
+            # If we have a pay date coming up, we can be more flexible with when
+            # emergency gets paid back.
             if upcoming_payments:
-                # move emergency payments to the upcoming pay date, we can never
+                # Move emergency payments to the upcoming pay date, we can never
                 # have outstanding payments in the past because they'll never
                 # get paid because we require payment dates to be after income
-                # dates so if an emergency payment can't be made we gotta redate.
+                # dates, so if an emergency payment can't be made we gotta redate.
                 for p in emergency:
                     self.payments.remove(p)
                     self.payments.append(p.redate(upcoming_payments))
 
-                # now we require all expenses to be paid, this should fall back on
-                # emergency to ensure emergency can cover everything.
+                # Now we require all expenses to be paid, this should fall back on
+                # emergency to cover everything.
                 return paid.combine(
                     self._make_payments(date, money, upcoming_payments, expenses)
                 )
 
+        # No unpaid payments allowed.
         return self._make_payments(date, money, upcoming_payments, emergency + expenses)
 
     def _sort(self):
@@ -826,6 +842,7 @@ class Finances:
         # This is how much money is left over to cover other expenses.
         income_after_static = sum([dm.left() for dm in available.money])
 
+        # A move is a simplified model that produces Transactions.
         moves: List[Move] = []
 
         # This moves refunded money in allocations to a single refund account
@@ -844,12 +861,9 @@ class Finances:
             ]
         )
 
-        # We know we'll reconcile at each pay period, so get those dates.
+        # If we're paranoid we'll be reconciling on income and every spend.
         income_dates = [period.date for period in income_periods]
-
-        reconcile_dates = [] + income_dates
-        if paranoid:
-            reconcile_dates += spending.dates()
+        reconcile_dates = income_dates + spending.dates() if paranoid else income_dates
         reconcile_dates.sort()
 
         try:
@@ -857,34 +871,28 @@ class Finances:
             for date in reconcile_dates:
 
                 def get_payback_date():
-                    """
-                    When we schedule future payments we have to be careful about
-                    when we expect to pay them back because some payments may not
-                    payable until income is available. Payments that reimburse for
-                    funds taken from emergency to cover another expense, for
-                    example.
+                    # It's this method that determines the date that any
+                    # payments generated during this pay back period should be
+                    # paid back.
 
-                    It's this method that determines the date that any payments
-                    generated during this pay back period should be paid back.
+                    # Ideally, and in many situations, this will be the date of
+                    # the income period following the reconciling date.
 
-                    Ideally, and in many situation this will be the date of the
-                    income period following the current reconcile date.
+                    # If there are no income periods left, because we're on the
+                    # final one, we use today's date.  The one downside to this
+                    # is when today's date is also one of the `reconcile_dates`,
+                    # which will break because then we'll end up processing the
+                    # same date twice, and with no chance of additional income,
+                    # and so this will fail if any emergency funds require
+                    # payback.
 
-                    If there are no income periods left, because we're using an
-                    artificial 'today' in the past or because we're up to the
-                    current pay period we use today's date. The one downside to this
-                    is when today's date is also one of the `reconcile_dates`, which
-                    will break because then we'll end up processing the same date
-                    twice, and with no chance of additional income, and so this will
-                    fail if any emergency funds require payback.
+                    # So we just add a day, for that scenario. This seems to be
+                    # ok because this leaves the deductions from emergency, as
+                    # they should be and ensures the emergency paybacks are
+                    # never attempted given they'll fail due to insufficient
+                    # funds.
 
-                    So we just add a day, for that scenario. This seems to be ok
-                    because this leaves the deductions from emergency, as they
-                    should be and ensures the emergency paybacks are never attempted
-                    given they'll fail due to insufficient funds.
-
-                    I'm also tired.
-                    """
+                    # I'm also tired and this works.
                     upcoming_pay_dates = [f for f in income_dates if f > date]
                     future = self.today
                     if self.today in reconcile_dates:
@@ -893,21 +901,29 @@ class Finances:
                         upcoming_pay_dates[0] if len(upcoming_pay_dates) > 0 else future
                     )
 
+                # Pay for spending up until this date.
                 paid = spending.pay_from(
                     date, available, get_payback_date(), paranoid=paranoid
                 )
-                available.include(paid.available)
                 moves += paid.moves
+
+                # Make any money that was paid back to emergency (or anything
+                # else down the road) available.
+                available.include(paid.available)
 
             # How much is still unpaid for, this is spending accumulating until the
             # next pay period.
-            for payment in spending.payments:
-                log.info(f"{self.today.date()} unpaid {payment}")
             unpaid_spending = sum([e.total for e in spending.payments])
             unpaid_spending_non_emergency = sum(
                 [e.total for e in spending.payments if e.path != names.emergency]
             )
+
+            for payment in spending.payments:
+                log.info(f"{self.today.date()} unpaid {payment}")
             log.info(f"{self.today.date()} unpaid: {unpaid_spending}")
+
+            # Only bother paying for spending if there's expenses to pay for, we
+            # can leave emergency hanging.
             if unpaid_spending_non_emergency > 0:
                 log.info(
                     f"{self.today.date()} unpaid-non-emergency: {unpaid_spending_non_emergency}"
@@ -915,19 +931,10 @@ class Finances:
                 paid = spending.pay_from(self.today, available, None, paranoid=paranoid)
                 moves += paid.moves
 
-            income_after_payback = sum([dm.left() for dm in available.money])
-            for money in available.money:
-                left = money.left()
-                if left > 0:
-                    log.info(
-                        f"{money.date.date()} {money.path:50} {left:10} / {money.total:10}"
-                    )
-                else:
-                    log.debug(
-                        f"{money.date.date()} {money.path:50} {left:10} / {money.total:10}"
-                    )
+            available.log()
 
             # Move any left over income to the available account.
+            income_after_payback = sum([dm.left() for dm in available.money])
             left_over = [dm for dm in available.money if dm.path != names.emergency]
             _, moving = move_all_dated_money(
                 left_over, "reserving left over income", names.available, self.today

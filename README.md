@@ -138,7 +138,7 @@ around to compensate.
 By monitoring the balance of these two accounts you can tune behavior to the
 current financial situation.
 
-3) Because the accounts used to manage the allocations are all virtual and
+2) Because the accounts used to manage the allocations are all virtual and
 exist alongside the physical accounts the algorithm can be adjusted and toyed
 with very easily. For example, it's possible to make small changes to the job
 template to try new life situations - increased rent, savings, a car payment,
