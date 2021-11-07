@@ -79,6 +79,12 @@ class Transaction:
             return self.date.strftime("%Y/%m/%d")
         return self.date.strftime("%Y/%m/%d %H:%M:%S")
 
+    def has_account(self, account: str) -> bool:
+        return len([p for p in self.postings if p.account == account]) > 0
+
+    def balance(self, account: str) -> Decimal:
+        return Decimal(sum([p.value for p in self.postings if p.account == account]))
+
 
 class Handler:
     def expand(self, tx: Transaction, posting: Posting):
@@ -104,8 +110,25 @@ class Transactions:
     def txns(self):
         return self.txs
 
+    def accounts(self) -> Sequence[str]:
+        return [
+            account
+            for account in {
+                posting.account: True for tx in self.txs for posting in tx.postings
+            }
+        ]
+
     def before(self, date: datetime) -> "Transactions":
         return Transactions([tx for tx in self.txs if tx.date <= date])
+
+    def account(self, account: str) -> "Transactions":
+        return Transactions([tx for tx in self.txs if tx.has_account(account)])
+
+    def balance(self, account: Optional[str] = None) -> Decimal:
+        assert account
+        return Decimal(
+            sum([tx.balance(account) for tx in self.txs if tx.has_account(account)])
+        )
 
     def apply_handlers(self, paths: List[HandlerPath]) -> List[Any]:
         cache: Dict[str, Handler] = {}
@@ -941,6 +964,12 @@ class Finances:
                 )
                 paid = spending.pay_from(self.today, available, None, paranoid=paranoid)
                 moves += paid.moves
+
+            accounts = list(allocation_transactions.accounts())
+            accounts.sort()
+            for account in accounts:
+                balance = allocation_transactions.balance(account)
+                log.info(f"{self.today.date()} {account:50} {balance:10}")
 
             available.log()
 
