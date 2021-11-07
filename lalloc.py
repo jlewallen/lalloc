@@ -229,9 +229,10 @@ class DatedMoney:
     def redate(self, date: datetime) -> "DatedMoney":
         return DatedMoney(date, self.left(), self.path, self.note)
 
-    def take(self, money: "DatedMoney", partial=False) -> Taken:
+    def take(self, money: "DatedMoney", verb="payback", partial=False) -> Taken:
         assert money.total >= 0
         assert quantize(money.total) == money.total
+        verb = verb if verb else "payback"
         taking = money.total
         if partial:
             left = self.left()
@@ -257,7 +258,7 @@ class DatedMoney:
                 taking,
                 self.path,
                 money.path,
-                f"payback '{money.date.date()} {money.note}'",
+                f"{verb} '{money.date.date()} {money.note}'",
             )
         ]
         return Taken(taking, after, moves)
@@ -276,8 +277,10 @@ class DatedMoney:
 
 @dataclass
 class RequirePayback(DatedMoney):
-    def take(self, money: DatedMoney, partial=False) -> Taken:
-        taken = super().take(money, partial=partial)
+    def take(
+        self, money: DatedMoney, verb: Optional[str] = None, partial: bool = False
+    ) -> Taken:
+        taken = super().take(money, verb=verb, partial=partial)
         log.info(f"{money.date.date()} {self.path:50} {taken.total:10} require-payback")
         payments = [
             Payment(
@@ -312,6 +315,7 @@ class InsufficientFundsError(Exception):
 
 @dataclass
 class MoneyPool:
+    names: Names
     money: List[DatedMoney] = field(default_factory=list)
 
     def add(self, note: str, date: datetime, total: Decimal, path: str):
@@ -325,12 +329,14 @@ class MoneyPool:
 
     def only_income(self, date: datetime, names: Names) -> "MoneyPool":
         return MoneyPool(
-            [dm for dm in self.money if dm.date >= date and dm.path != names.emergency]
+            self.names,
+            [dm for dm in self.money if dm.date >= date and dm.path != names.emergency],
         )
 
     def only_emergency(self, date: datetime, names: Names) -> "MoneyPool":
         return MoneyPool(
-            [dm for dm in self.money if dm.date >= date and dm.path == names.emergency]
+            self.names,
+            [dm for dm in self.money if dm.date >= date and dm.path == names.emergency],
         )
 
     def _can_use(self, taking: DatedMoney, available: DatedMoney) -> bool:
@@ -365,8 +371,13 @@ class MoneyPool:
         payments: List[Payment] = []
 
         remaining = taking
-        for dm in available:
-            taken = dm.take(remaining, partial=True)
+        for available_money in available:
+            verb = (
+                "borrowing"
+                if available_money.path == self.names.emergency
+                else "payback"
+            )
+            taken = available_money.take(remaining, verb=verb, partial=True)
             remaining = taken.after
             if taken.moves:
                 moves += taken.moves
@@ -826,7 +837,7 @@ class Finances:
         # Allocate static income by rendering income template for each income
         # transaction, this will generate transactions directly into file and
         # return the left over income we can apply to spending.
-        available = MoneyPool()
+        available = MoneyPool(names)
         for period in income_periods:
             date = period.date
             template = get_income_template(period.income.name)
