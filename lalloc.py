@@ -612,6 +612,9 @@ class Spending:
     paid: List[Payment] = field(default_factory=list)
     verbose: bool = False
 
+    def balance(self, path: str) -> Decimal:
+        return Decimal(sum([p.total for p in self.paid if p.path == path]))
+
     def dates(self) -> List[datetime]:
         unique: Dict[datetime, bool] = {}
         for p in self.payments:
@@ -1005,7 +1008,10 @@ class Finances:
             accounts.sort()
             for account in accounts:
                 balance = allocation_transactions.balance(account)
-                log.info(f"{self.today.date()} {account:50} {balance:10}")
+                paid_balance = spending.balance(account)
+                log.info(
+                    f"{self.today.date()} {account:50} {balance:10} + {paid_balance:10} = {balance+paid_balance:10}"
+                )
 
             available.log()
 
