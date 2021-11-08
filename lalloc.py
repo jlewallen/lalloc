@@ -542,6 +542,40 @@ class Period(DatedMoney):
 
 
 @dataclass
+class Allocator:
+    period: Period
+    moves: List[Move] = field(default_factory=list)
+
+    def yearly(self, path: str, value: float) -> str:
+        v = quantize(
+            Decimal(value) / Decimal(Decimal(12.0) * self.period.income.factor)
+        )
+        taken = self.period.take(
+            DatedMoney(
+                date=self.period.date,
+                total=v,
+                path=path,
+                note=f"yearly {path}",
+            )
+        )
+        self.moves += taken.moves
+        return f"; yearly {path} {value}"
+
+    def monthly(self, path: str, value: float) -> str:
+        v = quantize(Decimal(value) / self.period.income.factor)
+        taken = self.period.take(
+            DatedMoney(
+                date=self.period.date,
+                total=v,
+                path=path,
+                note=f"monthly {path}",
+            )
+        )
+        self.moves += taken.moves
+        return f"; monthly {path} {value}"
+
+
+@dataclass
 class Expense:
     date: datetime
     value: Decimal
@@ -857,6 +891,9 @@ class Finances:
 
         ytd_spending = sum([e.total for e in spending.payments])
 
+        # A move is a simplified model that produces Transactions.
+        moves: List[Move] = []
+
         # Allocate static income by rendering income template for each income
         # transaction, this will generate transactions directly into file and
         # return the left over income we can apply to spending.
@@ -864,7 +901,8 @@ class Finances:
         for period in income_periods:
             date = period.date
             template = get_income_template(period.income.name)
-            rendered = template.render(period=period)
+            allocator = Allocator(period)
+            rendered = template.render(period=period, allocate=allocator)
 
             log.info(f"{period} {period.note:50} {period.left():10} allocated")
 
@@ -872,12 +910,10 @@ class Finances:
             file.write("\n\n")
 
             available.add(names.reserved, date, period.left(), names.reserved)
+            moves += allocator.moves
 
         # This is how much money is left over to cover other expenses.
         income_after_static = sum([dm.left() for dm in available.money])
-
-        # A move is a simplified model that produces Transactions.
-        moves: List[Move] = []
 
         # This moves refunded money in allocations to a single refund account
         # and then makes that money available for payback.
