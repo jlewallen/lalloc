@@ -137,32 +137,61 @@ class Transaction:
 
 
 @dataclass
-class MaximumBalanceRule(Rule):
+class MaximumRule(Rule):
     path: str
+    moves: List[MoveSpec]
     maximum: Decimal
-    moves: List[MoveSpec] = field(default_factory=list)
     compiled: Optional[re.Pattern] = None
+
+    def apply_matching(self, date: datetime, balances: Balances) -> List[Transaction]:
+        raise NotImplementedError
 
     def apply(self, date: datetime, balances: Balances) -> List[Transaction]:
         if self.compiled is None:
             self.compiled = re.compile(self.path)
 
+        matching: List[Balance] = []
+
         for balance in balances.balances:
             if self.compiled.match(balance.account):
                 log.info(f"match {balance.account} ({self.path})")
-                if balance.value > self.maximum:
-                    return self._move_excess(date, balance)
+                matching.append(balance)
 
-        return []
+        return self.apply_matching(date, Balances(matching))
 
-    def _move_excess(self, date: datetime, balance: Balance) -> List[Transaction]:
-        excess = balance.value - self.maximum
-        tx = Transaction(date, "move excess", False)
+    def move_value(
+        self, date: datetime, value: Decimal, note: str
+    ) -> List[Transaction]:
+        tx = Transaction(date, note, False)
         for move in self.moves:
             for from_path, to_path in move.paths.items():
-                tx.append(Posting("[" + from_path + "]", -excess, ""))
-                tx.append(Posting("[" + to_path + "]", excess, ""))
+                tx.append(Posting("[" + from_path + "]", -value, ""))
+                tx.append(Posting("[" + to_path + "]", value, ""))
         return [tx]
+
+
+@dataclass
+class MaximumBalanceRule(MaximumRule):
+    def apply_matching(self, date: datetime, balances: Balances) -> List[Transaction]:
+        return flatten(
+            [
+                self.move_value(date, self.maximum, "maximum reached")
+                for b in balances.balances
+                if b.value > self.maximum
+            ]
+        )
+
+
+@dataclass
+class ExcessBalanceRule(MaximumRule):
+    def apply_matching(self, date: datetime, balances: Balances) -> List[Transaction]:
+        return flatten(
+            [
+                self.move_value(date, b.value - self.maximum, "moving excess")
+                for b in balances.balances
+                if b.value > self.maximum
+            ]
+        )
 
 
 @dataclass
@@ -251,12 +280,18 @@ def parse_move_spec(**kwargs) -> MoveSpec:
 
 def parse_rule(
     maximum: Optional[Decimal] = None,
+    excess: Optional[Decimal] = None,
     overdraft: Optional[str] = None,
     moves: Optional[List[Mapping[str, str]]] = None,
     **kwargs,
 ) -> Rule:
     if overdraft:
         return OverdraftProtection(overdraft=overdraft, **kwargs)
+    if excess:
+        assert moves
+        return ExcessBalanceRule(
+            maximum=excess, moves=[parse_move_spec(**move) for move in moves], **kwargs
+        )
     if maximum:
         assert moves
         return MaximumBalanceRule(
