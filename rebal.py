@@ -253,6 +253,32 @@ class OverdraftProtection(Rule):
 
 
 @dataclass
+class PiggyBank(Rule):
+    path: str
+    piggybank: str
+    compiled: Optional[re.Pattern] = None
+
+    def apply(self, date: datetime, balances: Balances) -> List[Transaction]:
+        if self.compiled is None:
+            self.compiled = re.compile(self.path)
+
+        only_change = [
+            b
+            for b in balances.balances
+            if self.compiled.match(b.account) and b.value < 1 and b.value > 0
+        ]
+
+        return [self._keep_change(date, balance) for balance in only_change]
+
+    def _keep_change(self, date: datetime, balance: Balance) -> Transaction:
+        log.info(f"keeping the change {balance}")
+        tx = Transaction(date, "keeping the change", True)
+        tx.append(Posting("[" + balance.account + "]", -balance.value, ""))
+        tx.append(Posting("[" + self.piggybank + "]", balance.value, ""))
+        return tx
+
+
+@dataclass
 class Finances:
     cfg: Configuration
     today: datetime
@@ -282,9 +308,12 @@ def parse_rule(
     maximum: Optional[Decimal] = None,
     excess: Optional[Decimal] = None,
     overdraft: Optional[str] = None,
+    piggybank: Optional[str] = None,
     moves: Optional[List[Mapping[str, str]]] = None,
     **kwargs,
 ) -> Rule:
+    if piggybank:
+        return PiggyBank(piggybank=piggybank, **kwargs)
     if overdraft:
         return OverdraftProtection(overdraft=overdraft, **kwargs)
     if excess:
