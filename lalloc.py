@@ -1105,11 +1105,11 @@ def parse_refund(path: str, handler: Optional[Dict[str, Any]] = None, **kwargs):
 def parse_configuration(
     today: Optional[datetime] = None,
     ledger_file: Optional[str] = None,
-    names: Mapping[str, Any] = None,
-    income: List[Mapping[str, Any]] = None,
-    spending: List[Mapping[str, Any]] = None,
-    refund: List[Mapping[str, Any]] = None,
-    emergency: List[Mapping[str, Any]] = None,
+    names: Optional[Mapping[str, Any]] = None,
+    income: Optional[List[Mapping[str, Any]]] = None,
+    spending: Optional[List[Mapping[str, Any]]] = None,
+    refund: Optional[List[Mapping[str, Any]]] = None,
+    emergency: Optional[List[Mapping[str, Any]]] = None,
     **kwargs,
 ) -> Configuration:
     assert today

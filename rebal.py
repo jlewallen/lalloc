@@ -332,7 +332,7 @@ def parse_rule(
 def parse_configuration(
     today: Optional[datetime] = None,
     ledger_file: Optional[str] = None,
-    names: Mapping[str, Any] = None,
+    names: Optional[Mapping[str, Any]] = None,
     rules: Optional[List[Mapping[str, Any]]] = None,
     **kwargs,
 ) -> Configuration:
