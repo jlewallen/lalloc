@@ -256,6 +256,7 @@ class OverdraftProtection(Rule):
 class PiggyBank(Rule):
     path: str
     piggybank: str
+    maximum: Decimal = Decimal(5)
     compiled: Optional[re.Pattern] = None
 
     def apply(self, date: datetime, balances: Balances) -> List[Transaction]:
@@ -265,7 +266,7 @@ class PiggyBank(Rule):
         only_change = [
             b
             for b in balances.balances
-            if self.compiled.match(b.account) and b.value < 1 and b.value > 0
+            if self.compiled.match(b.account) and b.value < self.maximum and b.value > 0
         ]
 
         return [self._keep_change(date, balance) for balance in only_change]
@@ -313,7 +314,9 @@ def parse_rule(
     **kwargs,
 ) -> Rule:
     if piggybank:
-        return PiggyBank(piggybank=piggybank, **kwargs)
+        return PiggyBank(
+            piggybank=piggybank, maximum=maximum if maximum else Decimal(5), **kwargs
+        )
     if overdraft:
         return OverdraftProtection(overdraft=overdraft, **kwargs)
     if excess:
