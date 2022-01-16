@@ -165,7 +165,7 @@ class Ledger:
             "-S",
             "date",
             "-F",
-            "1|%D|%A|%t|%X|%P\n%/0|%D|%A|%t|%X|%P\n",
+            "1|%D|%A|%t|%X|%P|%N\n%/0|%D|%A|%t|%X|%P|%N\n",
             "register",
         ] + expression
         sp = subprocess.run(command, stdout=subprocess.PIPE)
@@ -177,10 +177,10 @@ class Ledger:
 
         for line in sp.stdout.strip().decode("utf-8").split("\n"):
             fields = line.split("|")
-            if len(fields) != 6:
+            if len(fields) != 7:
                 continue
 
-            first, date_string, account, value_string, cleared, payee = fields
+            first, date_string, account, value_string, cleared, payee, note = fields
             date = datetime.strptime(date_string, "%Y/%m/%d")
             value = Decimal(value_string.replace("$", ""))
 
@@ -188,7 +188,7 @@ class Ledger:
                 tx = Transaction(date, payee, len(cleared) > 0)
                 txs.append(tx)
             assert tx
-            tx.append(Posting(account, value, None))
+            tx.append(Posting(account, value, note))
 
         return Transactions(txs)
 
