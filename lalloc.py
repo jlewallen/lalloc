@@ -182,13 +182,15 @@ class Ledger:
 
             first, date_string, account, value_string, cleared, payee, note = fields
             date = datetime.strptime(date_string, "%Y/%m/%d")
+            if "$" not in value_string:
+                continue
             value = Decimal(value_string.replace("$", ""))
 
             if int(first) == 1:
                 tx = Transaction(date, payee, len(cleared) > 0)
                 txs.append(tx)
             assert tx
-            tx.append(Posting(account, value, note))
+            tx.append(Posting(account, value, note.strip()))
 
         return Transactions(txs)
 
@@ -215,9 +217,10 @@ class SimpleMove(Move):
     from_path: str
     to_path: str
     payee: str
+    cleared: bool = True
 
     def txns(self):
-        tx = Transaction(self.date, self.payee, True)
+        tx = Transaction(self.date, self.payee, self.cleared)
         tx.append(Posting("[" + self.from_path + "]", -self.value, ""))
         tx.append(Posting("[" + self.to_path + "]", self.value, ""))
         return [tx]
@@ -844,14 +847,90 @@ class DatedMoneyHandler(Handler):
 
 
 @dataclass
+class EnvelopeDatedMoney(DatedMoney):
+    envelope: Optional[str] = None
+    source: Optional[str] = None
+    cleared: bool = False
+
+    def allocated(self) -> List[DatedMoney]:
+        assert self.envelope
+        assert self.note
+        if self.total > 0:
+            return [DatedMoney(self.date, self.total, self.envelope, self.note)]
+        return []
+
+    def refunded(self) -> List[DatedMoney]:
+        if self.total < 0:
+            assert self.envelope
+            assert self.note
+            return [
+                DatedMoney(self.date, self.total.copy_abs(), self.envelope, self.note)
+            ]
+        return []
+
+    def withdraw_from_envelope(self) -> List[Move]:
+        assert self.envelope
+        assert self.source
+        return [
+            SimpleMove(
+                self.date,
+                self.total,
+                self.envelope,
+                self.source,
+                f"withdraw for '{self.note}'",
+                self.cleared,
+            )
+        ]
+
+
+@dataclass
+class EnvelopedMoneyHandler(Handler):
+    envelope: str
+
+    def expand(self, tx: Transaction, posting: Posting):
+        if posting.note and "noalloc:" in posting.note:
+            log.info(f"noalloc {posting}")
+            return []
+
+        source = self._get_envelope_source(tx)
+
+        log.info(f"allocat {source} {posting}")
+        return [
+            EnvelopeDatedMoney(
+                date=tx.date,
+                total=posting.value,
+                path=posting.account,
+                note=tx.payee,
+                envelope=self.envelope,
+                source=source,
+                cleared=tx.cleared,
+            )
+        ]
+
+    def _get_envelope_source(self, tx: Transaction) -> str:
+        for p in tx.postings:
+            if p.account == "assets:checking":
+                return "assets:checking:reserved"
+            if p.account.startswith("liabilities:cards:"):
+                return "allocations:checking:" + p.account.replace(
+                    "cards:", ""
+                )  # TODO: My opinion
+
+        raise Exception(f"envelope source missing: {tx}")
+
+
+@dataclass
 class Configuration:
     ledger_file: str
     names: Names
+    envelopes: List[HandlerPath]
     incomes: List[HandlerPath]
     spending: List[HandlerPath]
     emergency: List[HandlerPath]
     refund: List[HandlerPath]
+    overdraft: List[HandlerPath]
     tax_system: TaxSystem
+    expenses_pattern = ["--display", "any(account =~ /^expenses:/)"]
     income_pattern = "^income:"
     allocation_pattern = "^allocations:"
 
@@ -874,21 +953,40 @@ class Finances:
         income_transactions = l.register(
             default_args + [self.cfg.income_pattern] + exclude_allocations
         ).before(self.today)
+
+        expense_transactions = l.register(
+            default_args + self.cfg.expenses_pattern
+        ).before(self.today)
+
         allocation_transactions = l.register(
             default_args + [self.cfg.allocation_pattern] + exclude_allocations
         ).before(self.today)
 
+        purchases = expense_transactions.apply_handlers(self.cfg.envelopes)
         income_periods = income_transactions.apply_handlers(self.cfg.incomes)
         emergency_money = emergency_transactions.apply_handlers(self.cfg.emergency)
-        refund_money = allocation_transactions.apply_handlers(self.cfg.refund)
+        directly_refunded_money = allocation_transactions.apply_handlers(
+            self.cfg.refund
+        )
+
+        # Any money returned to an expense is refunded
+        expense_refunds = flatten([p.refunded() for p in purchases])
+        refund_money = sorted(
+            directly_refunded_money + expense_refunds, key=lambda x: [x.date, x.note]
+        )
+
+        # Turn all dated money in expenses into dated money in their envelopes.
+        allocated_expenses = flatten([p.allocated() for p in purchases])
+
+        # Combine into dated money needing to be covered as spending.
+        spending_money = (
+            allocation_transactions.apply_handlers(self.cfg.spending)
+            + allocated_expenses
+        )
         spending = Spending(
             names,
             self.today,
-            [
-                p
-                for p in allocation_transactions.apply_handlers(self.cfg.spending)
-                if p.date <= self.today
-            ],
+            [p for p in spending_money if p.date <= self.today],
             self.cfg.tax_system,
         )
 
@@ -896,6 +994,10 @@ class Finances:
 
         # A move is a simplified model that produces Transactions.
         moves: List[Move] = []
+
+        # Move money from envelopes to cover expenses.
+        for purchase in [p for p in purchases if p.date <= self.today]:
+            moves += purchase.withdraw_from_envelope()
 
         # Allocate static income by rendering income template for each income
         # transaction, this will generate transactions directly into file and
@@ -1024,6 +1126,7 @@ class Finances:
             moves += moving
 
             log.info(f"{self.today.date()} income-after-static: {income_after_static}")
+
             log.info(
                 f"{self.today.date()} income-after-payback: {income_after_payback}"
             )
@@ -1102,14 +1205,26 @@ def parse_refund(path: str, handler: Optional[Dict[str, Any]] = None, **kwargs):
     return HandlerPath(path, DatedMoneyHandler())
 
 
+def parse_envelope(name: str, expense: str, enabled: Optional[bool] = None, **kwargs):
+    if enabled:
+        return [HandlerPath(expense, EnvelopedMoneyHandler(name))]
+    return []
+
+
+def parse_overdraft(path: str, **kwargs):
+    return HandlerPath(path, DatedMoneyHandler())
+
+
 def parse_configuration(
     today: Optional[datetime] = None,
     ledger_file: Optional[str] = None,
     names: Optional[Mapping[str, Any]] = None,
+    envelopes: Optional[List[Mapping[str, Any]]] = None,
     income: Optional[List[Mapping[str, Any]]] = None,
     spending: Optional[List[Mapping[str, Any]]] = None,
     refund: Optional[List[Mapping[str, Any]]] = None,
     emergency: Optional[List[Mapping[str, Any]]] = None,
+    overdraft: Optional[List[Mapping[str, Any]]] = None,
     **kwargs,
 ) -> Configuration:
     assert today
@@ -1124,10 +1239,12 @@ def parse_configuration(
     return Configuration(
         ledger_file=ledger_file,
         names=names_parsed,
+        envelopes=flatten([parse_envelope(**obj) for obj in envelopes or []]),
         incomes=[parse_income(tax_system=tax_system, **obj) for obj in income],
         spending=[parse_spending(today=today, **obj) for obj in spending],
         emergency=[parse_emergency(**obj) for obj in emergency],
         refund=[parse_refund(**obj) for obj in refund],
+        overdraft=[parse_overdraft(**obj) for obj in overdraft or []],
         tax_system=tax_system,
     )
 
