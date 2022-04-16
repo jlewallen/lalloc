@@ -267,7 +267,7 @@ class DatedMoney:
         else:
             assert self.taken + taking <= self.total
         log.debug(
-            f"{money.date.date()} {money.path:50} {money.total:10} take total={self.total:8} taken={self.taken:8} taking={taking:8} after={self.total - self.taken - taking:8} {self.path}"
+            f"{money.date.date()} {money.path:50} {money.total:10} take total={self.total:8} taken={self.taken:8} {taking=:8} after={self.total - self.taken - taking:8} {self.path}"
         )
         self.taken += taking
         self.where[money.path] = taking
@@ -564,14 +564,14 @@ class Allocator:
         self.moves += taken.moves
         return f"; yearly {path} {value}"
 
-    def monthly(self, path: str, value: float) -> str:
+    def monthly(self, path: str, value: float, note: str) -> str:
         v = quantize(Decimal(value) / self.period.income.factor)
         taken = self.period.take(
             DatedMoney(
                 date=self.period.date,
                 total=v,
                 path=path,
-                note=f"monthly {path}",
+                note=f"monthly '{note}' {path}",
             )
         )
         self.moves += taken.moves
