@@ -552,7 +552,7 @@ class Allocator:
     period: Period
     moves: List[Move] = field(default_factory=list)
 
-    def yearly(self, path: str, value: float) -> str:
+    def yearly(self, path: str, value: float, note: str) -> str:
         v = quantize(
             Decimal(value) / Decimal(Decimal(12.0) * self.period.income.factor)
         )
@@ -561,7 +561,7 @@ class Allocator:
                 date=self.period.date,
                 total=v,
                 path=path,
-                note=f"yearly {path}",
+                note=f"yearly '{note}' {path}",
             )
         )
         self.moves += taken.moves
