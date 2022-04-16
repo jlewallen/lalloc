@@ -496,6 +496,9 @@ class Period(DatedMoney):
         testing = datetime.strptime(spec, "%m/%d/%Y")
         return self.date < testing
 
+    def between(self, after: str, before: str) -> bool:
+        return self.after(after) and self.before(before)
+
     def yearly(self, value: Decimal) -> str:
         v = quantize(value / Decimal(Decimal(12.0) * self.income.factor))
         taken = self.take(
