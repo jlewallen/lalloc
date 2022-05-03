@@ -58,9 +58,13 @@ class Posting:
     account: str
     value: Decimal
     note: Optional[str] = None
+    tags: List[str] = field(default_factory=list)
 
     def ledger_value(self) -> str:
         return f"${self.value:.2f}"
+
+    def ledger_tags(self) -> str:
+        return " ".join([f"{t}:" for t in self.tags])
 
 
 @dataclass
@@ -218,11 +222,12 @@ class SimpleMove(Move):
     to_path: str
     payee: str
     cleared: bool = True
+    tags: List[str] = field(default_factory=list)
 
     def txns(self):
         tx = Transaction(self.date, self.payee, self.cleared)
-        tx.append(Posting("[" + self.from_path + "]", -self.value, ""))
-        tx.append(Posting("[" + self.to_path + "]", self.value, ""))
+        tx.append(Posting("[" + self.from_path + "]", -self.value, "", self.tags))
+        tx.append(Posting("[" + self.to_path + "]", self.value, "", self.tags))
         return [tx]
 
     def compensate(self, names: Names):
@@ -246,6 +251,7 @@ class DatedMoney:
     total: Decimal
     path: str
     note: str
+    tags: List[str] = field(default_factory=list)
     taken: Decimal = Decimal(0)
     where: Dict[str, Decimal] = field(default_factory=dict)
 
@@ -285,6 +291,7 @@ class DatedMoney:
                 self.path,
                 money.path,
                 f"{verb} '{money.date.date()} {money.note}'",
+                tags=money.tags,
             )
         ]
         return Taken(taking, after, moves)
@@ -562,6 +569,7 @@ class Allocator:
                 total=v,
                 path=path,
                 note=f"yearly '{note}' {path}",
+                tags=["template"],
             )
         )
         self.moves += taken.moves
@@ -575,6 +583,7 @@ class Allocator:
                 total=v,
                 path=path,
                 note=f"monthly '{note}' {path}",
+                tags=["template"],
             )
         )
         self.moves += taken.moves
@@ -826,6 +835,7 @@ class IncomeHandler(Handler):
                 total=posting.value.copy_abs(),
                 income=self.income,
                 tax_system=self.tax_system,
+                tags=["template"],
             )
         ]
 
@@ -897,7 +907,7 @@ class EnvelopedMoneyHandler(Handler):
 
         source = self._get_envelope_source(tx)
 
-        log.info(f"allocat {source} {posting}")
+        log.info(f"allocate {source} {posting}")
         return [
             EnvelopeDatedMoney(
                 date=tx.date,
