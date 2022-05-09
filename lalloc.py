@@ -73,6 +73,7 @@ class Transaction:
     payee: str
     cleared: bool
     postings: List[Posting] = field(default_factory=list)
+    tags: List[str] = field(default_factory=list)
 
     def append(self, p: Posting):
         self.postings.append(p)
@@ -225,10 +226,15 @@ class SimpleMove(Move):
     tags: List[str] = field(default_factory=list)
 
     def txns(self):
-        tx = Transaction(self.date, self.payee, self.cleared)
-        tx.append(Posting("[" + self.from_path + "]", -self.value, "", self.tags))
-        tx.append(Posting("[" + self.to_path + "]", self.value, "", self.tags))
-        return [tx]
+        postings = [
+            Posting("[" + self.from_path + "]", -self.value, "", tags=[]),
+            Posting("[" + self.to_path + "]", self.value, "", tags=[]),
+        ]
+        return [
+            Transaction(
+                self.date, self.payee, self.cleared, postings=postings, tags=self.tags
+            )
+        ]
 
     def compensate(self, names: Names):
         if self.to_path == names.emergency:  # HACK
@@ -291,7 +297,7 @@ class DatedMoney:
                 self.path,
                 money.path,
                 f"{verb} '{money.date.date()} {money.note}'",
-                tags=money.tags,
+                tags=money.tags + ["debug: 0"],
             )
         ]
         return Taken(taking, after, moves)
@@ -305,7 +311,14 @@ class DatedMoney:
         self.taken = self.total
         effective_date = date if date else self.date
         moved = DatedMoney(date=effective_date, total=left, path=path, note=note)
-        return (moved, [SimpleMove(effective_date, left, self.path, path, note)])
+        return (
+            moved,
+            [
+                SimpleMove(
+                    effective_date, left, self.path, path, note, tags=["debug: 1"]
+                )
+            ],
+        )
 
 
 @dataclass
@@ -892,6 +905,7 @@ class EnvelopeDatedMoney(DatedMoney):
                 self.source,
                 f"withdraw for '{self.note}'",
                 self.cleared,
+                tags=["debug: 2"],
             )
         ]
 
