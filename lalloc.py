@@ -915,7 +915,7 @@ class EnvelopedMoneyHandler(Handler):
     envelope: str
 
     def expand(self, tx: Transaction, posting: Posting):
-        if posting.note and "noalloc:" in posting.note:
+        if posting.note and ("noalloc:" in posting.note or "manual:" in posting.note):
             log.info(f"noalloc {posting}")
             return []
 
