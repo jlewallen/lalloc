@@ -265,7 +265,9 @@ class DatedMoney:
         return self.total - self.taken
 
     def redate(self, date: datetime) -> "DatedMoney":
-        return DatedMoney(date, self.left(), self.path, self.note)
+        return DatedMoney(
+            date, self.left(), path=self.path, note=self.note, tags=self.tags
+        )
 
     def take(self, money: "DatedMoney", verb="payback", partial=False) -> Taken:
         assert money.total >= 0
@@ -279,7 +281,7 @@ class DatedMoney:
         else:
             assert self.taken + taking <= self.total
         log.debug(
-            f"{money.date.date()} {money.path:50} {money.total:10} take total={self.total:8} taken={self.taken:8} {taking=:8} after={self.total - self.taken - taking:8} {self.path}"
+            f"{money.date.date()} {money.path:50} {money.total:10} take total={self.total:8} taken={self.taken:8} {taking=:8} after={self.total - self.taken - taking:8} {self.path} {self.tags} {money.tags}"
         )
         self.taken += taking
         self.where[money.path] = taking
@@ -289,6 +291,7 @@ class DatedMoney:
             path=money.path,
             note=money.note,
             where=money.where,
+            tags=money.tags,
         )
         moves = [
             SimpleMove(
@@ -297,25 +300,36 @@ class DatedMoney:
                 self.path,
                 money.path,
                 f"{verb} '{money.date.date()} {money.note}'",
-                tags=money.tags + ["debug: 0"],
+                tags=money.tags + self.tags,
             )
         ]
         return Taken(taking, after, moves)
 
     def move(
-        self, path: str, note: str, date: Optional[datetime] = None
+        self,
+        path: str,
+        note: str,
+        date: Optional[datetime] = None,
+        tags: Optional[List[str]] = None,
     ) -> Tuple[Optional["DatedMoney"], List[Move]]:
         left = self.left()
         if left == 0:
             return (None, [])
         self.taken = self.total
         effective_date = date if date else self.date
-        moved = DatedMoney(date=effective_date, total=left, path=path, note=note)
+        moved = DatedMoney(
+            date=effective_date, total=left, path=path, note=note, tags=self.tags
+        )
         return (
             moved,
             [
                 SimpleMove(
-                    effective_date, left, self.path, path, note, tags=["debug: 1"]
+                    effective_date,
+                    left,
+                    self.path,
+                    path,
+                    note,
+                    tags=self.tags + ["debug: 1"] + (tags or []),
                 )
             ],
         )
@@ -334,6 +348,7 @@ class RequirePayback(DatedMoney):
                 total=taken.total,
                 path=self.path,
                 note=f"borrowing for '{money.date.date()} {money.note}'",
+                tags=self.tags + ["debug: require-payback"],
             )
         ]
         return Taken(taken.total, taken.after, taken.moves, payments)
@@ -344,8 +359,9 @@ def move_all_dated_money(
     note: str,
     path: str,
     date: Optional[datetime] = None,
+    tags: Optional[List[str]] = None,
 ) -> Tuple[List[DatedMoney], List[Move]]:
-    tuples = [dm.move(path, note, date) for dm in dms]
+    tuples = [dm.move(path, note, date, tags=tags) for dm in dms]
     new_money = [dm for dm, m in tuples if dm]
     moves = flatten([m for dm, m in tuples])
     return (new_money, moves)
@@ -364,8 +380,17 @@ class MoneyPool:
     names: Names
     money: List[DatedMoney] = field(default_factory=list)
 
-    def add(self, note: str, date: datetime, total: Decimal, path: str):
-        self.money.append(DatedMoney(date=date, total=total, path=path, note=note))
+    def add(
+        self,
+        note: str,
+        date: datetime,
+        total: Decimal,
+        path: str,
+        tags: Optional[List[str]] = None,
+    ):
+        self.money.append(
+            DatedMoney(date=date, total=total, path=path, note=note, tags=tags or [])
+        )
 
     def include(self, more: List[DatedMoney]):
         self.money += more
@@ -441,6 +466,7 @@ class MoneyPool:
         )
 
     def log(self):
+        log.info(f"           {'ACCOUNT':50} {'LEFT':>10} / {'TOTAL':>10}")
         for money in self.money:
             left = money.left()
             if left > 0:
@@ -498,6 +524,7 @@ class TaxSystem:
                             total=taxed,
                             path=self.names.taxes,
                             note=f"{tax.rate:.2} taxes on {taken.total} from {payment.date.date()} {payment.note}",
+                            tags=["debug: tax"],
                         )
                     ]
         return []
@@ -523,7 +550,11 @@ class Period(DatedMoney):
         v = quantize(value / Decimal(Decimal(12.0) * self.income.factor))
         taken = self.take(
             DatedMoney(
-                date=self.date, total=v, path=self.income.name, note="yearly expense"
+                date=self.date,
+                total=v,
+                path=self.income.name,
+                note="yearly expense",
+                tags=["debug: yearly"],
             )
         )
         assert taken.after.total == 0
@@ -533,7 +564,11 @@ class Period(DatedMoney):
         v = quantize(value / self.income.factor)
         taken = self.take(
             DatedMoney(
-                date=self.date, total=v, path=self.income.name, note="monthly expense"
+                date=self.date,
+                total=v,
+                path=self.income.name,
+                note="monthly expense",
+                tags=["debug: monthly"],
             )
         )
         assert taken.after.total == 0
@@ -582,7 +617,7 @@ class Allocator:
                 total=v,
                 path=path,
                 note=f"yearly '{note}' {path}",
-                tags=["template"],
+                tags=["frequency: yearly", f"yearly: {value}"],
             )
         )
         self.moves += taken.moves
@@ -596,7 +631,7 @@ class Allocator:
                 total=v,
                 path=path,
                 note=f"monthly '{note}' {path}",
-                tags=["template"],
+                tags=["frequency: monthly", f"monthly: {value}"],
             )
         )
         self.moves += taken.moves
@@ -618,7 +653,7 @@ class Payment(DatedMoney):
             log.debug(
                 f"{self.date.date()} {self.path:50} {self.total:10} payment redate {date.date()}"
             )
-            return Payment(date, self.left(), self.path, self.note)
+            return Payment(date, self.left(), self.path, note=self.note, tags=self.tags)
         return self
 
 
@@ -702,7 +737,13 @@ class Spending:
         return Paid(
             moves,
             [
-                RequirePayback(date, total, path, "returned: ignored note")
+                RequirePayback(
+                    date,
+                    total,
+                    path,
+                    "debug: borrowing (ignored note)",
+                    tags=["debug: borrowing"],
+                )
                 for path, total in available.items()
             ],
         )
@@ -806,7 +847,11 @@ class Schedule(Handler):
                 log.debug(f"schedule: date={date} {taking} note={expense.note}")
                 payments.append(
                     Payment(
-                        date=date, total=taking, path=expense.path, note=expense.note
+                        date=date,
+                        total=taking,
+                        path=expense.path,
+                        note=expense.note,
+                        tags=["debug: schedule-handler"],
                     )
                 )
                 remaining -= taking
@@ -822,6 +867,7 @@ class Schedule(Handler):
                 total=expense.value,
                 path=expense.path,
                 note=expense.note,
+                tags=["debug: schedule-handler"],
             )
         ]
 
@@ -848,7 +894,7 @@ class IncomeHandler(Handler):
                 total=posting.value.copy_abs(),
                 income=self.income,
                 tax_system=self.tax_system,
-                tags=["template"],
+                tags=[f"income: {self.income.name}"],
             )
         ]
 
@@ -868,6 +914,7 @@ class DatedMoneyHandler(Handler):
                 total=posting.value.copy_abs(),
                 path=posting.account,
                 note=tx.payee,
+                tags=["debug: dated-money-handler"],
             )
         ]
 
@@ -882,7 +929,15 @@ class EnvelopeDatedMoney(DatedMoney):
         assert self.envelope
         assert self.note
         if self.total > 0:
-            return [DatedMoney(self.date, self.total, self.envelope, self.note)]
+            return [
+                DatedMoney(
+                    self.date,
+                    self.total,
+                    self.envelope,
+                    self.note,
+                    tags=self.tags + ["debug: envelope-allocated"],
+                )
+            ]
         return []
 
     def refunded(self) -> List[DatedMoney]:
@@ -890,7 +945,13 @@ class EnvelopeDatedMoney(DatedMoney):
             assert self.envelope
             assert self.note
             return [
-                DatedMoney(self.date, self.total.copy_abs(), self.envelope, self.note)
+                DatedMoney(
+                    self.date,
+                    self.total.copy_abs(),
+                    self.envelope,
+                    self.note,
+                    tags=self.tags + ["debug: envelope-refunded"],
+                )
             ]
         return []
 
@@ -905,7 +966,7 @@ class EnvelopeDatedMoney(DatedMoney):
                 self.source,
                 f"withdraw for '{self.note}'",
                 self.cleared,
-                tags=["debug: 2"],
+                tags=self.tags + ["debug: envelope-withdraw"],
             )
         ]
 
@@ -931,6 +992,7 @@ class EnvelopedMoneyHandler(Handler):
                 envelope=self.envelope,
                 source=source,
                 cleared=tx.cleared,
+                tags=["debug: envelope-money-handler"],
             )
         ]
 
@@ -1041,7 +1103,13 @@ class Finances:
             file.write(rendered)
             file.write("\n\n")
 
-            available.add(names.reserved, date, period.left(), names.reserved)
+            available.add(
+                names.reserved,
+                date,
+                period.left(),
+                names.reserved,
+                tags=["debug: income-remainder", f"income: {period.income.name}"],
+            )
             moves += allocator.moves
 
         # This is how much money is left over to cover other expenses.
@@ -1058,7 +1126,13 @@ class Finances:
         # Require pay back of anything pulled from emergency.
         available.include(
             [
-                RequirePayback(dm.date, dm.total, dm.path, dm.note)
+                RequirePayback(
+                    dm.date,
+                    dm.total,
+                    dm.path,
+                    dm.note,
+                    tags=["debug: emergency-payback"],
+                )
                 for dm in emergency_money
             ]
         )
@@ -1121,7 +1195,8 @@ class Finances:
             )
 
             for payment in spending.payments:
-                log.info(f"{self.today.date()} unpaid {payment}")
+                log.info(f"{self.today.date()} unpaid: {payment}")
+
             log.info(f"{self.today.date()} unpaid: {unpaid_spending}")
 
             # Only bother paying for spending if there's expenses to pay for, we
@@ -1133,6 +1208,9 @@ class Finances:
                 paid = spending.pay_from(self.today, available, None, paranoid=paranoid)
                 moves += paid.moves
 
+            log.info(
+                f"{self.today.date()} {'ACCOUNT':50} {'BALANCE':>10} + {'PAID':>10} = {'B+P':>10}"
+            )
             accounts = list(allocation_transactions.accounts())
             accounts.sort()
             for account in accounts:
@@ -1142,7 +1220,11 @@ class Finances:
                     f"{self.today.date()} {account:50} {balance:10} + {paid_balance:10} = {balance+paid_balance:10}"
                 )
 
+            log.info(f"{self.today.date()} available:all")
+
             available.log()
+
+            log.info(f"{self.today.date()} available:end")
 
             # Move any left over income to the available account.
             income_after_payback = sum([dm.left() for dm in available.money])
