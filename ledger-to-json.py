@@ -6,10 +6,9 @@ from dataclasses import dataclass, field
 from decimal import Decimal, ROUND_HALF_UP
 from datetime import datetime
 
+import logging, argparse, subprocess
 import json, sys
-import subprocess
-import logging
-import argparse
+import hashlib, base64
 
 
 @dataclass
@@ -22,6 +21,9 @@ class Posting:
         return dict(account=self.account, value=float(self.value), note=self.note)
 
 
+txs_by_mid: Dict[str, "Transaction"] = {}
+
+
 @dataclass
 class Transaction:
     date: datetime
@@ -32,12 +34,42 @@ class Transaction:
     def append(self, p: Posting):
         self.postings.append(p)
 
+    def ledger_date(self) -> str:
+        actual = self.date.time()
+        if actual == datetime.min.time():
+            return self.date.strftime("%Y/%m/%d")
+        return self.date.strftime("%Y/%m/%d %H:%M:%S")
+
+    def total_value(self) -> Decimal:
+        return Decimal(sum([p.value for p in self.postings]))
+
+    def magnitude(self) -> Decimal:
+        m = self.total_value()
+        if m != 0:
+            return m
+        return Decimal(sum([abs(p.value) for p in self.postings]))
+
+    def calculate_mid(self) -> str:
+        h = hashlib.blake2b(digest_size=8)
+        h.update(f"{self.ledger_date()}".encode())
+        h.update(f"{self.payee}".encode())
+        h.update(f"{self.magnitude()}".encode())
+        mid = base64.b32encode(h.digest()).decode("utf-8").replace("=", "")
+        if mid in txs_by_mid:
+            if txs_by_mid[mid] != self:
+                logging.warning(f"{mid} {self}")
+                logging.warning(f"{mid} {txs_by_mid[mid]}")
+                assert False
+        txs_by_mid[mid] = self
+        return mid
+
     def serialize(self) -> Dict[str, Any]:
         return dict(
             date=self.date.isoformat(),
             payee=self.payee,
             cleared=self.cleared,
             postings=[p.serialize() for p in self.postings],
+            mid=self.calculate_mid(),
         )
 
 

@@ -374,7 +374,7 @@ def rebalance(config_path: str, file_name: str, today: datetime) -> None:
     # Write cleared transactions to the generated file, these are to be included
     # automatically and are for virtual adjustments.
     with open(file_name, "w") as file:
-        rendered = t.render(txs=[tx for tx in txs if tx.cleared])
+        rendered = t.render(txs=[tx for tx in txs if tx.cleared], txs_by_mid=dict())
         file.write(rendered)
         file.write("\n\n")
 

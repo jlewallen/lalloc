@@ -11,3 +11,7 @@
 {%- endfor -%}
 
 {% endfor %}
+
+{% for mid, tx in txs_by_mid.items() %}
+; {{ mid }} {{ tx.ledger_date() }} {{ tx.payee }}
+{%- endfor -%}

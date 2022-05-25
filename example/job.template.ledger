@@ -1,6 +1,6 @@
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
 
-{{ period }} * job income allocation (fixed)
+{{ period }} * job income allocation (fixed) #{{ period.mid }}#
     ; allocation: job
     [allocations:checking:mortgage]                                                            ${{ period.monthly(1200) }}  ; mortgage
     [allocations:checking:taxes]                                                               ${{ period.yearly(6000) }}   ; property taxes
@@ -9,7 +9,7 @@
 
 {% if period.after('2/5/2021') -%}
 
-{{ period }} * job income allocation (fixed)
+{{ period }} * job income allocation (fixed) #{{ period.mid }}#
     ; allocation: job
     [allocations:checking:rec]                                                                 ${{ period.monthly(200) }}   ; recreational spending
     [assets:checking:reserved]                                                               ; ${{ period.display() }}
@@ -22,4 +22,4 @@
 
 {% endif -%}
 
-; end: {{ period.done() }} #unallocated #conservify {{ period }}
+; end: {{ period.done() }} #unallocated #conservify {{ period }} {{ period.mid }}
