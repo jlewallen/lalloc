@@ -7,11 +7,22 @@ from decimal import Decimal, ROUND_HALF_UP
 from datetime import datetime
 
 import logging, argparse, subprocess
-import json, sys
+import json, sys, re
 import hashlib, base64
 
 
 txs_by_mid: Dict[str, "Transaction"] = {}
+
+
+def calculate_transaction_hash(
+    date: datetime, payee: str, values: List[Decimal]
+) -> str:
+    magnitude = [v for v in values if v > 0]
+    h = hashlib.blake2b(digest_size=8)
+    h.update(f"{date}".encode())
+    h.update(f"{payee}".encode())
+    h.update(f"{magnitude}".encode())
+    return base64.b32encode(h.digest()).decode("utf-8").replace("=", "")
 
 
 @dataclass
@@ -74,8 +85,27 @@ class Transaction:
     def has_account(self, account: str) -> bool:
         return len([p for p in self.postings if p.account == account]) > 0
 
+    def has_account_matching(self, pattern: str) -> bool:
+        return len([p for p in self.postings if re.fullmatch(pattern, p.account)]) > 0
+
     def balance(self, account: str) -> Decimal:
         return Decimal(sum([p.value for p in self.postings if p.account == account]))
+
+    def with_postings_matching(self, pattern: str) -> "Transaction":
+        return Transaction(
+            self.date,
+            self.payee,
+            self.cleared,
+            [p for p in self.postings if re.fullmatch(pattern, p.account)],
+        )
+
+    def with_postings_for(self, account: str) -> "Transaction":
+        return Transaction(
+            self.date,
+            self.payee,
+            self.cleared,
+            [p for p in self.postings if p.account == account],
+        )
 
     def serialize(self) -> Dict[str, Any]:
         return dict(
@@ -104,6 +134,27 @@ class Transactions:
 
     def before(self, date: datetime) -> "Transactions":
         return Transactions([tx for tx in self.txs if tx.date <= date])
+
+    def with_postings_matching(self, pattern: str) -> "Transactions":
+        return Transactions([tx for tx in self.txs if tx.has_account_matching(pattern)])
+
+    def only_postings_for(self, account: str) -> "Transactions":
+        return Transactions(
+            [
+                tx.with_postings_for(account)
+                for tx in self.txs
+                if tx.has_account(account)
+            ]
+        )
+
+    def only_postings_matching(self, pattern: str) -> "Transactions":
+        return Transactions(
+            [
+                tx.with_postings_matching(pattern)
+                for tx in self.txs
+                if tx.has_account_matching(pattern)
+            ]
+        )
 
     def account(self, account: str) -> "Transactions":
         return Transactions([tx for tx in self.txs if tx.has_account(account)])

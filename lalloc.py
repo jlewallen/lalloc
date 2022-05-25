@@ -995,9 +995,9 @@ class Configuration:
     refund: List[HandlerPath]
     overdraft: List[HandlerPath]
     tax_system: TaxSystem
-    expenses_pattern = ["--display", "any(account =~ /^expenses:/)"]
-    income_pattern = "^income:"
-    allocation_pattern = "^allocations:"
+    expenses_pattern = r"^expenses:.+$"
+    income_pattern = r"^income:.+$"
+    allocation_pattern = r"^allocations:.+$"
 
 
 @dataclass
@@ -1006,25 +1006,23 @@ class Finances:
     today: datetime
 
     def allocate(self, file: TextIO, paranoid: bool):
-        l = ledger.Ledger(self.cfg.ledger_file)
-
         names = self.cfg.names
-
         default_args = ["-S", "date", "--current"]
-        exclude_allocations = ["and", "not", "tag(allocation)"]
-        emergency_transactions = l.register(default_args + [names.emergency]).before(
+
+        l = ledger.Ledger(self.cfg.ledger_file)
+        everything = l.register(default_args)
+
+        emergency_transactions = everything.only_postings_for(names.emergency).before(
             self.today
         )
-        income_transactions = l.register(
-            default_args + [self.cfg.income_pattern] + exclude_allocations
+        expense_transactions = everything.with_postings_matching(
+            self.cfg.expenses_pattern
         ).before(self.today)
-
-        expense_transactions = l.register(
-            default_args + self.cfg.expenses_pattern
+        income_transactions = everything.only_postings_matching(
+            self.cfg.income_pattern
         ).before(self.today)
-
-        allocation_transactions = l.register(
-            default_args + [self.cfg.allocation_pattern] + exclude_allocations
+        allocation_transactions = everything.only_postings_matching(
+            self.cfg.allocation_pattern
         ).before(self.today)
 
         purchases = apply_handlers(expense_transactions, self.cfg.envelopes)
