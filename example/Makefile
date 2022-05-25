@@ -4,7 +4,7 @@ lalloc.g.ledger: example.ledger rules.ledger job.template.ledger generated.templ
 	$(MAKE) scenarios
 
 example.json: lalloc.g.ledger
-	../ledger-to-json.py -l example.ledger -o example.json
+	../ledger.py -l example.ledger -o example.json
 
 example.png: example.json
 	../lapher.py -f example.json -o example.dot

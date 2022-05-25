@@ -7,14 +7,10 @@ from dateutil import relativedelta
 from decimal import Decimal, ROUND_HALF_UP
 from datetime import datetime, timedelta, date
 
-import base64
-import json
-import subprocess
-import logging
-import jinja2
-import argparse
-import hashlib
-import re
+import logging, argparse
+import json, re, jinja2
+
+import ledger
 
 OneDay = timedelta(days=1) - timedelta(seconds=1)
 Cents = Decimal("0.01")
@@ -55,72 +51,8 @@ class Names:
     reserved: str = "assets:checking:reserved"
 
 
-@dataclass
-class Posting:
-    account: str
-    value: Decimal
-    note: Optional[str] = None
-    tags: List[str] = field(default_factory=list)
-
-    def ledger_value(self) -> str:
-        return f"${self.value:.2f}"
-
-    def ledger_tags(self) -> str:
-        return " ".join([f"{t}:" for t in self.tags])
-
-
-txs_by_mid: Dict[str, "Transaction"] = {}
-
-
-@dataclass
-class Transaction:
-    date: datetime
-    payee: str
-    cleared: bool
-    postings: List[Posting] = field(default_factory=list)
-    tags: List[str] = field(default_factory=list)
-
-    def append(self, p: Posting):
-        self.postings.append(p)
-
-    def ledger_date(self) -> str:
-        actual = self.date.time()
-        if actual == datetime.min.time():
-            return self.date.strftime("%Y/%m/%d")
-        return self.date.strftime("%Y/%m/%d %H:%M:%S")
-
-    def total_value(self) -> Decimal:
-        return Decimal(sum([p.value for p in self.postings]))
-
-    def magnitude(self) -> Decimal:
-        m = self.total_value()
-        if m != 0:
-            return m
-        return Decimal(sum([abs(p.value) for p in self.postings]))
-
-    def calculate_mid(self) -> str:
-        h = hashlib.blake2b(digest_size=8)
-        h.update(f"{self.ledger_date()}".encode())
-        h.update(f"{self.payee}".encode())
-        h.update(f"{self.magnitude()}".encode())
-        mid = base64.b32encode(h.digest()).decode("utf-8").replace("=", "")
-        if mid in txs_by_mid:
-            if txs_by_mid[mid] != self:
-                logging.warning(f"{mid} {self}")
-                logging.warning(f"{mid} {txs_by_mid[mid]}")
-                assert False
-        txs_by_mid[mid] = self
-        return mid
-
-    def has_account(self, account: str) -> bool:
-        return len([p for p in self.postings if p.account == account]) > 0
-
-    def balance(self, account: str) -> Decimal:
-        return Decimal(sum([p.value for p in self.postings if p.account == account]))
-
-
 class Handler:
-    def expand(self, tx: Transaction, posting: Posting):
+    def expand(self, tx: ledger.Transaction, posting: ledger.Posting):
         return []
 
 
@@ -136,96 +68,27 @@ class HandlerPath:
         return self.compiled.match(path) is not None
 
 
-@dataclass
-class Transactions:
-    txs: List[Transaction]
+def apply_handlers(self: ledger.Transactions, paths: List[HandlerPath]) -> List[Any]:
+    cache: Dict[str, Handler] = {}
+    returning: List[Any] = []
 
-    def txns(self):
-        return self.txs
+    for tx in self.txs:
+        for p in tx.postings:
+            account = p.account
+            if account not in cache:
+                cache[account] = NoopHandler()
+                for hp in paths:
+                    if hp.matches(account):
+                        log.info(
+                            f"{tx.date.date()} handler {account} ({hp.path}): {hp.handler}"
+                        )
+                        cache[account] = hp.handler
+                        break
 
-    def accounts(self) -> Sequence[str]:
-        return [
-            account
-            for account in {
-                posting.account: True for tx in self.txs for posting in tx.postings
-            }
-        ]
+            for p in cache[account].expand(tx, p):
+                returning.append(p)
 
-    def before(self, date: datetime) -> "Transactions":
-        return Transactions([tx for tx in self.txs if tx.date <= date])
-
-    def account(self, account: str) -> "Transactions":
-        return Transactions([tx for tx in self.txs if tx.has_account(account)])
-
-    def balance(self, account: Optional[str] = None) -> Decimal:
-        assert account
-        return Decimal(
-            sum([tx.balance(account) for tx in self.txs if tx.has_account(account)])
-        )
-
-    def apply_handlers(self, paths: List[HandlerPath]) -> List[Any]:
-        cache: Dict[str, Handler] = {}
-        returning: List[Any] = []
-
-        for tx in self.txs:
-            for p in tx.postings:
-                account = p.account
-                if account not in cache:
-                    cache[account] = NoopHandler()
-                    for hp in paths:
-                        if hp.matches(account):
-                            log.info(
-                                f"{tx.date.date()} handler {account} ({hp.path}): {hp.handler}"
-                            )
-                            cache[account] = hp.handler
-                            break
-
-                for p in cache[account].expand(tx, p):
-                    returning.append(p)
-
-        return returning
-
-
-@dataclass
-class Ledger:
-    path: str
-
-    def register(self, expression: List[str]) -> Transactions:
-        command = [
-            "ledger",
-            "-f",
-            self.path,
-            "-S",
-            "date",
-            "-F",
-            "1|%D|%A|%t|%X|%P|%N\n%/0|%D|%A|%t|%X|%P|%N\n",
-            "register",
-        ] + expression
-        sp = subprocess.run(command, stdout=subprocess.PIPE)
-
-        log.info(" ".join(command).replace("\n", "NL"))
-
-        txs: List[Transaction] = []
-        tx: Union[Transaction, None] = None
-
-        for line in sp.stdout.strip().decode("utf-8").split("\n"):
-            fields = line.split("|")
-            if len(fields) != 7:
-                continue
-
-            first, date_string, account, value_string, cleared, payee, note = fields
-            date = datetime.strptime(date_string, "%Y/%m/%d")
-            if "$" not in value_string:
-                continue
-            value = Decimal(value_string.replace("$", ""))
-
-            if int(first) == 1:
-                tx = Transaction(date, payee, len(cleared) > 0)
-                txs.append(tx)
-            assert tx
-            tx.append(Posting(account, value, note.strip()))
-
-        return Transactions(txs)
+    return returning
 
 
 @dataclass
@@ -255,11 +118,11 @@ class SimpleMove(Move):
 
     def txns(self):
         postings = [
-            Posting("[" + self.from_path + "]", -self.value, "", tags=[]),
-            Posting("[" + self.to_path + "]", self.value, "", tags=[]),
+            ledger.Posting("[" + self.from_path + "]", -self.value, "", tags=[]),
+            ledger.Posting("[" + self.to_path + "]", self.value, "", tags=[]),
         ]
         return [
-            Transaction(
+            ledger.Transaction(
                 self.date, self.payee, self.cleared, postings=postings, tags=self.tags
             )
         ]
@@ -928,7 +791,7 @@ class Schedule(Handler):
     today: datetime
     maximum: Optional[Decimal] = None
 
-    def expand(self, tx: Transaction, posting: Posting):
+    def expand(self, tx: ledger.Transaction, posting: ledger.Posting):
         if posting.value > 0:
             return []
 
@@ -978,7 +841,7 @@ class Schedule(Handler):
 
 @dataclass
 class NoopHandler(Handler):
-    def expand(self, tx: Transaction, posting: Posting):
+    def expand(self, tx: ledger.Transaction, posting: ledger.Posting):
         return []
 
 
@@ -988,7 +851,7 @@ class IncomeHandler(Handler):
     path: str
     tax_system: TaxSystem
 
-    def expand(self, tx: Transaction, posting: Posting):
+    def expand(self, tx: ledger.Transaction, posting: ledger.Posting):
         mid = tx.calculate_mid()
         log.info(f"{tx.date.date()} income: {posting} {posting.value} {mid}")
         return [
@@ -1009,7 +872,7 @@ class IncomeHandler(Handler):
 class DatedMoneyHandler(Handler):
     positive_only = True
 
-    def expand(self, tx: Transaction, posting: Posting):
+    def expand(self, tx: ledger.Transaction, posting: ledger.Posting):
         if self.positive_only:
             if posting.value < 0:
                 return []
@@ -1087,7 +950,7 @@ class EnvelopeDatedMoney(DatedMoney):
 class EnvelopedMoneyHandler(Handler):
     envelope: str
 
-    def expand(self, tx: Transaction, posting: Posting):
+    def expand(self, tx: ledger.Transaction, posting: ledger.Posting):
         if posting.note and ("noalloc:" in posting.note or "manual:" in posting.note):
             log.info(f"noalloc {posting}")
             return []
@@ -1109,7 +972,7 @@ class EnvelopedMoneyHandler(Handler):
             )
         ]
 
-    def _get_envelope_source(self, tx: Transaction) -> str:
+    def _get_envelope_source(self, tx: ledger.Transaction) -> str:
         for p in tx.postings:
             if p.account == "assets:checking":
                 return "assets:checking:reserved"
@@ -1143,7 +1006,7 @@ class Finances:
     today: datetime
 
     def allocate(self, file: TextIO, paranoid: bool):
-        l = Ledger(self.cfg.ledger_file)
+        l = ledger.Ledger(self.cfg.ledger_file)
 
         names = self.cfg.names
 
@@ -1164,11 +1027,11 @@ class Finances:
             default_args + [self.cfg.allocation_pattern] + exclude_allocations
         ).before(self.today)
 
-        purchases = expense_transactions.apply_handlers(self.cfg.envelopes)
-        income_periods = income_transactions.apply_handlers(self.cfg.incomes)
-        emergency_money = emergency_transactions.apply_handlers(self.cfg.emergency)
-        directly_refunded_money = allocation_transactions.apply_handlers(
-            self.cfg.refund
+        purchases = apply_handlers(expense_transactions, self.cfg.envelopes)
+        income_periods = apply_handlers(income_transactions, self.cfg.incomes)
+        emergency_money = apply_handlers(emergency_transactions, self.cfg.emergency)
+        directly_refunded_money = apply_handlers(
+            allocation_transactions, self.cfg.refund
         )
 
         # Any money returned to an expense is refunded
@@ -1182,7 +1045,7 @@ class Finances:
 
         # Combine into dated money needing to be covered as spending.
         spending_money = (
-            allocation_transactions.apply_handlers(self.cfg.spending)
+            apply_handlers(allocation_transactions, self.cfg.spending)
             + allocated_expenses
         )
         spending = Spending(
@@ -1484,7 +1347,7 @@ def allocate(config_path: str, file_name: str, today: datetime, paranoid: bool) 
     with open(file_name, "w") as file:
         txs = f.allocate(file, paranoid)
         t = get_generated_template()
-        rendered = t.render(txs=txs, txs_by_mid=txs_by_mid)
+        rendered = t.render(txs=txs, txs_by_mid=ledger.txs_by_mid)
         file.write(rendered)
         file.write("\n\n")
 
