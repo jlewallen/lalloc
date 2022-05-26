@@ -37,7 +37,7 @@ class Transaction:
 
     def payee_part(self) -> str:
         simpler = re.sub("\(.+\)", "", self.payee).strip()
-        simpler = re.sub("#", "_", simpler).strip()
+        simpler = re.sub("#\S+#", "", simpler).strip()
         return (
             simpler.replace("'", "")
             .replace(",", "")
