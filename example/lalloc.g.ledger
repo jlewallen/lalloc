@@ -1,6 +1,6 @@
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
 
-2021/01/15 * job income allocation (fixed) #DUCQYC2WAOXJS#
+2021/01/15 * job income allocation (fixed) #USUQBYEOQRVK4#
     ; allocation: job
     [allocations:checking:mortgage]                                                            $600.00  ; mortgage
     [allocations:checking:taxes]                                                               $250.00   ; property taxes
@@ -9,11 +9,11 @@
 
 ; tax allocations:checking:available:groceries 0.0
 
-; end: 650.00 #unallocated #conservify 2021/01/15 DUCQYC2WAOXJS
+; end: 650.00 #unallocated #conservify 2021/01/15 USUQBYEOQRVK4
 
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
 
-2021/02/01 * job income allocation (fixed) #TR6YDC64SWWUI#
+2021/02/01 * job income allocation (fixed) #5Z4Z7XV4YZOQY#
     ; allocation: job
     [allocations:checking:mortgage]                                                            $600.00  ; mortgage
     [allocations:checking:taxes]                                                               $250.00   ; property taxes
@@ -22,378 +22,378 @@
 
 ; tax allocations:checking:available:groceries 0.0
 
-; end: 650.00 #unallocated #conservify 2021/02/01 TR6YDC64SWWUI
+; end: 650.00 #unallocated #conservify 2021/02/01 5Z4Z7XV4YZOQY
 
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
 
-2021/02/15 * job income allocation (fixed) #H3WGT2SIV7BJI#
+2021/02/15 * job income allocation (fixed) #NII4C2IDMAGTG#
     ; allocation: job
     [allocations:checking:mortgage]                                                            $600.00  ; mortgage
     [allocations:checking:taxes]                                                               $250.00   ; property taxes
     [allocations:savings]                                                                      $500.00  ; savings
     [assets:checking:reserved]                                                               ; $650.00
 
-2021/02/15 * job income allocation (fixed) #H3WGT2SIV7BJI#
+2021/02/15 * job income allocation (fixed) #NII4C2IDMAGTG#
     ; allocation: job
     [allocations:checking:rec]                                                                 $100.00   ; recreational spending
     [assets:checking:reserved]                                                               ; $550.00
 
 ; tax allocations:checking:available:groceries 0.1
 
-; end: 550.00 #unallocated #conservify 2021/02/15 H3WGT2SIV7BJI
+; end: 550.00 #unallocated #conservify 2021/02/15 NII4C2IDMAGTG
 
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
 
-2021/02/28 * job income allocation (fixed) #BTM7ZCSCKCZ2Q#
+2021/02/28 * job income allocation (fixed) #AQTHFBMCZWRYY#
     ; allocation: job
     [allocations:checking:mortgage]                                                            $600.00  ; mortgage
     [allocations:checking:taxes]                                                               $250.00   ; property taxes
     [allocations:savings]                                                                      $500.00  ; savings
     [assets:checking:reserved]                                                               ; $650.00
 
-2021/02/28 * job income allocation (fixed) #BTM7ZCSCKCZ2Q#
+2021/02/28 * job income allocation (fixed) #AQTHFBMCZWRYY#
     ; allocation: job
     [allocations:checking:rec]                                                                 $100.00   ; recreational spending
     [assets:checking:reserved]                                                               ; $550.00
 
 ; tax allocations:checking:available:groceries 0.1
 
-; end: 550.00 #unallocated #conservify 2021/02/28 BTM7ZCSCKCZ2Q
+; end: 550.00 #unallocated #conservify 2021/02/28 AQTHFBMCZWRYY
 
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
 
-2021/03/01 * job income allocation (fixed) #6I5HLUVZTZGYU#
+2021/03/01 * job income allocation (fixed) #YLIOT4XAIKJJI#
     ; allocation: job
     [allocations:checking:mortgage]                                                            $600.00  ; mortgage
     [allocations:checking:taxes]                                                               $250.00   ; property taxes
     [allocations:savings]                                                                      $500.00  ; savings
     [assets:checking:reserved]                                                               ; $650.00
 
-2021/03/01 * job income allocation (fixed) #6I5HLUVZTZGYU#
+2021/03/01 * job income allocation (fixed) #YLIOT4XAIKJJI#
     ; allocation: job
     [allocations:checking:rec]                                                                 $100.00   ; recreational spending
     [assets:checking:reserved]                                                               ; $550.00
 
 ; tax allocations:checking:available:groceries 0.1
 
-; end: 550.00 #unallocated #conservify 2021/03/01 6I5HLUVZTZGYU
+; end: 550.00 #unallocated #conservify 2021/03/01 YLIOT4XAIKJJI
 
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
 
-2021/03/15 * job income allocation (fixed) #SXDEMAJ4EWMBQ#
+2021/03/15 * job income allocation (fixed) #ZPJK7VONIVUEQ#
     ; allocation: job
     [allocations:checking:mortgage]                                                            $600.00  ; mortgage
     [allocations:checking:taxes]                                                               $250.00   ; property taxes
     [allocations:savings]                                                                      $500.00  ; savings
     [assets:checking:reserved]                                                               ; $650.00
 
-2021/03/15 * job income allocation (fixed) #SXDEMAJ4EWMBQ#
+2021/03/15 * job income allocation (fixed) #ZPJK7VONIVUEQ#
     ; allocation: job
     [allocations:checking:rec]                                                                 $100.00   ; recreational spending
     [assets:checking:reserved]                                                               ; $550.00
 
 ; tax allocations:checking:available:groceries 0.1
 
-; end: 550.00 #unallocated #conservify 2021/03/15 SXDEMAJ4EWMBQ
+; end: 550.00 #unallocated #conservify 2021/03/15 ZPJK7VONIVUEQ
 
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
 
-2021/04/01 * job income allocation (fixed) #U6ND5XKRKD5TK#
+2021/04/01 * job income allocation (fixed) #ML3MPDW73SJSG#
     ; allocation: job
     [allocations:checking:mortgage]                                                            $600.00  ; mortgage
     [allocations:checking:taxes]                                                               $250.00   ; property taxes
     [allocations:savings]                                                                      $500.00  ; savings
     [assets:checking:reserved]                                                               ; $650.00
 
-2021/04/01 * job income allocation (fixed) #U6ND5XKRKD5TK#
+2021/04/01 * job income allocation (fixed) #ML3MPDW73SJSG#
     ; allocation: job
     [allocations:checking:rec]                                                                 $100.00   ; recreational spending
     [assets:checking:reserved]                                                               ; $550.00
 
 ; tax allocations:checking:available:groceries 0.1
 
-; end: 550.00 #unallocated #conservify 2021/04/01 U6ND5XKRKD5TK
+; end: 550.00 #unallocated #conservify 2021/04/01 ML3MPDW73SJSG
 
 ; ----------------------------------------------------------------------------------------------------------------------------------------------
 
-2021/04/15 * job income allocation (fixed) #AG737HLYDJOR4#
+2021/04/15 * job income allocation (fixed) #3NH7S77NPCCCQ#
     ; allocation: job
     [allocations:checking:mortgage]                                                            $600.00  ; mortgage
     [allocations:checking:taxes]                                                               $250.00   ; property taxes
     [allocations:savings]                                                                      $500.00  ; savings
     [assets:checking:reserved]                                                               ; $650.00
 
-2021/04/15 * job income allocation (fixed) #AG737HLYDJOR4#
+2021/04/15 * job income allocation (fixed) #3NH7S77NPCCCQ#
     ; allocation: job
     [allocations:checking:rec]                                                                 $100.00   ; recreational spending
     [assets:checking:reserved]                                                               ; $550.00
 
 ; tax allocations:checking:available:groceries 0.1
 
-; end: 550.00 #unallocated #conservify 2021/04/15 AG737HLYDJOR4
+; end: 550.00 #unallocated #conservify 2021/04/15 3NH7S77NPCCCQ
 
 
 
-2021/01/15 * payback '2021-01-15 streaming services' #MGZ53KO5NHWVG,DUCQYC2WAOXJS#
+2021/01/15 * payback '2021-01-15 streaming services' #BA345IHVUDSPY,USUQBYEOQRVK4#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-20.00
 	[allocations:checking:available:services]                         $20.00
 
-2021/01/15 * payback '2021-01-15 groceries' #QN4C4B7EB6XXE,DUCQYC2WAOXJS#
+2021/01/15 * payback '2021-01-15 groceries' #YXJWM7VKNDXCM,USUQBYEOQRVK4#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                      $-100.00
 	[allocations:checking:available:groceries]                       $100.00
 
-2021/01/15 * payback '2021-01-15 whoa, unexpected purchase' #EZWOM32I57EN4,DUCQYC2WAOXJS#
+2021/01/15 * payback '2021-01-15 whoa, unexpected purchase' #YOFRC4Z2OTIXS,USUQBYEOQRVK4#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-50.00
 	[allocations:checking:savings:slow]                               $50.00
 
-2021/01/15 * payback '2021-01-15 fancy dinner' #5NVAR5BYTXGUI,DUCQYC2WAOXJS#
+2021/01/15 * payback '2021-01-15 fancy dinner' #HLNEXCWLSI35O,USUQBYEOQRVK4#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                      $-150.00
 	[allocations:checking:available:dinner]                          $150.00
 
-2021/01/15 * payback '2021-01-15 groceries' #EW6LJBD3IV75A,DUCQYC2WAOXJS#
+2021/01/15 * payback '2021-01-15 groceries' #M6ENY73R2F4JO,USUQBYEOQRVK4#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                      $-200.00
 	[allocations:checking:available:groceries]                       $200.00
 
-2021/02/01 * payback '2021-02-01 whoa, unexpected purchase' #EZWOM32I57EN4,DUCQYC2WAOXJS#
+2021/02/01 * payback '2021-02-01 whoa, unexpected purchase' #YOFRC4Z2OTIXS,USUQBYEOQRVK4#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-50.00
 	[allocations:checking:savings:slow]                               $50.00
 
-2021/02/01 * payback '2021-02-01 groceries' #5742DVCSRCRGA,DUCQYC2WAOXJS#
+2021/02/01 * payback '2021-02-01 groceries' #EHYO7GNB5YE4Y,USUQBYEOQRVK4#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-80.00
 	[allocations:checking:available:groceries]                        $80.00
 
-2021/02/01 * payback '2021-02-01 groceries' #5742DVCSRCRGA,DUCQYC2WAOXJS,TR6YDC64SWWUI#
+2021/02/01 * payback '2021-02-01 groceries' #EHYO7GNB5YE4Y,USUQBYEOQRVK4,5Z4Z7XV4YZOQY#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-20.00
 	[allocations:checking:available:groceries]                        $20.00
 
-2021/02/01 * payback '2021-02-01 streaming services' #E2BWBQ4JDSUHU,TR6YDC64SWWUI#
+2021/02/01 * payback '2021-02-01 streaming services' #ZXS2HQYJD2KRI,5Z4Z7XV4YZOQY#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-20.00
 	[allocations:checking:available:services]                         $20.00
 
-2021/02/15 * payback '2021-02-15 whoa, unexpected purchase' #EZWOM32I57EN4,TR6YDC64SWWUI#
+2021/02/15 * payback '2021-02-15 whoa, unexpected purchase' #YOFRC4Z2OTIXS,5Z4Z7XV4YZOQY#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-50.00
 	[allocations:checking:savings:slow]                               $50.00
 
-2021/02/15 * payback '2021-02-15 groceries' #UMZUWQQBTMQKA,TR6YDC64SWWUI#
+2021/02/15 * payback '2021-02-15 groceries' #VKBM27S3Z55O6,5Z4Z7XV4YZOQY#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                      $-200.00
 	[allocations:checking:available:groceries]                       $200.00
 
-2021/02/15 * payback '2021-02-15 fancy dinner' #A36R3QJK6C36W,TR6YDC64SWWUI#
+2021/02/15 * payback '2021-02-15 fancy dinner' #F534MMR6VNB2I,5Z4Z7XV4YZOQY#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                      $-150.00
 	[allocations:checking:available:dinner]                          $150.00
 
-2021/02/15 * payback '2021-02-15 groceries' #JOG6DQY54PGGW,TR6YDC64SWWUI#
+2021/02/15 * payback '2021-02-15 groceries' #C3ZOTVNGHO37A,5Z4Z7XV4YZOQY#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                      $-100.00
 	[allocations:checking:available:groceries]                       $100.00
 
-2021/02/28 * payback '2021-02-28 0.10 taxes on 100.00 from 2021-02-15 groceries' #JOG6DQY54PGGW,TR6YDC64SWWUI#
+2021/02/28 * payback '2021-02-28 0.10 taxes on 100.00 from 2021-02-15 groceries' #C3ZOTVNGHO37A,5Z4Z7XV4YZOQY#
 	; debug: tax
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-10.00
 	[allocations:checking:savings:main]                               $10.00
 
-2021/02/28 * payback '2021-02-28 0.10 taxes on 200.00 from 2021-02-15 groceries' #UMZUWQQBTMQKA,TR6YDC64SWWUI#
+2021/02/28 * payback '2021-02-28 0.10 taxes on 200.00 from 2021-02-15 groceries' #VKBM27S3Z55O6,5Z4Z7XV4YZOQY#
 	; debug: tax
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-20.00
 	[allocations:checking:savings:main]                               $20.00
 
-2021/02/28 * payback '2021-02-28 whoa, unexpected purchase' #EZWOM32I57EN4,TR6YDC64SWWUI#
+2021/02/28 * payback '2021-02-28 whoa, unexpected purchase' #YOFRC4Z2OTIXS,5Z4Z7XV4YZOQY#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-50.00
 	[allocations:checking:savings:slow]                               $50.00
 
-2021/02/28 * payback '2021-02-28 groceries' #ZE6SBDKD55SPS,TR6YDC64SWWUI#
+2021/02/28 * payback '2021-02-28 groceries' #WSBPAEYFBGM56,5Z4Z7XV4YZOQY#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-30.00
 	[allocations:checking:available:groceries]                        $30.00
 
-2021/02/28 * payback '2021-02-28 groceries' #ZE6SBDKD55SPS,TR6YDC64SWWUI,H3WGT2SIV7BJI#
+2021/02/28 * payback '2021-02-28 groceries' #WSBPAEYFBGM56,5Z4Z7XV4YZOQY,NII4C2IDMAGTG#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-70.00
 	[allocations:checking:available:groceries]                        $70.00
 
-2021/03/01 * payback '2021-03-01 0.10 taxes on 100.00 from 2021-02-28 groceries' #ZE6SBDKD55SPS,H3WGT2SIV7BJI#
+2021/03/01 * payback '2021-03-01 0.10 taxes on 100.00 from 2021-02-28 groceries' #WSBPAEYFBGM56,NII4C2IDMAGTG#
 	; debug: tax
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-10.00
 	[allocations:checking:savings:main]                               $10.00
 
-2021/03/01 * payback '2021-03-01 streaming services' #EROG6SKLVWXWC,H3WGT2SIV7BJI#
+2021/03/01 * payback '2021-03-01 streaming services' #VZXZTLFO3RIIS,NII4C2IDMAGTG#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-20.00
 	[allocations:checking:available:services]                         $20.00
 
-2021/03/15 * payback '2021-03-15 groceries' #RJTATPQCSX3HW,H3WGT2SIV7BJI#
+2021/03/15 * payback '2021-03-15 groceries' #UHQFNB3ZFUK5W,NII4C2IDMAGTG#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                      $-100.00
 	[allocations:checking:available:groceries]                       $100.00
 
-2021/03/15 * payback '2021-03-15 whoa, unexpected purchase' #EZWOM32I57EN4,H3WGT2SIV7BJI#
+2021/03/15 * payback '2021-03-15 whoa, unexpected purchase' #YOFRC4Z2OTIXS,NII4C2IDMAGTG#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-50.00
 	[allocations:checking:savings:slow]                               $50.00
 
-2021/03/15 * payback '2021-03-15 fancy dinner' #XWECOFMQMDEHY,H3WGT2SIV7BJI#
+2021/03/15 * payback '2021-03-15 fancy dinner' #CNOQQ422CHUQU,NII4C2IDMAGTG#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                      $-150.00
 	[allocations:checking:available:dinner]                          $150.00
 
-2021/04/01 * payback '2021-04-01 0.10 taxes on 100.00 from 2021-03-15 groceries' #RJTATPQCSX3HW,H3WGT2SIV7BJI#
+2021/04/01 * payback '2021-04-01 0.10 taxes on 100.00 from 2021-03-15 groceries' #UHQFNB3ZFUK5W,NII4C2IDMAGTG#
 	; debug: tax
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-10.00
 	[allocations:checking:savings:main]                               $10.00
 
-2021/04/01 * payback '2021-04-01 whoa, unexpected purchase' #EZWOM32I57EN4,H3WGT2SIV7BJI#
+2021/04/01 * payback '2021-04-01 whoa, unexpected purchase' #YOFRC4Z2OTIXS,NII4C2IDMAGTG#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-50.00
 	[allocations:checking:savings:slow]                               $50.00
 
-2021/04/01 * payback '2021-04-01 groceries' #LZHNLQWWTCU5Q,H3WGT2SIV7BJI#
+2021/04/01 * payback '2021-04-01 groceries' #TDQCW7MPSFN56,NII4C2IDMAGTG#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-90.00
 	[allocations:checking:available:groceries]                        $90.00
 
-2021/04/01 * payback '2021-04-01 groceries' #LZHNLQWWTCU5Q,H3WGT2SIV7BJI,BTM7ZCSCKCZ2Q#
+2021/04/01 * payback '2021-04-01 groceries' #TDQCW7MPSFN56,NII4C2IDMAGTG,AQTHFBMCZWRYY#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-10.00
 	[allocations:checking:available:groceries]                        $10.00
 
-2021/04/01 * payback '2021-04-01 streaming services' #ZRCSQRRKOZKSE,BTM7ZCSCKCZ2Q#
+2021/04/01 * payback '2021-04-01 streaming services' #GWMB5ZKDN44MW,AQTHFBMCZWRYY#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-20.00
 	[allocations:checking:available:services]                         $20.00
 
-2021/04/15 * payback '2021-04-15 0.10 taxes on 100.00 from 2021-04-01 groceries' #LZHNLQWWTCU5Q,BTM7ZCSCKCZ2Q#
+2021/04/15 * payback '2021-04-15 0.10 taxes on 100.00 from 2021-04-01 groceries' #TDQCW7MPSFN56,AQTHFBMCZWRYY#
 	; debug: tax
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-10.00
 	[allocations:checking:savings:main]                               $10.00
 
-2021/04/15 * payback '2021-04-15 whoa, unexpected purchase' #EZWOM32I57EN4,BTM7ZCSCKCZ2Q#
+2021/04/15 * payback '2021-04-15 whoa, unexpected purchase' #YOFRC4Z2OTIXS,AQTHFBMCZWRYY#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-50.00
 	[allocations:checking:savings:slow]                               $50.00
 
-2021/04/15 * payback '2021-04-15 fancy dinner' #HOINSOTACIVZI,BTM7ZCSCKCZ2Q#
+2021/04/15 * payback '2021-04-15 fancy dinner' #E65NFVQVSXMO2,AQTHFBMCZWRYY#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                      $-150.00
 	[allocations:checking:available:dinner]                          $150.00
 
-2021/04/23 * payback '2021-04-23 whoa, unexpected purchase' #EZWOM32I57EN4,BTM7ZCSCKCZ2Q#
+2021/04/23 * payback '2021-04-23 whoa, unexpected purchase' #YOFRC4Z2OTIXS,AQTHFBMCZWRYY#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-50.00
 	[allocations:checking:savings:slow]                               $50.00
 
-2021/04/23 * payback '2021-04-23 groceries' #5MERW2RXDUTEU,BTM7ZCSCKCZ2Q#
+2021/04/23 * payback '2021-04-23 groceries' #5NCMIA3SATVQA,AQTHFBMCZWRYY#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                      $-100.00
 	[allocations:checking:available:groceries]                       $100.00
 
-2021/04/23 * reserving 'assets:checking:reserved' #BTM7ZCSCKCZ2Q#
+2021/04/23 * reserving 'assets:checking:reserved' #AQTHFBMCZWRYY#
 	; debug: income-remainder
 	; income: job
 	; debug: 1
 	[assets:checking:reserved]                                      $-160.00
 	[allocations:checking:available]                                 $160.00
 
-2021/04/23 * reserving 'assets:checking:reserved' #6I5HLUVZTZGYU#
+2021/04/23 * reserving 'assets:checking:reserved' #YLIOT4XAIKJJI#
 	; debug: income-remainder
 	; income: job
 	; debug: 1
 	[assets:checking:reserved]                                      $-550.00
 	[allocations:checking:available]                                 $550.00
 
-2021/04/23 * reserving 'assets:checking:reserved' #SXDEMAJ4EWMBQ#
+2021/04/23 * reserving 'assets:checking:reserved' #ZPJK7VONIVUEQ#
 	; debug: income-remainder
 	; income: job
 	; debug: 1
 	[assets:checking:reserved]                                      $-550.00
 	[allocations:checking:available]                                 $550.00
 
-2021/04/23 * reserving 'assets:checking:reserved' #U6ND5XKRKD5TK#
+2021/04/23 * reserving 'assets:checking:reserved' #ML3MPDW73SJSG#
 	; debug: income-remainder
 	; income: job
 	; debug: 1
 	[assets:checking:reserved]                                      $-550.00
 	[allocations:checking:available]                                 $550.00
 
-2021/04/23 * reserving 'assets:checking:reserved' #AG737HLYDJOR4#
+2021/04/23 * reserving 'assets:checking:reserved' #3NH7S77NPCCCQ#
 	; debug: income-remainder
 	; income: job
 	; debug: 1

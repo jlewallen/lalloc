@@ -1,5 +1,4 @@
 !include rules.ledger
-!include lalloc.g.ledger
 
 account assets:checking
 account expenses:mortgage
@@ -142,3 +141,5 @@ account income:job
 2021/04/20 * groceries
     assets:checking                                                                         -$100.00
     expenses:groceries                                                                       $100.00
+
+!include lalloc.g.ledger
