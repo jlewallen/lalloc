@@ -25,6 +25,9 @@ class Transaction:
     postings: List[Posting]
     mid: str
 
+    def referenced_mids(self) -> List[str]:
+        return re.findall(r"#(\S+)#", self.payee)
+
     def date_part(self) -> str:
         return self.date.strftime("%Y%m%d")
 
@@ -79,9 +82,11 @@ class TransactionNode(Node):
     postings: List[PostingNode] = field(default_factory=list)
     sibling: Optional["TransactionNode"] = None
 
-    def graphviz(self, f: TextIO) -> List[Node]:
+    def graphviz(self, nodes: Dict[str, "TransactionNode"], f: TextIO) -> List[Node]:
+        for mid in self.tx.referenced_mids():
+            f.write(f"  {self.id} -- {nodes[mid].id}\n")
         if self.sibling:
-            f.write(f"  {self.id} -- {self.sibling.id}\n")
+            f.write(f"  {self.id} -- {self.sibling.id} [color=blue]\n")
             return [self.sibling]
         return []
 
@@ -102,6 +107,7 @@ def create_initial_transaction_graph(file: str) -> TransactionNode:
     head: Optional[TransactionNode] = None
     tail: Optional[TransactionNode] = None
     accounts: Dict[str, AccountNode] = {}
+    nodes: Dict[str, TransactionNode] = {}
 
     def get_account(path: str) -> AccountNode:
         if path not in accounts:
@@ -110,11 +116,16 @@ def create_initial_transaction_graph(file: str) -> TransactionNode:
 
     for index, tx in enumerate(txs):
         tx_id = f"T{tx.date_part()}_{index}_{tx.payee_part()}"
+
         postings = [
             PostingNode(f"T{index}_{pindex}_{index}", get_account(p.path), p.value)
             for pindex, p in enumerate(tx.postings)
         ]
+
         node = TransactionNode(tx_id, tx, postings=postings)
+
+        nodes[tx.mid] = node
+
         if head:
             tail.sibling = node
             tail = node
@@ -122,11 +133,11 @@ def create_initial_transaction_graph(file: str) -> TransactionNode:
             head = node
             tail = node
 
-    return head
+    return head, nodes
 
 
 def graph(json_file: str, dot_file: str):
-    head = create_initial_transaction_graph(json_file)
+    head, nodes = create_initial_transaction_graph(json_file)
 
     queue: List[Node] = [head]
     seen: List[Node] = []
@@ -136,7 +147,7 @@ def graph(json_file: str, dot_file: str):
             visiting = queue.pop()
             if visiting not in seen:
                 seen.append(visiting)
-                for n in visiting.graphviz(f):
+                for n in visiting.graphviz(nodes, f):
                     queue.append(n)
         f.write("}\n")
 
