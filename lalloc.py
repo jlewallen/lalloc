@@ -115,6 +115,7 @@ class SimpleMove(Move):
     payee: str
     cleared: bool = True
     tags: List[str] = field(default_factory=list)
+    refs: List[str] = field(default_factory=list)
 
     def txns(self):
         postings = [
@@ -123,7 +124,12 @@ class SimpleMove(Move):
         ]
         return [
             ledger.Transaction(
-                self.date, self.payee, self.cleared, postings=postings, tags=self.tags
+                self.date,
+                self.payee,
+                self.cleared,
+                postings=postings,
+                tags=self.tags,
+                refs=self.refs,
             )
         ]
 
@@ -167,7 +173,7 @@ class DatedMoney:
     tags: List[str] = field(default_factory=list)
     taken: Decimal = Decimal(0)
     where: Dict[str, Decimal] = field(default_factory=dict)
-    mid: Optional[str] = None
+    refs: Optional[List[str]] = None
 
     def left(self) -> Decimal:
         return self.total - self.taken
@@ -179,7 +185,7 @@ class DatedMoney:
             path=self.path,
             note=self.note,
             tags=self.tags,
-            mid=self.mid,
+            refs=self.refs,
         )
 
     def take(
@@ -187,17 +193,13 @@ class DatedMoney:
         money: "DatedMoney",
         verb: Optional[str] = None,
         partial: bool = False,
-        mid: Optional[str] = None,
+        refs: Optional[List[str]] = None,
     ) -> Taken:
         assert money.total >= 0
         assert quantize(money.total) == money.total
         assert verb
 
-        if money.mid is None:
-            print(money)
-        assert money.mid
-
-        mid = mid or money.mid
+        refs = (refs or []) + (money.refs or [])
         verb = verb if verb else "payback"
         taking = money.total
         if partial:
@@ -208,7 +210,7 @@ class DatedMoney:
             assert self.taken + taking <= self.total
 
         log.debug(
-            f"{money.date.date()} {money.path:50} {money.total:10} take total={self.total:8} taken={self.taken:8} {taking=:8} after={self.total - self.taken - taking:8} {self.path} mid={mid} tags={self.tags}+{money.tags}"
+            f"{money.date.date()} {money.path:50} {money.total:10} take total={self.total:8} taken={self.taken:8} {taking=:8} after={self.total - self.taken - taking:8} {self.path} refs={refs} tags={self.tags}+{money.tags}"
         )
         self.taken += taking
         self.where[money.path] = taking
@@ -219,7 +221,7 @@ class DatedMoney:
             note=money.note,
             where=money.where,
             tags=money.tags,
-            mid=mid,
+            refs=refs,
         )
         moves = [
             SimpleMove(
@@ -227,8 +229,9 @@ class DatedMoney:
                 taking,
                 self.path,
                 money.path,
-                payee=f"{verb} '{money.date.date()} {money.note}' #{mid}#",
+                payee=f"{verb} '{money.date.date()} {money.note}'",
                 tags=money.tags + self.tags,
+                refs=refs,
             )
         ]
         return Taken(taking, after, moves)
@@ -244,7 +247,7 @@ class DatedMoney:
         if left == 0:
             return (None, [])
 
-        assert self.mid
+        assert self.refs
 
         self.taken = self.total
         effective_date = date if date else self.date
@@ -252,9 +255,9 @@ class DatedMoney:
             date=effective_date,
             total=left,
             path=path,
-            note=f"{verb} '{self.note}' #{self.mid}#",
+            note=f"{verb} '{self.note}'",
             tags=self.tags,
-            mid=self.mid,
+            refs=self.refs,
         )
         return (
             moved,
@@ -264,8 +267,9 @@ class DatedMoney:
                     left,
                     self.path,
                     path,
-                    payee=f"{verb} '{self.note}' #{self.mid}#",
+                    payee=f"{verb} '{self.note}'",
                     tags=self.tags + ["debug: 1"] + (tags or []),
+                    refs=self.refs,
                 )
             ],
         )
@@ -278,9 +282,9 @@ class RequirePayback(DatedMoney):
         money: DatedMoney,
         verb: Optional[str] = None,
         partial: bool = False,
-        mid: Optional[str] = None,
+        refs: Optional[List[str]] = None,
     ) -> Taken:
-        assert mid is None
+        assert refs is None
         taken = super().take(money, verb=verb, partial=partial)
         log.info(f"{money.date.date()} {self.path:50} {taken.total:10} require-payback")
         payments = [
@@ -290,7 +294,7 @@ class RequirePayback(DatedMoney):
                 path=self.path,
                 note=f"borrowing for '{money.date.date()} {money.note}'",
                 tags=self.tags + ["debug: require-payback"],
-                mid=money.mid,
+                refs=money.refs,
             )
         ]
         return Taken(taken.total, taken.after, taken.moves, payments)
@@ -329,12 +333,12 @@ class MoneyPool:
         total: Decimal,
         path: str,
         tags: Optional[List[str]] = None,
-        mid: Optional[str] = None,
+        refs: Optional[List[str]] = None,
     ):
-        assert mid
+        assert refs
         self.money.append(
             DatedMoney(
-                date=date, total=total, path=path, note=note, tags=tags or [], mid=mid
+                date=date, total=total, path=path, note=note, tags=tags or [], refs=refs
             )
         )
 
@@ -471,7 +475,7 @@ class TaxSystem:
                             path=self.names.taxes,
                             note=f"{tax.rate:.2} taxes on {taken.total} from {payment.date.date()} {payment.note}",
                             tags=["debug: tax"],
-                            mid=payment.mid,
+                            refs=payment.refs,
                         )
                     ]
         return []
@@ -493,6 +497,10 @@ class Period(DatedMoney):
     def between(self, after: str, before: str) -> bool:
         return self.after(after) and self.before(before)
 
+    def references(self) -> str:
+        assert self.refs
+        return ",".join(self.refs)
+
     def yearly(self, value: Decimal) -> str:
         v = quantize(value / Decimal(Decimal(12.0) * self.income.factor))
         taken = self.take(
@@ -502,7 +510,6 @@ class Period(DatedMoney):
                 path=self.income.name,
                 note="yearly-ignored",
                 tags=["debug: monthly-ignored"],
-                mid="Y",
             ),
             verb="yearly",
         )
@@ -518,7 +525,6 @@ class Period(DatedMoney):
                 path=self.income.name,
                 note="monthly-ignored",
                 tags=["debug: monthly-ignored"],
-                mid="M",
             ),
             verb="monthly",
         )
@@ -569,7 +575,7 @@ class Allocator:
                 path=path,
                 note=f"yearly '{note}' {path}",
                 tags=["frequency: yearly", f"yearly: {value}"],
-                mid=self.period.mid,
+                refs=self.period.refs,
             ),
             verb="preallocating",
         )
@@ -585,7 +591,7 @@ class Allocator:
                 path=path,
                 note=f"monthly '{note}' {path}",
                 tags=["frequency: monthly", f"monthly: {value}"],
-                mid=self.period.mid,
+                refs=self.period.refs,
             ),
             verb="preallocating",
         )
@@ -599,7 +605,7 @@ class Expense:
     value: Decimal
     note: str
     path: str
-    mid: str
+    refs: List[str]
 
 
 @dataclass
@@ -615,7 +621,7 @@ class Payment(DatedMoney):
                 self.path,
                 note=self.note,
                 tags=self.tags,
-                mid=self.mid,
+                refs=self.refs,
             )
         return self
 
@@ -706,7 +712,7 @@ class Spending:
                     path,
                     "debug: borrowing (ignored note)",
                     tags=["debug: borrowing"],
-                    mid=RequirePaybackId(),
+                    refs=[RequirePaybackId()],
                 )
                 for path, total in available.items()
             ],
@@ -802,7 +808,7 @@ class Schedule(Handler):
             value=posting.value.copy_abs(),
             path=posting.account,
             note=tx.payee,
-            mid=tx.mid,
+            refs=[tx.mid],
         )
 
         if self.maximum:
@@ -819,7 +825,7 @@ class Schedule(Handler):
                         path=expense.path,
                         note=expense.note,
                         tags=["debug: schedule-handler"],
-                        mid=expense.mid,
+                        refs=expense.refs,
                     )
                 )
                 remaining -= taking
@@ -836,7 +842,7 @@ class Schedule(Handler):
                 path=expense.path,
                 note=expense.note,
                 tags=["debug: schedule-handler"],
-                mid=expense.mid,
+                refs=expense.refs,
             )
         ]
 
@@ -854,7 +860,8 @@ class IncomeHandler(Handler):
     tax_system: TaxSystem
 
     def expand(self, tx: ledger.Transaction, posting: ledger.Posting):
-        log.info(f"{tx.date.date()} income: {posting} {posting.value} {tx.mid}")
+        log.info(f"{tx.date.date()} income: {posting} {posting.value} refs=[{tx.mid}]")
+        assert tx.mid
         return [
             Period(
                 note=tx.payee,
@@ -864,7 +871,7 @@ class IncomeHandler(Handler):
                 income=self.income,
                 tax_system=self.tax_system,
                 tags=[f"income: {self.income.name}"],
-                mid=tx.mid,
+                refs=[tx.mid],
             )
         ]
 
@@ -878,6 +885,7 @@ class DatedMoneyHandler(Handler):
             if posting.value < 0:
                 return []
         log.info(f"{tx.date.date()} dated-money: {posting} {posting.value}")
+        assert tx.mid
         return [
             DatedMoney(
                 date=tx.date,
@@ -885,7 +893,7 @@ class DatedMoneyHandler(Handler):
                 path=posting.account,
                 note=tx.payee,
                 tags=["debug: dated-money-handler"],
-                mid=tx.mid,
+                refs=[tx.mid],
             )
         ]
 
@@ -899,7 +907,7 @@ class EnvelopeDatedMoney(DatedMoney):
     def allocated(self) -> List[DatedMoney]:
         assert self.envelope
         assert self.note
-        assert self.mid
+        assert self.refs
         if self.total > 0:
             return [
                 DatedMoney(
@@ -908,7 +916,7 @@ class EnvelopeDatedMoney(DatedMoney):
                     self.envelope,
                     note=self.note,
                     tags=self.tags + ["debug: envelope-allocated"],
-                    mid=self.mid,
+                    refs=self.refs,
                 )
             ]
         return []
@@ -917,7 +925,7 @@ class EnvelopeDatedMoney(DatedMoney):
         if self.total < 0:
             assert self.envelope
             assert self.note
-            assert self.mid
+            assert self.refs
             return [
                 DatedMoney(
                     self.date,
@@ -925,7 +933,7 @@ class EnvelopeDatedMoney(DatedMoney):
                     self.envelope,
                     note=self.note,
                     tags=self.tags + ["debug: envelope-refunded"],
-                    mid=self.mid,
+                    refs=self.refs,
                 )
             ]
         return []
@@ -933,16 +941,17 @@ class EnvelopeDatedMoney(DatedMoney):
     def withdraw_from_envelope(self) -> List[Move]:
         assert self.envelope
         assert self.source
-        assert self.mid
+        assert self.refs
         return [
             SimpleMove(
                 self.date,
                 self.total,
                 self.envelope,
                 self.source,
-                payee=f"withdraw for '{self.note}' #{self.mid}#",
+                payee=f"withdraw for '{self.note}'",
                 cleared=self.cleared,
                 tags=self.tags + ["debug: envelope-withdraw"],
+                refs=self.refs,
             )
         ]
 
@@ -959,6 +968,7 @@ class EnvelopedMoneyHandler(Handler):
         source = self._get_envelope_source(tx)
 
         log.info(f"allocate {source} {posting}")
+        assert tx.mid
         return [
             EnvelopeDatedMoney(
                 date=tx.date,
@@ -969,7 +979,7 @@ class EnvelopedMoneyHandler(Handler):
                 source=source,
                 cleared=tx.cleared,
                 tags=["debug: envelope-money-handler"],
-                mid=tx.mid,
+                refs=[tx.mid],
             )
         ]
 
@@ -1088,7 +1098,7 @@ class Finances:
                 period.left(),
                 names.reserved,
                 tags=["debug: income-remainder", f"income: {period.income.name}"],
-                mid=period.mid,
+                refs=period.refs,
             )
             moves += allocator.moves
 

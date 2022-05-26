@@ -49,6 +49,7 @@ class Transaction:
     cleared: bool
     postings: List[Posting] = field(default_factory=list)
     tags: List[str] = field(default_factory=list)
+    refs: List[str] = field(default_factory=list)
     mid: Optional[str] = None
 
     def append(self, p: Posting):

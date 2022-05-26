@@ -1,12 +1,18 @@
 {% for tx in txs %}
 
-{{ tx.ledger_date() }} {% if tx.cleared %}*{% endif %} {{ tx.payee }}
-	; allocation: conservify
+{{ tx.ledger_date() }} {% if tx.cleared %}*{% endif %} {% if tx.refs %}{{ tx.payee }} #{{ ','.join(tx.refs) }}#{%- else -%}{{ tx.payee }}{%- endif -%}
+{%- for tag in tx.tags %}
+	; {{ tag }}
+{%- endfor -%}
 {%- for posting in tx.postings %}
+	{% if posting.tags -%}
+	{{- "%-60s  %10s ; %s" | format(posting.account, posting.ledger_value(), posting.ledger_tags()) }}
+	{%- else -%}
 	{% if posting.note -%}
 	{{- "%-60s  %10s ; %s" | format(posting.account, posting.ledger_value(), posting.note) }}
 	{%- else -%}
 	{{ "%-60s  %10s" | format(posting.account, posting.ledger_value()) }}
+	{%- endif -%}
 	{%- endif -%}
 {%- endfor -%}
 
