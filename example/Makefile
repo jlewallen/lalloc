@@ -10,10 +10,8 @@ example.png: example.json
 	../lapher.py -f example.json -o example.dot
 	dot -Tpng example.dot -o example.png
 
-today:
-	../lalloc.py --today "2021/4/23"
-
 paranoid_payments:
+	rm -f lalloc.log
 	../lalloc.py --today "2021/1/05" --paranoid
 	../lalloc.py --today "2021/1/09" --paranoid
 	../lalloc.py --today "2021/1/14" --paranoid
@@ -22,3 +20,7 @@ paranoid_payments:
 	../lalloc.py --today "2021/2/16" --paranoid
 	../lalloc.py --today "2021/3/01" --paranoid
 	../lalloc.py --today "2021/3/15" --paranoid
+
+today:
+	../lalloc.py --today "2021/4/23"
+
