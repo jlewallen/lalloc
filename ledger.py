@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from typing import Dict, Sequence, List, Optional, Union, Any
+from typing import Dict, Sequence, List, Optional, Union, Any, Tuple
 
 from dataclasses import dataclass, field
 from decimal import Decimal, ROUND_HALF_UP
@@ -14,8 +14,12 @@ import hashlib, base64
 txs_by_mid: Dict[str, "Transaction"] = {}
 
 
+def flatten(a):
+    return [leaf for sl in a for leaf in sl]
+
+
 def calculate_transaction_hash(
-    date: datetime, payee: str, values: List[Decimal]
+    date: datetime, payee: str, values: List[Union[Decimal, int]]
 ) -> str:
     magnitude = sum([v for v in values if v > 0])
     h = hashlib.blake2b(digest_size=8)
@@ -31,6 +35,7 @@ class Posting:
     value: Decimal
     note: Optional[str] = None
     tags: List[str] = field(default_factory=list)
+    lines: Optional[Tuple[int, int]] = None
 
     def ledger_value(self) -> str:
         return f"${self.value:.2f}"
@@ -177,7 +182,7 @@ class Ledger:
             "-S",
             "date",
             "-F",
-            "1|%D|%A|%t|%X|%P|%N\n%/0|%D|%A|%t|%X|%P|%N\n",
+            "1|%S|%b|%e|%D|%A|%t|%X|%P|%N\n%/0|%S|%b|%e|%D|%A|%t|%X|%P|%N\n",
             "register",
         ] + expression
         sp = subprocess.run(command, stdout=subprocess.PIPE)
@@ -190,10 +195,23 @@ class Ledger:
 
         for line in sp.stdout.strip().decode("utf-8").split("\n"):
             fields = line.split("|")
-            if len(fields) != 7:
-                continue
 
-            first, date_string, account, value_string, cleared, payee, note = fields
+            if len(fields) != 10:
+                continue  # This ignores notes information!
+
+            (
+                first,
+                file,
+                start_line,
+                end_line,
+                date_string,
+                account,
+                value_string,
+                cleared,
+                payee,
+                note,
+            ) = fields
+
             date = datetime.strptime(date_string, "%Y/%m/%d")
             if "$" not in value_string:
                 continue
@@ -202,13 +220,19 @@ class Ledger:
             if int(first) == 1:
                 tx = Transaction(date, payee, len(cleared) > 0)
                 txs.append(tx)
+
             assert tx
-            tx.append(Posting(account, value, note.strip()))
+            tx.append(
+                Posting(
+                    account, value, note.strip(), lines=(int(start_line), int(end_line))
+                )
+            )
 
         by_mid: Dict[str, Transaction] = {}
         for tx in txs:
+            # Maybe include file eventually?
             mid = calculate_transaction_hash(
-                tx.date, tx.payee, [p.value for p in tx.postings]
+                tx.date, tx.payee, flatten([p.lines for p in tx.postings])
             )
 
             if mid in by_mid:
