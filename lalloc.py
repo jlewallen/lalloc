@@ -795,12 +795,14 @@ class Schedule(Handler):
         if posting.value > 0:
             return []
 
+        assert tx.mid
+
         expense = Expense(
             date=tx.date,
             value=posting.value.copy_abs(),
             path=posting.account,
             note=tx.payee,
-            mid=tx.calculate_mid(),
+            mid=tx.mid,
         )
 
         if self.maximum:
@@ -852,8 +854,7 @@ class IncomeHandler(Handler):
     tax_system: TaxSystem
 
     def expand(self, tx: ledger.Transaction, posting: ledger.Posting):
-        mid = tx.calculate_mid()
-        log.info(f"{tx.date.date()} income: {posting} {posting.value} {mid}")
+        log.info(f"{tx.date.date()} income: {posting} {posting.value} {tx.mid}")
         return [
             Period(
                 note=tx.payee,
@@ -863,7 +864,7 @@ class IncomeHandler(Handler):
                 income=self.income,
                 tax_system=self.tax_system,
                 tags=[f"income: {self.income.name}"],
-                mid=mid,
+                mid=tx.mid,
             )
         ]
 
@@ -884,7 +885,7 @@ class DatedMoneyHandler(Handler):
                 path=posting.account,
                 note=tx.payee,
                 tags=["debug: dated-money-handler"],
-                mid=tx.calculate_mid(),
+                mid=tx.mid,
             )
         ]
 
@@ -968,7 +969,7 @@ class EnvelopedMoneyHandler(Handler):
                 source=source,
                 cleared=tx.cleared,
                 tags=["debug: envelope-money-handler"],
-                mid=tx.calculate_mid(),
+                mid=tx.mid,
             )
         ]
 
@@ -1018,12 +1019,16 @@ class Finances:
         expense_transactions = everything.with_postings_matching(
             self.cfg.expenses_pattern
         ).before(self.today)
-        income_transactions = everything.only_postings_matching(
-            self.cfg.income_pattern
-        ).before(self.today)
-        allocation_transactions = everything.only_postings_matching(
-            self.cfg.allocation_pattern
-        ).before(self.today)
+        income_transactions = (
+            everything.only_postings_matching(self.cfg.income_pattern)
+            .exclude_with_references()
+            .before(self.today)
+        )
+        allocation_transactions = (
+            everything.only_postings_matching(self.cfg.allocation_pattern)
+            .exclude_with_references()
+            .before(self.today)
+        )
 
         purchases = apply_handlers(expense_transactions, self.cfg.envelopes)
         income_periods = apply_handlers(income_transactions, self.cfg.incomes)

@@ -17,7 +17,7 @@ txs_by_mid: Dict[str, "Transaction"] = {}
 def calculate_transaction_hash(
     date: datetime, payee: str, values: List[Decimal]
 ) -> str:
-    magnitude = [v for v in values if v > 0]
+    magnitude = sum([v for v in values if v > 0])
     h = hashlib.blake2b(digest_size=8)
     h.update(f"{date}".encode())
     h.update(f"{payee}".encode())
@@ -49,6 +49,7 @@ class Transaction:
     cleared: bool
     postings: List[Posting] = field(default_factory=list)
     tags: List[str] = field(default_factory=list)
+    mid: Optional[str] = None
 
     def append(self, p: Posting):
         self.postings.append(p)
@@ -68,19 +69,8 @@ class Transaction:
             return m
         return Decimal(sum([abs(p.value) for p in self.postings]))
 
-    def calculate_mid(self) -> str:
-        h = hashlib.blake2b(digest_size=8)
-        h.update(f"{self.ledger_date()}".encode())
-        h.update(f"{self.payee}".encode())
-        h.update(f"{self.magnitude()}".encode())
-        mid = base64.b32encode(h.digest()).decode("utf-8").replace("=", "")
-        if mid in txs_by_mid:
-            if txs_by_mid[mid] != self:
-                logging.warning(f"{mid} {self}")
-                logging.warning(f"{mid} {txs_by_mid[mid]}")
-                assert False
-        txs_by_mid[mid] = self
-        return mid
+    def has_references(self) -> bool:
+        return len(re.findall(r"#(\S+)#", self.payee)) > 0
 
     def has_account(self, account: str) -> bool:
         return len([p for p in self.postings if p.account == account]) > 0
@@ -97,6 +87,7 @@ class Transaction:
             self.payee,
             self.cleared,
             [p for p in self.postings if re.fullmatch(pattern, p.account)],
+            mid=self.mid,
         )
 
     def with_postings_for(self, account: str) -> "Transaction":
@@ -105,6 +96,7 @@ class Transaction:
             self.payee,
             self.cleared,
             [p for p in self.postings if p.account == account],
+            mid=self.mid,
         )
 
     def serialize(self) -> Dict[str, Any]:
@@ -113,7 +105,7 @@ class Transaction:
             payee=self.payee,
             cleared=self.cleared,
             postings=[p.serialize() for p in self.postings],
-            mid=self.calculate_mid(),
+            mid=self.mid,
         )
 
 
@@ -165,6 +157,9 @@ class Transactions:
             sum([tx.balance(account) for tx in self.txs if tx.has_account(account)])
         )
 
+    def exclude_with_references(self) -> "Transactions":
+        return Transactions([tx for tx in self.txs if not tx.has_references()])
+
     def serialize(self) -> List[Dict[str, Any]]:
         return [tx.serialize() for tx in self.txs]
 
@@ -208,6 +203,19 @@ class Ledger:
                 txs.append(tx)
             assert tx
             tx.append(Posting(account, value, note.strip()))
+
+        by_mid: Dict[str, Transaction] = {}
+        for tx in txs:
+            mid = calculate_transaction_hash(
+                tx.date, tx.payee, [p.value for p in tx.postings]
+            )
+
+            if mid in by_mid:
+                logging.warning(f"{mid} {tx}")
+                logging.warning(f"{mid} {by_mid[mid]}")
+
+            tx.mid = mid
+            by_mid[mid] = tx
 
         return Transactions(txs)
 
