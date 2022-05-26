@@ -134,231 +134,231 @@
 
 
 
-2021/01/15 * payback '2021-01-15 streaming services' #MGZ53KO5NHWVG#
+2021/01/15 * payback '2021-01-15 streaming services' #MGZ53KO5NHWVG,DUCQYC2WAOXJS#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-20.00
 	[allocations:checking:available:services]                         $20.00
 
-2021/01/15 * payback '2021-01-15 groceries' #QN4C4B7EB6XXE#
+2021/01/15 * payback '2021-01-15 groceries' #QN4C4B7EB6XXE,DUCQYC2WAOXJS#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                      $-100.00
 	[allocations:checking:available:groceries]                       $100.00
 
-2021/01/15 * payback '2021-01-15 whoa, unexpected purchase' #EZWOM32I57EN4#
+2021/01/15 * payback '2021-01-15 whoa, unexpected purchase' #EZWOM32I57EN4,DUCQYC2WAOXJS#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-50.00
 	[allocations:checking:savings:slow]                               $50.00
 
-2021/01/15 * payback '2021-01-15 fancy dinner' #5NVAR5BYTXGUI#
+2021/01/15 * payback '2021-01-15 fancy dinner' #5NVAR5BYTXGUI,DUCQYC2WAOXJS#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                      $-150.00
 	[allocations:checking:available:dinner]                          $150.00
 
-2021/01/15 * payback '2021-01-15 groceries' #EW6LJBD3IV75A#
+2021/01/15 * payback '2021-01-15 groceries' #EW6LJBD3IV75A,DUCQYC2WAOXJS#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                      $-200.00
 	[allocations:checking:available:groceries]                       $200.00
 
-2021/02/01 * payback '2021-02-01 whoa, unexpected purchase' #EZWOM32I57EN4#
+2021/02/01 * payback '2021-02-01 whoa, unexpected purchase' #EZWOM32I57EN4,DUCQYC2WAOXJS#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-50.00
 	[allocations:checking:savings:slow]                               $50.00
 
-2021/02/01 * payback '2021-02-01 groceries' #5742DVCSRCRGA#
+2021/02/01 * payback '2021-02-01 groceries' #5742DVCSRCRGA,DUCQYC2WAOXJS#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-80.00
 	[allocations:checking:available:groceries]                        $80.00
 
-2021/02/01 * payback '2021-02-01 groceries' #5742DVCSRCRGA#
+2021/02/01 * payback '2021-02-01 groceries' #5742DVCSRCRGA,DUCQYC2WAOXJS,TR6YDC64SWWUI#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-20.00
 	[allocations:checking:available:groceries]                        $20.00
 
-2021/02/01 * payback '2021-02-01 streaming services' #E2BWBQ4JDSUHU#
+2021/02/01 * payback '2021-02-01 streaming services' #E2BWBQ4JDSUHU,TR6YDC64SWWUI#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-20.00
 	[allocations:checking:available:services]                         $20.00
 
-2021/02/15 * payback '2021-02-15 whoa, unexpected purchase' #EZWOM32I57EN4#
+2021/02/15 * payback '2021-02-15 whoa, unexpected purchase' #EZWOM32I57EN4,TR6YDC64SWWUI#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-50.00
 	[allocations:checking:savings:slow]                               $50.00
 
-2021/02/15 * payback '2021-02-15 groceries' #UMZUWQQBTMQKA#
+2021/02/15 * payback '2021-02-15 groceries' #UMZUWQQBTMQKA,TR6YDC64SWWUI#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                      $-200.00
 	[allocations:checking:available:groceries]                       $200.00
 
-2021/02/15 * payback '2021-02-15 fancy dinner' #A36R3QJK6C36W#
+2021/02/15 * payback '2021-02-15 fancy dinner' #A36R3QJK6C36W,TR6YDC64SWWUI#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                      $-150.00
 	[allocations:checking:available:dinner]                          $150.00
 
-2021/02/15 * payback '2021-02-15 groceries' #JOG6DQY54PGGW#
+2021/02/15 * payback '2021-02-15 groceries' #JOG6DQY54PGGW,TR6YDC64SWWUI#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                      $-100.00
 	[allocations:checking:available:groceries]                       $100.00
 
-2021/02/28 * payback '2021-02-28 0.10 taxes on 100.00 from 2021-02-15 groceries' #JOG6DQY54PGGW#
+2021/02/28 * payback '2021-02-28 0.10 taxes on 100.00 from 2021-02-15 groceries' #JOG6DQY54PGGW,TR6YDC64SWWUI#
 	; debug: tax
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-10.00
 	[allocations:checking:savings:main]                               $10.00
 
-2021/02/28 * payback '2021-02-28 0.10 taxes on 200.00 from 2021-02-15 groceries' #UMZUWQQBTMQKA#
+2021/02/28 * payback '2021-02-28 0.10 taxes on 200.00 from 2021-02-15 groceries' #UMZUWQQBTMQKA,TR6YDC64SWWUI#
 	; debug: tax
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-20.00
 	[allocations:checking:savings:main]                               $20.00
 
-2021/02/28 * payback '2021-02-28 whoa, unexpected purchase' #EZWOM32I57EN4#
+2021/02/28 * payback '2021-02-28 whoa, unexpected purchase' #EZWOM32I57EN4,TR6YDC64SWWUI#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-50.00
 	[allocations:checking:savings:slow]                               $50.00
 
-2021/02/28 * payback '2021-02-28 groceries' #ZE6SBDKD55SPS#
+2021/02/28 * payback '2021-02-28 groceries' #ZE6SBDKD55SPS,TR6YDC64SWWUI#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-30.00
 	[allocations:checking:available:groceries]                        $30.00
 
-2021/02/28 * payback '2021-02-28 groceries' #ZE6SBDKD55SPS#
+2021/02/28 * payback '2021-02-28 groceries' #ZE6SBDKD55SPS,TR6YDC64SWWUI,H3WGT2SIV7BJI#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-70.00
 	[allocations:checking:available:groceries]                        $70.00
 
-2021/03/01 * payback '2021-03-01 0.10 taxes on 100.00 from 2021-02-28 groceries' #ZE6SBDKD55SPS#
+2021/03/01 * payback '2021-03-01 0.10 taxes on 100.00 from 2021-02-28 groceries' #ZE6SBDKD55SPS,H3WGT2SIV7BJI#
 	; debug: tax
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-10.00
 	[allocations:checking:savings:main]                               $10.00
 
-2021/03/01 * payback '2021-03-01 streaming services' #EROG6SKLVWXWC#
+2021/03/01 * payback '2021-03-01 streaming services' #EROG6SKLVWXWC,H3WGT2SIV7BJI#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-20.00
 	[allocations:checking:available:services]                         $20.00
 
-2021/03/15 * payback '2021-03-15 groceries' #RJTATPQCSX3HW#
+2021/03/15 * payback '2021-03-15 groceries' #RJTATPQCSX3HW,H3WGT2SIV7BJI#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                      $-100.00
 	[allocations:checking:available:groceries]                       $100.00
 
-2021/03/15 * payback '2021-03-15 whoa, unexpected purchase' #EZWOM32I57EN4#
+2021/03/15 * payback '2021-03-15 whoa, unexpected purchase' #EZWOM32I57EN4,H3WGT2SIV7BJI#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-50.00
 	[allocations:checking:savings:slow]                               $50.00
 
-2021/03/15 * payback '2021-03-15 fancy dinner' #XWECOFMQMDEHY#
+2021/03/15 * payback '2021-03-15 fancy dinner' #XWECOFMQMDEHY,H3WGT2SIV7BJI#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                      $-150.00
 	[allocations:checking:available:dinner]                          $150.00
 
-2021/04/01 * payback '2021-04-01 0.10 taxes on 100.00 from 2021-03-15 groceries' #RJTATPQCSX3HW#
+2021/04/01 * payback '2021-04-01 0.10 taxes on 100.00 from 2021-03-15 groceries' #RJTATPQCSX3HW,H3WGT2SIV7BJI#
 	; debug: tax
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-10.00
 	[allocations:checking:savings:main]                               $10.00
 
-2021/04/01 * payback '2021-04-01 whoa, unexpected purchase' #EZWOM32I57EN4#
+2021/04/01 * payback '2021-04-01 whoa, unexpected purchase' #EZWOM32I57EN4,H3WGT2SIV7BJI#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-50.00
 	[allocations:checking:savings:slow]                               $50.00
 
-2021/04/01 * payback '2021-04-01 groceries' #LZHNLQWWTCU5Q#
+2021/04/01 * payback '2021-04-01 groceries' #LZHNLQWWTCU5Q,H3WGT2SIV7BJI#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-90.00
 	[allocations:checking:available:groceries]                        $90.00
 
-2021/04/01 * payback '2021-04-01 groceries' #LZHNLQWWTCU5Q#
+2021/04/01 * payback '2021-04-01 groceries' #LZHNLQWWTCU5Q,H3WGT2SIV7BJI,BTM7ZCSCKCZ2Q#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-10.00
 	[allocations:checking:available:groceries]                        $10.00
 
-2021/04/01 * payback '2021-04-01 streaming services' #ZRCSQRRKOZKSE#
+2021/04/01 * payback '2021-04-01 streaming services' #ZRCSQRRKOZKSE,BTM7ZCSCKCZ2Q#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-20.00
 	[allocations:checking:available:services]                         $20.00
 
-2021/04/15 * payback '2021-04-15 0.10 taxes on 100.00 from 2021-04-01 groceries' #LZHNLQWWTCU5Q#
+2021/04/15 * payback '2021-04-15 0.10 taxes on 100.00 from 2021-04-01 groceries' #LZHNLQWWTCU5Q,BTM7ZCSCKCZ2Q#
 	; debug: tax
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-10.00
 	[allocations:checking:savings:main]                               $10.00
 
-2021/04/15 * payback '2021-04-15 whoa, unexpected purchase' #EZWOM32I57EN4#
+2021/04/15 * payback '2021-04-15 whoa, unexpected purchase' #EZWOM32I57EN4,BTM7ZCSCKCZ2Q#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-50.00
 	[allocations:checking:savings:slow]                               $50.00
 
-2021/04/15 * payback '2021-04-15 fancy dinner' #HOINSOTACIVZI#
+2021/04/15 * payback '2021-04-15 fancy dinner' #HOINSOTACIVZI,BTM7ZCSCKCZ2Q#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                      $-150.00
 	[allocations:checking:available:dinner]                          $150.00
 
-2021/04/23 * payback '2021-04-23 whoa, unexpected purchase' #EZWOM32I57EN4#
+2021/04/23 * payback '2021-04-23 whoa, unexpected purchase' #EZWOM32I57EN4,BTM7ZCSCKCZ2Q#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
 	[assets:checking:reserved]                                       $-50.00
 	[allocations:checking:savings:slow]                               $50.00
 
-2021/04/23 * payback '2021-04-23 groceries' #5MERW2RXDUTEU#
+2021/04/23 * payback '2021-04-23 groceries' #5MERW2RXDUTEU,BTM7ZCSCKCZ2Q#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job

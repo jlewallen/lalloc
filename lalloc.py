@@ -199,7 +199,7 @@ class DatedMoney:
         assert quantize(money.total) == money.total
         assert verb
 
-        refs = (refs or []) + (money.refs or [])
+        refs = (refs or []) + (money.refs or []) + (self.refs or [])
         verb = verb if verb else "payback"
         taking = money.total
         if partial:

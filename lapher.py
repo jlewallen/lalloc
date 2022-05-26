@@ -10,6 +10,10 @@ from datetime import datetime, timedelta, date
 import argparse, logging, json, re
 
 
+def flatten(a):
+    return [leaf for sl in a for leaf in sl]
+
+
 @dataclass
 class Posting:
     path: str
@@ -26,7 +30,7 @@ class Transaction:
     mid: str
 
     def referenced_mids(self) -> List[str]:
-        return re.findall(r"#(\S+)#", self.payee)
+        return flatten([s.split(",") for s in re.findall(r"#(\S+)#", self.payee)])
 
     def date_part(self) -> str:
         return self.date.strftime("%Y%m%d")
@@ -86,7 +90,8 @@ class TransactionNode(Node):
 
     def graphviz(self, nodes: Dict[str, "TransactionNode"], f: TextIO) -> List[Node]:
         for mid in self.tx.referenced_mids():
-            f.write(f"  {self.id} -- {nodes[mid].id}\n")
+            if mid in nodes:
+                f.write(f"  {self.id} -- {nodes[mid].id}\n")
         if self.sibling:
             f.write(f"  {self.id} -- {self.sibling.id} [color=blue]\n")
             return [self.sibling]
