@@ -39,6 +39,8 @@ class Transaction:
             .replace(",", "")
             .replace(" ", "_")
             .replace("-", "")
+            .replace("/", "_")
+            .replace(":", "_")
             .replace(".", "_")
         )
 
