@@ -580,7 +580,7 @@ class Allocator:
             verb="preallocating",
         )
         self.moves += taken.moves
-        return f"; yearly {path} {value}"
+        return f"; yearly  ${value:6} paycheck ${v:8} '{note}' {path}"
 
     def monthly(self, path: str, value: float, note: str) -> str:
         v = quantize(Decimal(value) / self.period.income.factor)
@@ -596,7 +596,7 @@ class Allocator:
             verb="preallocating",
         )
         self.moves += taken.moves
-        return f"; monthly {path} {value}"
+        return f"; monthly ${value:6} paycheck ${v:8} '{note}' {path}"
 
 
 @dataclass
