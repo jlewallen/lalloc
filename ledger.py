@@ -78,6 +78,25 @@ class Transaction:
     def has_references(self) -> bool:
         return len(re.findall(r"#(\S+)#", self.payee)) > 0
 
+    def referenced_mids(self) -> List[str]:
+        return flatten([s.split(",") for s in re.findall(r"#(\S+)#", self.payee)])
+
+    def date_part(self) -> str:
+        return self.date.strftime("%Y%m%d")
+
+    def payee_part(self) -> str:
+        simpler = re.sub("\(.+\)", "", self.payee).strip()
+        simpler = re.sub("#\S+#", "", simpler).strip()
+        return (
+            simpler.replace("'", "")
+            .replace(",", "")
+            .replace(" ", "_")
+            .replace("-", "")
+            .replace("/", "_")
+            .replace(":", "_")
+            .replace(".", "_")
+        )
+
     def has_account(self, account: str) -> bool:
         return len([p for p in self.postings if p.account == account]) > 0
 

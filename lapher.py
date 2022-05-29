@@ -9,44 +9,11 @@ from datetime import datetime, timedelta, date
 
 import argparse, logging, json, re
 
+import ledger
+
 
 def flatten(a):
     return [leaf for sl in a for leaf in sl]
-
-
-@dataclass
-class Posting:
-    path: str
-    value: Decimal
-    note: Optional[str] = None
-
-
-@dataclass
-class Transaction:
-    date: datetime
-    payee: str
-    cleared: bool
-    postings: List[Posting]
-    mid: str
-
-    def referenced_mids(self) -> List[str]:
-        return flatten([s.split(",") for s in re.findall(r"#(\S+)#", self.payee)])
-
-    def date_part(self) -> str:
-        return self.date.strftime("%Y%m%d")
-
-    def payee_part(self) -> str:
-        simpler = re.sub("\(.+\)", "", self.payee).strip()
-        simpler = re.sub("#\S+#", "", simpler).strip()
-        return (
-            simpler.replace("'", "")
-            .replace(",", "")
-            .replace(" ", "_")
-            .replace("-", "")
-            .replace("/", "_")
-            .replace(":", "_")
-            .replace(".", "_")
-        )
 
 
 @dataclass
@@ -84,7 +51,7 @@ class PostingNode(Node):
 
 @dataclass
 class TransactionNode(Node):
-    tx: Transaction
+    tx: ledger.Transaction
     postings: List[PostingNode] = field(default_factory=list)
     sibling: Optional["TransactionNode"] = None
 
@@ -108,14 +75,42 @@ class SpendNode(Node):
     pass
 
 
-def create_expenses_graph(file: str) -> Tuple[TransactionNode, Dict[str, Node]]:
-    txs = load(file)
-    assert False
+@dataclass
+class ExpenseNode(Node):
+    tx: ledger.Transaction
+    sibling: Optional[Node] = None
+
+    def graphviz(self, nodes: Mapping[str, Node], f: TextIO) -> List[Node]:
+        if self.sibling:
+            f.write(f'  "{self.id}" -- "{self.sibling.id}" [color=blue]\n')
+            return [self.sibling]
+        return []
+
+
+def create_expenses_graph(file: str) -> Tuple[Node, Dict[str, Node]]:
+    txs = load(file).only_postings_matching("^expenses:.+$")
+
+    nodes: Dict[str, Node] = {}
+    head: Optional[ExpenseNode] = None
+    tail: Optional[ExpenseNode] = None
+
+    for tx in txs.txns():
+        if head:
+            assert tail
+            tail.sibling = ExpenseNode(tx.mid, tx)
+            tail = tail.sibling
+        else:
+            head = ExpenseNode(tx.mid, tx)
+            tail = head
+
+    assert head
+
+    return head, nodes
 
 
 def create_initial_transaction_graph(
     file: str,
-) -> Tuple[TransactionNode, Dict[str, TransactionNode]]:
+) -> Tuple[Node, Dict[str, TransactionNode]]:
     txs = load(file)
 
     head: Optional[TransactionNode] = None
@@ -128,7 +123,7 @@ def create_initial_transaction_graph(
             accounts[path] = AccountNode(path.replace(":", "_"), path)
         return accounts[path]
 
-    for index, tx in enumerate(txs):
+    for index, tx in enumerate(txs.txns()):
         tx_id = f"T{tx.date_part()}_{index}_{tx.payee_part()}"
 
         postings = [
@@ -154,7 +149,8 @@ def create_initial_transaction_graph(
 
 
 def graph(json_file: str, dot_file: str):
-    head, nodes = create_initial_transaction_graph(json_file)
+    # head, nodes = create_initial_transaction_graph(json_file)
+    head, nodes = create_expenses_graph(json_file)
 
     queue: List[Node] = [head]
     seen: List[Node] = []
@@ -173,10 +169,10 @@ def load_posting(
     account: Optional[str] = None,
     note: Optional[str] = None,
     value: Optional[str] = None,
-) -> Posting:
+) -> ledger.Posting:
     assert account
     assert value
-    return Posting(path=account, note=note, value=Decimal(value))
+    return ledger.Posting(account=account, note=note, value=Decimal(value))
 
 
 def load_transaction(
@@ -185,13 +181,13 @@ def load_transaction(
     cleared: Optional[bool] = None,
     mid: Optional[str] = None,
     postings: Optional[List[Dict[str, Any]]] = None,
-) -> Transaction:
+) -> ledger.Transaction:
     assert date
     assert payee
     assert mid
     assert postings
     assert cleared is not None
-    return Transaction(
+    return ledger.Transaction(
         date=datetime.strptime(date, "%Y-%m-%dT%H:%M:%S"),
         payee=payee,
         cleared=cleared,
@@ -200,9 +196,9 @@ def load_transaction(
     )
 
 
-def load(file: str) -> List[Transaction]:
+def load(file: str) -> ledger.Transactions:
     with open(file) as f:
-        return [load_transaction(**tx) for tx in json.load(f)]
+        return ledger.Transactions([load_transaction(**tx) for tx in json.load(f)])
 
 
 if __name__ == "__main__":
