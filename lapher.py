@@ -18,7 +18,7 @@ def flatten(a):
 class Posting:
     path: str
     value: Decimal
-    note: str
+    note: Optional[str] = None
 
 
 @dataclass
@@ -56,7 +56,7 @@ class Node:
     def __str__(self):
         return f"Node<>"
 
-    def graphviz(self, f: TextIO) -> List["Node"]:
+    def graphviz(self, nodes: Mapping[str, "Node"], f: TextIO) -> List["Node"]:
         return []
 
 
@@ -64,7 +64,7 @@ class Node:
 class AccountNode(Node):
     path: str
 
-    def graphviz(self, f: TextIO) -> List[Node]:
+    def graphviz(self, nodes: Mapping[str, Node], f: TextIO) -> List[Node]:
         return []
 
 
@@ -78,7 +78,7 @@ class PostingNode(Node):
     account: AccountNode
     value: Decimal
 
-    def graphviz(self, f: TextIO) -> List[Node]:
+    def graphviz(self, nodes: Mapping[str, Node], f: TextIO) -> List[Node]:
         return []
 
 
@@ -88,7 +88,7 @@ class TransactionNode(Node):
     postings: List[PostingNode] = field(default_factory=list)
     sibling: Optional["TransactionNode"] = None
 
-    def graphviz(self, nodes: Dict[str, "TransactionNode"], f: TextIO) -> List[Node]:
+    def graphviz(self, nodes: Mapping[str, Node], f: TextIO) -> List[Node]:
         for mid in self.tx.referenced_mids():
             if mid in nodes:
                 f.write(f"  {self.id} -- {nodes[mid].id}\n")
@@ -108,7 +108,14 @@ class SpendNode(Node):
     pass
 
 
-def create_initial_transaction_graph(file: str) -> TransactionNode:
+def create_expenses_graph(file: str) -> Tuple[TransactionNode, Dict[str, Node]]:
+    txs = load(file)
+    assert False
+
+
+def create_initial_transaction_graph(
+    file: str,
+) -> Tuple[TransactionNode, Dict[str, TransactionNode]]:
     txs = load(file)
 
     head: Optional[TransactionNode] = None
@@ -134,11 +141,14 @@ def create_initial_transaction_graph(file: str) -> TransactionNode:
         nodes[tx.mid] = node
 
         if head:
+            assert tail
             tail.sibling = node
             tail = node
         else:
             head = node
             tail = node
+
+    assert head
 
     return head, nodes
 
@@ -164,6 +174,8 @@ def load_posting(
     note: Optional[str] = None,
     value: Optional[str] = None,
 ) -> Posting:
+    assert account
+    assert value
     return Posting(path=account, note=note, value=Decimal(value))
 
 
@@ -172,12 +184,13 @@ def load_transaction(
     payee: Optional[str] = None,
     cleared: Optional[bool] = None,
     mid: Optional[str] = None,
-    postings: Optional[Dict[str, Any]] = None,
+    postings: Optional[List[Dict[str, Any]]] = None,
 ) -> Transaction:
     assert date
     assert payee
     assert mid
     assert postings
+    assert cleared is not None
     return Transaction(
         date=datetime.strptime(date, "%Y-%m-%dT%H:%M:%S"),
         payee=payee,
