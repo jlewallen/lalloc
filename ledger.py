@@ -66,6 +66,14 @@ class Transaction:
             return self.date.strftime("%Y/%m/%d")
         return self.date.strftime("%Y/%m/%d %H:%M:%S")
 
+    @property
+    def unique_refs(self) -> Sequence[str]:
+        unique: List[str] = []
+        for ref in self.refs:
+            if ref not in unique:
+                unique.append(ref)
+        return unique
+
     def total_value(self) -> Decimal:
         return Decimal(sum([p.value for p in self.postings]))
 
