@@ -160,6 +160,9 @@ class Transactions:
     def before(self, date: datetime) -> "Transactions":
         return Transactions([tx for tx in self.txs if tx.date <= date])
 
+    def after(self, date: datetime) -> "Transactions":
+        return Transactions([tx for tx in self.txs if tx.date >= date])
+
     def with_postings_matching(self, pattern: str) -> "Transactions":
         return Transactions([tx for tx in self.txs if tx.has_account_matching(pattern)])
 
