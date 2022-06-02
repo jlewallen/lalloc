@@ -79,7 +79,7 @@ class Transaction:
 
     def magnitude(self) -> Decimal:
         m = self.total_value()
-        if m != 0:
+        if abs(m) > 0.0001:
             return m
         return Decimal(sum([abs(p.value) for p in self.postings]))
 
