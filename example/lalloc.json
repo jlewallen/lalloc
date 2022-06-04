@@ -46,6 +46,12 @@
       "path": "allocations:checking:rec"
     }
   ],
-  "envelopes": [],
+  "envelopes": [
+    {
+      "name": "allocations:checking:available:home",
+      "expense": "expenses:home",
+      "enabled": true
+    }
+  ],
   "overdraft": []
 }

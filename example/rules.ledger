@@ -1,5 +1,6 @@
 account allocations:checking:mortgage
 account allocations:checking:available:groceries
+account allocations:checking:available:home
 account allocations:checking:rec
 account allocations:checking:shaved
 account allocations:checking:available

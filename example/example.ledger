@@ -6,6 +6,7 @@ account expenses:groceries
 account expenses:services
 account expenses:whoops
 account expenses:dinner
+account expenses:home
 account income:job
 
 2021/01/01 * opening balances
@@ -31,6 +32,10 @@ account income:job
     expenses:whoops                                                                         $2000.00
     [allocations:checking:savings:slow]                                                    -$2000.00
     [assets:checking:reserved]                                                              $2000.00
+
+2021/02/01 * furniture
+    assets:checking                                                                         -$100.00
+    expenses:home                                                                            $100.00
 
 2021/01/09 * fancy dinner
     assets:checking                                                                         -$150.00
