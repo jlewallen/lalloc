@@ -187,6 +187,13 @@ class Transactions:
                 references = self.referenced_by_.setdefault(referenced, [])
                 references.append(tx)
 
+    def find_references(self, mid: str) -> List[Transaction]:
+        self.build_()
+        assert self.referenced_by_
+        if mid in self.referenced_by_:
+            return self.referenced_by_[mid]
+        return []
+
     def find_by_mid(self, mid: str) -> Optional[Transaction]:
         self.build_()
         assert self.by_mid_
