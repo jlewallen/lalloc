@@ -211,6 +211,8 @@ class Ledger:
             self.path,
             "-S",
             "date",
+            "--exchange",
+            "$",
             "-F",
             "1|%S|%b|%e|%D|%A|%t|%X|%P|%N\n%/0|%S|%b|%e|%D|%A|%t|%X|%P|%N\n",
             "register",
@@ -242,16 +244,20 @@ class Ledger:
                 note,
             ) = fields
 
+            start_of_tx = int(first) == 1
             date = datetime.strptime(date_string, "%Y/%m/%d")
-            if "$" not in value_string:
-                continue
-            value = Decimal(value_string.replace("$", ""))
 
-            if int(first) == 1:
+            if start_of_tx:
                 tx = Transaction(date, payee, len(cleared) > 0)
                 txs.append(tx)
 
+            if "$" not in value_string:
+                continue
+
+            value = Decimal(value_string.replace("$", ""))
+
             assert tx
+
             tx.append(
                 Posting(
                     account, value, note.strip(), lines=(int(start_line), int(end_line))
