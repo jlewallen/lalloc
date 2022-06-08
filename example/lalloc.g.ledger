@@ -189,7 +189,7 @@
 	[assets:checking:reserved]                                       $-80.00
 	[allocations:checking:available:groceries]                        $80.00
 
-2021/02/01 * payback '2021-02-01 groceries' #P_99,ISLGDJ6A5AQ3A,34HJ2JYK4UJUG,CQQKFOPPBDCUI#
+2021/02/01 * payback '2021-02-01 groceries' #P_99,ISLGDJ6A5AQ3A,CQQKFOPPBDCUI#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job
@@ -316,7 +316,7 @@
 	[assets:checking:reserved]                                       $-40.00
 	[allocations:checking:savings:slow]                               $40.00
 
-2021/04/01 * payback '2021-04-01 whoa, unexpected purchase' #P_25,EZWOM32I57EN4,XMKHZYDU2QQGM,D3Y7JKSGZJ7P4#
+2021/04/01 * payback '2021-04-01 whoa, unexpected purchase' #P_25,EZWOM32I57EN4,D3Y7JKSGZJ7P4#
 	; debug: schedule-handler
 	; debug: income-remainder
 	; income: job

@@ -1,5 +1,5 @@
 [WARNING] today overriden to 2021-01-05 00:00:00
-[   INFO] ledger -f example.ledger -S date -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
+[   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-01-01 handler allocations:checking:savings:emergency (allocations:checking:savings:emergency): DatedMoneyHandler()
 [   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[], lines=(18, 18)) 1000.00
 [   INFO] 2021-01-01 handler allocations:checking:available:services (allocations:checking:available:.+): DatedMoneyHandler()
@@ -34,7 +34,7 @@
 [   INFO] 2021-01-05 income-after-payback: 880.00
 [   INFO] 2021-01-05 ytd-spending: 120.00
 [WARNING] today overriden to 2021-01-09 00:00:00
-[   INFO] ledger -f example.ledger -S date -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
+[   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-01-01 handler allocations:checking:savings:emergency (allocations:checking:savings:emergency): DatedMoneyHandler()
 [   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[], lines=(18, 18)) 1000.00
 [   INFO] 2021-01-01 handler allocations:checking:available:services (allocations:checking:available:.+): DatedMoneyHandler()
@@ -127,7 +127,7 @@
 [   INFO] 2021-01-09 income-after-payback: 680.00
 [   INFO] 2021-01-09 ytd-spending: 320.00
 [WARNING] today overriden to 2021-01-14 00:00:00
-[   INFO] ledger -f example.ledger -S date -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
+[   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-01-01 handler allocations:checking:savings:emergency (allocations:checking:savings:emergency): DatedMoneyHandler()
 [   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[], lines=(18, 18)) 1000.00
 [   INFO] 2021-01-01 handler allocations:checking:available:services (allocations:checking:available:.+): DatedMoneyHandler()
@@ -227,7 +227,7 @@
 [   INFO] 2021-01-14 income-after-payback: 480.00
 [   INFO] 2021-01-14 ytd-spending: 520.00
 [WARNING] today overriden to 2021-01-15 00:00:00
-[   INFO] ledger -f example.ledger -S date -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
+[   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-01-15 handler income:job (income:job): IncomeHandler(income=IncomeDefinition(name='job', epoch=datetime.datetime(2020, 1, 1, 0, 0), factor=Decimal('2')), path='assets:checking:reserved', tax_system=TaxSystem(names=Names(available='allocations:checking:available', refunded='allocations:checking:refunded', emergency='allocations:checking:savings:emergency', taxes='allocations:checking:savings:main', reserved='assets:checking:reserved'), taxes=[]))
 [   INFO] 2021-01-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(49, 49)) -2000.00 refs=[34HJ2JYK4UJUG]
 [   INFO] 2021-01-01 handler allocations:checking:savings:emergency (allocations:checking:savings:emergency): DatedMoneyHandler()
@@ -343,7 +343,7 @@
 [   INFO] 2021-01-15 income-after-payback: 1130.00
 [   INFO] 2021-01-15 ytd-spending: 520.00
 [WARNING] today overriden to 2021-02-14 00:00:00
-[   INFO] ledger -f example.ledger -S date -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
+[   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-02-01 handler expenses:home (expenses:home): EnvelopedMoneyHandler(envelope='allocations:checking:available:home')
 [   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[], lines=(38, 38))
 [   INFO] 2021-01-15 handler income:job (income:job): IncomeHandler(income=IncomeDefinition(name='job', epoch=datetime.datetime(2020, 1, 1, 0, 0), factor=Decimal('2')), path='assets:checking:reserved', tax_system=TaxSystem(names=Names(available='allocations:checking:available', refunded='allocations:checking:refunded', emergency='allocations:checking:savings:emergency', taxes='allocations:checking:savings:main', reserved='assets:checking:reserved'), taxes=[]))
@@ -460,12 +460,12 @@
 [   INFO] 2021-01-22                                                               pay-from expenses=    150.00 emergency=         0  2/ 0 upcoming=2021-02-01
 [  DEBUG] 2021-01-22 allocations:checking:savings:slow                          50 take total=  650.00 taken=  520.00 taking=      50 after=   80.00 assets:checking:reserved refs=['P_11', 'EZWOM32I57EN4', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-01-22 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  570.00 taking=   80.00 after=    0.00 assets:checking:reserved refs=['P_93', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-01-22 allocations:checking:available:groceries                20.00 take total= 1000.00 taken=  520.00 taking=   20.00 after=  460.00 allocations:checking:savings:emergency refs=['P_93', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] tags=['debug: emergency-payback']+['debug: schedule-handler']
-[   INFO] 2021-01-22 allocations:checking:savings:emergency                  20.00 require-payback refs=['P_93', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] mid=P_151 'groceries'
+[  DEBUG] 2021-01-22 allocations:checking:available:groceries                20.00 take total= 1000.00 taken=  520.00 taking=   20.00 after=  460.00 allocations:checking:savings:emergency refs=['P_93', 'ISLGDJ6A5AQ3A'] tags=['debug: emergency-payback']+['debug: schedule-handler']
+[   INFO] 2021-01-22 allocations:checking:savings:emergency                  20.00 require-payback refs=['P_93', 'ISLGDJ6A5AQ3A'] mid=P_151 'groceries'
 [  DEBUG] 2021-01-22 allocations:checking:savings:emergency                  20.00 payment redate 2021-02-01
 [   INFO] 2021-02-01 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-01                                                               pay-from expenses=    120.00 emergency=     20.00  2/ 1 upcoming=2021-02-15
-[  DEBUG] 2021-02-01 allocations:checking:savings:emergency                  20.00 take total=  650.00 taken=       0 taking=   20.00 after=  630.00 assets:checking:reserved refs=['P_93', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: emergency-payback', 'debug: require-payback']
+[  DEBUG] 2021-02-01 allocations:checking:savings:emergency                  20.00 take total=  650.00 taken=       0 taking=   20.00 after=  630.00 assets:checking:reserved refs=['P_93', 'ISLGDJ6A5AQ3A', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: emergency-payback', 'debug: require-payback']
 [   INFO] 2021-02-01 allocations:checking:savings:emergency                  20.00 returning
 [  DEBUG] 2021-02-01 allocations:checking:available:services                 20.00 take total=  650.00 taken=   20.00 taking=   20.00 after=  610.00 assets:checking:reserved refs=['P_95', 'E5M2X775EV3JC', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-02-01 allocations:checking:available:home                    100.00 take total=  650.00 taken=   40.00 taking=  100.00 after=  510.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
@@ -504,7 +504,7 @@
 [   INFO] 2021-02-14 income-after-payback: 1010.00
 [   INFO] 2021-02-14 ytd-spending: 1290.00
 [WARNING] today overriden to 2021-02-16 00:00:00
-[   INFO] ledger -f example.ledger -S date -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
+[   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-02-01 handler expenses:home (expenses:home): EnvelopedMoneyHandler(envelope='allocations:checking:available:home')
 [   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[], lines=(38, 38))
 [   INFO] 2021-01-15 handler income:job (income:job): IncomeHandler(income=IncomeDefinition(name='job', epoch=datetime.datetime(2020, 1, 1, 0, 0), factor=Decimal('2')), path='assets:checking:reserved', tax_system=TaxSystem(names=Names(available='allocations:checking:available', refunded='allocations:checking:refunded', emergency='allocations:checking:savings:emergency', taxes='allocations:checking:savings:main', reserved='assets:checking:reserved'), taxes=[]))
@@ -628,12 +628,12 @@
 [   INFO] 2021-01-22                                                               pay-from expenses=    150.00 emergency=         0  2/ 0 upcoming=2021-02-01
 [  DEBUG] 2021-01-22 allocations:checking:savings:slow                          50 take total=  650.00 taken=  520.00 taking=      50 after=   80.00 assets:checking:reserved refs=['P_12', 'EZWOM32I57EN4', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-01-22 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  570.00 taking=   80.00 after=    0.00 assets:checking:reserved refs=['P_94', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-01-22 allocations:checking:available:groceries                20.00 take total= 1000.00 taken=  520.00 taking=   20.00 after=  460.00 allocations:checking:savings:emergency refs=['P_94', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] tags=['debug: emergency-payback']+['debug: schedule-handler']
-[   INFO] 2021-01-22 allocations:checking:savings:emergency                  20.00 require-payback refs=['P_94', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] mid=P_161 'groceries'
+[  DEBUG] 2021-01-22 allocations:checking:available:groceries                20.00 take total= 1000.00 taken=  520.00 taking=   20.00 after=  460.00 allocations:checking:savings:emergency refs=['P_94', 'ISLGDJ6A5AQ3A'] tags=['debug: emergency-payback']+['debug: schedule-handler']
+[   INFO] 2021-01-22 allocations:checking:savings:emergency                  20.00 require-payback refs=['P_94', 'ISLGDJ6A5AQ3A'] mid=P_161 'groceries'
 [  DEBUG] 2021-01-22 allocations:checking:savings:emergency                  20.00 payment redate 2021-02-01
 [   INFO] 2021-02-01 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-01                                                               pay-from expenses=    120.00 emergency=     20.00  2/ 1 upcoming=2021-02-15
-[  DEBUG] 2021-02-01 allocations:checking:savings:emergency                  20.00 take total=  650.00 taken=       0 taking=   20.00 after=  630.00 assets:checking:reserved refs=['P_94', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: emergency-payback', 'debug: require-payback']
+[  DEBUG] 2021-02-01 allocations:checking:savings:emergency                  20.00 take total=  650.00 taken=       0 taking=   20.00 after=  630.00 assets:checking:reserved refs=['P_94', 'ISLGDJ6A5AQ3A', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: emergency-payback', 'debug: require-payback']
 [   INFO] 2021-02-01 allocations:checking:savings:emergency                  20.00 returning
 [  DEBUG] 2021-02-01 allocations:checking:available:services                 20.00 take total=  650.00 taken=   20.00 taking=   20.00 after=  610.00 assets:checking:reserved refs=['P_96', 'E5M2X775EV3JC', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-02-01 allocations:checking:available:home                    100.00 take total=  650.00 taken=   40.00 taking=  100.00 after=  510.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
@@ -675,7 +675,7 @@
 [   INFO] 2021-02-16 income-after-payback: 1560.00
 [   INFO] 2021-02-16 ytd-spending: 1290.00
 [WARNING] today overriden to 2021-03-01 00:00:00
-[   INFO] ledger -f example.ledger -S date -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
+[   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-02-01 handler expenses:home (expenses:home): EnvelopedMoneyHandler(envelope='allocations:checking:available:home')
 [   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[], lines=(38, 38))
 [   INFO] 2021-01-15 handler income:job (income:job): IncomeHandler(income=IncomeDefinition(name='job', epoch=datetime.datetime(2020, 1, 1, 0, 0), factor=Decimal('2')), path='assets:checking:reserved', tax_system=TaxSystem(names=Names(available='allocations:checking:available', refunded='allocations:checking:refunded', emergency='allocations:checking:savings:emergency', taxes='allocations:checking:savings:main', reserved='assets:checking:reserved'), taxes=[]))
@@ -815,12 +815,12 @@
 [   INFO] 2021-01-22                                                               pay-from expenses=    150.00 emergency=         0  2/ 0 upcoming=2021-02-01
 [  DEBUG] 2021-01-22 allocations:checking:savings:slow                          50 take total=  650.00 taken=  520.00 taking=      50 after=   80.00 assets:checking:reserved refs=['P_14', 'EZWOM32I57EN4', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-01-22 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  570.00 taking=   80.00 after=    0.00 assets:checking:reserved refs=['P_96', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-01-22 allocations:checking:available:groceries                20.00 take total= 1000.00 taken=  520.00 taking=   20.00 after=  460.00 allocations:checking:savings:emergency refs=['P_96', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] tags=['debug: emergency-payback']+['debug: schedule-handler']
-[   INFO] 2021-01-22 allocations:checking:savings:emergency                  20.00 require-payback refs=['P_96', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] mid=P_185 'groceries'
+[  DEBUG] 2021-01-22 allocations:checking:available:groceries                20.00 take total= 1000.00 taken=  520.00 taking=   20.00 after=  460.00 allocations:checking:savings:emergency refs=['P_96', 'ISLGDJ6A5AQ3A'] tags=['debug: emergency-payback']+['debug: schedule-handler']
+[   INFO] 2021-01-22 allocations:checking:savings:emergency                  20.00 require-payback refs=['P_96', 'ISLGDJ6A5AQ3A'] mid=P_185 'groceries'
 [  DEBUG] 2021-01-22 allocations:checking:savings:emergency                  20.00 payment redate 2021-02-01
 [   INFO] 2021-02-01 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-01                                                               pay-from expenses=    120.00 emergency=     20.00  2/ 1 upcoming=2021-02-15
-[  DEBUG] 2021-02-01 allocations:checking:savings:emergency                  20.00 take total=  650.00 taken=       0 taking=   20.00 after=  630.00 assets:checking:reserved refs=['P_96', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: emergency-payback', 'debug: require-payback']
+[  DEBUG] 2021-02-01 allocations:checking:savings:emergency                  20.00 take total=  650.00 taken=       0 taking=   20.00 after=  630.00 assets:checking:reserved refs=['P_96', 'ISLGDJ6A5AQ3A', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: emergency-payback', 'debug: require-payback']
 [   INFO] 2021-02-01 allocations:checking:savings:emergency                  20.00 returning
 [  DEBUG] 2021-02-01 allocations:checking:available:services                 20.00 take total=  650.00 taken=   20.00 taking=   20.00 after=  610.00 assets:checking:reserved refs=['P_98', 'E5M2X775EV3JC', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-02-01 allocations:checking:available:home                    100.00 take total=  650.00 taken=   40.00 taking=  100.00 after=  510.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
@@ -843,7 +843,7 @@
 [   INFO] 2021-02-19 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-19                                                               pay-from expenses=        50 emergency=         0  1/ 0 upcoming=2021-02-28
 [  DEBUG] 2021-02-19 allocations:checking:savings:slow                          50 take total=  650.00 taken=  640.00 taking=   10.00 after=    0.00 assets:checking:reserved refs=['P_18', 'EZWOM32I57EN4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-02-19 allocations:checking:savings:slow                       40.00 take total=  550.00 taken=       0 taking=   40.00 after=  510.00 assets:checking:reserved refs=['P_18', 'EZWOM32I57EN4', 'CQQKFOPPBDCUI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-19 allocations:checking:savings:slow                       40.00 take total=  550.00 taken=       0 taking=   40.00 after=  510.00 assets:checking:reserved refs=['P_18', 'EZWOM32I57EN4', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-28 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-28                                                               pay-from expenses=    100.00 emergency=         0  1/ 0 upcoming=2021-03-01
 [  DEBUG] 2021-02-28 allocations:checking:available:groceries               100.00 take total=  550.00 taken=   40.00 taking=  100.00 after=  410.00 assets:checking:reserved refs=['P_106', 'GRUOVMS72RAVI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
@@ -880,7 +880,7 @@
 [   INFO] 2021-03-01 income-after-payback: 2480.00
 [   INFO] 2021-03-01 ytd-spending: 1460.00
 [WARNING] today overriden to 2021-03-15 00:00:00
-[   INFO] ledger -f example.ledger -S date -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
+[   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-02-01 handler expenses:home (expenses:home): EnvelopedMoneyHandler(envelope='allocations:checking:available:home')
 [   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[], lines=(38, 38))
 [   INFO] 2021-01-15 handler income:job (income:job): IncomeHandler(income=IncomeDefinition(name='job', epoch=datetime.datetime(2020, 1, 1, 0, 0), factor=Decimal('2')), path='assets:checking:reserved', tax_system=TaxSystem(names=Names(available='allocations:checking:available', refunded='allocations:checking:refunded', emergency='allocations:checking:savings:emergency', taxes='allocations:checking:savings:main', reserved='assets:checking:reserved'), taxes=[]))
@@ -1029,12 +1029,12 @@
 [   INFO] 2021-01-22                                                               pay-from expenses=    150.00 emergency=         0  2/ 0 upcoming=2021-02-01
 [  DEBUG] 2021-01-22 allocations:checking:savings:slow                          50 take total=  650.00 taken=  520.00 taking=      50 after=   80.00 assets:checking:reserved refs=['P_15', 'EZWOM32I57EN4', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-01-22 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  570.00 taking=   80.00 after=    0.00 assets:checking:reserved refs=['P_97', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-01-22 allocations:checking:available:groceries                20.00 take total= 1000.00 taken=  520.00 taking=   20.00 after=  460.00 allocations:checking:savings:emergency refs=['P_97', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] tags=['debug: emergency-payback']+['debug: schedule-handler']
-[   INFO] 2021-01-22 allocations:checking:savings:emergency                  20.00 require-payback refs=['P_97', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] mid=P_199 'groceries'
+[  DEBUG] 2021-01-22 allocations:checking:available:groceries                20.00 take total= 1000.00 taken=  520.00 taking=   20.00 after=  460.00 allocations:checking:savings:emergency refs=['P_97', 'ISLGDJ6A5AQ3A'] tags=['debug: emergency-payback']+['debug: schedule-handler']
+[   INFO] 2021-01-22 allocations:checking:savings:emergency                  20.00 require-payback refs=['P_97', 'ISLGDJ6A5AQ3A'] mid=P_199 'groceries'
 [  DEBUG] 2021-01-22 allocations:checking:savings:emergency                  20.00 payment redate 2021-02-01
 [   INFO] 2021-02-01 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-01                                                               pay-from expenses=    120.00 emergency=     20.00  2/ 1 upcoming=2021-02-15
-[  DEBUG] 2021-02-01 allocations:checking:savings:emergency                  20.00 take total=  650.00 taken=       0 taking=   20.00 after=  630.00 assets:checking:reserved refs=['P_97', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: emergency-payback', 'debug: require-payback']
+[  DEBUG] 2021-02-01 allocations:checking:savings:emergency                  20.00 take total=  650.00 taken=       0 taking=   20.00 after=  630.00 assets:checking:reserved refs=['P_97', 'ISLGDJ6A5AQ3A', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: emergency-payback', 'debug: require-payback']
 [   INFO] 2021-02-01 allocations:checking:savings:emergency                  20.00 returning
 [  DEBUG] 2021-02-01 allocations:checking:available:services                 20.00 take total=  650.00 taken=   20.00 taking=   20.00 after=  610.00 assets:checking:reserved refs=['P_99', 'E5M2X775EV3JC', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-02-01 allocations:checking:available:home                    100.00 take total=  650.00 taken=   40.00 taking=  100.00 after=  510.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
@@ -1057,7 +1057,7 @@
 [   INFO] 2021-02-19 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-19                                                               pay-from expenses=        50 emergency=         0  1/ 0 upcoming=2021-02-28
 [  DEBUG] 2021-02-19 allocations:checking:savings:slow                          50 take total=  650.00 taken=  640.00 taking=   10.00 after=    0.00 assets:checking:reserved refs=['P_19', 'EZWOM32I57EN4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-02-19 allocations:checking:savings:slow                       40.00 take total=  550.00 taken=       0 taking=   40.00 after=  510.00 assets:checking:reserved refs=['P_19', 'EZWOM32I57EN4', 'CQQKFOPPBDCUI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-19 allocations:checking:savings:slow                       40.00 take total=  550.00 taken=       0 taking=   40.00 after=  510.00 assets:checking:reserved refs=['P_19', 'EZWOM32I57EN4', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-28 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-28                                                               pay-from expenses=    100.00 emergency=         0  1/ 0 upcoming=2021-03-01
 [  DEBUG] 2021-02-28 allocations:checking:available:groceries               100.00 take total=  550.00 taken=   40.00 taking=  100.00 after=  410.00 assets:checking:reserved refs=['P_107', 'GRUOVMS72RAVI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
@@ -1108,7 +1108,7 @@
 [   INFO] 2021-03-15 income-after-payback: 2720.00
 [   INFO] 2021-03-15 ytd-spending: 1760.00
 [WARNING] today overriden to 2021-04-23 00:00:00
-[   INFO] ledger -f example.ledger -S date -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
+[   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-02-01 handler expenses:home (expenses:home): EnvelopedMoneyHandler(envelope='allocations:checking:available:home')
 [   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[], lines=(38, 38))
 [   INFO] 2021-01-15 handler income:job (income:job): IncomeHandler(income=IncomeDefinition(name='job', epoch=datetime.datetime(2020, 1, 1, 0, 0), factor=Decimal('2')), path='assets:checking:reserved', tax_system=TaxSystem(names=Names(available='allocations:checking:available', refunded='allocations:checking:refunded', emergency='allocations:checking:savings:emergency', taxes='allocations:checking:savings:main', reserved='assets:checking:reserved'), taxes=[]))
@@ -1252,7 +1252,7 @@
 [  DEBUG] 2021-02-01 allocations:checking:savings:slow                          50 take total=  650.00 taken=  520.00 taking=      50 after=   80.00 assets:checking:reserved refs=['P_17', 'EZWOM32I57EN4', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-01-22 allocations:checking:available:groceries               100.00 payment redate 2021-02-01
 [  DEBUG] 2021-02-01 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  570.00 taking=   80.00 after=    0.00 assets:checking:reserved refs=['P_99', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-02-01 allocations:checking:available:groceries                20.00 take total=  650.00 taken=       0 taking=   20.00 after=  630.00 assets:checking:reserved refs=['P_99', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-01 allocations:checking:available:groceries                20.00 take total=  650.00 taken=       0 taking=   20.00 after=  630.00 assets:checking:reserved refs=['P_99', 'ISLGDJ6A5AQ3A', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-02-01 allocations:checking:available:services                 20.00 take total=  650.00 taken=   20.00 taking=   20.00 after=  610.00 assets:checking:reserved refs=['P_101', 'E5M2X775EV3JC', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-02-01 allocations:checking:available:home                    100.00 take total=  650.00 taken=   40.00 taking=  100.00 after=  510.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
 [   INFO] 2021-02-15 ------------------------------------------------------------------------------------------
@@ -1297,7 +1297,7 @@
 [  DEBUG] 2021-04-01 allocations:checking:savings:main                       10.00 take total=  550.00 taken=  500.00 taking=   10.00 after=   40.00 assets:checking:reserved refs=['P_113', 'KJOBPVI2ITPLK', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: tax']
 [  DEBUG] 2021-03-19 allocations:checking:savings:slow                          50 payment redate 2021-04-01
 [  DEBUG] 2021-04-01 allocations:checking:savings:slow                          50 take total=  550.00 taken=  510.00 taking=   40.00 after=    0.00 assets:checking:reserved refs=['P_25', 'EZWOM32I57EN4', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-04-01 allocations:checking:savings:slow                       10.00 take total=  550.00 taken=       0 taking=   10.00 after=  540.00 assets:checking:reserved refs=['P_25', 'EZWOM32I57EN4', 'XMKHZYDU2QQGM', 'D3Y7JKSGZJ7P4'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-04-01 allocations:checking:savings:slow                       10.00 take total=  550.00 taken=       0 taking=   10.00 after=  540.00 assets:checking:reserved refs=['P_25', 'EZWOM32I57EN4', 'D3Y7JKSGZJ7P4'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-03-21 allocations:checking:available:groceries               100.00 payment redate 2021-04-01
 [  DEBUG] 2021-04-01 allocations:checking:available:groceries               100.00 take total=  550.00 taken=   10.00 taking=  100.00 after=  440.00 assets:checking:reserved refs=['P_117', 'CPXA5TECXIYG2', 'D3Y7JKSGZJ7P4'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-04-01 allocations:checking:available:groceries               100.00 taxing      10.00 allocations:checking:savings:main

@@ -219,7 +219,7 @@ class DatedMoney:
             note=money.note,
             where=money.where,
             tags=money.tags,
-            refs=refs,
+            refs=money.refs,
         )
         moves = [
             SimpleMove(
@@ -398,7 +398,9 @@ class MoneyPool:
                 if available_money.path == self.names.emergency
                 else "payback"
             )
+
             taken = available_money.take(remaining, verb=verb, partial=True)
+
             remaining = taken.after
             if taken.moves:
                 moves += taken.moves
