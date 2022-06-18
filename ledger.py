@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from typing import Dict, Sequence, List, Optional, Union, Any, Tuple
+from typing import Dict, Sequence, List, Optional, Union, Any, Tuple, Mapping
 
 from dataclasses import dataclass, field
 from decimal import Decimal, ROUND_HALF_UP
@@ -42,6 +42,18 @@ class Posting:
 
     def ledger_tags(self) -> str:
         return " ".join([f"{t}:" for t in self.tags])
+
+    def short_account(self) -> str:
+        return (
+            self.account.replace("assets:", "ass:")
+            .replace("allocations:", "all:")
+            .replace("checking:", "chk:")
+            .replace("expenses:", "exp:")
+            .replace("savings:", "sav:")
+        )
+
+    def short(self) -> str:
+        return f"{self.short_account()}={self.ledger_value()}"
 
     def serialize(self) -> Dict[str, Any]:
         return dict(account=self.account, value=float(self.value), note=self.note)
@@ -89,6 +101,14 @@ class Transaction:
     def referenced_mids(self) -> List[str]:
         return flatten([s.split(",") for s in re.findall(r"#(\S+)#", self.payee)])
 
+    def references(self, txs: "Transactions") -> Sequence["Transaction"]:
+        refs: List[Transaction] = []
+        for other_mid in self.referenced_mids():
+            other = txs.find_by_mid(other_mid)
+            if other and other != self:
+                refs.append(other)
+        return refs
+
     def date_part(self) -> str:
         return self.date.strftime("%Y%m%d")
 
@@ -98,11 +118,12 @@ class Transaction:
         return (
             simpler.replace("'", "")
             .replace(",", "")
-            .replace(" ", "_")
             .replace("-", "")
             .replace("/", "_")
+            .replace(": ", "_")
             .replace(":", "_")
             .replace(".", "_")
+            .replace(" ", "_")
         )
 
     def has_account(self, account: str) -> bool:
@@ -110,6 +131,9 @@ class Transaction:
 
     def has_account_matching(self, pattern: str) -> bool:
         return len([p for p in self.postings if re.fullmatch(pattern, p.account)]) > 0
+
+    def total_matching(self, pattern: str) -> Decimal:
+        return self.with_postings_matching(pattern).total_value()
 
     def balance(self, account: str) -> Decimal:
         return Decimal(sum([p.value for p in self.postings if p.account == account]))
@@ -145,9 +169,28 @@ class Transaction:
 @dataclass
 class Transactions:
     txs: List[Transaction]
+    by_mid_: Optional[Mapping[str, Transaction]] = None
+    referenced_by_: Optional[Mapping[str, List[Transaction]]] = None
 
     def txns(self):
         return self.txs
+
+    def build_(self):
+        if self.by_mid_ is not None and self.referenced_by_ is None:
+            return
+
+        self.by_mid_ = {}
+        self.referenced_by_ = {}
+        for tx in self.txns():
+            self.by_mid_[tx.mid] = tx
+            for referenced in tx.referenced_mids():
+                references = self.referenced_by_.setdefault(referenced, [])
+                references.append(tx)
+
+    def find_by_mid(self, mid: str) -> Optional[Transaction]:
+        self.build_()
+        assert self.by_mid_
+        return self.by_mid_[mid] if mid in self.by_mid_ else None
 
     def accounts(self) -> Sequence[str]:
         return [

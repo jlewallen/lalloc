@@ -16,6 +16,20 @@ OneDay = timedelta(days=1) - timedelta(seconds=1)
 Cents = Decimal("0.01")
 
 
+def money_id_factory(prefix: str):
+    counters: Dict[str, int] = {}
+
+    def get():
+        v = counters.setdefault(prefix, 0)
+        counters[prefix] += 1
+        return f"{prefix}_{v}"
+
+    return get
+
+
+PaymentId = money_id_factory("P")
+
+
 def get_income_template(name: str):
     with open(name + ".template.ledger") as f:
         return jinja2.Template(f.read())
@@ -148,22 +162,6 @@ class Taken:
     payments: Sequence["Payment"] = field(default_factory=list)
 
 
-def money_id_factory(prefix: str):
-    counters: Dict[str, int] = {}
-
-    def get():
-        v = counters.setdefault(prefix, 0)
-        counters[prefix] += 1
-        return f"{prefix}_{v}"
-
-    return get
-
-
-YearlyId = money_id_factory("Y")
-MonthlyId = money_id_factory("M")
-RequirePaybackId = money_id_factory("RP")
-
-
 @dataclass
 class DatedMoney:
     date: datetime
@@ -174,6 +172,7 @@ class DatedMoney:
     taken: Decimal = Decimal(0)
     where: Dict[str, Decimal] = field(default_factory=dict)
     refs: Optional[List[str]] = None
+    mid: str = field(default_factory=PaymentId)
 
     def left(self) -> Decimal:
         return self.total - self.taken
@@ -200,7 +199,6 @@ class DatedMoney:
         assert verb
 
         refs = (refs or []) + (money.refs or []) + (self.refs or [])
-        verb = verb if verb else "payback"
         taking = money.total
         if partial:
             left = self.left()
@@ -286,7 +284,9 @@ class RequirePayback(DatedMoney):
     ) -> Taken:
         assert refs is None
         taken = super().take(money, verb=verb, partial=partial)
-        log.info(f"{money.date.date()} {self.path:50} {taken.total:10} require-payback")
+        log.info(
+            f"{money.date.date()} {self.path:50} {taken.total:10} require-payback refs={money.refs} mid={money.mid} '{money.note}'"
+        )
         payments = [
             Payment(
                 date=money.date,
@@ -712,7 +712,7 @@ class Spending:
                     path,
                     "debug: borrowing (ignored note)",
                     tags=["debug: borrowing"],
-                    refs=[RequirePaybackId()],
+                    refs=[],
                 )
                 for path, total in available.items()
             ],
@@ -825,7 +825,7 @@ class Schedule(Handler):
                         path=expense.path,
                         note=expense.note,
                         tags=["debug: schedule-handler"],
-                        refs=expense.refs,
+                        refs=[PaymentId()] + expense.refs,
                     )
                 )
                 remaining -= taking
@@ -842,7 +842,7 @@ class Schedule(Handler):
                 path=expense.path,
                 note=expense.note,
                 tags=["debug: schedule-handler"],
-                refs=expense.refs,
+                refs=[PaymentId()] + expense.refs,
             )
         ]
 
@@ -909,6 +909,9 @@ class EnvelopeDatedMoney(DatedMoney):
         assert self.note
         assert self.refs
         if self.total > 0:
+            log.info(
+                f"{self.date.date()} {self.source:50} {self.total:10} allocated refs={self.refs} mid={self.mid} '{self.note}'"
+            )
             return [
                 DatedMoney(
                     self.date,
@@ -916,13 +919,16 @@ class EnvelopeDatedMoney(DatedMoney):
                     self.envelope,
                     note=self.note,
                     tags=self.tags + ["debug: envelope-allocated"],
-                    refs=self.refs,
+                    refs=self.refs + [self.mid],
                 )
             ]
         return []
 
     def refunded(self) -> List[DatedMoney]:
         if self.total < 0:
+            log.info(
+                f"{self.date.date()} {self.source:50} {self.total:10} refunded  refs={self.refs} mid={self.mid} '{self.note}'"
+            )
             assert self.envelope
             assert self.note
             assert self.refs
@@ -942,6 +948,9 @@ class EnvelopeDatedMoney(DatedMoney):
         assert self.envelope
         assert self.source
         assert self.refs
+        log.info(
+            f"{self.date.date()} {self.source:50} {self.total:10} withdraw  refs={self.refs} mid={self.mid} '{self.note}'"
+        )
         return [
             SimpleMove(
                 self.date,
