@@ -813,6 +813,9 @@ class Schedule(Handler):
             refs=[tx.mid],
         )
 
+        if m := re.search("payoff:(\d+)", tx.payee):
+            self.maximum = Decimal(m.group(1))
+
         if self.maximum:
             payments: List[Payment] = []
             remaining = expense.value
@@ -831,7 +834,7 @@ class Schedule(Handler):
                     )
                 )
                 remaining -= taking
-                date += relativedelta.relativedelta(weeks=2)
+                date += relativedelta.relativedelta(months=1)
             return payments
 
         log.debug(

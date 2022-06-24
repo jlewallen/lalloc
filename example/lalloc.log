@@ -46,45 +46,45 @@
 [  DEBUG] 2021-01-05 schedule:     100.00 note='groceries'
 [   INFO] 2021-01-08 handler allocations:checking:savings:slow (allocations:checking:savings:slow): Schedule(today=datetime.datetime(2021, 1, 9, 0, 0), maximum=Decimal('50'))
 [  DEBUG] schedule: date=2021-01-08 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-01-22 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-02-05 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-02-19 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-03-05 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-03-19 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-02 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-16 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-30 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-05-14 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-05-28 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-06-11 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-06-25 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-07-09 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-07-23 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-08-06 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-08-20 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-09-03 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-09-17 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-01 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-15 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-29 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-11-12 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-11-26 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-12-10 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-12-24 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-01-07 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-01-21 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-02-04 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-02-18 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-03-04 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-03-18 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-01 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-15 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-29 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-05-13 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-05-27 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-06-10 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-06-24 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-07-08 00:00:00 50.00 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-04-08 00:00:00 50.00 note=whoa, unexpected purchase
 [   INFO] 2021-01-09 handler allocations:checking:available:dinner (allocations:checking:available:.+): Schedule(today=datetime.datetime(2021, 1, 9, 0, 0), maximum=None)
 [  DEBUG] 2021-01-09 schedule:     150.00 note='fancy dinner'
 [   INFO] 2021-01-01 ------------------------------------------------------------------------------------------
@@ -139,45 +139,45 @@
 [  DEBUG] 2021-01-05 schedule:     100.00 note='groceries'
 [   INFO] 2021-01-08 handler allocations:checking:savings:slow (allocations:checking:savings:slow): Schedule(today=datetime.datetime(2021, 1, 14, 0, 0), maximum=Decimal('50'))
 [  DEBUG] schedule: date=2021-01-08 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-01-22 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-02-05 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-02-19 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-03-05 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-03-19 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-02 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-16 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-30 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-05-14 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-05-28 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-06-11 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-06-25 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-07-09 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-07-23 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-08-06 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-08-20 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-09-03 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-09-17 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-01 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-15 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-29 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-11-12 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-11-26 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-12-10 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-12-24 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-01-07 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-01-21 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-02-04 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-02-18 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-03-04 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-03-18 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-01 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-15 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-29 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-05-13 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-05-27 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-06-10 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-06-24 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-07-08 00:00:00 50.00 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-04-08 00:00:00 50.00 note=whoa, unexpected purchase
 [   INFO] 2021-01-09 handler allocations:checking:available:dinner (allocations:checking:available:.+): Schedule(today=datetime.datetime(2021, 1, 14, 0, 0), maximum=None)
 [  DEBUG] 2021-01-09 schedule:     150.00 note='fancy dinner'
 [  DEBUG] 2021-01-12 schedule:     200.00 note='groceries'
@@ -241,45 +241,45 @@
 [  DEBUG] 2021-01-05 schedule:     100.00 note='groceries'
 [   INFO] 2021-01-08 handler allocations:checking:savings:slow (allocations:checking:savings:slow): Schedule(today=datetime.datetime(2021, 1, 15, 0, 0), maximum=Decimal('50'))
 [  DEBUG] schedule: date=2021-01-08 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-01-22 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-02-05 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-02-19 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-03-05 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-03-19 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-02 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-16 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-30 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-05-14 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-05-28 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-06-11 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-06-25 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-07-09 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-07-23 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-08-06 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-08-20 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-09-03 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-09-17 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-01 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-15 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-29 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-11-12 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-11-26 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-12-10 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-12-24 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-01-07 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-01-21 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-02-04 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-02-18 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-03-04 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-03-18 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-01 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-15 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-29 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-05-13 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-05-27 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-06-10 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-06-24 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-07-08 00:00:00 50.00 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-04-08 00:00:00 50.00 note=whoa, unexpected purchase
 [   INFO] 2021-01-09 handler allocations:checking:available:dinner (allocations:checking:available:.+): Schedule(today=datetime.datetime(2021, 1, 15, 0, 0), maximum=None)
 [  DEBUG] 2021-01-09 schedule:     150.00 note='fancy dinner'
 [  DEBUG] 2021-01-12 schedule:     200.00 note='groceries'
@@ -361,45 +361,45 @@
 [  DEBUG] 2021-01-05 schedule:     100.00 note='groceries'
 [   INFO] 2021-01-08 handler allocations:checking:savings:slow (allocations:checking:savings:slow): Schedule(today=datetime.datetime(2021, 2, 14, 0, 0), maximum=Decimal('50'))
 [  DEBUG] schedule: date=2021-01-08 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-01-22 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-02-05 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-02-19 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-03-05 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-03-19 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-02 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-16 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-30 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-05-14 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-05-28 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-06-11 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-06-25 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-07-09 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-07-23 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-08-06 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-08-20 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-09-03 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-09-17 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-01 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-15 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-29 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-11-12 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-11-26 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-12-10 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-12-24 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-01-07 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-01-21 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-02-04 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-02-18 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-03-04 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-03-18 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-01 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-15 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-29 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-05-13 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-05-27 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-06-10 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-06-24 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-07-08 00:00:00 50.00 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-04-08 00:00:00 50.00 note=whoa, unexpected purchase
 [   INFO] 2021-01-09 handler allocations:checking:available:dinner (allocations:checking:available:.+): Schedule(today=datetime.datetime(2021, 2, 14, 0, 0), maximum=None)
 [  DEBUG] 2021-01-09 schedule:     150.00 note='fancy dinner'
 [  DEBUG] 2021-01-12 schedule:     200.00 note='groceries'
@@ -457,32 +457,27 @@
 [  DEBUG] 2021-01-15 allocations:checking:savings:emergency                 200.00 take total=  650.00 taken=  320.00 taking=  200.00 after=  130.00 assets:checking:reserved refs=['P_91', 'WO7D2EMXY42FA', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: emergency-payback', 'debug: require-payback']
 [   INFO] 2021-01-15 allocations:checking:savings:emergency                 200.00 returning
 [   INFO] 2021-01-22 ------------------------------------------------------------------------------------------
-[   INFO] 2021-01-22                                                               pay-from expenses=    150.00 emergency=         0  2/ 0 upcoming=2021-02-01
-[  DEBUG] 2021-01-22 allocations:checking:savings:slow                          50 take total=  650.00 taken=  520.00 taking=      50 after=   80.00 assets:checking:reserved refs=['P_11', 'EZWOM32I57EN4', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-01-22 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  570.00 taking=   80.00 after=    0.00 assets:checking:reserved refs=['P_93', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-01-22 allocations:checking:available:groceries                20.00 take total= 1000.00 taken=  520.00 taking=   20.00 after=  460.00 allocations:checking:savings:emergency refs=['P_93', 'ISLGDJ6A5AQ3A'] tags=['debug: emergency-payback']+['debug: schedule-handler']
-[   INFO] 2021-01-22 allocations:checking:savings:emergency                  20.00 require-payback refs=['P_93', 'ISLGDJ6A5AQ3A'] mid=P_151 'groceries'
-[  DEBUG] 2021-01-22 allocations:checking:savings:emergency                  20.00 payment redate 2021-02-01
+[   INFO] 2021-01-22                                                               pay-from expenses=    100.00 emergency=         0  1/ 0 upcoming=2021-02-01
+[  DEBUG] 2021-01-22 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  520.00 taking=  100.00 after=   30.00 assets:checking:reserved refs=['P_93', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-01 ------------------------------------------------------------------------------------------
-[   INFO] 2021-02-01                                                               pay-from expenses=    120.00 emergency=     20.00  2/ 1 upcoming=2021-02-15
-[  DEBUG] 2021-02-01 allocations:checking:savings:emergency                  20.00 take total=  650.00 taken=       0 taking=   20.00 after=  630.00 assets:checking:reserved refs=['P_93', 'ISLGDJ6A5AQ3A', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: emergency-payback', 'debug: require-payback']
-[   INFO] 2021-02-01 allocations:checking:savings:emergency                  20.00 returning
-[  DEBUG] 2021-02-01 allocations:checking:available:services                 20.00 take total=  650.00 taken=   20.00 taking=   20.00 after=  610.00 assets:checking:reserved refs=['P_95', 'E5M2X775EV3JC', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-02-01 allocations:checking:available:home                    100.00 take total=  650.00 taken=   40.00 taking=  100.00 after=  510.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
+[   INFO] 2021-02-01                                                               pay-from expenses=    120.00 emergency=         0  2/ 0 upcoming=2021-02-15
+[  DEBUG] 2021-02-01 allocations:checking:available:services                 20.00 take total=  650.00 taken=  620.00 taking=   20.00 after=   10.00 assets:checking:reserved refs=['P_95', 'E5M2X775EV3JC', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-01 allocations:checking:available:home                    100.00 take total=  650.00 taken=  640.00 taking=   10.00 after=    0.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
+[  DEBUG] 2021-02-01 allocations:checking:available:home                     90.00 take total=  650.00 taken=       0 taking=   90.00 after=  560.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
 [   INFO] 2021-02-01 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-01                                                               pay-from expenses=         0 emergency=         0  0/ 0 upcoming=2021-02-15
-[   INFO] 2021-02-05 ------------------------------------------------------------------------------------------
-[   INFO] 2021-02-05                                                               pay-from expenses=        50 emergency=         0  1/ 0 upcoming=2021-02-15
-[  DEBUG] 2021-02-05 allocations:checking:savings:slow                          50 take total=  650.00 taken=  140.00 taking=      50 after=  460.00 assets:checking:reserved refs=['P_13', 'EZWOM32I57EN4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-07 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-07                                                               pay-from expenses=    200.00 emergency=         0  1/ 0 upcoming=2021-02-15
-[  DEBUG] 2021-02-07 allocations:checking:available:groceries               200.00 take total=  650.00 taken=  190.00 taking=  200.00 after=  260.00 assets:checking:reserved refs=['P_97', 'QNJU4U6AD7DNI', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-07 allocations:checking:available:groceries               200.00 take total=  650.00 taken=   90.00 taking=  200.00 after=  360.00 assets:checking:reserved refs=['P_97', 'QNJU4U6AD7DNI', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[   INFO] 2021-02-08 ------------------------------------------------------------------------------------------
+[   INFO] 2021-02-08                                                               pay-from expenses=        50 emergency=         0  1/ 0 upcoming=2021-02-15
+[  DEBUG] 2021-02-08 allocations:checking:savings:slow                          50 take total=  650.00 taken=  290.00 taking=      50 after=  310.00 assets:checking:reserved refs=['P_11', 'EZWOM32I57EN4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-09 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-09                                                               pay-from expenses=    150.00 emergency=         0  1/ 0 upcoming=2021-02-15
-[  DEBUG] 2021-02-09 allocations:checking:available:dinner                  150.00 take total=  650.00 taken=  390.00 taking=  150.00 after=  110.00 assets:checking:reserved refs=['P_99', 'SPOWR74QD4NKY', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-09 allocations:checking:available:dinner                  150.00 take total=  650.00 taken=  340.00 taking=  150.00 after=  160.00 assets:checking:reserved refs=['P_99', 'SPOWR74QD4NKY', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-14 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-14                                                               pay-from expenses=    100.00 emergency=         0  1/ 0 upcoming=2021-02-15
-[  DEBUG] 2021-02-14 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  540.00 taking=  100.00 after=   10.00 assets:checking:reserved refs=['P_101', 'EHBDCR2JBCJU4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-14 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  490.00 taking=  100.00 after=   60.00 assets:checking:reserved refs=['P_101', 'EHBDCR2JBCJU4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-14 unpaid: 0
 [   INFO] 2021-02-14 ACCOUNT                                               BALANCE +       PAID =        B+P
 [   INFO] 2021-02-14 allocations:checking:available:dinner                 -300.00 +     300.00 =       0.00
@@ -490,19 +485,18 @@
 [   INFO] 2021-02-14 allocations:checking:available:services                -40.00 +      40.00 =       0.00
 [   INFO] 2021-02-14 allocations:checking:mortgage                        -1200.00 +          0 =   -1200.00
 [   INFO] 2021-02-14 allocations:checking:savings                          4500.00 +          0 =    4500.00
-[   INFO] 2021-02-14 allocations:checking:savings:emergency                1000.00 +     540.00 =    1540.00
-[   INFO] 2021-02-14 allocations:checking:savings:slow                    -2000.00 +        150 =   -1850.00
+[   INFO] 2021-02-14 allocations:checking:savings:emergency                1000.00 +     520.00 =    1520.00
+[   INFO] 2021-02-14 allocations:checking:savings:slow                    -2000.00 +        100 =   -1900.00
 [   INFO] 2021-02-14 available:all
 [   INFO]            ACCOUNT                                                  LEFT /      TOTAL
 [  DEBUG] 2021-01-15 assets:checking:reserved                                 0.00 /     650.00
-[   INFO] 2021-02-01 assets:checking:reserved                                10.00 /     650.00
-[   INFO] 2021-01-01 allocations:checking:savings:emergency                 460.00 /    1000.00
+[   INFO] 2021-02-01 assets:checking:reserved                                60.00 /     650.00
+[   INFO] 2021-01-01 allocations:checking:savings:emergency                 480.00 /    1000.00
 [   INFO] 2021-01-15 allocations:checking:savings:emergency                 520.00 /     520.00
-[   INFO] 2021-02-01 allocations:checking:savings:emergency                  20.00 /      20.00
 [   INFO] 2021-02-14 available:end
 [   INFO] 2021-02-14 income-after-static: 1300.00
-[   INFO] 2021-02-14 income-after-payback: 1010.00
-[   INFO] 2021-02-14 ytd-spending: 1290.00
+[   INFO] 2021-02-14 income-after-payback: 1060.00
+[   INFO] 2021-02-14 ytd-spending: 1240.00
 [WARNING] today overriden to 2021-02-16 00:00:00
 [   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-02-01 handler expenses:home (expenses:home): EnvelopedMoneyHandler(envelope='allocations:checking:available:home')
@@ -523,45 +517,45 @@
 [  DEBUG] 2021-01-05 schedule:     100.00 note='groceries'
 [   INFO] 2021-01-08 handler allocations:checking:savings:slow (allocations:checking:savings:slow): Schedule(today=datetime.datetime(2021, 2, 16, 0, 0), maximum=Decimal('50'))
 [  DEBUG] schedule: date=2021-01-08 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-01-22 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-02-05 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-02-19 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-03-05 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-03-19 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-02 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-16 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-30 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-05-14 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-05-28 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-06-11 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-06-25 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-07-09 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-07-23 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-08-06 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-08-20 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-09-03 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-09-17 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-01 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-15 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-29 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-11-12 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-11-26 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-12-10 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-12-24 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-01-07 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-01-21 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-02-04 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-02-18 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-03-04 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-03-18 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-01 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-15 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-29 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-05-13 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-05-27 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-06-10 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-06-24 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-07-08 00:00:00 50.00 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-04-08 00:00:00 50.00 note=whoa, unexpected purchase
 [   INFO] 2021-01-09 handler allocations:checking:available:dinner (allocations:checking:available:.+): Schedule(today=datetime.datetime(2021, 2, 16, 0, 0), maximum=None)
 [  DEBUG] 2021-01-09 schedule:     150.00 note='fancy dinner'
 [  DEBUG] 2021-01-12 schedule:     200.00 note='groceries'
@@ -625,32 +619,27 @@
 [  DEBUG] 2021-01-15 allocations:checking:savings:emergency                 200.00 take total=  650.00 taken=  320.00 taking=  200.00 after=  130.00 assets:checking:reserved refs=['P_92', 'WO7D2EMXY42FA', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: emergency-payback', 'debug: require-payback']
 [   INFO] 2021-01-15 allocations:checking:savings:emergency                 200.00 returning
 [   INFO] 2021-01-22 ------------------------------------------------------------------------------------------
-[   INFO] 2021-01-22                                                               pay-from expenses=    150.00 emergency=         0  2/ 0 upcoming=2021-02-01
-[  DEBUG] 2021-01-22 allocations:checking:savings:slow                          50 take total=  650.00 taken=  520.00 taking=      50 after=   80.00 assets:checking:reserved refs=['P_12', 'EZWOM32I57EN4', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-01-22 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  570.00 taking=   80.00 after=    0.00 assets:checking:reserved refs=['P_94', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-01-22 allocations:checking:available:groceries                20.00 take total= 1000.00 taken=  520.00 taking=   20.00 after=  460.00 allocations:checking:savings:emergency refs=['P_94', 'ISLGDJ6A5AQ3A'] tags=['debug: emergency-payback']+['debug: schedule-handler']
-[   INFO] 2021-01-22 allocations:checking:savings:emergency                  20.00 require-payback refs=['P_94', 'ISLGDJ6A5AQ3A'] mid=P_161 'groceries'
-[  DEBUG] 2021-01-22 allocations:checking:savings:emergency                  20.00 payment redate 2021-02-01
+[   INFO] 2021-01-22                                                               pay-from expenses=    100.00 emergency=         0  1/ 0 upcoming=2021-02-01
+[  DEBUG] 2021-01-22 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  520.00 taking=  100.00 after=   30.00 assets:checking:reserved refs=['P_94', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-01 ------------------------------------------------------------------------------------------
-[   INFO] 2021-02-01                                                               pay-from expenses=    120.00 emergency=     20.00  2/ 1 upcoming=2021-02-15
-[  DEBUG] 2021-02-01 allocations:checking:savings:emergency                  20.00 take total=  650.00 taken=       0 taking=   20.00 after=  630.00 assets:checking:reserved refs=['P_94', 'ISLGDJ6A5AQ3A', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: emergency-payback', 'debug: require-payback']
-[   INFO] 2021-02-01 allocations:checking:savings:emergency                  20.00 returning
-[  DEBUG] 2021-02-01 allocations:checking:available:services                 20.00 take total=  650.00 taken=   20.00 taking=   20.00 after=  610.00 assets:checking:reserved refs=['P_96', 'E5M2X775EV3JC', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-02-01 allocations:checking:available:home                    100.00 take total=  650.00 taken=   40.00 taking=  100.00 after=  510.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
+[   INFO] 2021-02-01                                                               pay-from expenses=    120.00 emergency=         0  2/ 0 upcoming=2021-02-15
+[  DEBUG] 2021-02-01 allocations:checking:available:services                 20.00 take total=  650.00 taken=  620.00 taking=   20.00 after=   10.00 assets:checking:reserved refs=['P_96', 'E5M2X775EV3JC', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-01 allocations:checking:available:home                    100.00 take total=  650.00 taken=  640.00 taking=   10.00 after=    0.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
+[  DEBUG] 2021-02-01 allocations:checking:available:home                     90.00 take total=  650.00 taken=       0 taking=   90.00 after=  560.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
 [   INFO] 2021-02-01 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-01                                                               pay-from expenses=         0 emergency=         0  0/ 0 upcoming=2021-02-15
-[   INFO] 2021-02-05 ------------------------------------------------------------------------------------------
-[   INFO] 2021-02-05                                                               pay-from expenses=        50 emergency=         0  1/ 0 upcoming=2021-02-15
-[  DEBUG] 2021-02-05 allocations:checking:savings:slow                          50 take total=  650.00 taken=  140.00 taking=      50 after=  460.00 assets:checking:reserved refs=['P_14', 'EZWOM32I57EN4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-07 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-07                                                               pay-from expenses=    200.00 emergency=         0  1/ 0 upcoming=2021-02-15
-[  DEBUG] 2021-02-07 allocations:checking:available:groceries               200.00 take total=  650.00 taken=  190.00 taking=  200.00 after=  260.00 assets:checking:reserved refs=['P_98', 'QNJU4U6AD7DNI', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-07 allocations:checking:available:groceries               200.00 take total=  650.00 taken=   90.00 taking=  200.00 after=  360.00 assets:checking:reserved refs=['P_98', 'QNJU4U6AD7DNI', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[   INFO] 2021-02-08 ------------------------------------------------------------------------------------------
+[   INFO] 2021-02-08                                                               pay-from expenses=        50 emergency=         0  1/ 0 upcoming=2021-02-15
+[  DEBUG] 2021-02-08 allocations:checking:savings:slow                          50 take total=  650.00 taken=  290.00 taking=      50 after=  310.00 assets:checking:reserved refs=['P_12', 'EZWOM32I57EN4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-09 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-09                                                               pay-from expenses=    150.00 emergency=         0  1/ 0 upcoming=2021-02-15
-[  DEBUG] 2021-02-09 allocations:checking:available:dinner                  150.00 take total=  650.00 taken=  390.00 taking=  150.00 after=  110.00 assets:checking:reserved refs=['P_100', 'SPOWR74QD4NKY', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-09 allocations:checking:available:dinner                  150.00 take total=  650.00 taken=  340.00 taking=  150.00 after=  160.00 assets:checking:reserved refs=['P_100', 'SPOWR74QD4NKY', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-14 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-14                                                               pay-from expenses=    100.00 emergency=         0  1/ 0 upcoming=2021-02-15
-[  DEBUG] 2021-02-14 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  540.00 taking=  100.00 after=   10.00 assets:checking:reserved refs=['P_102', 'EHBDCR2JBCJU4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-14 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  490.00 taking=  100.00 after=   60.00 assets:checking:reserved refs=['P_102', 'EHBDCR2JBCJU4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-15 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-15                                                               pay-from expenses=         0 emergency=         0  0/ 0 upcoming=2021-02-16
 [   INFO] 2021-02-16 unpaid: 0
@@ -660,20 +649,19 @@
 [   INFO] 2021-02-16 allocations:checking:available:services                -40.00 +      40.00 =       0.00
 [   INFO] 2021-02-16 allocations:checking:mortgage                        -1200.00 +          0 =   -1200.00
 [   INFO] 2021-02-16 allocations:checking:savings                          4500.00 +          0 =    4500.00
-[   INFO] 2021-02-16 allocations:checking:savings:emergency                1000.00 +     540.00 =    1540.00
-[   INFO] 2021-02-16 allocations:checking:savings:slow                    -2000.00 +        150 =   -1850.00
+[   INFO] 2021-02-16 allocations:checking:savings:emergency                1000.00 +     520.00 =    1520.00
+[   INFO] 2021-02-16 allocations:checking:savings:slow                    -2000.00 +        100 =   -1900.00
 [   INFO] 2021-02-16 available:all
 [   INFO]            ACCOUNT                                                  LEFT /      TOTAL
 [  DEBUG] 2021-01-15 assets:checking:reserved                                 0.00 /     650.00
-[   INFO] 2021-02-01 assets:checking:reserved                                10.00 /     650.00
+[   INFO] 2021-02-01 assets:checking:reserved                                60.00 /     650.00
 [   INFO] 2021-02-15 assets:checking:reserved                               550.00 /     550.00
-[   INFO] 2021-01-01 allocations:checking:savings:emergency                 460.00 /    1000.00
+[   INFO] 2021-01-01 allocations:checking:savings:emergency                 480.00 /    1000.00
 [   INFO] 2021-01-15 allocations:checking:savings:emergency                 520.00 /     520.00
-[   INFO] 2021-02-01 allocations:checking:savings:emergency                  20.00 /      20.00
 [   INFO] 2021-02-16 available:end
 [   INFO] 2021-02-16 income-after-static: 1850.00
-[   INFO] 2021-02-16 income-after-payback: 1560.00
-[   INFO] 2021-02-16 ytd-spending: 1290.00
+[   INFO] 2021-02-16 income-after-payback: 1610.00
+[   INFO] 2021-02-16 ytd-spending: 1240.00
 [WARNING] today overriden to 2021-03-01 00:00:00
 [   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-02-01 handler expenses:home (expenses:home): EnvelopedMoneyHandler(envelope='allocations:checking:available:home')
@@ -696,45 +684,45 @@
 [  DEBUG] 2021-01-05 schedule:     100.00 note='groceries'
 [   INFO] 2021-01-08 handler allocations:checking:savings:slow (allocations:checking:savings:slow): Schedule(today=datetime.datetime(2021, 3, 1, 0, 0), maximum=Decimal('50'))
 [  DEBUG] schedule: date=2021-01-08 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-01-22 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-02-05 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-02-19 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-03-05 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-03-19 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-02 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-16 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-30 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-05-14 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-05-28 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-06-11 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-06-25 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-07-09 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-07-23 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-08-06 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-08-20 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-09-03 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-09-17 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-01 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-15 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-29 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-11-12 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-11-26 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-12-10 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-12-24 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-01-07 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-01-21 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-02-04 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-02-18 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-03-04 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-03-18 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-01 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-15 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-29 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-05-13 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-05-27 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-06-10 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-06-24 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-07-08 00:00:00 50.00 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-04-08 00:00:00 50.00 note=whoa, unexpected purchase
 [   INFO] 2021-01-09 handler allocations:checking:available:dinner (allocations:checking:available:.+): Schedule(today=datetime.datetime(2021, 3, 1, 0, 0), maximum=None)
 [  DEBUG] 2021-01-09 schedule:     150.00 note='fancy dinner'
 [  DEBUG] 2021-01-12 schedule:     200.00 note='groceries'
@@ -812,48 +800,40 @@
 [  DEBUG] 2021-01-15 allocations:checking:savings:emergency                 200.00 take total=  650.00 taken=  320.00 taking=  200.00 after=  130.00 assets:checking:reserved refs=['P_94', 'WO7D2EMXY42FA', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: emergency-payback', 'debug: require-payback']
 [   INFO] 2021-01-15 allocations:checking:savings:emergency                 200.00 returning
 [   INFO] 2021-01-22 ------------------------------------------------------------------------------------------
-[   INFO] 2021-01-22                                                               pay-from expenses=    150.00 emergency=         0  2/ 0 upcoming=2021-02-01
-[  DEBUG] 2021-01-22 allocations:checking:savings:slow                          50 take total=  650.00 taken=  520.00 taking=      50 after=   80.00 assets:checking:reserved refs=['P_14', 'EZWOM32I57EN4', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-01-22 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  570.00 taking=   80.00 after=    0.00 assets:checking:reserved refs=['P_96', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-01-22 allocations:checking:available:groceries                20.00 take total= 1000.00 taken=  520.00 taking=   20.00 after=  460.00 allocations:checking:savings:emergency refs=['P_96', 'ISLGDJ6A5AQ3A'] tags=['debug: emergency-payback']+['debug: schedule-handler']
-[   INFO] 2021-01-22 allocations:checking:savings:emergency                  20.00 require-payback refs=['P_96', 'ISLGDJ6A5AQ3A'] mid=P_185 'groceries'
-[  DEBUG] 2021-01-22 allocations:checking:savings:emergency                  20.00 payment redate 2021-02-01
+[   INFO] 2021-01-22                                                               pay-from expenses=    100.00 emergency=         0  1/ 0 upcoming=2021-02-01
+[  DEBUG] 2021-01-22 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  520.00 taking=  100.00 after=   30.00 assets:checking:reserved refs=['P_96', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-01 ------------------------------------------------------------------------------------------
-[   INFO] 2021-02-01                                                               pay-from expenses=    120.00 emergency=     20.00  2/ 1 upcoming=2021-02-15
-[  DEBUG] 2021-02-01 allocations:checking:savings:emergency                  20.00 take total=  650.00 taken=       0 taking=   20.00 after=  630.00 assets:checking:reserved refs=['P_96', 'ISLGDJ6A5AQ3A', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: emergency-payback', 'debug: require-payback']
-[   INFO] 2021-02-01 allocations:checking:savings:emergency                  20.00 returning
-[  DEBUG] 2021-02-01 allocations:checking:available:services                 20.00 take total=  650.00 taken=   20.00 taking=   20.00 after=  610.00 assets:checking:reserved refs=['P_98', 'E5M2X775EV3JC', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-02-01 allocations:checking:available:home                    100.00 take total=  650.00 taken=   40.00 taking=  100.00 after=  510.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
+[   INFO] 2021-02-01                                                               pay-from expenses=    120.00 emergency=         0  2/ 0 upcoming=2021-02-15
+[  DEBUG] 2021-02-01 allocations:checking:available:services                 20.00 take total=  650.00 taken=  620.00 taking=   20.00 after=   10.00 assets:checking:reserved refs=['P_98', 'E5M2X775EV3JC', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-01 allocations:checking:available:home                    100.00 take total=  650.00 taken=  640.00 taking=   10.00 after=    0.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
+[  DEBUG] 2021-02-01 allocations:checking:available:home                     90.00 take total=  650.00 taken=       0 taking=   90.00 after=  560.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
 [   INFO] 2021-02-01 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-01                                                               pay-from expenses=         0 emergency=         0  0/ 0 upcoming=2021-02-15
-[   INFO] 2021-02-05 ------------------------------------------------------------------------------------------
-[   INFO] 2021-02-05                                                               pay-from expenses=        50 emergency=         0  1/ 0 upcoming=2021-02-15
-[  DEBUG] 2021-02-05 allocations:checking:savings:slow                          50 take total=  650.00 taken=  140.00 taking=      50 after=  460.00 assets:checking:reserved refs=['P_16', 'EZWOM32I57EN4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-07 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-07                                                               pay-from expenses=    200.00 emergency=         0  1/ 0 upcoming=2021-02-15
-[  DEBUG] 2021-02-07 allocations:checking:available:groceries               200.00 take total=  650.00 taken=  190.00 taking=  200.00 after=  260.00 assets:checking:reserved refs=['P_100', 'QNJU4U6AD7DNI', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-07 allocations:checking:available:groceries               200.00 take total=  650.00 taken=   90.00 taking=  200.00 after=  360.00 assets:checking:reserved refs=['P_100', 'QNJU4U6AD7DNI', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[   INFO] 2021-02-08 ------------------------------------------------------------------------------------------
+[   INFO] 2021-02-08                                                               pay-from expenses=        50 emergency=         0  1/ 0 upcoming=2021-02-15
+[  DEBUG] 2021-02-08 allocations:checking:savings:slow                          50 take total=  650.00 taken=  290.00 taking=      50 after=  310.00 assets:checking:reserved refs=['P_14', 'EZWOM32I57EN4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-09 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-09                                                               pay-from expenses=    150.00 emergency=         0  1/ 0 upcoming=2021-02-15
-[  DEBUG] 2021-02-09 allocations:checking:available:dinner                  150.00 take total=  650.00 taken=  390.00 taking=  150.00 after=  110.00 assets:checking:reserved refs=['P_102', 'SPOWR74QD4NKY', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-09 allocations:checking:available:dinner                  150.00 take total=  650.00 taken=  340.00 taking=  150.00 after=  160.00 assets:checking:reserved refs=['P_102', 'SPOWR74QD4NKY', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-14 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-14                                                               pay-from expenses=    100.00 emergency=         0  1/ 0 upcoming=2021-02-15
-[  DEBUG] 2021-02-14 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  540.00 taking=  100.00 after=   10.00 assets:checking:reserved refs=['P_104', 'EHBDCR2JBCJU4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-14 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  490.00 taking=  100.00 after=   60.00 assets:checking:reserved refs=['P_104', 'EHBDCR2JBCJU4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-15 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-15                                                               pay-from expenses=         0 emergency=         0  0/ 0 upcoming=2021-02-28
-[   INFO] 2021-02-19 ------------------------------------------------------------------------------------------
-[   INFO] 2021-02-19                                                               pay-from expenses=        50 emergency=         0  1/ 0 upcoming=2021-02-28
-[  DEBUG] 2021-02-19 allocations:checking:savings:slow                          50 take total=  650.00 taken=  640.00 taking=   10.00 after=    0.00 assets:checking:reserved refs=['P_18', 'EZWOM32I57EN4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-02-19 allocations:checking:savings:slow                       40.00 take total=  550.00 taken=       0 taking=   40.00 after=  510.00 assets:checking:reserved refs=['P_18', 'EZWOM32I57EN4', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-28 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-28                                                               pay-from expenses=    100.00 emergency=         0  1/ 0 upcoming=2021-03-01
-[  DEBUG] 2021-02-28 allocations:checking:available:groceries               100.00 take total=  550.00 taken=   40.00 taking=  100.00 after=  410.00 assets:checking:reserved refs=['P_106', 'GRUOVMS72RAVI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-28 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  590.00 taking=   60.00 after=    0.00 assets:checking:reserved refs=['P_106', 'GRUOVMS72RAVI', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-28 allocations:checking:available:groceries                40.00 take total=  550.00 taken=       0 taking=   40.00 after=  510.00 assets:checking:reserved refs=['P_106', 'GRUOVMS72RAVI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-28 allocations:checking:available:groceries               100.00 taxing      10.00 allocations:checking:savings:main
-[  DEBUG] 2021-02-28 allocations:checking:savings:main                       10.00 take total=  550.00 taken=  140.00 taking=   10.00 after=  400.00 assets:checking:reserved refs=['P_106', 'GRUOVMS72RAVI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: tax']
+[  DEBUG] 2021-02-28 allocations:checking:savings:main                       10.00 take total=  550.00 taken=   40.00 taking=   10.00 after=  500.00 assets:checking:reserved refs=['P_106', 'GRUOVMS72RAVI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: tax']
 [   INFO] 2021-02-28 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-28                                                               pay-from expenses=         0 emergency=         0  0/ 0 upcoming=2021-03-01
 [   INFO] 2021-03-01 ------------------------------------------------------------------------------------------
 [   INFO] 2021-03-01                                                               pay-from expenses=     20.00 emergency=         0  1/ 0 upcoming=2021-03-02
-[  DEBUG] 2021-03-01 allocations:checking:available:services                 20.00 take total=  550.00 taken=  150.00 taking=   20.00 after=  380.00 assets:checking:reserved refs=['P_108', 'AEADQD6QW7FJU', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-03-01 allocations:checking:available:services                 20.00 take total=  550.00 taken=   50.00 taking=   20.00 after=  480.00 assets:checking:reserved refs=['P_108', 'AEADQD6QW7FJU', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-03-01 ------------------------------------------------------------------------------------------
 [   INFO] 2021-03-01                                                               pay-from expenses=         0 emergency=         0  0/ 0 upcoming=2021-03-02
 [   INFO] 2021-03-01 unpaid: 0
@@ -863,22 +843,21 @@
 [   INFO] 2021-03-01 allocations:checking:available:services                -60.00 +      60.00 =       0.00
 [   INFO] 2021-03-01 allocations:checking:mortgage                        -1200.00 +          0 =   -1200.00
 [   INFO] 2021-03-01 allocations:checking:savings                          4500.00 +          0 =    4500.00
-[   INFO] 2021-03-01 allocations:checking:savings:emergency                1000.00 +     540.00 =    1540.00
-[   INFO] 2021-03-01 allocations:checking:savings:slow                    -2000.00 +        200 =   -1800.00
+[   INFO] 2021-03-01 allocations:checking:savings:emergency                1000.00 +     520.00 =    1520.00
+[   INFO] 2021-03-01 allocations:checking:savings:slow                    -2000.00 +        100 =   -1900.00
 [   INFO] 2021-03-01 available:all
 [   INFO]            ACCOUNT                                                  LEFT /      TOTAL
 [  DEBUG] 2021-01-15 assets:checking:reserved                                 0.00 /     650.00
 [  DEBUG] 2021-02-01 assets:checking:reserved                                 0.00 /     650.00
-[   INFO] 2021-02-15 assets:checking:reserved                               380.00 /     550.00
+[   INFO] 2021-02-15 assets:checking:reserved                               480.00 /     550.00
 [   INFO] 2021-02-28 assets:checking:reserved                               550.00 /     550.00
 [   INFO] 2021-03-01 assets:checking:reserved                               550.00 /     550.00
-[   INFO] 2021-01-01 allocations:checking:savings:emergency                 460.00 /    1000.00
+[   INFO] 2021-01-01 allocations:checking:savings:emergency                 480.00 /    1000.00
 [   INFO] 2021-01-15 allocations:checking:savings:emergency                 520.00 /     520.00
-[   INFO] 2021-02-01 allocations:checking:savings:emergency                  20.00 /      20.00
 [   INFO] 2021-03-01 available:end
 [   INFO] 2021-03-01 income-after-static: 2950.00
-[   INFO] 2021-03-01 income-after-payback: 2480.00
-[   INFO] 2021-03-01 ytd-spending: 1460.00
+[   INFO] 2021-03-01 income-after-payback: 2580.00
+[   INFO] 2021-03-01 ytd-spending: 1360.00
 [WARNING] today overriden to 2021-03-15 00:00:00
 [   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-02-01 handler expenses:home (expenses:home): EnvelopedMoneyHandler(envelope='allocations:checking:available:home')
@@ -902,45 +881,45 @@
 [  DEBUG] 2021-01-05 schedule:     100.00 note='groceries'
 [   INFO] 2021-01-08 handler allocations:checking:savings:slow (allocations:checking:savings:slow): Schedule(today=datetime.datetime(2021, 3, 15, 0, 0), maximum=Decimal('50'))
 [  DEBUG] schedule: date=2021-01-08 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-01-22 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-02-05 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-02-19 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-03-05 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-03-19 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-02 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-16 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-30 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-05-14 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-05-28 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-06-11 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-06-25 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-07-09 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-07-23 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-08-06 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-08-20 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-09-03 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-09-17 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-01 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-15 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-29 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-11-12 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-11-26 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-12-10 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-12-24 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-01-07 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-01-21 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-02-04 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-02-18 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-03-04 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-03-18 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-01 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-15 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-29 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-05-13 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-05-27 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-06-10 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-06-24 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-07-08 00:00:00 50.00 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-04-08 00:00:00 50.00 note=whoa, unexpected purchase
 [   INFO] 2021-01-09 handler allocations:checking:available:dinner (allocations:checking:available:.+): Schedule(today=datetime.datetime(2021, 3, 15, 0, 0), maximum=None)
 [  DEBUG] 2021-01-09 schedule:     150.00 note='fancy dinner'
 [  DEBUG] 2021-01-12 schedule:     200.00 note='groceries'
@@ -1026,61 +1005,53 @@
 [  DEBUG] 2021-01-15 allocations:checking:savings:emergency                 200.00 take total=  650.00 taken=  320.00 taking=  200.00 after=  130.00 assets:checking:reserved refs=['P_95', 'WO7D2EMXY42FA', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: emergency-payback', 'debug: require-payback']
 [   INFO] 2021-01-15 allocations:checking:savings:emergency                 200.00 returning
 [   INFO] 2021-01-22 ------------------------------------------------------------------------------------------
-[   INFO] 2021-01-22                                                               pay-from expenses=    150.00 emergency=         0  2/ 0 upcoming=2021-02-01
-[  DEBUG] 2021-01-22 allocations:checking:savings:slow                          50 take total=  650.00 taken=  520.00 taking=      50 after=   80.00 assets:checking:reserved refs=['P_15', 'EZWOM32I57EN4', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-01-22 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  570.00 taking=   80.00 after=    0.00 assets:checking:reserved refs=['P_97', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-01-22 allocations:checking:available:groceries                20.00 take total= 1000.00 taken=  520.00 taking=   20.00 after=  460.00 allocations:checking:savings:emergency refs=['P_97', 'ISLGDJ6A5AQ3A'] tags=['debug: emergency-payback']+['debug: schedule-handler']
-[   INFO] 2021-01-22 allocations:checking:savings:emergency                  20.00 require-payback refs=['P_97', 'ISLGDJ6A5AQ3A'] mid=P_199 'groceries'
-[  DEBUG] 2021-01-22 allocations:checking:savings:emergency                  20.00 payment redate 2021-02-01
+[   INFO] 2021-01-22                                                               pay-from expenses=    100.00 emergency=         0  1/ 0 upcoming=2021-02-01
+[  DEBUG] 2021-01-22 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  520.00 taking=  100.00 after=   30.00 assets:checking:reserved refs=['P_97', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-01 ------------------------------------------------------------------------------------------
-[   INFO] 2021-02-01                                                               pay-from expenses=    120.00 emergency=     20.00  2/ 1 upcoming=2021-02-15
-[  DEBUG] 2021-02-01 allocations:checking:savings:emergency                  20.00 take total=  650.00 taken=       0 taking=   20.00 after=  630.00 assets:checking:reserved refs=['P_97', 'ISLGDJ6A5AQ3A', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: emergency-payback', 'debug: require-payback']
-[   INFO] 2021-02-01 allocations:checking:savings:emergency                  20.00 returning
-[  DEBUG] 2021-02-01 allocations:checking:available:services                 20.00 take total=  650.00 taken=   20.00 taking=   20.00 after=  610.00 assets:checking:reserved refs=['P_99', 'E5M2X775EV3JC', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-02-01 allocations:checking:available:home                    100.00 take total=  650.00 taken=   40.00 taking=  100.00 after=  510.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
+[   INFO] 2021-02-01                                                               pay-from expenses=    120.00 emergency=         0  2/ 0 upcoming=2021-02-15
+[  DEBUG] 2021-02-01 allocations:checking:available:services                 20.00 take total=  650.00 taken=  620.00 taking=   20.00 after=   10.00 assets:checking:reserved refs=['P_99', 'E5M2X775EV3JC', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-01 allocations:checking:available:home                    100.00 take total=  650.00 taken=  640.00 taking=   10.00 after=    0.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
+[  DEBUG] 2021-02-01 allocations:checking:available:home                     90.00 take total=  650.00 taken=       0 taking=   90.00 after=  560.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
 [   INFO] 2021-02-01 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-01                                                               pay-from expenses=         0 emergency=         0  0/ 0 upcoming=2021-02-15
-[   INFO] 2021-02-05 ------------------------------------------------------------------------------------------
-[   INFO] 2021-02-05                                                               pay-from expenses=        50 emergency=         0  1/ 0 upcoming=2021-02-15
-[  DEBUG] 2021-02-05 allocations:checking:savings:slow                          50 take total=  650.00 taken=  140.00 taking=      50 after=  460.00 assets:checking:reserved refs=['P_17', 'EZWOM32I57EN4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-07 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-07                                                               pay-from expenses=    200.00 emergency=         0  1/ 0 upcoming=2021-02-15
-[  DEBUG] 2021-02-07 allocations:checking:available:groceries               200.00 take total=  650.00 taken=  190.00 taking=  200.00 after=  260.00 assets:checking:reserved refs=['P_101', 'QNJU4U6AD7DNI', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-07 allocations:checking:available:groceries               200.00 take total=  650.00 taken=   90.00 taking=  200.00 after=  360.00 assets:checking:reserved refs=['P_101', 'QNJU4U6AD7DNI', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[   INFO] 2021-02-08 ------------------------------------------------------------------------------------------
+[   INFO] 2021-02-08                                                               pay-from expenses=        50 emergency=         0  1/ 0 upcoming=2021-02-15
+[  DEBUG] 2021-02-08 allocations:checking:savings:slow                          50 take total=  650.00 taken=  290.00 taking=      50 after=  310.00 assets:checking:reserved refs=['P_15', 'EZWOM32I57EN4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-09 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-09                                                               pay-from expenses=    150.00 emergency=         0  1/ 0 upcoming=2021-02-15
-[  DEBUG] 2021-02-09 allocations:checking:available:dinner                  150.00 take total=  650.00 taken=  390.00 taking=  150.00 after=  110.00 assets:checking:reserved refs=['P_103', 'SPOWR74QD4NKY', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-09 allocations:checking:available:dinner                  150.00 take total=  650.00 taken=  340.00 taking=  150.00 after=  160.00 assets:checking:reserved refs=['P_103', 'SPOWR74QD4NKY', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-14 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-14                                                               pay-from expenses=    100.00 emergency=         0  1/ 0 upcoming=2021-02-15
-[  DEBUG] 2021-02-14 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  540.00 taking=  100.00 after=   10.00 assets:checking:reserved refs=['P_105', 'EHBDCR2JBCJU4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-14 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  490.00 taking=  100.00 after=   60.00 assets:checking:reserved refs=['P_105', 'EHBDCR2JBCJU4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-15 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-15                                                               pay-from expenses=         0 emergency=         0  0/ 0 upcoming=2021-02-28
-[   INFO] 2021-02-19 ------------------------------------------------------------------------------------------
-[   INFO] 2021-02-19                                                               pay-from expenses=        50 emergency=         0  1/ 0 upcoming=2021-02-28
-[  DEBUG] 2021-02-19 allocations:checking:savings:slow                          50 take total=  650.00 taken=  640.00 taking=   10.00 after=    0.00 assets:checking:reserved refs=['P_19', 'EZWOM32I57EN4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-02-19 allocations:checking:savings:slow                       40.00 take total=  550.00 taken=       0 taking=   40.00 after=  510.00 assets:checking:reserved refs=['P_19', 'EZWOM32I57EN4', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-28 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-28                                                               pay-from expenses=    100.00 emergency=         0  1/ 0 upcoming=2021-03-01
-[  DEBUG] 2021-02-28 allocations:checking:available:groceries               100.00 take total=  550.00 taken=   40.00 taking=  100.00 after=  410.00 assets:checking:reserved refs=['P_107', 'GRUOVMS72RAVI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-28 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  590.00 taking=   60.00 after=    0.00 assets:checking:reserved refs=['P_107', 'GRUOVMS72RAVI', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-28 allocations:checking:available:groceries                40.00 take total=  550.00 taken=       0 taking=   40.00 after=  510.00 assets:checking:reserved refs=['P_107', 'GRUOVMS72RAVI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-28 allocations:checking:available:groceries               100.00 taxing      10.00 allocations:checking:savings:main
-[  DEBUG] 2021-02-28 allocations:checking:savings:main                       10.00 take total=  550.00 taken=  140.00 taking=   10.00 after=  400.00 assets:checking:reserved refs=['P_107', 'GRUOVMS72RAVI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: tax']
+[  DEBUG] 2021-02-28 allocations:checking:savings:main                       10.00 take total=  550.00 taken=   40.00 taking=   10.00 after=  500.00 assets:checking:reserved refs=['P_107', 'GRUOVMS72RAVI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: tax']
 [   INFO] 2021-02-28 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-28                                                               pay-from expenses=         0 emergency=         0  0/ 0 upcoming=2021-03-01
 [   INFO] 2021-03-01 ------------------------------------------------------------------------------------------
 [   INFO] 2021-03-01                                                               pay-from expenses=     20.00 emergency=         0  1/ 0 upcoming=2021-03-15
-[  DEBUG] 2021-03-01 allocations:checking:available:services                 20.00 take total=  550.00 taken=  150.00 taking=   20.00 after=  380.00 assets:checking:reserved refs=['P_109', 'AEADQD6QW7FJU', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-03-01 allocations:checking:available:services                 20.00 take total=  550.00 taken=   50.00 taking=   20.00 after=  480.00 assets:checking:reserved refs=['P_109', 'AEADQD6QW7FJU', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-03-01 ------------------------------------------------------------------------------------------
 [   INFO] 2021-03-01                                                               pay-from expenses=         0 emergency=         0  0/ 0 upcoming=2021-03-15
 [   INFO] 2021-03-03 ------------------------------------------------------------------------------------------
 [   INFO] 2021-03-03                                                               pay-from expenses=    100.00 emergency=         0  1/ 0 upcoming=2021-03-15
-[  DEBUG] 2021-03-03 allocations:checking:available:groceries               100.00 take total=  550.00 taken=  170.00 taking=  100.00 after=  280.00 assets:checking:reserved refs=['P_111', 'KJOBPVI2ITPLK', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-03-03 allocations:checking:available:groceries               100.00 take total=  550.00 taken=   70.00 taking=  100.00 after=  380.00 assets:checking:reserved refs=['P_111', 'KJOBPVI2ITPLK', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-03-03 allocations:checking:available:groceries               100.00 taxing      10.00 allocations:checking:savings:main
-[  DEBUG] 2021-03-03 allocations:checking:savings:main                       10.00 take total=  550.00 taken=  270.00 taking=   10.00 after=  270.00 assets:checking:reserved refs=['P_111', 'KJOBPVI2ITPLK', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: tax']
-[   INFO] 2021-03-05 ------------------------------------------------------------------------------------------
-[   INFO] 2021-03-05                                                               pay-from expenses=        50 emergency=         0  1/ 0 upcoming=2021-03-15
-[  DEBUG] 2021-03-05 allocations:checking:savings:slow                          50 take total=  550.00 taken=  280.00 taking=      50 after=  220.00 assets:checking:reserved refs=['P_21', 'EZWOM32I57EN4', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-03-03 allocations:checking:savings:main                       10.00 take total=  550.00 taken=  170.00 taking=   10.00 after=  370.00 assets:checking:reserved refs=['P_111', 'KJOBPVI2ITPLK', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: tax']
+[   INFO] 2021-03-08 ------------------------------------------------------------------------------------------
+[   INFO] 2021-03-08                                                               pay-from expenses=        50 emergency=         0  1/ 0 upcoming=2021-03-15
+[  DEBUG] 2021-03-08 allocations:checking:savings:slow                          50 take total=  550.00 taken=  180.00 taking=      50 after=  320.00 assets:checking:reserved refs=['P_17', 'EZWOM32I57EN4', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-03-09 ------------------------------------------------------------------------------------------
 [   INFO] 2021-03-09                                                               pay-from expenses=    150.00 emergency=         0  1/ 0 upcoming=2021-03-15
-[  DEBUG] 2021-03-09 allocations:checking:available:dinner                  150.00 take total=  550.00 taken=  330.00 taking=  150.00 after=   70.00 assets:checking:reserved refs=['P_113', 'BWVY3FPFVCZTQ', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-03-09 allocations:checking:available:dinner                  150.00 take total=  550.00 taken=  230.00 taking=  150.00 after=  170.00 assets:checking:reserved refs=['P_113', 'BWVY3FPFVCZTQ', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-03-15 ------------------------------------------------------------------------------------------
 [   INFO] 2021-03-15                                                               pay-from expenses=         0 emergency=         0  0/ 0 upcoming=2021-03-16
 [   INFO] 2021-03-15 unpaid: 0
@@ -1090,23 +1061,22 @@
 [   INFO] 2021-03-15 allocations:checking:available:services                -60.00 +      60.00 =       0.00
 [   INFO] 2021-03-15 allocations:checking:mortgage                        -2400.00 +          0 =   -2400.00
 [   INFO] 2021-03-15 allocations:checking:savings                          4500.00 +          0 =    4500.00
-[   INFO] 2021-03-15 allocations:checking:savings:emergency                1000.00 +     540.00 =    1540.00
-[   INFO] 2021-03-15 allocations:checking:savings:slow                    -2000.00 +        250 =   -1750.00
+[   INFO] 2021-03-15 allocations:checking:savings:emergency                1000.00 +     520.00 =    1520.00
+[   INFO] 2021-03-15 allocations:checking:savings:slow                    -2000.00 +        150 =   -1850.00
 [   INFO] 2021-03-15 available:all
 [   INFO]            ACCOUNT                                                  LEFT /      TOTAL
 [  DEBUG] 2021-01-15 assets:checking:reserved                                 0.00 /     650.00
 [  DEBUG] 2021-02-01 assets:checking:reserved                                 0.00 /     650.00
-[   INFO] 2021-02-15 assets:checking:reserved                                70.00 /     550.00
+[   INFO] 2021-02-15 assets:checking:reserved                               170.00 /     550.00
 [   INFO] 2021-02-28 assets:checking:reserved                               550.00 /     550.00
 [   INFO] 2021-03-01 assets:checking:reserved                               550.00 /     550.00
 [   INFO] 2021-03-15 assets:checking:reserved                               550.00 /     550.00
-[   INFO] 2021-01-01 allocations:checking:savings:emergency                 460.00 /    1000.00
+[   INFO] 2021-01-01 allocations:checking:savings:emergency                 480.00 /    1000.00
 [   INFO] 2021-01-15 allocations:checking:savings:emergency                 520.00 /     520.00
-[   INFO] 2021-02-01 allocations:checking:savings:emergency                  20.00 /      20.00
 [   INFO] 2021-03-15 available:end
 [   INFO] 2021-03-15 income-after-static: 3500.00
-[   INFO] 2021-03-15 income-after-payback: 2720.00
-[   INFO] 2021-03-15 ytd-spending: 1760.00
+[   INFO] 2021-03-15 income-after-payback: 2820.00
+[   INFO] 2021-03-15 ytd-spending: 1660.00
 [WARNING] today overriden to 2021-04-23 00:00:00
 [   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-02-01 handler expenses:home (expenses:home): EnvelopedMoneyHandler(envelope='allocations:checking:available:home')
@@ -1132,45 +1102,45 @@
 [  DEBUG] 2021-01-05 schedule:     100.00 note='groceries'
 [   INFO] 2021-01-08 handler allocations:checking:savings:slow (allocations:checking:savings:slow): Schedule(today=datetime.datetime(2021, 4, 23, 0, 0), maximum=Decimal('50'))
 [  DEBUG] schedule: date=2021-01-08 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-01-22 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-02-05 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-02-19 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-03-05 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-03-19 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-02 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-16 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-04-30 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-05-14 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-05-28 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-06-11 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-06-25 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-07-09 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-07-23 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-08-06 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-08-20 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-09-03 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-09-17 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-01 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-15 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-10-29 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-11-12 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-11-26 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-12-10 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2021-12-24 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-01-07 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-01-21 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-02-04 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-02-18 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-03-04 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-03-18 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-01 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-15 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-04-29 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-05-13 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-05-27 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-06-10 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-06-24 00:00:00 50 note=whoa, unexpected purchase
-[  DEBUG] schedule: date=2022-07-08 00:00:00 50.00 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2021-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2022-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-04-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-05-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-06-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-07-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-08-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-09-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-10-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-11-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2023-12-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-01-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-02-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-03-08 00:00:00 50 note=whoa, unexpected purchase
+[  DEBUG] schedule: date=2024-04-08 00:00:00 50.00 note=whoa, unexpected purchase
 [   INFO] 2021-01-09 handler allocations:checking:available:dinner (allocations:checking:available:.+): Schedule(today=datetime.datetime(2021, 4, 23, 0, 0), maximum=None)
 [  DEBUG] 2021-01-09 schedule:     150.00 note='fancy dinner'
 [  DEBUG] 2021-01-12 schedule:     200.00 note='groceries'
@@ -1247,79 +1217,71 @@
 [  DEBUG] 2021-01-12 allocations:checking:available:groceries               200.00 payment redate 2021-01-15
 [  DEBUG] 2021-01-15 allocations:checking:available:groceries               200.00 take total=  650.00 taken=  320.00 taking=  200.00 after=  130.00 assets:checking:reserved refs=['P_97', 'WO7D2EMXY42FA', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-01 ------------------------------------------------------------------------------------------
-[   INFO] 2021-02-01                                                               pay-from expenses=    270.00 emergency=         0  4/ 0 upcoming=2021-02-15
-[  DEBUG] 2021-01-22 allocations:checking:savings:slow                          50 payment redate 2021-02-01
-[  DEBUG] 2021-02-01 allocations:checking:savings:slow                          50 take total=  650.00 taken=  520.00 taking=      50 after=   80.00 assets:checking:reserved refs=['P_17', 'EZWOM32I57EN4', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[   INFO] 2021-02-01                                                               pay-from expenses=    220.00 emergency=         0  3/ 0 upcoming=2021-02-15
 [  DEBUG] 2021-01-22 allocations:checking:available:groceries               100.00 payment redate 2021-02-01
-[  DEBUG] 2021-02-01 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  570.00 taking=   80.00 after=    0.00 assets:checking:reserved refs=['P_99', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-02-01 allocations:checking:available:groceries                20.00 take total=  650.00 taken=       0 taking=   20.00 after=  630.00 assets:checking:reserved refs=['P_99', 'ISLGDJ6A5AQ3A', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-02-01 allocations:checking:available:services                 20.00 take total=  650.00 taken=   20.00 taking=   20.00 after=  610.00 assets:checking:reserved refs=['P_101', 'E5M2X775EV3JC', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-02-01 allocations:checking:available:home                    100.00 take total=  650.00 taken=   40.00 taking=  100.00 after=  510.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
+[  DEBUG] 2021-02-01 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  520.00 taking=  100.00 after=   30.00 assets:checking:reserved refs=['P_99', 'ISLGDJ6A5AQ3A', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-01 allocations:checking:available:services                 20.00 take total=  650.00 taken=  620.00 taking=   20.00 after=   10.00 assets:checking:reserved refs=['P_101', 'E5M2X775EV3JC', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-01 allocations:checking:available:home                    100.00 take total=  650.00 taken=  640.00 taking=   10.00 after=    0.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
+[  DEBUG] 2021-02-01 allocations:checking:available:home                     90.00 take total=  650.00 taken=       0 taking=   90.00 after=  560.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
 [   INFO] 2021-02-15 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-15                                                               pay-from expenses=    500.00 emergency=         0  4/ 0 upcoming=2021-02-28
-[  DEBUG] 2021-02-05 allocations:checking:savings:slow                          50 payment redate 2021-02-15
-[  DEBUG] 2021-02-15 allocations:checking:savings:slow                          50 take total=  650.00 taken=  140.00 taking=      50 after=  460.00 assets:checking:reserved refs=['P_19', 'EZWOM32I57EN4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-08 allocations:checking:savings:slow                          50 payment redate 2021-02-15
+[  DEBUG] 2021-02-15 allocations:checking:savings:slow                          50 take total=  650.00 taken=   90.00 taking=      50 after=  510.00 assets:checking:reserved refs=['P_17', 'EZWOM32I57EN4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-02-07 allocations:checking:available:groceries               200.00 payment redate 2021-02-15
-[  DEBUG] 2021-02-15 allocations:checking:available:groceries               200.00 take total=  650.00 taken=  190.00 taking=  200.00 after=  260.00 assets:checking:reserved refs=['P_103', 'QNJU4U6AD7DNI', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-15 allocations:checking:available:groceries               200.00 take total=  650.00 taken=  140.00 taking=  200.00 after=  310.00 assets:checking:reserved refs=['P_103', 'QNJU4U6AD7DNI', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-15 allocations:checking:available:groceries               200.00 taxing      20.00 allocations:checking:savings:main
 [  DEBUG] 2021-02-09 allocations:checking:available:dinner                  150.00 payment redate 2021-02-15
-[  DEBUG] 2021-02-15 allocations:checking:available:dinner                  150.00 take total=  650.00 taken=  390.00 taking=  150.00 after=  110.00 assets:checking:reserved refs=['P_105', 'SPOWR74QD4NKY', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-15 allocations:checking:available:dinner                  150.00 take total=  650.00 taken=  340.00 taking=  150.00 after=  160.00 assets:checking:reserved refs=['P_105', 'SPOWR74QD4NKY', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-02-14 allocations:checking:available:groceries               100.00 payment redate 2021-02-15
-[  DEBUG] 2021-02-15 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  540.00 taking=  100.00 after=   10.00 assets:checking:reserved refs=['P_107', 'EHBDCR2JBCJU4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-15 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  490.00 taking=  100.00 after=   60.00 assets:checking:reserved refs=['P_107', 'EHBDCR2JBCJU4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-15 allocations:checking:available:groceries               100.00 taxing      10.00 allocations:checking:savings:main
 [   INFO] 2021-02-28 ------------------------------------------------------------------------------------------
-[   INFO] 2021-02-28                                                               pay-from expenses=    180.00 emergency=         0  4/ 0 upcoming=2021-03-01
+[   INFO] 2021-02-28                                                               pay-from expenses=    130.00 emergency=         0  3/ 0 upcoming=2021-03-01
 [  DEBUG] 2021-02-15 allocations:checking:savings:main                       10.00 payment redate 2021-02-28
-[  DEBUG] 2021-02-28 allocations:checking:savings:main                       10.00 take total=  650.00 taken=  640.00 taking=   10.00 after=    0.00 assets:checking:reserved refs=['P_107', 'EHBDCR2JBCJU4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: tax']
+[  DEBUG] 2021-02-28 allocations:checking:savings:main                       10.00 take total=  650.00 taken=  590.00 taking=   10.00 after=   50.00 assets:checking:reserved refs=['P_107', 'EHBDCR2JBCJU4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: tax']
 [  DEBUG] 2021-02-15 allocations:checking:savings:main                       20.00 payment redate 2021-02-28
-[  DEBUG] 2021-02-28 allocations:checking:savings:main                       20.00 take total=  550.00 taken=       0 taking=   20.00 after=  530.00 assets:checking:reserved refs=['P_103', 'QNJU4U6AD7DNI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: tax']
-[  DEBUG] 2021-02-19 allocations:checking:savings:slow                          50 payment redate 2021-02-28
-[  DEBUG] 2021-02-28 allocations:checking:savings:slow                          50 take total=  550.00 taken=   20.00 taking=      50 after=  480.00 assets:checking:reserved refs=['P_21', 'EZWOM32I57EN4', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-02-28 allocations:checking:available:groceries               100.00 take total=  550.00 taken=   70.00 taking=  100.00 after=  380.00 assets:checking:reserved refs=['P_109', 'GRUOVMS72RAVI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-28 allocations:checking:savings:main                       20.00 take total=  650.00 taken=  600.00 taking=   20.00 after=   30.00 assets:checking:reserved refs=['P_103', 'QNJU4U6AD7DNI', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: tax']
+[  DEBUG] 2021-02-28 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  620.00 taking=   30.00 after=    0.00 assets:checking:reserved refs=['P_109', 'GRUOVMS72RAVI', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-02-28 allocations:checking:available:groceries                70.00 take total=  550.00 taken=       0 taking=   70.00 after=  480.00 assets:checking:reserved refs=['P_109', 'GRUOVMS72RAVI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-28 allocations:checking:available:groceries               100.00 taxing      10.00 allocations:checking:savings:main
 [   INFO] 2021-03-01 ------------------------------------------------------------------------------------------
 [   INFO] 2021-03-01                                                               pay-from expenses=     30.00 emergency=         0  2/ 0 upcoming=2021-03-15
 [  DEBUG] 2021-02-28 allocations:checking:savings:main                       10.00 payment redate 2021-03-01
-[  DEBUG] 2021-03-01 allocations:checking:savings:main                       10.00 take total=  550.00 taken=  170.00 taking=   10.00 after=  370.00 assets:checking:reserved refs=['P_109', 'GRUOVMS72RAVI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: tax']
-[  DEBUG] 2021-03-01 allocations:checking:available:services                 20.00 take total=  550.00 taken=  180.00 taking=   20.00 after=  350.00 assets:checking:reserved refs=['P_111', 'AEADQD6QW7FJU', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-03-01 allocations:checking:savings:main                       10.00 take total=  550.00 taken=   70.00 taking=   10.00 after=  470.00 assets:checking:reserved refs=['P_109', 'GRUOVMS72RAVI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: tax']
+[  DEBUG] 2021-03-01 allocations:checking:available:services                 20.00 take total=  550.00 taken=   80.00 taking=   20.00 after=  450.00 assets:checking:reserved refs=['P_111', 'AEADQD6QW7FJU', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-03-15 ------------------------------------------------------------------------------------------
 [   INFO] 2021-03-15                                                               pay-from expenses=    300.00 emergency=         0  3/ 0 upcoming=2021-04-01
 [  DEBUG] 2021-03-03 allocations:checking:available:groceries               100.00 payment redate 2021-03-15
-[  DEBUG] 2021-03-15 allocations:checking:available:groceries               100.00 take total=  550.00 taken=  200.00 taking=  100.00 after=  250.00 assets:checking:reserved refs=['P_113', 'KJOBPVI2ITPLK', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-03-15 allocations:checking:available:groceries               100.00 take total=  550.00 taken=  100.00 taking=  100.00 after=  350.00 assets:checking:reserved refs=['P_113', 'KJOBPVI2ITPLK', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-03-15 allocations:checking:available:groceries               100.00 taxing      10.00 allocations:checking:savings:main
-[  DEBUG] 2021-03-05 allocations:checking:savings:slow                          50 payment redate 2021-03-15
-[  DEBUG] 2021-03-15 allocations:checking:savings:slow                          50 take total=  550.00 taken=  300.00 taking=      50 after=  200.00 assets:checking:reserved refs=['P_23', 'EZWOM32I57EN4', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-03-08 allocations:checking:savings:slow                          50 payment redate 2021-03-15
+[  DEBUG] 2021-03-15 allocations:checking:savings:slow                          50 take total=  550.00 taken=  200.00 taking=      50 after=  300.00 assets:checking:reserved refs=['P_19', 'EZWOM32I57EN4', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-03-09 allocations:checking:available:dinner                  150.00 payment redate 2021-03-15
-[  DEBUG] 2021-03-15 allocations:checking:available:dinner                  150.00 take total=  550.00 taken=  350.00 taking=  150.00 after=   50.00 assets:checking:reserved refs=['P_115', 'BWVY3FPFVCZTQ', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-03-15 allocations:checking:available:dinner                  150.00 take total=  550.00 taken=  250.00 taking=  150.00 after=  150.00 assets:checking:reserved refs=['P_115', 'BWVY3FPFVCZTQ', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-04-01 ------------------------------------------------------------------------------------------
-[   INFO] 2021-04-01                                                               pay-from expenses=    180.00 emergency=         0  4/ 0 upcoming=2021-04-15
+[   INFO] 2021-04-01                                                               pay-from expenses=    130.00 emergency=         0  3/ 0 upcoming=2021-04-15
 [  DEBUG] 2021-03-15 allocations:checking:savings:main                       10.00 payment redate 2021-04-01
-[  DEBUG] 2021-04-01 allocations:checking:savings:main                       10.00 take total=  550.00 taken=  500.00 taking=   10.00 after=   40.00 assets:checking:reserved refs=['P_113', 'KJOBPVI2ITPLK', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: tax']
-[  DEBUG] 2021-03-19 allocations:checking:savings:slow                          50 payment redate 2021-04-01
-[  DEBUG] 2021-04-01 allocations:checking:savings:slow                          50 take total=  550.00 taken=  510.00 taking=   40.00 after=    0.00 assets:checking:reserved refs=['P_25', 'EZWOM32I57EN4', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[  DEBUG] 2021-04-01 allocations:checking:savings:slow                       10.00 take total=  550.00 taken=       0 taking=   10.00 after=  540.00 assets:checking:reserved refs=['P_25', 'EZWOM32I57EN4', 'D3Y7JKSGZJ7P4'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-04-01 allocations:checking:savings:main                       10.00 take total=  550.00 taken=  400.00 taking=   10.00 after=  140.00 assets:checking:reserved refs=['P_113', 'KJOBPVI2ITPLK', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: tax']
 [  DEBUG] 2021-03-21 allocations:checking:available:groceries               100.00 payment redate 2021-04-01
-[  DEBUG] 2021-04-01 allocations:checking:available:groceries               100.00 take total=  550.00 taken=   10.00 taking=  100.00 after=  440.00 assets:checking:reserved refs=['P_117', 'CPXA5TECXIYG2', 'D3Y7JKSGZJ7P4'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-04-01 allocations:checking:available:groceries               100.00 take total=  550.00 taken=  410.00 taking=  100.00 after=   40.00 assets:checking:reserved refs=['P_117', 'CPXA5TECXIYG2', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-04-01 allocations:checking:available:groceries               100.00 taxing      10.00 allocations:checking:savings:main
-[  DEBUG] 2021-04-01 allocations:checking:available:services                 20.00 take total=  550.00 taken=  110.00 taking=   20.00 after=  420.00 assets:checking:reserved refs=['P_119', 'JPRLVBASTWWFI', 'D3Y7JKSGZJ7P4'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-04-01 allocations:checking:available:services                 20.00 take total=  550.00 taken=  510.00 taking=   20.00 after=   20.00 assets:checking:reserved refs=['P_119', 'JPRLVBASTWWFI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-04-15 ------------------------------------------------------------------------------------------
 [   INFO] 2021-04-15                                                               pay-from expenses=    210.00 emergency=         0  3/ 0 upcoming=2021-04-23
 [  DEBUG] 2021-04-01 allocations:checking:savings:main                       10.00 payment redate 2021-04-15
-[  DEBUG] 2021-04-15 allocations:checking:savings:main                       10.00 take total=  550.00 taken=  130.00 taking=   10.00 after=  410.00 assets:checking:reserved refs=['P_117', 'CPXA5TECXIYG2', 'D3Y7JKSGZJ7P4'] tags=['debug: income-remainder', 'income: job']+['debug: tax']
-[  DEBUG] 2021-04-02 allocations:checking:savings:slow                          50 payment redate 2021-04-15
-[  DEBUG] 2021-04-15 allocations:checking:savings:slow                          50 take total=  550.00 taken=  140.00 taking=      50 after=  360.00 assets:checking:reserved refs=['P_27', 'EZWOM32I57EN4', 'D3Y7JKSGZJ7P4'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-04-15 allocations:checking:savings:main                       10.00 take total=  550.00 taken=  530.00 taking=   10.00 after=   10.00 assets:checking:reserved refs=['P_117', 'CPXA5TECXIYG2', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: tax']
+[  DEBUG] 2021-04-08 allocations:checking:savings:slow                          50 payment redate 2021-04-15
+[  DEBUG] 2021-04-15 allocations:checking:savings:slow                          50 take total=  550.00 taken=  540.00 taking=   10.00 after=    0.00 assets:checking:reserved refs=['P_21', 'EZWOM32I57EN4', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-04-15 allocations:checking:savings:slow                       40.00 take total=  550.00 taken=       0 taking=   40.00 after=  510.00 assets:checking:reserved refs=['P_21', 'EZWOM32I57EN4', 'D3Y7JKSGZJ7P4'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-04-09 allocations:checking:available:dinner                  150.00 payment redate 2021-04-15
-[  DEBUG] 2021-04-15 allocations:checking:available:dinner                  150.00 take total=  550.00 taken=  190.00 taking=  150.00 after=  210.00 assets:checking:reserved refs=['P_121', '7YOLTM2QKNHCQ', 'D3Y7JKSGZJ7P4'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
-[   INFO] 2021-04-23 unpaid: Payment(date=datetime.datetime(2021, 4, 16, 0, 0), total=Decimal('50'), path='allocations:checking:savings:slow', note='whoa, unexpected purchase', tags=['debug: schedule-handler'], taken=Decimal('0'), where={}, refs=['P_29', 'EZWOM32I57EN4'], mid='P_30')
+[  DEBUG] 2021-04-15 allocations:checking:available:dinner                  150.00 take total=  550.00 taken=   40.00 taking=  150.00 after=  360.00 assets:checking:reserved refs=['P_121', '7YOLTM2QKNHCQ', 'D3Y7JKSGZJ7P4'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-04-23 unpaid: Payment(date=datetime.datetime(2021, 4, 20, 0, 0), total=Decimal('100.00'), path='allocations:checking:available:groceries', note='groceries', tags=['debug: schedule-handler'], taken=Decimal('0'), where={}, refs=['P_123', 'KORUDTQTBAF3E'], mid='P_124')
-[   INFO] 2021-04-23 unpaid: 150.00
-[   INFO] 2021-04-23 unpaid-non-emergency: 150.00
+[   INFO] 2021-04-23 unpaid: 100.00
+[   INFO] 2021-04-23 unpaid-non-emergency: 100.00
 [   INFO] 2021-04-23 ------------------------------------------------------------------------------------------
-[   INFO] 2021-04-23                                                               pay-from expenses=    150.00 emergency=         0  2/ 0 upcoming=
-[  DEBUG] 2021-04-16 allocations:checking:savings:slow                          50 payment redate 2021-04-23
-[  DEBUG] 2021-04-23 allocations:checking:savings:slow                          50 take total=  550.00 taken=  340.00 taking=      50 after=  160.00 assets:checking:reserved refs=['P_29', 'EZWOM32I57EN4', 'D3Y7JKSGZJ7P4'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[   INFO] 2021-04-23                                                               pay-from expenses=    100.00 emergency=         0  1/ 0 upcoming=
 [  DEBUG] 2021-04-20 allocations:checking:available:groceries               100.00 payment redate 2021-04-23
-[  DEBUG] 2021-04-23 allocations:checking:available:groceries               100.00 take total=  550.00 taken=  390.00 taking=  100.00 after=   60.00 assets:checking:reserved refs=['P_123', 'KORUDTQTBAF3E', 'D3Y7JKSGZJ7P4'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[  DEBUG] 2021-04-23 allocations:checking:available:groceries               100.00 take total=  550.00 taken=  190.00 taking=  100.00 after=  260.00 assets:checking:reserved refs=['P_123', 'KORUDTQTBAF3E', 'D3Y7JKSGZJ7P4'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-04-23 allocations:checking:available:groceries               100.00 taxing      10.00 allocations:checking:savings:main
 [   INFO] 2021-04-23 ACCOUNT                                               BALANCE +       PAID =        B+P
 [   INFO] 2021-04-23 allocations:checking:available:dinner                 -600.00 +     600.00 =       0.00
@@ -1328,13 +1290,13 @@
 [   INFO] 2021-04-23 allocations:checking:mortgage                        -3600.00 +          0 =   -3600.00
 [   INFO] 2021-04-23 allocations:checking:savings                          4500.00 +          0 =    4500.00
 [   INFO] 2021-04-23 allocations:checking:savings:emergency                1000.00 +          0 =    1000.00
-[   INFO] 2021-04-23 allocations:checking:savings:slow                    -2000.00 +        400 =   -1600.00
+[   INFO] 2021-04-23 allocations:checking:savings:slow                    -2000.00 +        200 =   -1800.00
 [   INFO] 2021-04-23 available:all
 [   INFO]            ACCOUNT                                                  LEFT /      TOTAL
 [  DEBUG] 2021-01-15 assets:checking:reserved                                 0.00 /     650.00
 [  DEBUG] 2021-02-01 assets:checking:reserved                                 0.00 /     650.00
 [  DEBUG] 2021-02-15 assets:checking:reserved                                 0.00 /     550.00
-[   INFO] 2021-02-28 assets:checking:reserved                                60.00 /     550.00
+[   INFO] 2021-02-28 assets:checking:reserved                               260.00 /     550.00
 [   INFO] 2021-03-01 assets:checking:reserved                               550.00 /     550.00
 [   INFO] 2021-03-15 assets:checking:reserved                               550.00 /     550.00
 [   INFO] 2021-04-01 assets:checking:reserved                               550.00 /     550.00
@@ -1342,5 +1304,5 @@
 [   INFO] 2021-01-01 allocations:checking:savings:emergency                1000.00 /    1000.00
 [   INFO] 2021-04-23 available:end
 [   INFO] 2021-04-23 income-after-static: 4600.00
-[   INFO] 2021-04-23 income-after-payback: 3260.00
-[   INFO] 2021-04-23 ytd-spending: 2280.00
+[   INFO] 2021-04-23 income-after-payback: 3460.00
+[   INFO] 2021-04-23 ytd-spending: 2080.00
