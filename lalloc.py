@@ -462,11 +462,11 @@ class TaxSystem:
         log.info(f"{date.date()} {path or note:50} {'':10} taxing {rate:.2}")
         self.taxes.append(Tax(date, rate, note=note, path=path))
 
-    def tax(self, payment: "DatedMoney", taken: Taken) -> List["Payment"]:
+    def tax(self, payment: "DatedMoney", taken_value: Decimal) -> List["Payment"]:
         for tax in self.taxes:
             if payment.date >= tax.date:
                 if tax.rate > 0 and tax.matches(payment):
-                    taxed = quantize(tax.rate * taken.total)
+                    taxed = quantize(tax.rate * taken_value)
                     log.info(
                         f"{payment.date.date()} {payment.path:50} {payment.total:10} taxing {taxed:10} {self.names.taxes}"
                     )
@@ -475,7 +475,7 @@ class TaxSystem:
                             date=payment.date,
                             total=taxed,
                             path=self.names.taxes,
-                            note=f"{tax.rate:.2} taxes on {taken.total} from {payment.date.date()} {payment.note}",
+                            note=f"{tax.rate:.2} taxes on {taken_value} from {payment.date.date()} {payment.note}",
                             tags=["debug: tax"],
                             refs=payment.refs,
                         )
@@ -685,7 +685,7 @@ class Spending:
                 self.paid.append(p)
                 need_sort = False
 
-                for tax in self.tax_system.tax(redated, taken):
+                for tax in self.tax_system.tax(redated, taken.total):
                     self.payments.append(tax)
                     need_sort = True
 
@@ -908,17 +908,24 @@ class EnvelopeDatedMoney(DatedMoney):
     envelope: Optional[str] = None
     source: Optional[str] = None
     cleared: bool = False
+    paid: bool = False
 
-    def allocated(self) -> List[DatedMoney]:
+    def allocated(self) -> List[Payment]:
         assert self.envelope
         assert self.note
         assert self.refs
         if self.total > 0:
+            if self.paid:
+                log.info(
+                    f"{self.date.date()} {self.source:50} {self.total:10} paid      refs={self.refs} mid={self.mid} '{self.note}'"
+                )
+                return []
+
             log.info(
                 f"{self.date.date()} {self.source:50} {self.total:10} allocated refs={self.refs} mid={self.mid} '{self.note}'"
             )
             return [
-                DatedMoney(
+                Payment(
                     self.date,
                     self.total,
                     self.envelope,
@@ -953,6 +960,13 @@ class EnvelopeDatedMoney(DatedMoney):
         assert self.envelope
         assert self.source
         assert self.refs
+
+        if self.paid:
+            log.info(
+                f"{self.date.date()} {self.source:50} {self.total:10} paid      refs={self.refs} mid={self.mid} '{self.note}'"
+            )
+            return []
+
         log.info(
             f"{self.date.date()} {self.source:50} {self.total:10} withdraw  refs={self.refs} mid={self.mid} '{self.note}'"
         )
@@ -975,14 +989,23 @@ class EnvelopedMoneyHandler(Handler):
     envelope: str
 
     def expand(self, tx: ledger.Transaction, posting: ledger.Posting):
-        if posting.note and ("noalloc:" in posting.note or "manual:" in posting.note):
-            log.info(f"noalloc {posting}")
-            return []
+        assert tx.mid
+
+        paid = posting.note is not None and (
+            "noalloc:" in posting.note or "manual:" in posting.note
+        )
+
+        if posting.note:
+            if "noalloc:" in posting.note or "manual:" in posting.note:
+                log.info(f"noalloc {posting}")
+                if "tax:" in posting.note:
+                    pass
+                else:
+                    return []
 
         source = self._get_envelope_source(tx)
 
         log.info(f"allocate {source} {posting}")
-        assert tx.mid
         return [
             EnvelopeDatedMoney(
                 date=tx.date,
@@ -992,6 +1015,7 @@ class EnvelopedMoneyHandler(Handler):
                 envelope=self.envelope,
                 source=source,
                 cleared=tx.cleared,
+                paid=paid,
                 tags=["debug: envelope-money-handler"],
                 refs=[tx.mid],
             )
@@ -1070,20 +1094,6 @@ class Finances:
         # Turn all dated money in expenses into dated money in their envelopes.
         allocated_expenses = flatten([p.allocated() for p in purchases])
 
-        # Combine into dated money needing to be covered as spending.
-        spending_money = (
-            apply_handlers(allocation_transactions, self.cfg.spending)
-            + allocated_expenses
-        )
-        spending = Spending(
-            names,
-            self.today,
-            [p for p in spending_money if p.date <= self.today],
-            self.cfg.tax_system,
-        )
-
-        ytd_spending = sum([e.total for e in spending.payments])
-
         # A move is a simplified model that produces Transactions.
         moves: List[Move] = []
 
@@ -1140,6 +1150,30 @@ class Finances:
                 for dm in emergency_money
             ]
         )
+
+        # Tax paid purchases.
+        taxes_on_paid = flatten(
+            [
+                self.cfg.tax_system.tax(p, p.total)
+                for p in purchases
+                if p.date <= self.today and p.paid
+            ]
+        )
+
+        # Combine into dated money needing to be covered as spending.
+        spending_money = (
+            apply_handlers(allocation_transactions, self.cfg.spending)
+            + allocated_expenses
+            + taxes_on_paid
+        )
+        spending = Spending(
+            names,
+            self.today,
+            [p for p in spending_money if p.date <= self.today],
+            self.cfg.tax_system,
+        )
+
+        ytd_spending = sum([e.total for e in spending.payments])
 
         # If we're paranoid we'll be reconciling on income and every spend.
         income_dates = [period.date for period in income_periods]
