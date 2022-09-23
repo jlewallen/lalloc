@@ -813,8 +813,10 @@ class Schedule(Handler):
             refs=[tx.mid],
         )
 
+        from_payee = False
         if m := re.search("payoff:(\d+)", tx.payee):
             self.maximum = Decimal(m.group(1))
+            from_payee = True
 
         if self.maximum:
             payments: List[Payment] = []
@@ -822,7 +824,12 @@ class Schedule(Handler):
             date = expense.date
             while remaining > 0:
                 taking = self.maximum if remaining > self.maximum else remaining
-                log.debug(f"schedule: date={date} {taking} note={expense.note}")
+                if from_payee:
+                    log.debug(
+                        f"payee-schedule: date={date} {taking} note={expense.note}"
+                    )
+                else:
+                    log.debug(f"schedule: date={date} {taking} note={expense.note}")
                 payments.append(
                     Payment(
                         date=date,
