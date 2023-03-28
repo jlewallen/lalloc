@@ -173,6 +173,10 @@ class DatedMoney:
     where: Dict[str, Decimal] = field(default_factory=dict)
     refs: Optional[List[str]] = None
     mid: str = field(default_factory=PaymentId)
+    original_date: Optional[datetime] = None
+
+    def has_tag(self, name: str) -> bool:
+        return name in self.tags
 
     def left(self) -> Decimal:
         return self.total - self.taken
@@ -720,16 +724,23 @@ class Spending:
             ],
         )
 
-    def _get_payments(self, date: datetime) -> Tuple[List[Payment], List[Payment]]:
+    def _get_payments(
+        self, date: datetime
+    ) -> Tuple[List[Payment], List[Payment], List[Payment]]:
         emergency: List[Payment] = []
         expenses: List[Payment] = []
+        future_expenses: List[Payment] = []
         for payment in self.payments:
             if payment.date <= date and payment.date <= self.today:
                 if payment.path == self.names.emergency:
                     emergency.append(payment)
                 else:
                     expenses.append(payment)
-        return (emergency, expenses)
+
+            if payment.has_tag(DebugTagScheduled) and payment.date >= date:
+                future_expenses.append(payment)
+
+        return (emergency, expenses, future_expenses)
 
     def pay_from(
         self,
@@ -744,12 +755,13 @@ class Spending:
             f"{date.date()} ------------------------------------------------------------------------------------------"
         )
 
-        emergency, expenses = self._get_payments(date)
+        emergency, expenses, future_expenses = self._get_payments(date)
         total_expenses = sum([p.left() for p in expenses])
+        total_future_expenses = sum([p.left() for p in future_expenses])
         total_emergency = sum([p.left() for p in emergency])
         logged_upcoming = upcoming_payments.date() if upcoming_payments else ""
         log.info(
-            f"{date.date()} {'':50} {'':10} pay-from expenses={total_expenses:10} emergency={total_emergency:10} {len(expenses):2}/{len(emergency):2} upcoming={logged_upcoming}"
+            f"{date.date()} {'':50} {'':10} pay-from expenses={total_expenses:10} future_expenses={total_future_expenses:10} emergency={total_emergency:10} {len(expenses):2}/{len(emergency):2} upcoming={logged_upcoming} today={self.today}"
         )
 
         if self.verbose:
@@ -768,7 +780,7 @@ class Spending:
             # Now, get whatever can still be paid, this is a little more
             # expensive performance wise though way easier to maintain and work
             # with because there's only the one function to maintain.
-            emergency, expenses = self._get_payments(date)
+            emergency, expenses, future_expenses = self._get_payments(date)
 
             # If we have a pay date coming up, we can be more flexible with when
             # emergency gets paid back.
@@ -792,6 +804,9 @@ class Spending:
 
     def _sort(self):
         self.payments.sort(key=lambda p: (p.date, p.total))
+
+
+DebugTagScheduled = "debug: schedule-handler"
 
 
 @dataclass
@@ -833,10 +848,11 @@ class Schedule(Handler):
                 payments.append(
                     Payment(
                         date=date,
+                        original_date=expense.date,
                         total=taking,
                         path=expense.path,
                         note=expense.note,
-                        tags=["debug: schedule-handler"],
+                        tags=[DebugTagScheduled],
                         refs=[PaymentId()] + expense.refs,
                     )
                 )
@@ -1176,7 +1192,7 @@ class Finances:
         spending = Spending(
             names,
             self.today,
-            [p for p in spending_money if p.date <= self.today],
+            spending_money,
             self.cfg.tax_system,
         )
 
