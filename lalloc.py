@@ -63,6 +63,7 @@ class Names:
     emergency: str = "allocations:checking:savings:emergency"
     taxes: str = "allocations:checking:savings:main"
     reserved: str = "assets:checking:reserved"
+    early: str = "allocations:checking:early"
 
 
 class Handler:
@@ -278,6 +279,11 @@ class DatedMoney:
 
 
 @dataclass
+class PaysInFuture(DatedMoney):
+    pass
+
+
+@dataclass
 class RequirePayback(DatedMoney):
     def take(
         self,
@@ -327,7 +333,7 @@ class InsufficientFundsError(Exception):
 
 @dataclass
 class MoneyPool:
-    names: Names
+    names: Names = field(repr=False)
     money: List[DatedMoney] = field(default_factory=list)
 
     def add(
@@ -352,13 +358,19 @@ class MoneyPool:
     def left(self) -> Decimal:
         return Decimal(sum([dm.left() for dm in self.money]))
 
-    def only_income(self, date: datetime, names: Names) -> "MoneyPool":
+    def _only_income(self, date: datetime, names: Names) -> "MoneyPool":
         return MoneyPool(
             self.names,
             [dm for dm in self.money if dm.date >= date and dm.path != names.emergency],
         )
 
-    def only_emergency(self, date: datetime, names: Names) -> "MoneyPool":
+    def only_early_payoff(self, date: datetime, names: Names) -> "MoneyPool":
+        return MoneyPool(
+            self.names,
+            [dm for dm in self.money if dm.date <= date and dm.path == names.early],
+        )
+
+    def _only_emergency(self, date: datetime, names: Names) -> "MoneyPool":
         return MoneyPool(
             self.names,
             [dm for dm in self.money if dm.date >= date and dm.path == names.emergency],
@@ -653,10 +665,24 @@ class Spending:
     def balance(self, path: str) -> Decimal:
         return Decimal(sum([p.total for p in self.paid if p.path == path]))
 
+    def payments_due_on(self, date: datetime) -> Decimal:
+        payments = sum([p.total for p in self.payments if p.date == date])
+        return Decimal(payments)
+
+    def dates_after_today(self) -> List[datetime]:
+        unique: Dict[datetime, bool] = {
+            p.date: True for p in self.payments if self.today <= p.date
+        }
+        return list(unique.keys())
+
+    def dates_through_today(self) -> List[datetime]:
+        unique: Dict[datetime, bool] = {
+            p.date: True for p in self.payments if p.date <= self.today
+        }
+        return list(unique.keys())
+
     def dates(self) -> List[datetime]:
-        unique: Dict[datetime, bool] = {}
-        for p in self.payments:
-            unique[p.date] = True
+        unique: Dict[datetime, bool] = {p.date: True for p in self.payments}
         return list(unique.keys())
 
     def _make_payments(
@@ -757,11 +783,10 @@ class Spending:
 
         emergency, expenses, future_expenses = self._get_payments(date)
         total_expenses = sum([p.left() for p in expenses])
-        total_future_expenses = sum([p.left() for p in future_expenses])
         total_emergency = sum([p.left() for p in emergency])
         logged_upcoming = upcoming_payments.date() if upcoming_payments else ""
         log.info(
-            f"{date.date()} {'':50} {'':10} pay-from expenses={total_expenses:10} future_expenses={total_future_expenses:10} emergency={total_emergency:10} {len(expenses):2}/{len(emergency):2} upcoming={logged_upcoming} today={self.today}"
+            f"{date.date()} {'':50} {'':10} pay-from expenses={total_expenses:10} emergency={total_emergency:10} {len(expenses):2}/{len(emergency):2} upcoming={logged_upcoming} today={self.today.date()}"
         )
 
         if self.verbose:
@@ -771,12 +796,23 @@ class Spending:
                 )
             log.debug(f"{date.date()}")
 
-        if paranoid:
-            # Pay off whatever we can from, partially so no errors if this fails.
-            paid = self._make_payments(
-                date, money, upcoming_payments, emergency + expenses, partial=True
-            )
+        # Pay off whatever we can from, partially if we're paranoid and covering
+        # from emergency so only errors if not paranoid and we can't cover everything.
+        paid = self._make_payments(
+            date, money, upcoming_payments, emergency + expenses, partial=paranoid
+        )
 
+        only_future = money.only_early_payoff(date, self.names)
+        log.info(f"{date.date()} {only_future}")
+
+        paid_towards_future = self._make_payments(
+            date, only_future, upcoming_payments, future_expenses, partial=True
+        )
+        log.info(f"{date.date()} {paid_towards_future}")
+
+        paid = paid.combine(paid_towards_future)
+
+        if paranoid:
             # Now, get whatever can still be paid, this is a little more
             # expensive performance wise though way easier to maintain and work
             # with because there's only the one function to maintain.
@@ -799,8 +835,10 @@ class Spending:
                     self._make_payments(date, money, upcoming_payments, expenses)
                 )
 
+            log.info(f"{date.date()} no upcoming-payments date")
+
         # No unpaid payments allowed.
-        return self._make_payments(date, money, upcoming_payments, emergency + expenses)
+        return paid
 
     def _sort(self):
         self.payments.sort(key=lambda p: (p.date, p.total))
@@ -1149,6 +1187,24 @@ class Finances:
             )
             moves += allocator.moves
 
+        early_payoff_transactions = everything.only_postings_for(
+            self.cfg.names.early
+        ).before(self.today)
+
+        for tx in early_payoff_transactions.txns():
+            available.include(
+                [
+                    PaysInFuture(
+                        tx.date,
+                        tx.magnitude(),
+                        self.cfg.names.early,
+                        tx.payee,
+                        tags=["debug: early-payback"],
+                        refs=[tx.mid],
+                    )
+                ]
+            )
+
         # This is how much money is left over to cover other expenses.
         income_after_static = sum([dm.left() for dm in available.money])
 
@@ -1200,7 +1256,9 @@ class Finances:
 
         # If we're paranoid we'll be reconciling on income and every spend.
         income_dates = [period.date for period in income_periods]
-        reconcile_dates = income_dates + spending.dates() if paranoid else income_dates
+        reconcile_dates = (
+            income_dates + spending.dates_through_today() if paranoid else income_dates
+        )
         reconcile_dates.sort()
 
         try:
@@ -1301,6 +1359,12 @@ class Finances:
                 f"{self.today.date()} income-after-payback: {income_after_payback}"
             )
             log.info(f"{self.today.date()} ytd-spending: {ytd_spending}")
+
+            future_dates = spending.dates_after_today()
+            future_dates.sort()
+            for date in future_dates:
+                due = spending.payments_due_on(date)
+                log.info(f"{date.date()} payments-due: {due}")
         except InsufficientFundsError:
             log.error("InsufficientFundsError", exc_info=True)
 
