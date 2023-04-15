@@ -1044,7 +1044,6 @@ class EnvelopeDatedMoney(DatedMoney):
             )
         ]
 
-
 @dataclass
 class EnvelopedMoneyHandler(Handler):
     envelope: str
@@ -1052,14 +1051,13 @@ class EnvelopedMoneyHandler(Handler):
     def expand(self, tx: ledger.Transaction, posting: ledger.Posting):
         assert tx.mid
 
-        paid = posting.note is not None and (
-            "noalloc:" in posting.note or "manual:" in posting.note
-        )
-
-        if posting.note:
-            if "noalloc:" in posting.note or "manual:" in posting.note:
+        paid = False
+        if posting.note or tx.notes:
+            notes = (" ".join(tx.notes) if tx.notes else "") + " " + (posting.note if posting.note else "")
+            if "noalloc:" in notes or "manual:" in notes:
+                paid = True
                 log.info(f"noalloc {posting}")
-                if "tax:" in posting.note:
+                if "tax:" in notes:
                     pass
                 else:
                     return []
@@ -1095,6 +1093,12 @@ class EnvelopedMoneyHandler(Handler):
 
 
 @dataclass
+class Args:
+    paranoid: bool
+    json_file: Optional[str]
+
+
+@dataclass
 class Configuration:
     ledger_file: str
     names: Names
@@ -1112,15 +1116,25 @@ class Configuration:
 
 @dataclass
 class Finances:
+    args: Args
     cfg: Configuration
     today: datetime
 
-    def allocate(self, file: TextIO, paranoid: bool):
-        names = self.cfg.names
-        default_args = ["-S", "date", "--current"]
-
+    def load_everything(self) -> ledger.Transactions:
         l = ledger.Ledger(self.cfg.ledger_file)
-        everything = l.register(default_args)
+        if self.args.json_file:
+            return l.json_register(self.args.json_file)
+        else:
+            default_args = ["-S", "date", "--current"]
+            return l.register(default_args)
+
+    def allocate(self, file: TextIO):
+        names = self.cfg.names
+        paranoid = self.args.paranoid
+
+        everything = self.load_everything()
+
+        log.info(f"{len(everything.txns())} transactions")
 
         emergency_transactions = everything.only_postings_for(names.emergency).before(
             self.today
@@ -1483,17 +1497,17 @@ def parse_configuration(
     )
 
 
-def allocate(config_path: str, file_name: str, today: datetime, paranoid: bool) -> None:
+def allocate(config_path: str, file_name: str, today: datetime, args: Args) -> None:
     with open(config_path, "r") as file:
         raw = json.loads(file.read())
         configuration = parse_configuration(today=today, **raw)
 
-    f = Finances(configuration, today)
+    f = Finances(args, configuration, today)
 
     try_truncate_file(file_name)
 
     with open(file_name, "w") as file:
-        txs = f.allocate(file, paranoid)
+        txs = f.allocate(file)
         t = get_generated_template()
         rendered = t.render(txs=txs, txs_by_mid=ledger.txs_by_mid)
         file.write(rendered)
@@ -1518,6 +1532,9 @@ if __name__ == "__main__":
     parser.add_argument(
         "-l", "--ledger-file", action="store", default="lalloc.g.ledger"
     )
+    parser.add_argument(
+        "-j", "--json-file", action="store", default=None
+    )
     parser.add_argument("-t", "--today", action="store", default=None)
     parser.add_argument("-p", "--paranoid", action="store_true", default=False)
     parser.add_argument("-d", "--debug", action="store_true", default=False)
@@ -1533,4 +1550,4 @@ if __name__ == "__main__":
         today = datetime.strptime(args.today, "%Y/%m/%d")
         log.warning(f"today overriden to {today}")
 
-    allocate(args.config_file, args.ledger_file, today, args.paranoid)
+    allocate(args.config_file, args.ledger_file, today, Args(json_file=args.json_file, paranoid=args.paranoid))

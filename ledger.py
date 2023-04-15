@@ -65,6 +65,7 @@ class Transaction:
     payee: str
     cleared: bool
     postings: List[Posting] = field(default_factory=list)
+    notes: List[str] = field(default_factory=list)
     tags: List[str] = field(default_factory=list)
     refs: List[str] = field(default_factory=list)
     mid: Optional[str] = None
@@ -250,9 +251,27 @@ class Transactions:
         return [tx.serialize() for tx in self.txs]
 
 
+Cents = Decimal("0.01")
+
 @dataclass
 class Ledger:
     path: str
+
+    def json_register(self, path: str) -> Transactions:
+        def load_json_posting(value=None, note=None, **kwargs):
+            decimal_value = Decimal(value).quantize(Cents, ROUND_HALF_UP)
+            return Posting(value=decimal_value, note=note if note else '', **kwargs)
+
+        def load_json_tx(date=None, notes=None, postings=None, **kwargs):
+            assert postings is not None
+            assert date
+
+            typed_date = datetime.strptime(date, "%Y-%m-%dT%H:%M:%S")
+            return Transaction(date=typed_date, notes=notes, postings=[load_json_posting(**p) for p in postings], **kwargs)
+
+        with open(path) as f:
+            loaded = json.load(f)
+            return Transactions([load_json_tx(**tx) for tx in loaded])
 
     def register(self, expression: List[str]) -> Transactions:
         command = [
