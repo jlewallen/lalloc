@@ -35,7 +35,7 @@ class Posting:
     value: Decimal
     note: Optional[str] = None
     tags: List[str] = field(default_factory=list)
-    lines: Optional[Tuple[int, int]] = None
+    lines: Optional[Tuple[int, int]] = field(default=None, repr=False)
 
     def ledger_value(self) -> str:
         return f"${self.value:.2f}"

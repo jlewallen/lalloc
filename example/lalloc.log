@@ -1,7 +1,7 @@
 [WARNING] today overriden to 2021-01-05 00:00:00
 [   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-01-01 handler allocations:checking:savings:emergency (allocations:checking:savings:emergency): DatedMoneyHandler()
-[   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[], lines=(18, 18)) 1000.00
+[   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[]) 1000.00
 [   INFO] 2021-01-01 handler allocations:checking:available:services (allocations:checking:available:.+): DatedMoneyHandler()
 [   INFO] 2021-01-05 handler allocations:checking:available:groceries (allocations:checking:available:.+): DatedMoneyHandler()
 [   INFO] 2021-01-01 handler allocations:checking:available:services (allocations:checking:available:.+): Schedule(today=datetime.datetime(2021, 1, 5, 0, 0), maximum=None)
@@ -37,10 +37,11 @@
 [   INFO] 2021-01-05 income-after-static: 0
 [   INFO] 2021-01-05 income-after-payback: 880.00
 [   INFO] 2021-01-05 ytd-spending: 120.00
+[   INFO] 2021-01-06 payments-due: 120.00
 [WARNING] today overriden to 2021-01-09 00:00:00
 [   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-01-01 handler allocations:checking:savings:emergency (allocations:checking:savings:emergency): DatedMoneyHandler()
-[   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[], lines=(18, 18)) 1000.00
+[   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[]) 1000.00
 [   INFO] 2021-01-01 handler allocations:checking:available:services (allocations:checking:available:.+): DatedMoneyHandler()
 [   INFO] 2021-01-05 handler allocations:checking:available:groceries (allocations:checking:available:.+): DatedMoneyHandler()
 [   INFO] 2021-01-09 handler allocations:checking:available:dinner (allocations:checking:available:.+): DatedMoneyHandler()
@@ -183,10 +184,50 @@
 [   INFO] 2021-01-09 income-after-static: 0
 [   INFO] 2021-01-09 income-after-payback: 680.00
 [   INFO] 2021-01-09 ytd-spending: 2270.00
+[   INFO] 2021-01-10 payments-due: 320.00
+[   INFO] 2021-02-08 payments-due: 50
+[   INFO] 2021-03-08 payments-due: 50
+[   INFO] 2021-04-08 payments-due: 50
+[   INFO] 2021-05-08 payments-due: 50
+[   INFO] 2021-06-08 payments-due: 50
+[   INFO] 2021-07-08 payments-due: 50
+[   INFO] 2021-08-08 payments-due: 50
+[   INFO] 2021-09-08 payments-due: 50
+[   INFO] 2021-10-08 payments-due: 50
+[   INFO] 2021-11-08 payments-due: 50
+[   INFO] 2021-12-08 payments-due: 50
+[   INFO] 2022-01-08 payments-due: 50
+[   INFO] 2022-02-08 payments-due: 50
+[   INFO] 2022-03-08 payments-due: 50
+[   INFO] 2022-04-08 payments-due: 50
+[   INFO] 2022-05-08 payments-due: 50
+[   INFO] 2022-06-08 payments-due: 50
+[   INFO] 2022-07-08 payments-due: 50
+[   INFO] 2022-08-08 payments-due: 50
+[   INFO] 2022-09-08 payments-due: 50
+[   INFO] 2022-10-08 payments-due: 50
+[   INFO] 2022-11-08 payments-due: 50
+[   INFO] 2022-12-08 payments-due: 50
+[   INFO] 2023-01-08 payments-due: 50
+[   INFO] 2023-02-08 payments-due: 50
+[   INFO] 2023-03-08 payments-due: 50
+[   INFO] 2023-04-08 payments-due: 50
+[   INFO] 2023-05-08 payments-due: 50
+[   INFO] 2023-06-08 payments-due: 50
+[   INFO] 2023-07-08 payments-due: 50
+[   INFO] 2023-08-08 payments-due: 50
+[   INFO] 2023-09-08 payments-due: 50
+[   INFO] 2023-10-08 payments-due: 50
+[   INFO] 2023-11-08 payments-due: 50
+[   INFO] 2023-12-08 payments-due: 50
+[   INFO] 2024-01-08 payments-due: 50
+[   INFO] 2024-02-08 payments-due: 50
+[   INFO] 2024-03-08 payments-due: 50
+[   INFO] 2024-04-08 payments-due: 50.00
 [WARNING] today overriden to 2021-01-14 00:00:00
 [   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-01-01 handler allocations:checking:savings:emergency (allocations:checking:savings:emergency): DatedMoneyHandler()
-[   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[], lines=(18, 18)) 1000.00
+[   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[]) 1000.00
 [   INFO] 2021-01-01 handler allocations:checking:available:services (allocations:checking:available:.+): DatedMoneyHandler()
 [   INFO] 2021-01-05 handler allocations:checking:available:groceries (allocations:checking:available:.+): DatedMoneyHandler()
 [   INFO] 2021-01-09 handler allocations:checking:available:dinner (allocations:checking:available:.+): DatedMoneyHandler()
@@ -338,12 +379,52 @@
 [   INFO] 2021-01-14 income-after-static: 0
 [   INFO] 2021-01-14 income-after-payback: 480.00
 [   INFO] 2021-01-14 ytd-spending: 2470.00
+[   INFO] 2021-01-14 payments-due: 520.00
+[   INFO] 2021-02-08 payments-due: 50
+[   INFO] 2021-03-08 payments-due: 50
+[   INFO] 2021-04-08 payments-due: 50
+[   INFO] 2021-05-08 payments-due: 50
+[   INFO] 2021-06-08 payments-due: 50
+[   INFO] 2021-07-08 payments-due: 50
+[   INFO] 2021-08-08 payments-due: 50
+[   INFO] 2021-09-08 payments-due: 50
+[   INFO] 2021-10-08 payments-due: 50
+[   INFO] 2021-11-08 payments-due: 50
+[   INFO] 2021-12-08 payments-due: 50
+[   INFO] 2022-01-08 payments-due: 50
+[   INFO] 2022-02-08 payments-due: 50
+[   INFO] 2022-03-08 payments-due: 50
+[   INFO] 2022-04-08 payments-due: 50
+[   INFO] 2022-05-08 payments-due: 50
+[   INFO] 2022-06-08 payments-due: 50
+[   INFO] 2022-07-08 payments-due: 50
+[   INFO] 2022-08-08 payments-due: 50
+[   INFO] 2022-09-08 payments-due: 50
+[   INFO] 2022-10-08 payments-due: 50
+[   INFO] 2022-11-08 payments-due: 50
+[   INFO] 2022-12-08 payments-due: 50
+[   INFO] 2023-01-08 payments-due: 50
+[   INFO] 2023-02-08 payments-due: 50
+[   INFO] 2023-03-08 payments-due: 50
+[   INFO] 2023-04-08 payments-due: 50
+[   INFO] 2023-05-08 payments-due: 50
+[   INFO] 2023-06-08 payments-due: 50
+[   INFO] 2023-07-08 payments-due: 50
+[   INFO] 2023-08-08 payments-due: 50
+[   INFO] 2023-09-08 payments-due: 50
+[   INFO] 2023-10-08 payments-due: 50
+[   INFO] 2023-11-08 payments-due: 50
+[   INFO] 2023-12-08 payments-due: 50
+[   INFO] 2024-01-08 payments-due: 50
+[   INFO] 2024-02-08 payments-due: 50
+[   INFO] 2024-03-08 payments-due: 50
+[   INFO] 2024-04-08 payments-due: 50.00
 [WARNING] today overriden to 2021-01-15 00:00:00
 [   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-01-15 handler income:job (income:job): IncomeHandler(income=IncomeDefinition(name='job', epoch=datetime.datetime(2020, 1, 1, 0, 0), factor=Decimal('2')), path='assets:checking:reserved', tax_system=TaxSystem(names=Names(available='allocations:checking:available', refunded='allocations:checking:refunded', emergency='allocations:checking:savings:emergency', taxes='allocations:checking:savings:main', reserved='assets:checking:reserved', early='allocations:checking:early'), taxes=[]))
-[   INFO] 2021-01-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(49, 49)) -2000.00 refs=[34HJ2JYK4UJUG]
+[   INFO] 2021-01-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[34HJ2JYK4UJUG]
 [   INFO] 2021-01-01 handler allocations:checking:savings:emergency (allocations:checking:savings:emergency): DatedMoneyHandler()
-[   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[], lines=(18, 18)) 1000.00
+[   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[]) 1000.00
 [   INFO] 2021-01-01 handler allocations:checking:available:services (allocations:checking:available:.+): DatedMoneyHandler()
 [   INFO] 2021-01-05 handler allocations:checking:available:groceries (allocations:checking:available:.+): DatedMoneyHandler()
 [   INFO] 2021-01-09 handler allocations:checking:available:dinner (allocations:checking:available:.+): DatedMoneyHandler()
@@ -511,15 +592,54 @@
 [   INFO] 2021-01-15 income-after-static: 650.00
 [   INFO] 2021-01-15 income-after-payback: 1130.00
 [   INFO] 2021-01-15 ytd-spending: 2470.00
+[   INFO] 2021-02-08 payments-due: 50
+[   INFO] 2021-03-08 payments-due: 50
+[   INFO] 2021-04-08 payments-due: 50
+[   INFO] 2021-05-08 payments-due: 50
+[   INFO] 2021-06-08 payments-due: 50
+[   INFO] 2021-07-08 payments-due: 50
+[   INFO] 2021-08-08 payments-due: 50
+[   INFO] 2021-09-08 payments-due: 50
+[   INFO] 2021-10-08 payments-due: 50
+[   INFO] 2021-11-08 payments-due: 50
+[   INFO] 2021-12-08 payments-due: 50
+[   INFO] 2022-01-08 payments-due: 50
+[   INFO] 2022-02-08 payments-due: 50
+[   INFO] 2022-03-08 payments-due: 50
+[   INFO] 2022-04-08 payments-due: 50
+[   INFO] 2022-05-08 payments-due: 50
+[   INFO] 2022-06-08 payments-due: 50
+[   INFO] 2022-07-08 payments-due: 50
+[   INFO] 2022-08-08 payments-due: 50
+[   INFO] 2022-09-08 payments-due: 50
+[   INFO] 2022-10-08 payments-due: 50
+[   INFO] 2022-11-08 payments-due: 50
+[   INFO] 2022-12-08 payments-due: 50
+[   INFO] 2023-01-08 payments-due: 50
+[   INFO] 2023-02-08 payments-due: 50
+[   INFO] 2023-03-08 payments-due: 50
+[   INFO] 2023-04-08 payments-due: 50
+[   INFO] 2023-05-08 payments-due: 50
+[   INFO] 2023-06-08 payments-due: 50
+[   INFO] 2023-07-08 payments-due: 50
+[   INFO] 2023-08-08 payments-due: 50
+[   INFO] 2023-09-08 payments-due: 50
+[   INFO] 2023-10-08 payments-due: 50
+[   INFO] 2023-11-08 payments-due: 50
+[   INFO] 2023-12-08 payments-due: 50
+[   INFO] 2024-01-08 payments-due: 50
+[   INFO] 2024-02-08 payments-due: 50
+[   INFO] 2024-03-08 payments-due: 50
+[   INFO] 2024-04-08 payments-due: 50.00
 [WARNING] today overriden to 2021-02-14 00:00:00
 [   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-02-01 handler expenses:home (expenses:home): EnvelopedMoneyHandler(envelope='allocations:checking:available:home')
-[   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[], lines=(38, 38))
+[   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[])
 [   INFO] 2021-01-15 handler income:job (income:job): IncomeHandler(income=IncomeDefinition(name='job', epoch=datetime.datetime(2020, 1, 1, 0, 0), factor=Decimal('2')), path='assets:checking:reserved', tax_system=TaxSystem(names=Names(available='allocations:checking:available', refunded='allocations:checking:refunded', emergency='allocations:checking:savings:emergency', taxes='allocations:checking:savings:main', reserved='assets:checking:reserved', early='allocations:checking:early'), taxes=[]))
-[   INFO] 2021-01-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(49, 49)) -2000.00 refs=[34HJ2JYK4UJUG]
-[   INFO] 2021-02-01 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(57, 57)) -2000.00 refs=[CQQKFOPPBDCUI]
+[   INFO] 2021-01-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[34HJ2JYK4UJUG]
+[   INFO] 2021-02-01 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[CQQKFOPPBDCUI]
 [   INFO] 2021-01-01 handler allocations:checking:savings:emergency (allocations:checking:savings:emergency): DatedMoneyHandler()
-[   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[], lines=(18, 18)) 1000.00
+[   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[]) 1000.00
 [   INFO] 2021-01-01 handler allocations:checking:available:services (allocations:checking:available:.+): DatedMoneyHandler()
 [   INFO] 2021-01-05 handler allocations:checking:available:groceries (allocations:checking:available:.+): DatedMoneyHandler()
 [   INFO] 2021-01-09 handler allocations:checking:available:dinner (allocations:checking:available:.+): DatedMoneyHandler()
@@ -736,16 +856,54 @@
 [   INFO] 2021-02-14 income-after-static: 1300.00
 [   INFO] 2021-02-14 income-after-payback: 1060.00
 [   INFO] 2021-02-14 ytd-spending: 3140.00
+[   INFO] 2021-03-08 payments-due: 50
+[   INFO] 2021-04-08 payments-due: 50
+[   INFO] 2021-05-08 payments-due: 50
+[   INFO] 2021-06-08 payments-due: 50
+[   INFO] 2021-07-08 payments-due: 50
+[   INFO] 2021-08-08 payments-due: 50
+[   INFO] 2021-09-08 payments-due: 50
+[   INFO] 2021-10-08 payments-due: 50
+[   INFO] 2021-11-08 payments-due: 50
+[   INFO] 2021-12-08 payments-due: 50
+[   INFO] 2022-01-08 payments-due: 50
+[   INFO] 2022-02-08 payments-due: 50
+[   INFO] 2022-03-08 payments-due: 50
+[   INFO] 2022-04-08 payments-due: 50
+[   INFO] 2022-05-08 payments-due: 50
+[   INFO] 2022-06-08 payments-due: 50
+[   INFO] 2022-07-08 payments-due: 50
+[   INFO] 2022-08-08 payments-due: 50
+[   INFO] 2022-09-08 payments-due: 50
+[   INFO] 2022-10-08 payments-due: 50
+[   INFO] 2022-11-08 payments-due: 50
+[   INFO] 2022-12-08 payments-due: 50
+[   INFO] 2023-01-08 payments-due: 50
+[   INFO] 2023-02-08 payments-due: 50
+[   INFO] 2023-03-08 payments-due: 50
+[   INFO] 2023-04-08 payments-due: 50
+[   INFO] 2023-05-08 payments-due: 50
+[   INFO] 2023-06-08 payments-due: 50
+[   INFO] 2023-07-08 payments-due: 50
+[   INFO] 2023-08-08 payments-due: 50
+[   INFO] 2023-09-08 payments-due: 50
+[   INFO] 2023-10-08 payments-due: 50
+[   INFO] 2023-11-08 payments-due: 50
+[   INFO] 2023-12-08 payments-due: 50
+[   INFO] 2024-01-08 payments-due: 50
+[   INFO] 2024-02-08 payments-due: 50
+[   INFO] 2024-03-08 payments-due: 50
+[   INFO] 2024-04-08 payments-due: 50.00
 [WARNING] today overriden to 2021-02-16 00:00:00
 [   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-02-01 handler expenses:home (expenses:home): EnvelopedMoneyHandler(envelope='allocations:checking:available:home')
-[   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[], lines=(38, 38))
+[   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[])
 [   INFO] 2021-01-15 handler income:job (income:job): IncomeHandler(income=IncomeDefinition(name='job', epoch=datetime.datetime(2020, 1, 1, 0, 0), factor=Decimal('2')), path='assets:checking:reserved', tax_system=TaxSystem(names=Names(available='allocations:checking:available', refunded='allocations:checking:refunded', emergency='allocations:checking:savings:emergency', taxes='allocations:checking:savings:main', reserved='assets:checking:reserved', early='allocations:checking:early'), taxes=[]))
-[   INFO] 2021-01-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(49, 49)) -2000.00 refs=[34HJ2JYK4UJUG]
-[   INFO] 2021-02-01 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(57, 57)) -2000.00 refs=[CQQKFOPPBDCUI]
-[   INFO] 2021-02-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(83, 83)) -2000.00 refs=[XMKHZYDU2QQGM]
+[   INFO] 2021-01-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[34HJ2JYK4UJUG]
+[   INFO] 2021-02-01 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[CQQKFOPPBDCUI]
+[   INFO] 2021-02-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[XMKHZYDU2QQGM]
 [   INFO] 2021-01-01 handler allocations:checking:savings:emergency (allocations:checking:savings:emergency): DatedMoneyHandler()
-[   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[], lines=(18, 18)) 1000.00
+[   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[]) 1000.00
 [   INFO] 2021-01-01 handler allocations:checking:available:services (allocations:checking:available:.+): DatedMoneyHandler()
 [   INFO] 2021-01-05 handler allocations:checking:available:groceries (allocations:checking:available:.+): DatedMoneyHandler()
 [   INFO] 2021-01-09 handler allocations:checking:available:dinner (allocations:checking:available:.+): DatedMoneyHandler()
@@ -973,18 +1131,56 @@
 [   INFO] 2021-02-16 income-after-static: 1850.00
 [   INFO] 2021-02-16 income-after-payback: 1610.00
 [   INFO] 2021-02-16 ytd-spending: 3140.00
+[   INFO] 2021-03-08 payments-due: 50
+[   INFO] 2021-04-08 payments-due: 50
+[   INFO] 2021-05-08 payments-due: 50
+[   INFO] 2021-06-08 payments-due: 50
+[   INFO] 2021-07-08 payments-due: 50
+[   INFO] 2021-08-08 payments-due: 50
+[   INFO] 2021-09-08 payments-due: 50
+[   INFO] 2021-10-08 payments-due: 50
+[   INFO] 2021-11-08 payments-due: 50
+[   INFO] 2021-12-08 payments-due: 50
+[   INFO] 2022-01-08 payments-due: 50
+[   INFO] 2022-02-08 payments-due: 50
+[   INFO] 2022-03-08 payments-due: 50
+[   INFO] 2022-04-08 payments-due: 50
+[   INFO] 2022-05-08 payments-due: 50
+[   INFO] 2022-06-08 payments-due: 50
+[   INFO] 2022-07-08 payments-due: 50
+[   INFO] 2022-08-08 payments-due: 50
+[   INFO] 2022-09-08 payments-due: 50
+[   INFO] 2022-10-08 payments-due: 50
+[   INFO] 2022-11-08 payments-due: 50
+[   INFO] 2022-12-08 payments-due: 50
+[   INFO] 2023-01-08 payments-due: 50
+[   INFO] 2023-02-08 payments-due: 50
+[   INFO] 2023-03-08 payments-due: 50
+[   INFO] 2023-04-08 payments-due: 50
+[   INFO] 2023-05-08 payments-due: 50
+[   INFO] 2023-06-08 payments-due: 50
+[   INFO] 2023-07-08 payments-due: 50
+[   INFO] 2023-08-08 payments-due: 50
+[   INFO] 2023-09-08 payments-due: 50
+[   INFO] 2023-10-08 payments-due: 50
+[   INFO] 2023-11-08 payments-due: 50
+[   INFO] 2023-12-08 payments-due: 50
+[   INFO] 2024-01-08 payments-due: 50
+[   INFO] 2024-02-08 payments-due: 50
+[   INFO] 2024-03-08 payments-due: 50
+[   INFO] 2024-04-08 payments-due: 50.00
 [WARNING] today overriden to 2021-03-01 00:00:00
 [   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-02-01 handler expenses:home (expenses:home): EnvelopedMoneyHandler(envelope='allocations:checking:available:home')
-[   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[], lines=(38, 38))
+[   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[])
 [   INFO] 2021-01-15 handler income:job (income:job): IncomeHandler(income=IncomeDefinition(name='job', epoch=datetime.datetime(2020, 1, 1, 0, 0), factor=Decimal('2')), path='assets:checking:reserved', tax_system=TaxSystem(names=Names(available='allocations:checking:available', refunded='allocations:checking:refunded', emergency='allocations:checking:savings:emergency', taxes='allocations:checking:savings:main', reserved='assets:checking:reserved', early='allocations:checking:early'), taxes=[]))
-[   INFO] 2021-01-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(49, 49)) -2000.00 refs=[34HJ2JYK4UJUG]
-[   INFO] 2021-02-01 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(57, 57)) -2000.00 refs=[CQQKFOPPBDCUI]
-[   INFO] 2021-02-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(83, 83)) -2000.00 refs=[XMKHZYDU2QQGM]
-[   INFO] 2021-02-28 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(87, 87)) -2000.00 refs=[D3Y7JKSGZJ7P4]
-[   INFO] 2021-03-01 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(95, 95)) -2000.00 refs=[NF53UDGJTQIYY]
+[   INFO] 2021-01-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[34HJ2JYK4UJUG]
+[   INFO] 2021-02-01 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[CQQKFOPPBDCUI]
+[   INFO] 2021-02-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[XMKHZYDU2QQGM]
+[   INFO] 2021-02-28 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[D3Y7JKSGZJ7P4]
+[   INFO] 2021-03-01 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[NF53UDGJTQIYY]
 [   INFO] 2021-01-01 handler allocations:checking:savings:emergency (allocations:checking:savings:emergency): DatedMoneyHandler()
-[   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[], lines=(18, 18)) 1000.00
+[   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[]) 1000.00
 [   INFO] 2021-01-01 handler allocations:checking:available:services (allocations:checking:available:.+): DatedMoneyHandler()
 [   INFO] 2021-01-05 handler allocations:checking:available:groceries (allocations:checking:available:.+): DatedMoneyHandler()
 [   INFO] 2021-01-09 handler allocations:checking:available:dinner (allocations:checking:available:.+): DatedMoneyHandler()
@@ -1249,19 +1445,57 @@
 [   INFO] 2021-03-01 income-after-static: 2950.00
 [   INFO] 2021-03-01 income-after-payback: 2580.00
 [   INFO] 2021-03-01 ytd-spending: 3260.00
+[   INFO] 2021-03-08 payments-due: 50
+[   INFO] 2021-04-08 payments-due: 50
+[   INFO] 2021-05-08 payments-due: 50
+[   INFO] 2021-06-08 payments-due: 50
+[   INFO] 2021-07-08 payments-due: 50
+[   INFO] 2021-08-08 payments-due: 50
+[   INFO] 2021-09-08 payments-due: 50
+[   INFO] 2021-10-08 payments-due: 50
+[   INFO] 2021-11-08 payments-due: 50
+[   INFO] 2021-12-08 payments-due: 50
+[   INFO] 2022-01-08 payments-due: 50
+[   INFO] 2022-02-08 payments-due: 50
+[   INFO] 2022-03-08 payments-due: 50
+[   INFO] 2022-04-08 payments-due: 50
+[   INFO] 2022-05-08 payments-due: 50
+[   INFO] 2022-06-08 payments-due: 50
+[   INFO] 2022-07-08 payments-due: 50
+[   INFO] 2022-08-08 payments-due: 50
+[   INFO] 2022-09-08 payments-due: 50
+[   INFO] 2022-10-08 payments-due: 50
+[   INFO] 2022-11-08 payments-due: 50
+[   INFO] 2022-12-08 payments-due: 50
+[   INFO] 2023-01-08 payments-due: 50
+[   INFO] 2023-02-08 payments-due: 50
+[   INFO] 2023-03-08 payments-due: 50
+[   INFO] 2023-04-08 payments-due: 50
+[   INFO] 2023-05-08 payments-due: 50
+[   INFO] 2023-06-08 payments-due: 50
+[   INFO] 2023-07-08 payments-due: 50
+[   INFO] 2023-08-08 payments-due: 50
+[   INFO] 2023-09-08 payments-due: 50
+[   INFO] 2023-10-08 payments-due: 50
+[   INFO] 2023-11-08 payments-due: 50
+[   INFO] 2023-12-08 payments-due: 50
+[   INFO] 2024-01-08 payments-due: 50
+[   INFO] 2024-02-08 payments-due: 50
+[   INFO] 2024-03-08 payments-due: 50
+[   INFO] 2024-04-08 payments-due: 50.00
 [WARNING] today overriden to 2021-03-15 00:00:00
 [   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-02-01 handler expenses:home (expenses:home): EnvelopedMoneyHandler(envelope='allocations:checking:available:home')
-[   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[], lines=(38, 38))
+[   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[])
 [   INFO] 2021-01-15 handler income:job (income:job): IncomeHandler(income=IncomeDefinition(name='job', epoch=datetime.datetime(2020, 1, 1, 0, 0), factor=Decimal('2')), path='assets:checking:reserved', tax_system=TaxSystem(names=Names(available='allocations:checking:available', refunded='allocations:checking:refunded', emergency='allocations:checking:savings:emergency', taxes='allocations:checking:savings:main', reserved='assets:checking:reserved', early='allocations:checking:early'), taxes=[]))
-[   INFO] 2021-01-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(49, 49)) -2000.00 refs=[34HJ2JYK4UJUG]
-[   INFO] 2021-02-01 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(57, 57)) -2000.00 refs=[CQQKFOPPBDCUI]
-[   INFO] 2021-02-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(83, 83)) -2000.00 refs=[XMKHZYDU2QQGM]
-[   INFO] 2021-02-28 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(87, 87)) -2000.00 refs=[D3Y7JKSGZJ7P4]
-[   INFO] 2021-03-01 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(95, 95)) -2000.00 refs=[NF53UDGJTQIYY]
-[   INFO] 2021-03-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(117, 117)) -2000.00 refs=[5XYAP725FN2BW]
+[   INFO] 2021-01-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[34HJ2JYK4UJUG]
+[   INFO] 2021-02-01 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[CQQKFOPPBDCUI]
+[   INFO] 2021-02-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[XMKHZYDU2QQGM]
+[   INFO] 2021-02-28 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[D3Y7JKSGZJ7P4]
+[   INFO] 2021-03-01 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[NF53UDGJTQIYY]
+[   INFO] 2021-03-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[5XYAP725FN2BW]
 [   INFO] 2021-01-01 handler allocations:checking:savings:emergency (allocations:checking:savings:emergency): DatedMoneyHandler()
-[   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[], lines=(18, 18)) 1000.00
+[   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[]) 1000.00
 [   INFO] 2021-01-01 handler allocations:checking:available:services (allocations:checking:available:.+): DatedMoneyHandler()
 [   INFO] 2021-01-05 handler allocations:checking:available:groceries (allocations:checking:available:.+): DatedMoneyHandler()
 [   INFO] 2021-01-09 handler allocations:checking:available:dinner (allocations:checking:available:.+): DatedMoneyHandler()
@@ -1555,21 +1789,58 @@
 [   INFO] 2021-03-15 income-after-static: 3500.00
 [   INFO] 2021-03-15 income-after-payback: 2820.00
 [   INFO] 2021-03-15 ytd-spending: 3510.00
+[   INFO] 2021-04-08 payments-due: 50
+[   INFO] 2021-05-08 payments-due: 50
+[   INFO] 2021-06-08 payments-due: 50
+[   INFO] 2021-07-08 payments-due: 50
+[   INFO] 2021-08-08 payments-due: 50
+[   INFO] 2021-09-08 payments-due: 50
+[   INFO] 2021-10-08 payments-due: 50
+[   INFO] 2021-11-08 payments-due: 50
+[   INFO] 2021-12-08 payments-due: 50
+[   INFO] 2022-01-08 payments-due: 50
+[   INFO] 2022-02-08 payments-due: 50
+[   INFO] 2022-03-08 payments-due: 50
+[   INFO] 2022-04-08 payments-due: 50
+[   INFO] 2022-05-08 payments-due: 50
+[   INFO] 2022-06-08 payments-due: 50
+[   INFO] 2022-07-08 payments-due: 50
+[   INFO] 2022-08-08 payments-due: 50
+[   INFO] 2022-09-08 payments-due: 50
+[   INFO] 2022-10-08 payments-due: 50
+[   INFO] 2022-11-08 payments-due: 50
+[   INFO] 2022-12-08 payments-due: 50
+[   INFO] 2023-01-08 payments-due: 50
+[   INFO] 2023-02-08 payments-due: 50
+[   INFO] 2023-03-08 payments-due: 50
+[   INFO] 2023-04-08 payments-due: 50
+[   INFO] 2023-05-08 payments-due: 50
+[   INFO] 2023-06-08 payments-due: 50
+[   INFO] 2023-07-08 payments-due: 50
+[   INFO] 2023-08-08 payments-due: 50
+[   INFO] 2023-09-08 payments-due: 50
+[   INFO] 2023-10-08 payments-due: 50
+[   INFO] 2023-11-08 payments-due: 50
+[   INFO] 2023-12-08 payments-due: 50
+[   INFO] 2024-01-08 payments-due: 50
+[   INFO] 2024-02-08 payments-due: 50
+[   INFO] 2024-03-08 payments-due: 50
+[   INFO] 2024-04-08 payments-due: 50.00
 [WARNING] today overriden to 2021-04-23 00:00:00
 [   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
 [   INFO] 2021-02-01 handler expenses:home (expenses:home): EnvelopedMoneyHandler(envelope='allocations:checking:available:home')
-[   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[], lines=(38, 38))
+[   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[])
 [   INFO] 2021-01-15 handler income:job (income:job): IncomeHandler(income=IncomeDefinition(name='job', epoch=datetime.datetime(2020, 1, 1, 0, 0), factor=Decimal('2')), path='assets:checking:reserved', tax_system=TaxSystem(names=Names(available='allocations:checking:available', refunded='allocations:checking:refunded', emergency='allocations:checking:savings:emergency', taxes='allocations:checking:savings:main', reserved='assets:checking:reserved', early='allocations:checking:early'), taxes=[]))
-[   INFO] 2021-01-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(49, 49)) -2000.00 refs=[34HJ2JYK4UJUG]
-[   INFO] 2021-02-01 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(57, 57)) -2000.00 refs=[CQQKFOPPBDCUI]
-[   INFO] 2021-02-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(83, 83)) -2000.00 refs=[XMKHZYDU2QQGM]
-[   INFO] 2021-02-28 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(87, 87)) -2000.00 refs=[D3Y7JKSGZJ7P4]
-[   INFO] 2021-03-01 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(95, 95)) -2000.00 refs=[NF53UDGJTQIYY]
-[   INFO] 2021-03-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(117, 117)) -2000.00 refs=[5XYAP725FN2BW]
-[   INFO] 2021-04-01 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(125, 125)) -2000.00 refs=[TA6A4NECJKXTY]
-[   INFO] 2021-04-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[], lines=(143, 143)) -2000.00 refs=[CRHGT3755AFJ6]
+[   INFO] 2021-01-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[34HJ2JYK4UJUG]
+[   INFO] 2021-02-01 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[CQQKFOPPBDCUI]
+[   INFO] 2021-02-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[XMKHZYDU2QQGM]
+[   INFO] 2021-02-28 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[D3Y7JKSGZJ7P4]
+[   INFO] 2021-03-01 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[NF53UDGJTQIYY]
+[   INFO] 2021-03-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[5XYAP725FN2BW]
+[   INFO] 2021-04-01 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[TA6A4NECJKXTY]
+[   INFO] 2021-04-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[CRHGT3755AFJ6]
 [   INFO] 2021-01-01 handler allocations:checking:savings:emergency (allocations:checking:savings:emergency): DatedMoneyHandler()
-[   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[], lines=(18, 18)) 1000.00
+[   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[]) 1000.00
 [   INFO] 2021-01-01 handler allocations:checking:available:services (allocations:checking:available:.+): DatedMoneyHandler()
 [   INFO] 2021-01-05 handler allocations:checking:available:groceries (allocations:checking:available:.+): DatedMoneyHandler()
 [   INFO] 2021-01-09 handler allocations:checking:available:dinner (allocations:checking:available:.+): DatedMoneyHandler()
@@ -1694,6 +1965,8 @@
 [  DEBUG] 2021-01-15 allocations:checking:available:dinner                  150.00 take total=  650.00 taken=  170.00 taking=  150.00 after=  330.00 assets:checking:reserved refs=['P_164', 'BX7F3664BJU3O', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-01-12 allocations:checking:available:groceries               200.00 payment redate 2021-01-15
 [  DEBUG] 2021-01-15 allocations:checking:available:groceries               200.00 take total=  650.00 taken=  320.00 taking=  200.00 after=  130.00 assets:checking:reserved refs=['P_166', 'WO7D2EMXY42FA', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[   INFO] 2021-01-15 MoneyPool(money=[])
+[   INFO] 2021-01-15 Paid(moves=[], available=[])
 [   INFO] 2021-02-01 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-01                                                               pay-from expenses=    220.00 emergency=         0  3/ 0 upcoming=2021-02-15 today=2021-04-23
 [  DEBUG] 2021-01-22 allocations:checking:available:groceries               100.00 payment redate 2021-02-01
@@ -1701,6 +1974,8 @@
 [  DEBUG] 2021-02-01 allocations:checking:available:services                 20.00 take total=  650.00 taken=  620.00 taking=   20.00 after=   10.00 assets:checking:reserved refs=['P_170', 'E5M2X775EV3JC', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-02-01 allocations:checking:available:home                    100.00 take total=  650.00 taken=  640.00 taking=   10.00 after=    0.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', '34HJ2JYK4UJUG'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
 [  DEBUG] 2021-02-01 allocations:checking:available:home                     90.00 take total=  650.00 taken=       0 taking=   90.00 after=  560.00 assets:checking:reserved refs=['UFYEY77BHVIMM', 'P_0', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: envelope-money-handler', 'debug: envelope-allocated']
+[   INFO] 2021-02-01 MoneyPool(money=[])
+[   INFO] 2021-02-01 Paid(moves=[], available=[])
 [   INFO] 2021-02-15 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-15                                                               pay-from expenses=    500.00 emergency=         0  4/ 0 upcoming=2021-02-28 today=2021-04-23
 [  DEBUG] 2021-02-08 allocations:checking:savings:slow                          50 payment redate 2021-02-15
@@ -1713,6 +1988,8 @@
 [  DEBUG] 2021-02-14 allocations:checking:available:groceries               100.00 payment redate 2021-02-15
 [  DEBUG] 2021-02-15 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  490.00 taking=  100.00 after=   60.00 assets:checking:reserved refs=['P_176', 'EHBDCR2JBCJU4', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-15 allocations:checking:available:groceries               100.00 taxing      10.00 allocations:checking:savings:main
+[   INFO] 2021-02-15 MoneyPool(money=[])
+[   INFO] 2021-02-15 Paid(moves=[], available=[])
 [   INFO] 2021-02-28 ------------------------------------------------------------------------------------------
 [   INFO] 2021-02-28                                                               pay-from expenses=    130.00 emergency=         0  3/ 0 upcoming=2021-03-01 today=2021-04-23
 [  DEBUG] 2021-02-15 allocations:checking:savings:main                       10.00 payment redate 2021-02-28
@@ -1722,11 +1999,15 @@
 [  DEBUG] 2021-02-28 allocations:checking:available:groceries               100.00 take total=  650.00 taken=  620.00 taking=   30.00 after=    0.00 assets:checking:reserved refs=['P_178', 'GRUOVMS72RAVI', 'CQQKFOPPBDCUI'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-02-28 allocations:checking:available:groceries                70.00 take total=  550.00 taken=       0 taking=   70.00 after=  480.00 assets:checking:reserved refs=['P_178', 'GRUOVMS72RAVI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-02-28 allocations:checking:available:groceries               100.00 taxing      10.00 allocations:checking:savings:main
+[   INFO] 2021-02-28 MoneyPool(money=[])
+[   INFO] 2021-02-28 Paid(moves=[], available=[])
 [   INFO] 2021-03-01 ------------------------------------------------------------------------------------------
 [   INFO] 2021-03-01                                                               pay-from expenses=     30.00 emergency=         0  2/ 0 upcoming=2021-03-15 today=2021-04-23
 [  DEBUG] 2021-02-28 allocations:checking:savings:main                       10.00 payment redate 2021-03-01
 [  DEBUG] 2021-03-01 allocations:checking:savings:main                       10.00 take total=  550.00 taken=   70.00 taking=   10.00 after=  470.00 assets:checking:reserved refs=['P_178', 'GRUOVMS72RAVI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: tax']
 [  DEBUG] 2021-03-01 allocations:checking:available:services                 20.00 take total=  550.00 taken=   80.00 taking=   20.00 after=  450.00 assets:checking:reserved refs=['P_180', 'AEADQD6QW7FJU', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[   INFO] 2021-03-01 MoneyPool(money=[])
+[   INFO] 2021-03-01 Paid(moves=[], available=[])
 [   INFO] 2021-03-15 ------------------------------------------------------------------------------------------
 [   INFO] 2021-03-15                                                               pay-from expenses=    300.00 emergency=         0  3/ 0 upcoming=2021-04-01 today=2021-04-23
 [  DEBUG] 2021-03-03 allocations:checking:available:groceries               100.00 payment redate 2021-03-15
@@ -1736,6 +2017,8 @@
 [  DEBUG] 2021-03-15 allocations:checking:savings:slow                          50 take total=  550.00 taken=  200.00 taking=      50 after=  300.00 assets:checking:reserved refs=['P_88', 'EZWOM32I57EN4', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-03-09 allocations:checking:available:dinner                  150.00 payment redate 2021-03-15
 [  DEBUG] 2021-03-15 allocations:checking:available:dinner                  150.00 take total=  550.00 taken=  250.00 taking=  150.00 after=  150.00 assets:checking:reserved refs=['P_184', 'BWVY3FPFVCZTQ', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[   INFO] 2021-03-15 MoneyPool(money=[])
+[   INFO] 2021-03-15 Paid(moves=[], available=[])
 [   INFO] 2021-04-01 ------------------------------------------------------------------------------------------
 [   INFO] 2021-04-01                                                               pay-from expenses=    130.00 emergency=         0  3/ 0 upcoming=2021-04-15 today=2021-04-23
 [  DEBUG] 2021-03-15 allocations:checking:savings:main                       10.00 payment redate 2021-04-01
@@ -1744,6 +2027,8 @@
 [  DEBUG] 2021-04-01 allocations:checking:available:groceries               100.00 take total=  550.00 taken=  410.00 taking=  100.00 after=   40.00 assets:checking:reserved refs=['P_186', 'CPXA5TECXIYG2', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-04-01 allocations:checking:available:groceries               100.00 taxing      10.00 allocations:checking:savings:main
 [  DEBUG] 2021-04-01 allocations:checking:available:services                 20.00 take total=  550.00 taken=  510.00 taking=   20.00 after=   20.00 assets:checking:reserved refs=['P_188', 'JPRLVBASTWWFI', 'XMKHZYDU2QQGM'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[   INFO] 2021-04-01 MoneyPool(money=[])
+[   INFO] 2021-04-01 Paid(moves=[], available=[])
 [   INFO] 2021-04-15 ------------------------------------------------------------------------------------------
 [   INFO] 2021-04-15                                                               pay-from expenses=    210.00 emergency=         0  3/ 0 upcoming=2021-04-23 today=2021-04-23
 [  DEBUG] 2021-04-01 allocations:checking:savings:main                       10.00 payment redate 2021-04-15
@@ -1753,6 +2038,8 @@
 [  DEBUG] 2021-04-15 allocations:checking:savings:slow                       40.00 take total=  550.00 taken=       0 taking=   40.00 after=  510.00 assets:checking:reserved refs=['P_90', 'EZWOM32I57EN4', 'D3Y7JKSGZJ7P4'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [  DEBUG] 2021-04-09 allocations:checking:available:dinner                  150.00 payment redate 2021-04-15
 [  DEBUG] 2021-04-15 allocations:checking:available:dinner                  150.00 take total=  550.00 taken=   40.00 taking=  150.00 after=  360.00 assets:checking:reserved refs=['P_190', '7YOLTM2QKNHCQ', 'D3Y7JKSGZJ7P4'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
+[   INFO] 2021-04-15 MoneyPool(money=[])
+[   INFO] 2021-04-15 Paid(moves=[], available=[])
 [   INFO] 2021-04-23 unpaid: Payment(date=datetime.datetime(2021, 4, 20, 0, 0), total=Decimal('100.00'), path='allocations:checking:available:groceries', note='groceries', tags=['debug: schedule-handler'], taken=Decimal('0'), where={}, refs=['P_192', 'KORUDTQTBAF3E'], mid='P_193', original_date=None)
 [   INFO] 2021-04-23 unpaid: Payment(date=datetime.datetime(2021, 5, 8, 0, 0), total=Decimal('50'), path='allocations:checking:savings:slow', note='whoa, unexpected purchase', tags=['debug: schedule-handler'], taken=Decimal('0'), where={}, refs=['P_92', 'EZWOM32I57EN4'], mid='P_93', original_date=datetime.datetime(2021, 1, 8, 0, 0))
 [   INFO] 2021-04-23 unpaid: Payment(date=datetime.datetime(2021, 6, 8, 0, 0), total=Decimal('50'), path='allocations:checking:savings:slow', note='whoa, unexpected purchase', tags=['debug: schedule-handler'], taken=Decimal('0'), where={}, refs=['P_94', 'EZWOM32I57EN4'], mid='P_95', original_date=datetime.datetime(2021, 1, 8, 0, 0))
@@ -1797,6 +2084,8 @@
 [  DEBUG] 2021-04-20 allocations:checking:available:groceries               100.00 payment redate 2021-04-23
 [  DEBUG] 2021-04-23 allocations:checking:available:groceries               100.00 take total=  550.00 taken=  190.00 taking=  100.00 after=  260.00 assets:checking:reserved refs=['P_192', 'KORUDTQTBAF3E', 'D3Y7JKSGZJ7P4'] tags=['debug: income-remainder', 'income: job']+['debug: schedule-handler']
 [   INFO] 2021-04-23 allocations:checking:available:groceries               100.00 taxing      10.00 allocations:checking:savings:main
+[   INFO] 2021-04-23 MoneyPool(money=[])
+[   INFO] 2021-04-23 Paid(moves=[], available=[])
 [   INFO] 2021-04-23 ACCOUNT                                               BALANCE +       PAID =        B+P
 [   INFO] 2021-04-23 allocations:checking:available:dinner                 -600.00 +     600.00 =       0.00
 [   INFO] 2021-04-23 allocations:checking:available:groceries             -1100.00 +    1100.00 =       0.00
@@ -1820,3 +2109,40 @@
 [   INFO] 2021-04-23 income-after-static: 4600.00
 [   INFO] 2021-04-23 income-after-payback: 3460.00
 [   INFO] 2021-04-23 ytd-spending: 3880.00
+[   INFO] 2021-04-23 payments-due: 10.00
+[   INFO] 2021-05-08 payments-due: 50
+[   INFO] 2021-06-08 payments-due: 50
+[   INFO] 2021-07-08 payments-due: 50
+[   INFO] 2021-08-08 payments-due: 50
+[   INFO] 2021-09-08 payments-due: 50
+[   INFO] 2021-10-08 payments-due: 50
+[   INFO] 2021-11-08 payments-due: 50
+[   INFO] 2021-12-08 payments-due: 50
+[   INFO] 2022-01-08 payments-due: 50
+[   INFO] 2022-02-08 payments-due: 50
+[   INFO] 2022-03-08 payments-due: 50
+[   INFO] 2022-04-08 payments-due: 50
+[   INFO] 2022-05-08 payments-due: 50
+[   INFO] 2022-06-08 payments-due: 50
+[   INFO] 2022-07-08 payments-due: 50
+[   INFO] 2022-08-08 payments-due: 50
+[   INFO] 2022-09-08 payments-due: 50
+[   INFO] 2022-10-08 payments-due: 50
+[   INFO] 2022-11-08 payments-due: 50
+[   INFO] 2022-12-08 payments-due: 50
+[   INFO] 2023-01-08 payments-due: 50
+[   INFO] 2023-02-08 payments-due: 50
+[   INFO] 2023-03-08 payments-due: 50
+[   INFO] 2023-04-08 payments-due: 50
+[   INFO] 2023-05-08 payments-due: 50
+[   INFO] 2023-06-08 payments-due: 50
+[   INFO] 2023-07-08 payments-due: 50
+[   INFO] 2023-08-08 payments-due: 50
+[   INFO] 2023-09-08 payments-due: 50
+[   INFO] 2023-10-08 payments-due: 50
+[   INFO] 2023-11-08 payments-due: 50
+[   INFO] 2023-12-08 payments-due: 50
+[   INFO] 2024-01-08 payments-due: 50
+[   INFO] 2024-02-08 payments-due: 50
+[   INFO] 2024-03-08 payments-due: 50
+[   INFO] 2024-04-08 payments-due: 50.00
