@@ -665,9 +665,12 @@ class Spending:
     def balance(self, path: str) -> Decimal:
         return Decimal(sum([p.total for p in self.paid if p.path == path]))
 
-    def payments_due_on(self, date: datetime) -> Decimal:
-        payments = sum([p.total for p in self.payments if p.date == date])
+    def total_payments_due_on(self, date: datetime) -> Decimal:
+        payments = sum([p.total for p in self.payments_due_on(date)])
         return Decimal(payments)
+
+    def payments_due_on(self, date: datetime) -> List[Payment]:
+        return [p for p in self.payments if p.date == date]
 
     def dates_after_today(self) -> List[datetime]:
         unique: Dict[datetime, bool] = {
@@ -1377,7 +1380,8 @@ class Finances:
             future_dates.sort()
             for date in future_dates:
                 due = spending.payments_due_on(date)
-                log.info(f"{date.date()} payments-due: {due}")
+                simple = [(p.total, p.note) for p in due]
+                log.info(f"{date.date()} payments-due: {simple}")
         except InsufficientFundsError:
             log.error("InsufficientFundsError", exc_info=True)
 
