@@ -273,19 +273,20 @@ class Ledger:
             loaded = json.load(f)
             return Transactions([load_json_tx(**tx) for tx in loaded])
 
-    def register(self, expression: List[str]) -> Transactions:
+    def register(self) -> Transactions:
         command = [
             "ledger",
             "-f",
             self.path,
             "-S",
-            "date",
+            "date,payee",
+            "--current",
             "--exchange",
             "$",
             "-F",
             "1|%S|%b|%e|%D|%A|%t|%X|%P|%N\n%/0|%S|%b|%e|%D|%A|%t|%X|%P|%N\n",
             "register",
-        ] + expression
+        ]
         sp = subprocess.run(command, stdout=subprocess.PIPE)
 
         log = logging.getLogger("ledger")
@@ -367,7 +368,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     ledger = Ledger(args.ledger_file)
-    all_transactions = ledger.register([])
+    all_transactions = ledger.register()
     serialized = all_transactions.serialize()
 
     if args.output_file:

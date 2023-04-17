@@ -1125,8 +1125,7 @@ class Finances:
         if self.args.json_file:
             return l.json_register(self.args.json_file)
         else:
-            default_args = ["-S", "date", "--current"]
-            return l.register(default_args)
+            return l.register()
 
     def allocate(self, file: TextIO):
         names = self.cfg.names

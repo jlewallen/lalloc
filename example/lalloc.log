@@ -1,5 +1,6 @@
 [WARNING] today overriden to 2021-01-05 00:00:00
-[   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
+[   INFO] ledger -f example.ledger -S date,payee --current --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register
+[   INFO] 31 transactions
 [   INFO] 2021-01-01 handler allocations:checking:savings:emergency (allocations:checking:savings:emergency): DatedMoneyHandler()
 [   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[]) 1000.00
 [   INFO] 2021-01-01 handler allocations:checking:available:services (allocations:checking:available:.+): DatedMoneyHandler()
@@ -39,7 +40,8 @@
 [   INFO] 2021-01-05 ytd-spending: 120.00
 [   INFO] 2021-01-06 payments-due: 120.00
 [WARNING] today overriden to 2021-01-09 00:00:00
-[   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
+[   INFO] ledger -f example.ledger -S date,payee --current --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register
+[   INFO] 31 transactions
 [   INFO] 2021-01-01 handler allocations:checking:savings:emergency (allocations:checking:savings:emergency): DatedMoneyHandler()
 [   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[]) 1000.00
 [   INFO] 2021-01-01 handler allocations:checking:available:services (allocations:checking:available:.+): DatedMoneyHandler()
@@ -225,7 +227,8 @@
 [   INFO] 2024-03-08 payments-due: 50
 [   INFO] 2024-04-08 payments-due: 50.00
 [WARNING] today overriden to 2021-01-14 00:00:00
-[   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
+[   INFO] ledger -f example.ledger -S date,payee --current --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register
+[   INFO] 31 transactions
 [   INFO] 2021-01-01 handler allocations:checking:savings:emergency (allocations:checking:savings:emergency): DatedMoneyHandler()
 [   INFO] 2021-01-01 dated-money: Posting(account='allocations:checking:savings:emergency', value=Decimal('1000.00'), note='allocation:', tags=[]) 1000.00
 [   INFO] 2021-01-01 handler allocations:checking:available:services (allocations:checking:available:.+): DatedMoneyHandler()
@@ -420,7 +423,8 @@
 [   INFO] 2024-03-08 payments-due: 50
 [   INFO] 2024-04-08 payments-due: 50.00
 [WARNING] today overriden to 2021-01-15 00:00:00
-[   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
+[   INFO] ledger -f example.ledger -S date,payee --current --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register
+[   INFO] 31 transactions
 [   INFO] 2021-01-15 handler income:job (income:job): IncomeHandler(income=IncomeDefinition(name='job', epoch=datetime.datetime(2020, 1, 1, 0, 0), factor=Decimal('2')), path='assets:checking:reserved', tax_system=TaxSystem(names=Names(available='allocations:checking:available', refunded='allocations:checking:refunded', emergency='allocations:checking:savings:emergency', taxes='allocations:checking:savings:main', reserved='assets:checking:reserved', early='allocations:checking:early'), taxes=[]))
 [   INFO] 2021-01-15 income: Posting(account='income:job', value=Decimal('-2000.00'), note='', tags=[]) -2000.00 refs=[34HJ2JYK4UJUG]
 [   INFO] 2021-01-01 handler allocations:checking:savings:emergency (allocations:checking:savings:emergency): DatedMoneyHandler()
@@ -632,7 +636,8 @@
 [   INFO] 2024-03-08 payments-due: 50
 [   INFO] 2024-04-08 payments-due: 50.00
 [WARNING] today overriden to 2021-02-14 00:00:00
-[   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
+[   INFO] ledger -f example.ledger -S date,payee --current --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register
+[   INFO] 31 transactions
 [   INFO] 2021-02-01 handler expenses:home (expenses:home): EnvelopedMoneyHandler(envelope='allocations:checking:available:home')
 [   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[])
 [   INFO] 2021-01-15 handler income:job (income:job): IncomeHandler(income=IncomeDefinition(name='job', epoch=datetime.datetime(2020, 1, 1, 0, 0), factor=Decimal('2')), path='assets:checking:reserved', tax_system=TaxSystem(names=Names(available='allocations:checking:available', refunded='allocations:checking:refunded', emergency='allocations:checking:savings:emergency', taxes='allocations:checking:savings:main', reserved='assets:checking:reserved', early='allocations:checking:early'), taxes=[]))
@@ -895,7 +900,8 @@
 [   INFO] 2024-03-08 payments-due: 50
 [   INFO] 2024-04-08 payments-due: 50.00
 [WARNING] today overriden to 2021-02-16 00:00:00
-[   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
+[   INFO] ledger -f example.ledger -S date,payee --current --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register
+[   INFO] 31 transactions
 [   INFO] 2021-02-01 handler expenses:home (expenses:home): EnvelopedMoneyHandler(envelope='allocations:checking:available:home')
 [   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[])
 [   INFO] 2021-01-15 handler income:job (income:job): IncomeHandler(income=IncomeDefinition(name='job', epoch=datetime.datetime(2020, 1, 1, 0, 0), factor=Decimal('2')), path='assets:checking:reserved', tax_system=TaxSystem(names=Names(available='allocations:checking:available', refunded='allocations:checking:refunded', emergency='allocations:checking:savings:emergency', taxes='allocations:checking:savings:main', reserved='assets:checking:reserved', early='allocations:checking:early'), taxes=[]))
@@ -1170,7 +1176,8 @@
 [   INFO] 2024-03-08 payments-due: 50
 [   INFO] 2024-04-08 payments-due: 50.00
 [WARNING] today overriden to 2021-03-01 00:00:00
-[   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
+[   INFO] ledger -f example.ledger -S date,payee --current --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register
+[   INFO] 31 transactions
 [   INFO] 2021-02-01 handler expenses:home (expenses:home): EnvelopedMoneyHandler(envelope='allocations:checking:available:home')
 [   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[])
 [   INFO] 2021-01-15 handler income:job (income:job): IncomeHandler(income=IncomeDefinition(name='job', epoch=datetime.datetime(2020, 1, 1, 0, 0), factor=Decimal('2')), path='assets:checking:reserved', tax_system=TaxSystem(names=Names(available='allocations:checking:available', refunded='allocations:checking:refunded', emergency='allocations:checking:savings:emergency', taxes='allocations:checking:savings:main', reserved='assets:checking:reserved', early='allocations:checking:early'), taxes=[]))
@@ -1484,7 +1491,8 @@
 [   INFO] 2024-03-08 payments-due: 50
 [   INFO] 2024-04-08 payments-due: 50.00
 [WARNING] today overriden to 2021-03-15 00:00:00
-[   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
+[   INFO] ledger -f example.ledger -S date,payee --current --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register
+[   INFO] 31 transactions
 [   INFO] 2021-02-01 handler expenses:home (expenses:home): EnvelopedMoneyHandler(envelope='allocations:checking:available:home')
 [   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[])
 [   INFO] 2021-01-15 handler income:job (income:job): IncomeHandler(income=IncomeDefinition(name='job', epoch=datetime.datetime(2020, 1, 1, 0, 0), factor=Decimal('2')), path='assets:checking:reserved', tax_system=TaxSystem(names=Names(available='allocations:checking:available', refunded='allocations:checking:refunded', emergency='allocations:checking:savings:emergency', taxes='allocations:checking:savings:main', reserved='assets:checking:reserved', early='allocations:checking:early'), taxes=[]))
@@ -1827,7 +1835,8 @@
 [   INFO] 2024-03-08 payments-due: 50
 [   INFO] 2024-04-08 payments-due: 50.00
 [WARNING] today overriden to 2021-04-23 00:00:00
-[   INFO] ledger -f example.ledger -S date --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register -S date --current
+[   INFO] ledger -f example.ledger -S date,payee --current --exchange $ -F 1|%S|%b|%e|%D|%A|%t|%X|%P|%NNL%/0|%S|%b|%e|%D|%A|%t|%X|%P|%NNL register
+[   INFO] 31 transactions
 [   INFO] 2021-02-01 handler expenses:home (expenses:home): EnvelopedMoneyHandler(envelope='allocations:checking:available:home')
 [   INFO] allocate assets:checking:reserved Posting(account='expenses:home', value=Decimal('100.00'), note='', tags=[])
 [   INFO] 2021-01-15 handler income:job (income:job): IncomeHandler(income=IncomeDefinition(name='job', epoch=datetime.datetime(2020, 1, 1, 0, 0), factor=Decimal('2')), path='assets:checking:reserved', tax_system=TaxSystem(names=Names(available='allocations:checking:available', refunded='allocations:checking:refunded', emergency='allocations:checking:savings:emergency', taxes='allocations:checking:savings:main', reserved='assets:checking:reserved', early='allocations:checking:early'), taxes=[]))
