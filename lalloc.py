@@ -769,6 +769,8 @@ class Spending:
             if payment.has_tag(DebugTagScheduled) and payment.date >= date:
                 future_expenses.append(payment)
 
+        future_expenses.reverse()
+
         return (emergency, expenses, future_expenses)
 
     def pay_from(
