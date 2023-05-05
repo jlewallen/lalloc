@@ -64,7 +64,6 @@ class Configuration:
 
 @dataclass
 class Balance:
-    date: datetime
     account: str
     value: Decimal
 
@@ -78,35 +77,15 @@ class Balances:
 class Ledger:
     path: str
 
-    def balances(self, expression: List[str]) -> Balances:
-        command = [
-            "ledger",
-            "-f",
-            self.path,
-            "-F",
-            "%D|%A|%(display_total)\n",
-            "balance",
-            "--no-total",
-            "--flat",
-        ] + expression
-        sp = subprocess.run(command, stdout=subprocess.PIPE)
+    def balances(self) -> Balances:
+        def make_balance(account: str, value: Optional[str] = None) -> List[Balance]:
+            if value is None:
+                return []
+            return [Balance(account, Decimal(value))]
 
-        log.info(" ".join(command).replace("\n", "NL"))
-
-        balances: List[Balance] = []
-
-        for line in sp.stdout.strip().decode("utf-8").split("\n"):
-            fields = line.split("|")
-            if len(fields) != 3:
-                continue
-
-            date_string, account, value_string = fields
-            date = datetime.strptime(date_string, "%Y/%m/%d")
-            value = Decimal(value_string.replace("$", ""))
-
-            balances.append(Balance(date, account, value))
-
-        return Balances(balances)
+        with open("balances.json", "r") as file:
+            raw = json.loads(file.read())
+            return Balances(flatten([make_balance(**row) for row in raw]))
 
 
 @dataclass
@@ -286,7 +265,7 @@ class Finances:
 
     def rebalance(self, file: TextIO) -> List[Transaction]:
         l = Ledger(self.cfg.ledger_file)
-        balances = l.balances(["--exchange", "$"])
+        balances = l.balances()
 
         txs: List[Transaction] = []
 
